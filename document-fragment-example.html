@@ -1,0 +1,141 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<button>Reverse</button>
+		<p></p>
+		<div class="items"></div>
+		<p>This needs to stay here..</p>
+		
+		<script>
+			// Taken form http://jsfiddle.net/paldepind/rju8rzmn/4/
+			/*
+				var reversed
+				
+				var $button = document.querySelector('button')
+				var $items = document.querySelector('.items')
+				var $time = document.querySelector('p')
+				
+				var starttime = Date.now()
+				
+				requestAnimationFrame(function () {
+				createElements()
+				
+				requestAnimationFrame(function () {
+				$time.textContent = 'Rendering took ' + (Date.now() - starttime) + 'ms'
+				})
+				})
+				
+				$button.addEventListener('click', function () {
+				reversed = !reversed
+				requestAnimationFrame(function () {
+				var starttime = Date.now()
+				updateElements()
+				$time.textContent = 'Rendering took ' + (Date.now() - starttime) + 'ms'
+				})
+				})
+				
+				function createElements () {
+				var placeholder = document.createComment('')
+				document.body.insertBefore(placeholder, $items)
+				document.body.removeChild($items)
+				var fragment = document.createDocumentFragment()
+				for (var i = 0, el; i < 10000; i++) {
+				el = document.createElement('h2')
+				el.textContent = 'title ' + i
+				fragment.appendChild(el)
+				}
+				
+				$items.appendChild(fragment)
+				document.body.insertBefore($items, placeholder)
+				document.body.removeChild(placeholder)
+				}
+				
+				function updateElements () {
+				var placeholder = document.createComment('')
+				document.body.insertBefore(placeholder, $items)
+				document.body.removeChild($items)
+				var fragment = document.createDocumentFragment()
+				var nodes = $items.childNodes
+				
+				for (var i = 0, el; i < 10000; i++) {
+				fragment.appendChild(nodes[9999 - i])
+				}
+				$items.appendChild(fragment)
+				document.body.insertBefore($items, placeholder)
+				document.body.removeChild(placeholder)
+				}
+			*/
+			
+			// My Changed Function
+			var reversed
+			
+			var $button = document.querySelector('button')
+			var $items = document.querySelector('.items')
+			var $time = document.querySelector('p')
+			
+			var starttime = Date.now();			
+			createElements();				
+			$time.textContent = 'Rendering took ' + (Date.now() - starttime) + 'ms';
+			
+			
+			
+			$button.addEventListener('click', function () {
+    reversed = !reversed
+    requestAnimationFrame(function () {
+       // var starttime = Date.now()
+        updateElements()
+       // $time.textContent = 'Rendering took ' + (Date.now() - starttime) + 'ms'
+    })
+})
+				
+			function createElements () {
+				//var placeholder = document.createComment('')
+				//document.body.insertBefore(placeholder, $items)
+				//document.body.removeChild($items)
+				var fragment = document.createDocumentFragment()
+				for (var i = 0, el; i < 10000; i++) {
+					el = document.createElement('h2')
+					el.textContent = 'title ' + i
+					fragment.appendChild(el)
+				}
+				
+				$items.appendChild(fragment)
+				//document.body.insertBefore($items, placeholder)
+				//document.body.removeChild(placeholder)
+			}
+			
+			function updateElements () {
+				var starttime = Date.now();
+				//var placeholder = document.createComment('')
+				//document.body.insertBefore(placeholder, $items)
+				//document.body.removeChild($items)
+				var fragment = document.createDocumentFragment()
+				var nodes = $items.childNodes
+				
+				for (var i = 0, el; i < 10000; i++) {
+				fragment.appendChild(nodes[9999 - i]);
+				
+				}
+				$items.appendChild(fragment)
+				//document.body.insertBefore($items, placeholder)
+				//document.body.removeChild(placeholder);
+				$time.textContent = 'Rendering took ' + (Date.now() - starttime) + 'ms';
+			}
+		</script>
+		
+		<!--Sample HTML code-->
+<div id="top" align="center">
+	This Top div 
+ <div id="nested"> Thi is nested div</div>
+</div>
+<script type="text/javascript">
+      var top = document.getElementById("top");
+	  var pp = document.getElementById("top").childNodes;
+      var nested = document.getElementById("nested");
+	console.log(pp);
+      //var garbage = top.removeChild(nested); // This first call remove correctly the node
+
+</script>
+	</body>
+</html>

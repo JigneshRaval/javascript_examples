@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			function Encapsulator(element){
+				//Assign our memeber
+				this.elementReference = element;
+				
+				// Makea circular reference
+				element.expandoProperty = this;
+			}
+			
+			function SetupLeak() {
+				//This leaks
+				new Encapsulator(document.getElementById("LeakedDiv"));
+			}
+		</script>
+	</head>
+	<body onload="SetupLeak()">
+		<div id="LeakedDiv"></div>
+	</body>
+</html>

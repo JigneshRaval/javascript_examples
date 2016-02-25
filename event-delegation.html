@@ -1,0 +1,55 @@
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<ul>
+			<li><a href="#">Test</a></li>
+			<li><a href="#">Test</a></li>
+			<li><a href="#">Test</a></li>
+			<li><a href="#">Test</a></li>
+			<li><a href="#">Test</a></li>
+			<li><a href="#">Test</a></li>
+			<li><a href="#">Test</a></li>
+			<li><a href="#">Test</a></li>
+		</ul>
+		<div class="item">
+			<p>Hello <b id="world">World</b></p>
+		</div>
+		<script>
+			var parentEle = document.querySelector('ul');
+			
+			parentEle.addEventListener('click', handler);
+			
+			
+			function handler(e) {
+				var e = e || window.event;
+				var target = e.target || e.srcElement;
+				
+				if(e.target && e.target.nodeName === 'A') {
+					console.log(e.target, e.currentTarget);
+				}
+			}
+			
+			function closest(el, fn) {
+				//return el && (
+				//fn(el) ? el : closest(el.parentNode, fn)
+				//);
+				
+				if(el && fn(el)) {
+					return el;
+				}
+				else {
+					return closest(el.parentNode, fn);
+				}
+			}
+			
+			var world = document.getElementById('world');
+			
+			var p = closest(world, function (el) {
+				console.log(el);
+				return el.tagName.toLowerCase() === 'div';
+			});
+		</script>
+	</body>
+</html>

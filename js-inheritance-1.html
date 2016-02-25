@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pseudoclassical Inheritance Pattern</title>
+</head>
+
+<body>
+  <script>
+    var extendObj = function(childObj, parentObj) {
+      childObj.prototype = parentObj.prototype;
+    }
+
+    var Human = function(name) {
+      this.name = name;
+      this.gender = "Male";
+    };
+
+    Human.prototype.getName = function() {
+      console.log(this.name, this.gender);
+    }
+
+    Human.prototype.setName = function(name) {
+      this.name = name;
+    }
+    
+    var Male = function(name) {
+      this.name = name;
+    }
+    
+    extendObj(Male, Human);
+    
+    var Female = function(name) {
+      this.name = name;
+    }
+    
+    extendObj(Female, Human);
+    
+    var hiren = new Male('Hiren');
+    var jany = new Female('Jany');
+    hiren.getName();
+    jany.getName();
+    
+    Female.prototype.gender = "Female";
+    
+    hiren.getName();
+  </script>
+</body>
+
+</html>

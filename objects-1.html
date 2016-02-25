@@ -1,0 +1,29 @@
+<html>
+  <head>
+  
+  </head>
+  <body>
+    <script>
+    /* Example of JS Object Literal */
+      
+      var jane = {
+        name : "Hiren",
+        sayHelloTo : function(anotherName) {
+          console.log(this, this.name, anotherName);
+        }
+      }
+      
+      jane.sayHelloTo("Manoj");
+      jane.sayHelloTo.call(jane, 'Tarzan');
+      
+      var john = {
+        name : "John",
+        sayHelloJohn : function(anotherName) {
+          console.log(this, this.name, anotherName);
+        }
+      }
+      
+      jane.sayHelloTo.call(john, jane);
+    </script>
+  </body>
+</html>
