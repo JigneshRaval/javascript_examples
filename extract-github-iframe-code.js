@@ -29,6 +29,9 @@ function getIframecontent() {
   }
 }
 
+getIframecontent();
+
+// Get content from embeded gists
 function getGistContent() {
   var parent = document.querySelector('.entry-content');
   var gists = document.querySelectorAll('.gist');
@@ -110,5 +113,3 @@ function copyText2() {
 	var tt = document.execCommand('copy');
 	console.log(tt);
 }
-
-getIframecontent();
