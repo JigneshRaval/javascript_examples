@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" id="ah-viewport" content="user-scalable=yes, width=device-width, minimum-scale=1, maximum-scale=5.0, initial-scale=1.0" />
+		<title></title>
+		<style>
+			.iframe-wrap.loaded iframe, .featured-pen .iframe-wrap iframe {
+				visibility: visible;
+				opacity: 1;
+			}
+			body { margin: 0 auto; }
+			section { width: 100%; height: 300px; margin: 0 auto; position: relative; }
+			
+			.iframe-wrap iframe {
+				width: 301%;
+				height: 201%;
+				border: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: white;
+				/*-webkit-transform: scale(0.5);*/
+				transform: scale(0.33);
+				-webkit-transform-origin: top left;
+				transform-origin: top left;
+				-webkit-transition: opacity 0.4s ease;
+				transition: opacity 0.4s ease;
+				opacity: 0;
+				visibility: hidden;
+			}
+		</style>
+		<script>
+			function isIframeLoaded(A) {
+				var iframe = document.createElement("iframe");
+				iframe.src = "<%=renderRequest.getAttribute("dest")%>";
+				iframe.id = 'integrationIframe';
+				iframe.className = 'ah-iframe';
+
+				if (iframe.attachEvent){
+					iframe.attachEvent("onload", function(){
+						alert("Local iframe is now loaded.");
+					});
+				} else {
+					iframe.onload = function(){
+						alert("Local iframe is now loaded.");
+					};
+				}
+
+				A.one('#integrationIframeDiv').append(iframe);
+			}
+			</script>
+	</head>
+	<body>
+		<section>
+		<div class="iframe-wrap loaded">
+		<!--<iframe id="iframe_embed_9200373" name="pen-akQoLN" title="CSS only animated rocket" src="http://codepen.io/eva_trostlos/pen/akQoLN" data-slug-hash="akQoLN" data-username="/eva_trostlos" data-title="CSS only animated rocket" allowtransparency="true" frameborder="0" scrolling="no" sandbox="allow-scripts allow-pointer-lock allow-same-origin"></iframe>-->
+			
+			<!-- Example URL 
+				https://l4dridap1274:8453/delegate/hfim?partner=YBR&lng=19968_1.0&pgNm=health-and-insurance-lnd-pg&svcNm=HM&srvcLng=19968_1.0&pageCd=HM_HCCS_010&target=YBRQA&render=portlet&linkName=YOUR_HLTH_CARE_EXPN -->
+			
+			<iframe id="iframe_embed_9200373" name="pen-akQoLN" title="CSS only animated rocket" src="https://bitlb05.hewitt.com/cl10ybr5tu/ybr5cl103a/InitialActionRoutingOpen.do?fTkn=e67044548b0e2b9473d5873f2c398e74&eWlmYBR5ClntId=19968&wdw=primary&fPg=%2FCsLogn045MultAcctOpen&hTkn=1bd3e413566b0f15b971660fee3ac173" data-slug-hash="akQoLN" data-username="/eva_trostlos" data-title="CSS only animated rocket" allowtransparency="true" frameborder="0" scrolling="no" sandbox="allow-scripts allow-pointer-lock allow-same-origin"></iframe>
+		</div>
+		</section>
+	</body>
+</html>

@@ -1,0 +1,119 @@
+<html>
+	<head>
+		<title>Call and Apply : Javascript</title>
+	</head>
+	
+	<body>
+		<script>
+			var person1 = {name: 'Marvin', age: 42, size: '2xM'};
+			var person2 = {name: 'Zaphod', age: 42000000000, size: '1xS'};
+			var name = "Jignesh";
+			
+			var sayHello = function(){
+				console.log('Hello, ' + this.name);
+				console.log("sayHello -> ", this);
+			};
+			
+			var sayGoodbye = function(){
+				console.log('Goodbye, ' + this.name);
+				console.log("sayGoodbye -> ", this);
+			};
+			
+			// Run Functions
+			sayHello();
+			sayGoodbye();
+			
+			// Using call method
+			sayHello.call(person1);
+			
+			var update = function(name, age, size){
+				console.log(this.name, this.age, this.size);
+				this.name = name;
+				this.age = age;
+				this.size = size;
+				console.log(this.name, this.age, this.size);
+			};
+			
+			console.log("Update : ", update.call(person1));
+			
+			
+			// Skater Constructor
+            function Skater(){
+				console.log(arguments);
+				this.name = arguments[0];
+			}
+			
+            Skater.prototype.tricks = function() {
+				
+				var data = ["ollie", "flip", "kickflip"];
+				var str = "";
+				
+				for(var i = 0; i < data.length; i++){
+					str += ", " + data[i];
+				};
+				
+				return this.name + " best tricks are" + str;
+				
+			}
+			
+            // Create new instance of skater
+            var nyjah = new Skater("Nyjah Huston");
+			
+            // Output
+            console.log( nyjah.tricks() );
+			
+            // Example of .bind(), to change context
+			
+            // Create new instance of skater
+            var luan = new Skater("Luan Oliveira");
+			
+            // Output
+			console.log( "Bind : ", luan.tricks() );
+            console.log( "Bind : ", nyjah.tricks.bind(luan)() );
+			
+            // Example of .call(), to change context
+			
+            // Create new instance of skater
+            var paul = new Skater("Paul Rodriguez", "arg1", "arg2");
+			
+            // Output
+            console.log( nyjah.tricks.call(paul) );
+			
+            // Example of .apply(), to change context
+			
+            // Create new instance of skater
+            var salabanzi = new Skater("Bastien Salabanzi", ["arg1", "arg2"]);
+			
+            // Output
+            console.log( nyjah.tricks.apply(salabanzi, ['arg1', 'arg2']) );
+			
+			/*=====================================
+				Example : 3
+			=======================================*/
+			function Product(name, price) {
+				this.name = name;
+				this.price = price;
+				console.log("Product : ", this.name, this.price );
+				if (price < 0) {
+					throw RangeError('Cannot create product ' +
+					this.name + ' with a negative price');
+				}
+			}
+			
+			function Food(name, price) {
+				Product.call(this, name, price);
+				this.category = 'food';
+			}
+			
+			function Toy(name, price) {
+				Product.call(this, name, price);
+				this.category = 'toy';
+			}
+			
+			var cheese = new Food('feta', 5);
+			var fun = new Toy('robot', 40);
+			
+			console.log("cheese : ", cheese);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery Snippets</title>
+	</head>
+	<body>
+		
+		<script src="./require.js"></script>
+		<script>
+			require.config({
+				paths: {
+					"jquery": "jquery-master/src"
+				}
+			});
+			//require([ "app" ]);
+			
+			// Includes Desktop Specific JavaScript files here (or inside of your Desktop router)
+			require(["jquery/core", "./umd-example-plugin"], function($) {
+				console.log("Hey look, I'm using a jQuery plugin that does not support the AMD API with Require.js!", $);				
+			});
+			
+		</script>
+		
+	</body>
+</html>

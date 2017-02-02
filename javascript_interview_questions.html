@@ -1,0 +1,362 @@
+<html>
+	<head>
+		<style>
+		body { font-family: Arial; font-size: 14px; line-height : 1.7; background-color: #EEE;}
+		h4 { font-size: 16px; }
+		.main-wrapper { width: 70%; margin: 0 auto; border: 1px solid #CCC; padding: 2%; background-color: #FFF; box-shadow: 0px 5px 5px rgba(0,0,0,0.2);  }
+		pre { padding: 1.5%; background-color: #E9EEFD; border-radius: 5px; box-shadow: 0 0px 9px 0px rgba(0,0,0,0.1) inset }
+		h3 { text-align: center; font-size: 17px; background-color: #CCC; padding: 2% 0; margin: 0; }
+		</style>
+	</head>
+	
+	<body>
+		<div class="main-wrapper">
+			<h3>JavaScript Interview Questions</h3>
+			<h4>Q. Mention different ways to create an Array in JavaScript?</h4>
+			<div class="toggle-content">
+				<p>You can define arrays using the array literal as follows -</p>
+<pre class="prettyprint notranslate prettyprinted">
+var x = [];
+var y = [1, 2, 3, 4, 5];
+</pre>
+			</div>
+			
+			<h4>Q. How to read elements of an array in JavaScript? ( Looping array )</h4>
+			<div class="toggle-content">
+				<p>An array has a length property that is useful for iteration. We can read elements of an array as follows -</p>
+				<pre class="prettyprint notranslate prettyprinted">
+var x = [1, 2, 3, 4, 5];
+for (var i = 0; i < x.length; i++) {
+// Do something with x[i]
+}
+				</pre>
+			</div>
+			
+			<h4>Q. How can we write anonymouse function.</h4>
+			<div class="toggle-content">
+				<p>An array has a length property that is useful for iteration. We can read elements of an array as follows -</p>
+<pre class="prettyprint notranslate prettyprinted">
+var anFunc = function() {
+
+}
+</pre>
+			</div>
+			
+			<h4>Q. Provide some name of JavaScript Datatypes</h4>
+			<div class="toggle-content">
+				<p>Following are the JavaScript types:</p>
+				<ul><li>Number</li><li>String</li><li>Boolean</li><li>Function</li><li>Object</li><li>Null</li><li>Undefined</li></ul>
+			</div>
+			
+			<h4>Q. What is the use of isNaN function?</h4>
+			<div class="toggle-content">
+				<p>isNan function returns true if the argument is not a number otherwise it is false.</p>
+			</div>
+			
+			<h4>Q. What are undeclared and undefined variables?</h4>
+			<div class="toggle-content">
+				<p>Undeclared variables are those that do not exist in a program and are not declared. If the program tries to read the value of an undeclared variable, then a runtime error is encountered.</p>
+
+<p>Undefined variables are those that are declared in the program but have not been given any value. If the program tries to read the value of an undefined variable, an undefined value is returned.</p>
+			</div>
+			
+			<h4>Q. What are global variables? How are these variable declared and what are the problems associated with using them?</h4>
+			<div class="toggle-content">
+				<p>Global variables are those that are available throughout the length of the code, that is, these have no scope. The var keyword is used to declare a local variable or object. If the var keyword is omitted, a global variable is declared.<br/>
+				Example:<br/>
+
+				// Declare a global globalVariable = "Test";
+
+				</p>
+
+				<p>The problems that are faced by using global variables are the clash of variable names of local and global scope. Also, it is difficult to debug and test the code that relies on global variables.</p>
+			</div>
+			
+			<h4>Q. Explain the working of timers in JavaScript? Also elucidate the drawbacks of using the timer, if any?</h4>
+			<div class="toggle-content">
+				<p>Timers are used to execute a piece of code at a set time or also to repeat the code in a given interval of time. This is done by using the functions setTimeout, setInterval and clearInterval.</p>
+
+				<p>The setTimeout(function, delay) function is used to start a timer that calls a particular function after the mentioned delay. The setInterval(function, delay) function is used to repeatedly execute the given function in the mentioned delay and only halts when cancelled. The clearInterval(id) function instructs the timer to stop.</p>
+
+				<p>Timers are operated within a single thread, and thus events might queue up, waiting to be executed.</p>
+			</div>
+			
+			<h4>Q. What is strict equality operator?</h4>
+			<div class="toggle-content">
+				<p><code>===</code> is called as strict equality operator which returns true when the two operands are having the same value without any type conversion.</p>
+			</div>
+			
+			<h4>Q. Does JavaScript support automatic type conversion? If yes then how?</h4>
+			<div class="toggle-content">
+				<p>Yes, JavaScript does support automatic type conversion, it is the common way of type conversion used by JavaScript developers</p>
+				<p><code>parseInt()</code> : Converts string to numeric, <code>parseFloat()</code> : Converts string to float</p>
+			</div>
+			
+			<h4>Q. How to create Object constructor</h4>
+			<div class="toggle-content">
+<pre>
+function Person(firstName, lastName){
+    this.firstName =  firstName;
+    this.lastName = lastName;        
+}  
+
+var Saad = new Person("Saad", "Mousliki");
+</pre>
+			</div>
+			
+			<h4>Q. How to Create a Self-calling Function</h4>
+			<div class="toggle-content">
+			<p>This is often called a Self-Invoked Anonymous Function or Immediately Invoked Function Expression (IIFE). It is a function that executes automatically when you create it, and has the following form:</p>
+<pre>
+(function(){
+    // some private code that will be executed automatically
+})();  
+(function(a,b){
+    var result = a+b;
+    return result;
+})(10,20)
+</pre>
+			</div>
+			
+			<h4>Q. How to Empty an array</h4>
+			<div class="toggle-content">
+<pre>
+var myArray = [12 , 222 , 1000 ];  
+myArray.length = 0; // myArray will be equal to [].
+</pre>
+			</div>
+			
+			<h4>Q. How to Rounding number to N decimal place</h4>
+			<div class="toggle-content">
+<pre>
+var num =2.443242342;
+num = num.toFixed(4);  // num will be equal to 2.4432
+</pre>
+<p>NOTE : the <code>toFixed()</code> function returns a string and not a number.</p>
+			</div>
+			
+			<h4>Q. What is logged to the console?</h4>
+			<div class="toggle-content">
+<pre>
+var a = 1;
+function go(){
+	console.log(a);
+	var a = 2;
+}
+go();
+
+// Answer : undefined
+</pre>
+
+			<h4>Q. What is logged to the console?</h4>
+			<div class="toggle-content">
+<pre>
+3 + false 	// Answer = 3
+3 + true 	// Answer = 4
+</pre>
+			</div>
+			
+			<h4>Q. String Builder : What is logged to the console?</h4>
+			<div class="toggle-content">
+<pre>
+'A'+'B'+'C'
+['A','B','C'].join('');
+
+// Answer = ABC
+</pre>
+			</div>
+			
+			<h4>Q. How to Convert CSV to Array in JavaScript</h4>
+			<div class="toggle-content">
+<pre>
+var str = "apple, peaches, oranges, mangoes"; // Comma seperated string
+  
+var fruitsArray = str.split(",");
+  
+// print fruitsArray[0]: apple
+</pre>
+			</div>
+			
+			<h4>Q. How can you convert the string of any base to integer in JavaScript?</h4>
+			<div class="toggle-content">
+				<p>The parseInt() function is used to convert numbers between different bases. parseInt() takes the string to be converted as its first parameter, and the second parameter is the base of the given string.</p>
+				<p>In order to convert 4F (of base 16) to integer, the code used will be –</p>
+				<pre>parseInt ("4F", 16);</pre>
+			</div>
+			
+			<h4>Q. What is the use of Void(0)?</h4>
+			<div class="toggle-content">
+				<p>Void(0) is used to prevent the page from refreshing and parameter "zero" is passed while calling.</p>
+				<p>Void(0) is used to call another method without refreshing the page.</p>
+			</div>
+			
+			<h4>Q. What are escape characters?</h4>
+			<div class="toggle-content">
+				<p>Escape characters (Backslash) is used when working with special characters like single quotes, double quotes, apostrophes and ampersands. Place backslash before the characters to make it display.</p>
+				<p>Example:</p>
+				<pre>document.write "I m a "good" boy"
+
+document.write "I m a \"good\" boy"
+				</pre>
+			</div>
+			
+			<h4>Q. Explain what is pop()method in JavaScript?</h4>
+			<div class="toggle-content">
+				<p>The pop() method is similar as the shift() method but the difference is that the Shift method works at the start of the array.  Also the pop() method take the last element off of the given array and returns it. The array on which is called is then altered.</p>
+<pre>Example:
+var cloths = ["Shirt", "Pant", "TShirt"];
+cloths.pop();
+//Now cloth becomes Shirt,Pant</pre>				
+			</div>
+			
+			<h4>Q. Which keywords are used to handle exceptions?</h4>
+			<div class="toggle-content">
+				<p>Try... Catch—finally is used to handle exceptions in the JavaScript</p>
+<pre>Try{
+
+Code
+
+}
+
+Catch(exp){
+
+Code to throw an exception
+
+}
+
+Finally{
+
+Code runs either it finishes successfully or after catch
+
+}</pre>				
+			</div>
+			
+			<h4>Q. What is the way to get the status of a CheckBox?</h4>
+			<div class="toggle-content">
+				<p>The status can be acquired as follows –</p>
+
+<pre>alert(document.getElementById('checkbox1').checked);</pre>
+
+<p>If the CheckBox will be checked, this alert will return <code>TRUE</code>.</p>		
+			</div>
+			
+			<h4>Q. What is closure? Give an example of closure?</h4>
+			<div class="toggle-content">
+				<p>Closures are created whenever a variable that is defined outside the current scope is accessed from within some inner scope.</p>
+				<p>Following example shows how the variable counter is visible within the create, increment, and print functions, but not outside of them -</p>
+
+<pre>function create() {
+   var counter = 0;
+   return {
+      increment: function() {
+         counter++;
+      },
+  
+      print: function() {
+         console.log(counter);
+      }
+   }
+}
+var c = create();
+c.increment();
+c.print();     // ==> 1</pre>
+			</div>
+			
+			<h4>Q. How can we loop properties of an Object?</h4>
+			<div class="toggle-content">
+			<pre>for (variable name in object){
+
+statement or block to execute
+
+}</pre>
+			</div>
+			
+			<h4>Q. How would you check if a variable is null/undefined?</h4>
+			<div class="toggle-content">
+			<pre class="code"><code class="hljs javascript">//check <span class="hljs-keyword">if</span> bar <span class="hljs-keyword">is</span> <span class="hljs-keyword">null</span>
+bar === <span class="hljs-keyword">null</span></code></pre>
+<pre class="code"><code class="hljs javascript"><span class="hljs-regexp">//</span>check <span class="hljs-keyword">if</span> bar <span class="hljs-keyword">is</span> <span class="hljs-literal">undefined</span>
+<span class="hljs-keyword">typeof</span> bar === <span class="hljs-string">"undefined"</span></code></pre>
+			</div>
+			
+			<h4>Q. How do you check if a variable is an object</h4>
+			<div class="toggle-content">
+			<p>
+	You can use <code><span class="hljs-keyword">typeof</span></code> to determine if variable is an object, however bear in mind that null is actually an object! However null object is 'falsy' thus the following will work:
+</p>
+<pre class="code"><code class="hljs javascript"><span class="hljs-keyword">if</span>(bar &amp;&amp; typeof bar === <span class="hljs-string">"object"</span>) {
+	console.<span class="hljs-command">log</span>('bar <span class="hljs-keyword">is</span> object <span class="hljs-keyword">and</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> null');
+}</code></pre>
+			</div>
+			
+			<h4>Q. What is block scope in javascript?</h4>
+			<div class="toggle-content">
+				<p>JavaScript doesn't have block scope upto ES5</p>
+				<p>In ES6, <code>let</code> and <code>const</code> has been introduced for block scope.</p>
+			</div>
+			
+			<h4>Q. What will be log of below given code and why?</h4>
+			<div class="toggle-content">
+<pre>
+if(true) {
+	var x = 1;
+}
+console.log(x);</pre>
+			</div>
+			
+			<h4>Q. What is the difference between a null value and an undefined value?</h4>
+			<div class="toggle-content">
+<ul>
+<li>Null is used to assign an empty value to a variable and needs to be assigned manually.</li>
+<li>Undefined values result when you declare a variable without assigning it a value. Undefined will be the default whenever you don't explicitly assign a value.</li>
+</ul>
+			</div>
+			
+			
+			
+			<h4>Q. What does a timer do and how would you implement one?</h4>
+			<div class="toggle-content">
+			<ul>
+<li>Setting timers allows you to execute your code at predefined times or intervals.</li>
+<li>This can be achieved through two main methods: setInterval(); and setTimeout();</li>
+<li>setInterval() accepts a function and a specified number of milliseconds.
+<ul>
+<li>ex) <pre>setInterval(function(){alert("Hello, World!"),10000)</pre> will alert the "Hello, World!" function every 10 seconds.</li>
+</ul>
+</li>
+<li>setTimeout() also accepts a function, followed by milliseconds. setTimeout() will only execute the function once after the specified amount of time, and will not reoccur in intervals.</li>
+</ul>
+			</div>
+			
+			<h4>Q. What's your favorite browser, framework, JavaScript book</h4>
+			<div class="toggle-content">
+			
+			</div>
+			
+			<h4>Q. How do you approach debugging in JavaScript</h4>
+			<div class="toggle-content">
+			
+			</div>
+			
+			<h4>Q. What do you think of JSLint?</h4>
+			<div class="toggle-content">
+			
+			</div>
+			
+			<h4>Q. Browser detection vs. feature sniffing</h4>
+			<div class="toggle-content">
+			
+			</div>
+			
+			<h4>Q. Redirect webpage in JavaScript</h4>
+			<div class="toggle-content">
+			<p>This javascript code should perform http redirect on a given URL.</p>
+
+<pre>window.location.href = "http://viralpatel.net";</pre>
+			</div>
+			
+			
+			
+		</div>
+	</body>
+</html>

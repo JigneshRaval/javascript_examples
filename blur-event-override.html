@@ -1,0 +1,40 @@
+<html>
+<head>
+    
+</head>
+<body>
+    When the following input field has the focus its text color will be red.
+    Click into the input field!
+    <br /><br />
+    <!--<input type="text" id="userName" onfocus="OnFocusInput (this)" onblur="OnBlurInput (this)" value="Custom input field"/>-->
+	
+	<input type="text" id="userName" value="Custom input field"/>
+	
+	
+	<script type="text/javascript">
+	var inputName = document.getElementById('userName');
+	
+	inputName.addEventListener('blur', function() {
+		var that = this;
+		
+		setTimeout(function() {
+			that.style.color = "red";
+		}, 150);
+		
+	});
+	
+	inputName.addEventListener('blur', function() {
+		this.style.color = "green";
+	});
+	/*
+        function OnFocusInput (input) {
+            input.style.color = "red";
+        }
+
+        function OnBlurInput (input) {
+            input.style.color = "";
+        }
+		*/
+    </script>
+</body>
+</html>
