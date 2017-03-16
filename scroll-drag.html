@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#proritizeLightBox { height: 150px; overflow-y: scroll; border: 1px solid #EEE; margin-top: 100px; }
+			ul li { border: 1px solid #CCC; padding: 5px; }
+		</style>
+	</head>
+	<body>
+		<div id="proritizeLightBox">
+			<ul>
+				<li draggable="true">Test 1</li>
+				<li draggable="true">Test 2</li>
+				
+				<li>Test 3</li>
+				<li>Test 4</li>
+				
+				<li >Test 5</li>
+				<li >Test 6</li>
+				
+				<li >Test 7</li>
+				<li >Test 8</li>
+				
+				<li >Test 9</li>
+				<li >Test 10</li>
+				
+				<li >Test 3</li>
+				<li >Test 4</li>
+				
+				<li >Test 5</li>
+				<li >Test 6</li>
+				
+				<li >Test 7</li>
+				<li >Test 8</li>
+			</ul>
+		</div>
+		
+		
+		<script>
+			var lightBoxEle = document.querySelector('#proritizeLightBox');
+			var listItems = lightBoxEle.querySelectorAll('li');
+			if(listItems && listItems.length > 0) {
+				for(var i = 0; i < listItems.length; i++ ) {
+					listItems[i].addEventListener('drag', scrollLightBox, false);
+				}
+			}
+			
+			// Function which will call on DRAG event
+			var dragY, 
+			    stopScroll = false;
+			
+			function scrollLightBox(e) {
+				
+				document.ondragover = function(event) {
+					event 		= event || window.event;
+					dragX 		= event.pageX,
+					dragY 		= event.pageY;
+					stopScroll 	= false;
+					console.log("ondragover :", dragX, dragY);
+				};
+				
+				//if(!stopScroll) {
+				e = e || window.event;
+				
+				dragY 					= dragY - lightBoxEle.offsetTop;
+				var wScrollAmount 		= lightBoxEle.scrollTop;
+				var scrollH 			= lightBoxEle.scrollHeight;
+				var clientH 			= lightBoxEle.clientHeight;
+				var viewport 			= scrollH - clientH;
+				var mousePosition 		= wScrollAmount - dragY;
+				
+				if (dragY < mousePosition) {
+					// moving upward
+					console.log('Dragging From Bottom', mousePosition);
+					if(wScrollAmount > 0) {
+						document.querySelector('#proritizeLightBox').scrollTop = (wScrollAmount-=5);
+					}
+				} 
+				else {
+					// moving downward
+					console.log('Dragging From Top', mousePosition);
+					if(wScrollAmount < viewport) {
+						document.querySelector('#proritizeLightBox').scrollTop = (wScrollAmount+=5);
+					}
+				}
+				
+				console.log(scrollH, clientH, "wScrollAmount :",wScrollAmount, "viewport :", viewport, "mousePosition :", mousePosition, "e.pageY :", e.pageY, dragY );
+				//}
+				
+			}
+		</script>
+	</body>
+</html>
