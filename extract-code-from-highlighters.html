@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Extract Code from code highlighters</title>
+		<style>
+			#proritizeLightBox { height: 150px; overflow-y: scroll; border: 1px solid #EEE; margin-top: 100px; }
+			ul li { border: 1px solid #CCC; padding: 5px; }
+		</style>
+	</head>
+	<body>
+		<h2>Extract Code from code highlighters</h2>		
+		
+		<script>
+			function extractCodeFromHighlightTable() {
+    var tables = document.querySelectorAll('.highlighttable');
+
+    if(tables && tables.length > 0) {
+        for(var i = 0; i < tables.length; i++) {
+            var preEle = document.createElement('pre');
+            preEle.innerHTML = tables[i].querySelector('.code pre').innerText;
+
+            tables[i].parentNode.insertBefore(preEle, tables[i]);
+            
+            tables[i].parentNode.removeChild(tables[i]);
+
+            console.log(preEle);
+        }
+    }
+};
+
+//extractCodeFromHighlightTable();
+
+// Method 2 for Crayons highlighter
+//============================================
+function extractCodeFromCrayonTable() {
+    var crayonDivs = document.querySelectorAll('.crayon-syntax');
+
+    if(crayonDivs && crayonDivs.length > 0) {
+        for(var i = 0; i < crayonDivs.length; i++) {
+            var preEle = document.createElement('pre');
+            preEle.innerHTML = crayonDivs[i].querySelector('.crayon-code').innerText;
+
+            crayonDivs[i].parentNode.insertBefore(preEle, crayonDivs[i]);
+            
+            crayonDivs[i].parentNode.removeChild(crayonDivs[i]);
+
+            console.log(preEle);
+        }
+    }
+};
+
+//extractCodeFromCrayonTable();
+
+// Method 3 :: for Crayons highlighter
+//============================================
+function extractCodeFromHighlight() {
+    //var crayonDivs = document.querySelectorAll('pre.highlighter-rouge');
+    var crayonDivs = document.querySelectorAll('pre');
+
+    if(crayonDivs && crayonDivs.length > 0) {
+        for(var i = 0; i < crayonDivs.length; i++) {
+            var preEle = document.createElement('pre');
+            var codeEle = document.createElement('code');
+
+            preEle.appendChild(codeEle);
+            
+            if(crayonDivs[i].querySelector('code')) {
+                codeEle.innerHTML = crayonDivs[i].querySelector('code').innerText;
+            } else {
+                codeEle.innerHTML = crayonDivs[i].innerText;
+            }
+
+            crayonDivs[i].parentNode.insertBefore(preEle, crayonDivs[i]);
+            
+            crayonDivs[i].parentNode.removeChild(crayonDivs[i]);
+
+            console.log(preEle);
+        }
+    }
+};
+
+extractCodeFromHighlight();
+
+// Method 4 :: for highlighter_816200
+//============================================
+function extractCodeFromHighlighter() {
+    var crayonDivs = document.querySelectorAll('[id*="highlighter_"]');
+
+    if(crayonDivs && crayonDivs.length > 0) {
+        for(var i = 0; i < crayonDivs.length; i++) {
+            var preEle = document.createElement('pre');
+            var codeEle = document.createElement('code');
+
+            preEle.appendChild(codeEle);
+            
+            codeEle.innerHTML = crayonDivs[i].querySelector('.code').innerText;
+
+            crayonDivs[i].parentNode.insertBefore(preEle, crayonDivs[i]);
+            
+            crayonDivs[i].parentNode.removeChild(crayonDivs[i]);
+
+            console.log(preEle);
+        }
+    }
+};
+
+//extractCodeFromHighlighter();
+		</script>
+	</body>
+</html>
