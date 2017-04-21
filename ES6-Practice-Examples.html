@@ -212,6 +212,111 @@
 				// Print reject output.
 				console.error(err);
 			});
+			
+			// Javascript Method chaining
+			// JavaScript: sequencing function calls http://krasimirtsonev.com/blog/article/JavaScript-sequencing-function-calls-parallel-functional-chain
+			
+			var Chain = (function() {
+				var _resultOfPreviousfunction = null;
+				var self = this;
+				
+				var run = function() {
+					if(arguments.length > 0) {
+						var f;
+						var funcs = []; // Create an array to store all the arguments
+						for(var i =0; f = arguments[i]; i++) {
+							funcs.push(f); // Push arguments to funcs array
+						}
+						var element = funcs.shift(); // Remove first element from array and return others
+						
+						if(typeof element === 'function') {
+							element(_resultOfPreviousfunction);
+							run.apply(self, funcs);
+						}
+						
+						} else {
+						// Indicate the end of chain
+					}
+					
+					return this;
+					
+					/*
+						for(var i =0; i < arguments.length; i++) {
+						console.log(arguments[i]);
+						arguments[i]();
+					}*/
+					
+				}
+				
+				return {
+					run: run
+				}
+			})();
+			
+			// Execute above writtern function
+			Chain.run(
+			function() { console.log("Chaining : Function 1 executed."); },
+			function() { console.log("Chaining : Function 2 executed."); },
+			function() { console.log("Chaining : Function 3 executed."); }
+			)
+			
+			// Javascript find closest element
+			function findClosest(el, tagName){
+				var tagName = tagName.toLowerCase();
+				
+				if(el) {
+					if(el.tagName && el.tagName.toLowerCase() == tagName) {
+						console.log(el, el.tagName, tagName);
+						return el;
+						} else {
+						while(el && el.parentNode) {
+							el = el.parentNode;
+							console.log(el)
+							
+							if(el.tagName && el.tagName.toLowerCase() == tagName) {
+								return el;
+							}
+							
+						}
+					}
+				}
+			}
+			
+			
+			var element = document.querySelector('a');
+			
+			var output = findClosest(element, 'ul');
+			
+			//console.log(output);
+			
+			
+			// If you are investing double of 1 panny per day in incremental way,
+			// how much time it will take make 1 million ( 10 Laks )
+			/* for example
+			Day 1 = 1 panny
+			Day 2 = 1 + 1 = 2 panny
+			Day 3 = 2 + 2 = 4 panny
+			Day 4 = 4 + 4 = 8 panny
+			*/
+			function makeOneMillion(){
+				var panny = 1;
+				
+				for(var i =0; i < 21; i++) {
+					var day = i + 1;
+					
+					if(i === 0) {
+						panny = panny;
+						} else {
+						panny = panny + panny;
+					}
+					
+					console.log("Day " + day + " investment :", panny);
+				}	
+				
+			}
+			
+			makeOneMillion();
+			
 		</script>
 	</body>
 </html>
