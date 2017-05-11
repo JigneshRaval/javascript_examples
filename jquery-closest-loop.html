@@ -1,0 +1,75 @@
+<html>
+<head>
+<style>
+body { font-family: Arial; line-height: 1.8; }
+	.accordion {
+		border: 2px solid red;
+		padding: 1em;
+		margin: 1em;
+		text-align:center;
+		background-color: #EEE;
+	}
+	.parent-class {
+		border: 6px solid #9C27B0;
+		padding: 1em;
+		margin: 1em;
+		text-align:center;
+		background-color: #CCC;
+	}
+	.active {
+		border: 2px solid #4CAF50;
+	}
+</style>
+<script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+
+
+<div class="parent-class" id="A">
+	Div 1 with class="parent-class"
+	
+	<div class="accordion" id="B">
+		Div 2 with class="accordion"
+		
+		<div class="accordion" id="C">
+			div 3 with class="accordion"
+			
+			<div class="accordion" id="D">
+				div 4 with class="accordion"
+				
+					<span>
+						<p id="abcd" style="border: 1px solid blue;">Inner P tag with id="abcd"</p>
+					</span>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+</div>
+
+<p style="text-align: center;"><a href="#abcd" id="testLink" style="display: inline-block; background-color: #CCC;padding: 5px 15px;">Link</a></p>
+
+<script>
+	$(document).ready(function() {
+	
+		$('#testLink').on('click', function(event) {
+			console.log(event.target.hash);
+			var $element = $(event.target.hash);
+			
+			console.log($element, $element.parents('.accordion'), $element.parents('.accordion').length);
+			
+			for(var i = 0; i < $element.parents('.accordion').length; i++) {
+			
+				console.log($element.parents('.accordion')[i]);
+				var $element1 = $($element.parents('.accordion')[i]);
+				$element1.toggleClass('active');
+				
+			}
+		})
+	
+	});
+</script>
+
+</body>
+</html>

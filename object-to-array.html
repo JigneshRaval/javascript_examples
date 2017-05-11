@@ -1,0 +1,33 @@
+<html>
+<head>
+
+</head>
+<body>
+<script>
+var test = {
+	"design-1": "A",
+	"label-1" : "10",
+	"design-2": "B",
+	"label-2" : "20",
+	"design-3": "C",
+	"label-3" : "30",
+	"design-4": "D",
+	"label-4" : "40",
+	"design-5": "E",
+	"label-5" : "50",
+	"label-6": "60",
+}
+
+var testArray = [];
+
+for(var i = 0; i < Math.ceil(Object.keys(test).length/2); i++) {
+	var newObj = {};
+	newObj.design = test['design-'+(i+1)];
+	newObj.label = test['label-'+(i+1)];
+	testArray.push(newObj);
+}
+
+console.log("Final Array :", testArray, tt);
+</script>
+</body>
+</html>
