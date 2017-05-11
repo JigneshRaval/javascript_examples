@@ -62,8 +62,8 @@ body { font-family: Arial; line-height: 1.8; }
 			for(var i = 0; i < $element.parents('.accordion').length; i++) {
 			
 				console.log($element.parents('.accordion')[i]);
-				var $element1 = $($element.parents('.accordion')[i]);
-				$element1.toggleClass('active');
+				
+				$($element.parents('.accordion')[i]).toggleClass('active');
 				
 			}
 		})
