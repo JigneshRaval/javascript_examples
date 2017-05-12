@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<title>Mailto Functionality</title>
+		<script src="jquery-3.1.1.js"></script>
+		<style>
+			body { 
+				font-family: Arial;
+				line-height: 1.8;
+				margin: 1em auto;
+				width: 50%;
+			}
+			button {
+				font-family: Arial;
+			}
+			a {
+				display: inline-block;
+				padding: 5px 20px;
+				border: 1px solid blue;
+			}
+			a:hover {
+				background-color: #EEE;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- EXAMPLE 1 -->
+		<div class="example example-2">
+			<p>Example 1: Mailto functionality will fire onClick of Button. ( click Event binded using JS )</p>
+			<form>
+				<input id="message" value="Your email message body" style="padding: 8px; width: 250px;"/>
+			</form>
+			<button>Mailto</button>
+		</div>
+		
+		<!-- EXAMPLE 2 -->
+		<div class="example example-2">
+			<p>Example 2: This is a simple link which contains mailto: prefix with email address in href attribute. ( No Event binded using JS )</p>
+			<a href="mailto:james2doyle@gmail.com">Mail this</a>
+		</div>
+		
+		<!-- EXAMPLE 3 -->
+		<div class="example example-1">
+			<p>Example 3: This is a simple link which contains only mailto: prefix without email address in href attribute. Still it will open/fire email client  ( No Event binded using JS )</p>
+			<a href="mailto:">Mail this</a>
+		</div>
+		
+		<script>
+			var body_message = $('#message').value;
+			var email = 'james2doyle@gmail.com';
+			var subject = 'js email';
+			
+			// On Click of Button
+			$('button').click(function() {
+				
+				var mailto_link = 'mailto:' + email + '?subject=' + subject + '&body=' + body_message;
+				
+				// Instead window.open method we will use window.location.href
+				
+				//var mailto_link = 'http://www.google.com';
+				
+				//win = window.open(mailto_link, '_self', 'scrollbars=yes,height=560,titlebar=yes,width=980,resizable=yes');
+				
+				window.location.href = mailto_link;
+				
+				/*
+				setTimeout(function() {
+					if (win && win.open && !win.closed) win.close();
+				}, 1200);
+				*/
+			});
+			
+			
+			/*
+			var myTest = document.querySelector('#test123');
+			
+			myTest.addEventlistener('click', function() {
+				if(isUACrossEnabled()){try{ga('trackerUa1.send','event', 'External Link' ,'Link click','LinkId:jignesh_2 LinkDest:mailto:charu.swaroop@aon.com'); } catch(err){}} if(isUAClientEnabled()){ try{if(isGTMEnabled()){dataLayer.push({'event':'UPointLinkEvent', 'linkCategory':'External Link', 'linkAction':'Link click', 'linkLabel':'LinkId:jignesh_2 LinkDest:mailto:charu.swaroop@aon.com'});}else{ga('trackerUa2.send','event', 'External Link' ,'Link click','LinkId:jignesh_2 LinkDest:mailto:charu.swaroop@aon.com'); }} catch(err){}}try{setTimeout(function() {}, 100);}catch(err){} doExternalLinkLogging('https://l8sida05:9801/delegate/logging?linkTypeNm=New Window With a Scroll, No Information Passed&lnkNm=jignesh_2&linkId=jignesh_2&lng=19920_1.0&pgNm=Debug&ref=&technicalNameForLink=jignesh_2&userFriendlyNameForLink=null&domain=Ben-DC&baseClientIndicator=Client'); window.location.href = 'mailto:charu.swaroop@aon.com';if(typeof XD != 'undefined'){}try{setSessionTimeOut()}catch(err){};return false;
+			});
+			*/
+		</script>
+	</body>
+</html>

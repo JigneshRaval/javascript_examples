@@ -1,0 +1,73 @@
+<html>
+<head>
+
+<style id="webmakerstyle">
+body {
+	font-family: Arial;
+	font-size: 14px;
+}
+</style>
+</head>
+<body>
+<div class="output">
+	
+</div>
+
+<script>
+var output = document.querySelector('.output');
+
+var Chain = (function() {
+				var _resultOfPreviousfunction = null;
+				var self = this;
+				
+				var run = function() {
+					if(arguments.length > 0) {
+						var f;
+						var funcs = []; // Create an array to store all the arguments
+						for(var i =0; f = arguments[i]; i++) {
+							funcs.push(f); // Push arguments to funcs array
+						}
+						var element = funcs.shift(); // Remove first element from array and return others
+						
+						if(typeof element === 'function') {
+							element(_resultOfPreviousfunction);
+							run.apply(self, funcs);
+						}
+						
+						} else {
+						// Indicate the end of chain
+					}
+					
+					return this;
+					
+					/*
+					for(var i =0; i < arguments.length; i++) {
+						console.log(arguments[i]);
+						arguments[i]();
+					}*/
+					
+				}
+				
+				return {
+					run: run
+				}
+			})();
+			
+			// Execute above writtern function
+			Chain.run(
+			function() { 
+				
+				output.innerHTML = "Chaining : Function 1 executed.<br/>";
+				//console.log("Chaining : Function 1 executed."); 
+			},
+			function() { 
+				output.innerHTML += "Chaining : Function 2 executed.<br/>";
+			},
+			function() { 
+				output.innerHTML += "Chaining : Function 3 executed.<br/>";
+			}
+			)
+//# sourceURL=userscript.js
+</script>
+</body>
+</html>

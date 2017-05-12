@@ -1,0 +1,107 @@
+<html>
+	<head>
+		<title>Javascript Closest</title>
+	</head>
+	<body>
+		
+		<div class="item">
+			<div id="test">
+				<p id="test">
+					<span>Hello <b id="world">World</b></span>
+				</p>
+			</div>
+		</div>
+		
+		<script>
+			/**
+				* Get the closest element of a given element by class
+				*
+				* Take an element (the first param), and traverse the DOM upward from it
+				* until it hits the element with a given class name (second parameter).
+				* This mimics jQuery's `.closest()`.
+				*
+				* @param  {element} el    The element to start from
+				* @param  {string}  clazz The class name
+				* @return {element}       The closest element
+				*/
+				var findClosest = function(el, clazz) {
+					var isClass = false;
+					var isId = false;
+					var findBy, tagName;
+					
+					if(clazz.indexOf('.') != -1) {
+						isClass = true;
+						findBy = clazz.split('.')[1];
+						tagName = clazz.split('.')[0];
+					} else if(clazz.indexOf('#') != -1) {
+						isId = true;
+						findBy = clazz.split('#')[1];
+						tagName = clazz.split('#')[0];
+					} else {
+						findBy = clazz;
+					}
+					
+					console.log(findBy);
+					
+					if(isClass) {
+						if(tagName) {
+							// Traverse the DOM up with a while loop
+							while (el.className != findBy) {
+								console.log(el.className, el.nodeName);
+								if(el.nodeName != tagName) {
+									}
+								// Increment the loop to the parent node
+								el = el.parentNode;
+								if (!el) {
+									return null;
+								}
+							}
+						}
+						/*
+						// Traverse the DOM up with a while loop
+						while (el.className != findBy) {
+							console.log(el.className);
+							// Increment the loop to the parent node
+							el = el.parentNode;
+							if (!el) {
+								return null;
+							}
+						}
+						*/
+					} else if(isId) {
+						// Traverse the DOM up with a while loop
+						while (el.id != findBy) {
+							console.log(el.id);
+							// Increment the loop to the parent node
+							el = el.parentNode;
+							if (!el) {
+								return null;
+							}
+						}	
+					} else {
+						// Traverse the DOM up with a while loop
+						while (el.nodeName != findBy) {
+							console.log(el.nodeName);
+							// Increment the loop to the parent node
+							el = el.parentNode;
+							if (!el) {
+								return null;
+							}
+						}	
+					}
+					
+					// At this point, the while loop has stopped and `el` represents the element that has
+					// the class you specified in the second parameter of the function `clazz`
+					
+					// Then return the matched element
+					return el;
+				}
+				
+				
+				var elem = document.querySelector('#world');
+				var pp = findClosest(elem, 'DIV.item');
+				
+				console.log(pp)
+			</script>
+		</body>
+	</html>		

@@ -1,0 +1,40 @@
+<html>
+    <head>
+		<style>
+			body {
+			font-family: Arial;
+			font-size: 14px;
+			line-height: 1.8
+			}
+			body {
+				background-color: #EEE;
+			}
+		</style>
+	
+		<script>            
+			var sampleJSONData = {
+				userName : "Developer",
+				age: 35,
+				language: "HTML"
+			}
+			// Respond to Events and Data sent by Parent
+			window.addEventListener('message',function(event) {
+			
+				//if(event.origin != 'https://davidwalsh.name') return;
+				console.log('Child HTML Page says --  message received from Parent:  ' + event.data, event, event.source);
+				
+				// Send data back to Parent page
+				event.source.postMessage('Hi, How are you Parent Page! I am sending JSON Data -- ', '*');
+				
+				// Send data back to Parent page
+				event.source.postMessage(JSON.stringify(sampleJSONData), '*');
+				
+			},false);
+			
+		</script>
+	</head>
+    <body>
+		<h2>Child HTML page</h2>
+		<p>Child page will display either in IFrame or will open as a seperare window/tab using <code>window.open()</code> method.</p>        
+	</body>
+</html>

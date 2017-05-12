@@ -1,0 +1,122 @@
+<html>
+	<head>
+		<style>
+			body {
+			font-family: Arial;
+			font-size: 14px;
+			line-height: 1.8
+			}
+			iframe {
+			border: 1px solid red;
+			width: 500px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<h1>Cross-Domain IFrame or Window Communication</h1>
+		<h2>Parent Page</h2>
+		<p>Parent page will send message to either Popup window or to Iframe or Both. using <br/>
+			
+			<code>myPopup.postMessage(message,'*')</code><br/>
+			<code>iframe.postMessage(message, '*');</code>
+		</p>
+		
+		<!-- START:: EXAMPLE 1 Message communication using window.popup() -->
+		<div class="example-wrapper">
+			<!--<button value="Send Message" id="sendMessageToChildWindow">Send Message to child Window</button>-->
+			
+			<script>
+			
+				// EXAMPLE 1 : USING window.open() Method
+				//==================================================
+				// Create popup window
+				// var domain = 'http://scriptandstyle.com'; // Pass your domain here
+				var myPopup = window.open('child.html','myChildWindow');
+				var timer = setInterval(checkChildWindow, 5000);
+				
+				// Check if child Window or Tab is closed in browser
+				function checkChildWindow() {
+					console.log(myPopup.closed);
+					if (!myPopup.closed) {
+						
+						//periodical message sender
+						setInterval(function(){
+							
+							var message = 'Hello!  Window time is: ' + (new Date().getTime());
+							console.log('Parent page is sending message to child ( Window ) :  ' + message);
+							
+							// @{params} message : pass message
+							// @{params} domain : pass domain value or URL, or use * to accept message from any domain
+							myPopup.postMessage(message, '*'); //send the message and target URI ( Domain )
+							
+						},4000);
+						
+						// listen to message returend by Child Window or iFrame
+						window.addEventListener('message', getMessageFromChild, false);
+					}
+					else {
+						alert("Child window closed");
+						clearInterval(timer);
+						window.removeEventListener('message', getMessageFromChild);
+					}
+				}
+				
+				function getMessageFromChild(event) {
+					// listen to message returend by Child Window or iFrame
+					// if(event.origin !== 'https://davidwalsh.name') return;
+					console.log('Received response from Child ( Window ):  ', event.data);
+				}
+				/*
+				function sendMessageToChild(msg) {
+					// Send message to Child Window or iFrame
+
+					var myPopup2 = window.open('child.html','myChildWindow2');
+					console.log('Parent page is sending message to child ( Window ) :  ' + msg);
+					
+					// @{params} message : pass message
+					// @{params} domain : pass domain value or URL, or use * to accept message from any domain
+					myPopup2.postMessage("TEST", '*'); //send the message and target URI ( Domain )
+					
+				}*/
+			</script>
+		</div>
+		
+		<!-- START:: EXAMPLE 2 Message communication using IFrame -->
+		<div class="example-wrapper">
+			
+			<iframe src="child.html" id="myIFrame"></iframe> <!-- IFRAME -->
+			
+			<script>
+				// EXAMPLE 2 : USING iFrame Method
+				//==================================================
+				// Get iFrame content window
+				// var domain = 'http://scriptandstyle.com';
+				var iframe = document.getElementById('myIFrame').contentWindow;
+				
+				//periodical message sender
+				setInterval(function(){
+					
+					var message = 'Hello!  IFRAME time is: ' + (new Date().getTime());
+					console.log('Parent page is sending message to child ( Iframe ) :  ' + message);
+					
+					// @{params} message : pass message
+					// @{params} domain : pass domain value or URL, or use * to accept message from any domain
+					iframe.postMessage(message, '*'); //send the message and target URI
+					
+				},4000);
+				
+				// listen to message returend by Child Window or iFrame
+				window.addEventListener('message',function(event) {
+					
+					//if(event.origin !== 'https://davidwalsh.name') return;
+					console.log('Received response from Child ( iFrame ) :  ',event.data);
+					
+				},false);
+				
+				
+			</script>
+		</div>
+		<!-- END:: EXAMPLE 2 Message communication using IFrame -->
+	</body>
+</html>
