@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>CSS Baseline Grid</title>
+		
+		<!-- FAVICON -->
+		<link rel='shortcut icon' type='image/x-icon' href='images/favicon.png' />
+		
+		<!-- Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		
+		<!-- jQuery -->
+		<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+		<script src="js/jquery-3.2.1.js"></script>
+		
+		<!-- Bootstrap 4 
+			<link rel="stylesheet" href="css/bootstrap.css">
+			<script src="js/bootstrap-4.js"></script>
+		-->
+		
+		<style>
+			* {
+			margin: 0;
+			padding: 0;
+			}
+			body {
+			font: 100%/1.5 -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+			color: #222;
+			max-width: 600px;
+			margin: 0 auto;
+			padding: 24px;
+			background: url(images/baseline-pattern-24px.png) repeat top left;
+			}
+			/*body:after {
+			position: absolute;
+			width: auto;
+			height: auto;
+			z-index: 9999;
+			content: '';
+			display: block;
+			pointer-events: none;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			background: url(images/baseline-pattern-24px.png) repeat top left;
+			}
+			body:active:after {
+			display: none;
+			}*/
+			
+			/* Baseline Grid Calculation
+			-----------------------------------*/
+			h1 {				
+			font-size: 4.5em; /* 72/16 = 4.5 */
+			line-height: 1;
+			margin: 0.6666666666666667em 0;
+			}
+			h2 {
+			font-size: 3em; /* we need 48px font-size so 48 / 16 = 3em */
+			line-height: 1;
+			margin: 0.5em 0; /* Now H2's font-size is 48. we need 24px top/bottom margin so 24/48 = 0.5em */
+			}
+			p {
+			font-size: 0.875em; /* we need font-size 14px so 14 / 16 = 0.875em */
+			line-height: 1.714285714285714; /* we need line height 24px so 24 / 14 ( current font-size of P tag ) = 1.714285714285714em */
+			margin-bottom: 1.714285714285714em;
+			}
+			em, strong, code {
+			font-size: 1em; /* As if em and strong is inside P tag which has font size 14px so 14 ( Our traget or required font size ) / 14 ( P tag font-size ) = 1em; */
+			line-height: 1.714285714285714;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<!-- START :: BODY -->
+		<h1>CSS Baseline Grid</h1>
+		<p>
+			<strong>Formula :</strong><code>Expected Font Size / Base Size of Parent</code>
+			<em>Here H1 tag's parent is Body which has font-size: 16px</em>
+		</p>
+		<p>
+			<a href="https://basehold.it/" target="_blank">https://basehold.it/</a>
+		</p>
+		
+		
+		<h2 class="tagline">A quick, painless, javascript-free baseline overlay.</h2>
+		<p>Baseline grids are super helpful for web designers, allowing us to maintain vertical rhythm on our designs. But short of a few Javascript bookmarklets, there isn't really a simple way to get a baseline grid overlay on our designs. Enter <strong>Basehold.it</strong></p>
+		
+		<div class="level-1">
+			<div class="level-2">
+				<p>Level 2 Content</p>
+				<div class="level-3">
+					<p>Level 3 Content</p>
+				</div>
+			</div>
+		</div>
+		
+		<p>Using Basehold.it couldn't be easier. Simply add it like any other stylesheet:</p>
+		<p></p><pre>&lt;link rel="stylesheet" href="//basehold.it/24"&gt;</pre><p></p>
+		<p>Just like that. Easy, right? That'll get you a 24px baseline grid overlay, just like the one you can see on this page. For more information, or to look at the code (and maybe even contribute some code yourself), check out <a href="https://github.com/daneden/Basehold.it">the repo on Github.</a></p>
+		<h2>Additional options</h2>
+		<p>You can also specify a custom colour using Hex values, RGB values, or RGBA values, like so:</p>
+		<p></p><pre>&lt;link rel="stylesheet" href="//basehold.it/24/ff0000"&gt;</pre><p></p>
+		<p></p><pre>&lt;link rel="stylesheet" href="//basehold.it/24/255/0/0"&gt;</pre><p></p>
+		<p></p><pre>&lt;link rel="stylesheet" href="//basehold.it/24/255/42/85/0.5"&gt;</pre><p></p>
+		<p>Neato! One last thing - if you just want the image, and not the pseudo element, so that you can apply it in your own CSS file, that's easy too. Simply write your CSS like this:</p>
+		<p></p><pre>html {
+			background-image: url(//basehold.it/i/24); // 24px baseline
+			background-image: url(//basehold.it/i/24/ff0000); // with Hex colour
+			background-image: url(//basehold.it/i/24/255/0/0); // with RGB colour
+			background-image: url(//basehold.it/i/24/255/0/0/0.85); // with RGBA colour
+		}</pre><p></p>
+		<footer role="contentinfo">
+			<p>Another thing by <a href="http://twitter.com/_dte">Dan Eden</a> &amp; <a href="http://twitter.com/michaelw90">Michael Wright.</a></p>
+		</footer>
+		
+		<footer>
+			Copyright May 2017
+		</footer>
+		<!-- END :: BODY -->
+	</body>
+</html>
