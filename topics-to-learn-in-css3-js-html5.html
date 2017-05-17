@@ -46,6 +46,7 @@
 			font-size: 2em;
 			line-height: 1.5;
 			margin: 0.75em 0;
+			font-weight: 300;
 			}
 			.uk-accordion-title:hover {
 			box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -61,6 +62,7 @@
 			body {
 			font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
 			font-family: 'Lato', sans-serif;
+			font-family: 'Roboto', sans-serif;
 			line-height: 1.5;
 			font-size: 100%;
 			min-height: 100%;
@@ -90,7 +92,8 @@
 			/* Baseline Grid Calculation
 			-----------------------------------*/
 			h1, .uk-h1, h2, .uk-h2, h3, .uk-h3, h4, .uk-h4, h5, .uk-h5, h6, .uk-h6 {
-			font-weight: bold;
+			font-weight: 500;
+			font-family: 'Roboto', sans-serif;
 			}
 			h1 {				
 			font-size: 4.5em; /* 72/16 = 4.5 */
@@ -125,6 +128,9 @@
 			em, strong, code {
 			font-size: 1em; /* As if em and strong is inside P tag which has font size 14px so 14 ( Our traget or required font size ) / 14 ( P tag font-size ) = 1em; */
 			line-height: 1.714285714285714;
+			}
+			.text-uppercase {
+				    text-transform: uppercase;
 			}
 		</style>
 		
@@ -199,20 +205,20 @@
 					<li>
 						<h3 class="uk-accordion-title">Angular2 CLI</h3>
 						<div class="uk-accordion-content">
-							<h5>Installation</h5>
+							<h5 class="text-uppercase">Installation</h5>
 							<code>npm install -g @angular/cli</code>
-							<h5>To start a new application or project</h5>
+							<h5 class="text-uppercase">To start a new application or project</h5>
 							<code>ng new project-name</code>
-							<h5><code>ng new</code> options</h5>
+							<h5 class="text-uppercase"><code>ng new</code> options</h5>
 							<ul><li><code>--dry-run</code> (alias <code>d</code>): Only output the files created and operations performed. It doesn't actually create the project.</li>
 								<li><code>--verbose</code> (alias <code>v</code>): Show more information</li>
 								<li><code>--skip-npm</code>: Don't run any npm commands like installing dependencies</li>
 								<li><code>--skip-git</code>: Don't create a new git repo for this project</li>
 								<li><code>--directory</code>: Specify the directory you want to create this project in</li>
 							</ul>
-							<h5>Serve Our Application</h5>
+							<h5 class="text-uppercase">Serve Our Application</h5>
 							<code>ng serve</code>
-							<h5>Run those unit tests using Karma</h5>
+							<h5 class="text-uppercase">Run those unit tests using Karma</h5>
 							<code>ng test --no-watch</code>
 							<p>By default, the CLI keeps running the tests. Use the <code>--no-watch</code> flag to stop testing once all tests have run.</p>
 							<p>Note that tests are executed after a build is successfully executed. As mentioned in the log, the build artifacts is&nbsp;stored in the <code>dist/</code> directory. You can also create a build of your project independently from the <code>ng test</code> command line by running:</p>
