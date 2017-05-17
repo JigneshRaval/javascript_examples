@@ -32,6 +32,23 @@
 		<link href="css/main.css" rel="stylesheet">
 		
 		<style>
+		.vertical-grid-lines {
+		display: block;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    pointer-events: none;
+    user-select: none;
+    top: 0px;
+	bottom:0;
+    height: 100%;
+	z-index: 0;
+    
+	background-image: linear-gradient(rgba(0, 119, 179, 0.2) 1px, transparent 1px);
+    background-position-x: left;
+    background-position-y: top;
+    background-size: 8px 8px;
+		}
 			* {
 			margin: 0;
 			padding: 0;
@@ -69,7 +86,15 @@
 			color: #373D3F ;
 			margin: 0 auto;
 			padding: 24px;
-			background: #ffe0b2 url(images/baseline-pattern-24px.png) repeat top left;
+			background-color: #ffe0b2;
+			/*background: #ffe0b2 url(images/baseline-pattern-24px.png) repeat top left;*/
+			background-image: linear-gradient(rgba(0, 119, 179, 0.2) 1px, transparent 1px);
+    background-position-x: left;
+    background-position-y: top;
+    background-size: 8px 8px;
+			}
+			body:active {
+				background-image: none;
 			}
 			/*body:after {
 			position: absolute;
@@ -118,12 +143,12 @@
 			h5 {
 			font-size: 1em; /* 16 / 16 = 1.5 */
 			line-height: 3;
-			margin-bottom: 1.5em;
+			margin: 0 0 1.5em 0;
 			}
 			p {
-			font-size: 0.875em; /* we need font-size 14px so 14 / 16 = 0.875em */
+			font-size: 1em; /* we need font-size 16px so 16 / 16 = 1em or 1rem */
 			line-height: 1.714285714285714; /* we need line height 24px so 24 / 14 ( current font-size of P tag ) = 1.714285714285714em */
-			margin-bottom: 1.714285714285714em;
+			margin: 0 0 1.714285714285714em 0;
 			}
 			em, strong, code {
 			font-size: 1em; /* As if em and strong is inside P tag which has font size 14px so 14 ( Our traget or required font size ) / 14 ( P tag font-size ) = 1em; */
@@ -131,6 +156,19 @@
 			}
 			.text-uppercase {
 				    text-transform: uppercase;
+			}
+			:not(pre) > code, :not(pre) > kbd, :not(pre) > samp {
+				font-size: 1em;
+				line-height: 1.5;
+			}
+			pre {
+				font-size: 1rem;
+				padding: 1rem;
+				color: #373D3F;
+				border-radius: 0;
+				border-width: 0;
+				white-space: pre-wrap; 
+	word-wrap: break-word; 
 			}
 		</style>
 		
@@ -218,10 +256,129 @@
 							</ul>
 							<h5 class="text-uppercase">Serve Our Application</h5>
 							<code>ng serve</code>
+							<code>ng serve --host 0.0.0.0 --port 4201</code>
 							<h5 class="text-uppercase">Run those unit tests using Karma</h5>
 							<code>ng test --no-watch</code>
 							<p>By default, the CLI keeps running the tests. Use the <code>--no-watch</code> flag to stop testing once all tests have run.</p>
 							<p>Note that tests are executed after a build is successfully executed. As mentioned in the log, the build artifacts is&nbsp;stored in the <code>dist/</code> directory. You can also create a build of your project independently from the <code>ng test</code> command line by running:</p>
+							<h5>Initialize a New Application</h5>
+							<p>Let's say you already have a folder that you've started working in. The ng init command is here so that you can use the current folder you're already working in.</p>
+							<p>In the folder you are working in, run:</p>
+							<code>ng init project-name</code>
+							<h5 class="text-uppercase"><code>ng init</code> options</h5>
+							<ul><li><code>--dry-run</code> (alias <code>d</code>): Only output the files created and operations performed. It doesn't actually create the project.</li>
+<li><code>--verbose</code> (alias <code>v</code>): Show more information</li>
+<li><code>--skip-npm</code>: Don't run any npm commands like installing dependencies</li>
+<li><code>--name</code>: Name the new project you are creating</li>
+</ul>
+<h5 class="text-uppercase">Generating Components, Directives, Pipes and Services</h5>
+<p>You can use the <code>ng generate</code> (or just <code>ng g</code>) command to generate Angular components:</p>
+<ul>
+<li>Create a new component <code>ng generate component hello</code>
+<pre>ng generate component my-new-component
+ng g component my-new-component # using the alias
+
+# components support relative path generation
+# if in the directory src/app/feature/ and you run
+ng g component new-cmp
+# your component will be generated in src/app/feature/new-cmp
+# but if you were to run
+ng g component ../newer-cmp
+# your component will be generated in src/app/newer-cmp
+# if in the directory src/app you can also run
+ng g component feature/new-cmp
+# and your component will be generated in src/app/feature/new-cmp</pre>
+<p class="note"><em>Note</em>: It's important to name your component simply. If a component is created with the name <code>hello</code>, these are the corresponding naming schemes:</p>
+<img src="images/angular-cli-images/generate-component.webp" />
+<ul><li><strong>Folder</strong>: <code>hello</code></li>
+<li><strong>Files</strong>: `hello.component.[css,html,spec.ts,ts]</li>
+<li><strong>Class</strong>: <code>HelloComponent</code></li>
+</ul>
+<p>If you use <code>ng generate component HelloComponent</code>, then your component class will be an undesirable <code>HelloComponentComponent</code>.</p>
+</li>
+<li>Create a new directive</li>
+<li>Create a new route <code>ng generate route about</code>
+<img src="images/angular-cli-images/generate-route.webp" />
+<blockquote>
+<p>The <code>+</code> dictates that a folder will be <em>lazy loaded</em> (read more in the <a href="https://angular.io/styleguide">style guide</a>. A typical lazy loaded folder contains a routing component, its child components, and their related assets and modules. </p>
+</blockquote>
+</li>
+<li>Create a new pipe</li>
+<li>Create a new service</li>
+</ul>
+<table class="uk-table uk-table-hover">
+<thead>
+<tr>
+<th>Scaffold</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-component">Component</a></td>
+<td><code>ng g component my-new-component</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-directive">Directive</a></td>
+<td><code>ng g directive my-new-directive</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-pipe">Pipe</a></td>
+<td><code>ng g pipe my-new-pipe</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-service">Service</a></td>
+<td><code>ng g service my-new-service</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-class">Class</a></td>
+<td><code>ng g class my-new-class</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-guard">Guard</a></td>
+<td><code>ng g guard my-new-guard</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-interface">Interface</a></td>
+<td><code>ng g interface my-new-interface</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-enum">Enum</a></td>
+<td><code>ng g enum my-new-enum</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-module">Module</a></td>
+<td><code>ng g module my-module</code></td>
+</tr></tbody></table>
+<h3><code>ng generate</code> options</h3>
+<ul><li><code>--flat</code>: Don't create the code in it's own directory. Just add all files to the current directory.</li>
+<li><code>--route=&lt;route&gt;</code>: Specify the parent route. Only used for generating <strong>components</strong> and <strong>routes</strong>.</li>
+<li><code>--skip-router-generation</code>: Don't create the route config. Only used for generating <strong>routes</strong>.</li>
+<li><code>--default</code>: The generated route should be a default route.</li>
+<li><code>--lazy</code>: Specify if route is lazy. <code>default true</code></li>
+</ul>
+<p>angular-cli will add reference to <code>components</code>, <code>directives</code> and <code>pipes</code> automatically in the <code>app.module.ts</code>. If you need to add this references to another custom module, follow this steps:</p>
+<ol>
+<li><code>ng g module new-module</code> to create a new module</li>
+<li>call <code>ng g component new-module/new-component</code></li>
+</ol>
+<p>This should add the new <code>component</code>, <code>directive</code> or <code>pipe</code> reference to the <code>new-module</code> you've created.</p>
+<h5>More Commands</h5>
+<ul><li>ng build</li>
+<li>ng test: Run unit tests with karma</li>
+<li>ng e2e: Run end-to-end tests with protractor</li>
+<li>ng get: Gets values for project</li>
+<li>ng set: Sets values for project</li>
+<li>ng github-pages:deploy: Build the app for production, setup GitHub repo, and publish</li>
+<li>ng lint: Run <a href="https://github.com/mgechev/codelyzer">codelyzer</a> to analyze code</li>
+<li>ng format</li>
+<li>ng doc</li>
+<li>ng version: Get the version of the CLI</li>
+</ul>
+<h5>Updating Angular CLI</h5>
+<pre>npm uninstall -g @angular/cli
+npm cache clean
+npm install -g @angular/cli@latest</pre>
 						</div>
 					</li>
 					<li>
@@ -246,6 +403,1089 @@
 							
 						</div>
 					</li>
+					<li>
+						<h3 class="uk-accordion-title">Typescript Cheatsheet</h3>
+						<div class="uk-accordion-content">
+						<span>https://www.cheatography.com/gregfinzer/cheat-sheets/typescript/</span>
+						<h5>To install TypeScript, run:</h5>
+						<code>npm install --global typescript</code>
+						
+						<h5>TypeScript's Basic Types</h5>
+						<p>TypeScript exposes nine types for us to work with. Whether you use them or not is up to you: <strong>Type annotations are always optional in TypeScript</strong>.</p>
+						<ol><li>Boolean;</li>
+<li>Number;</li>
+<li>String;</li>
+<li>Array;</li>
+<li>Tuple;</li>
+<li>Enum;</li>
+<li>Any;</li>
+<li>Void;</li>
+<li>Function.</li>
+</ol>
+
+<table border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="uk-table uk-table-divider">
+    <tbody>
+        <tr class="altrow countrow">
+            <td valign="top" class="cheat_sheet_output_cell_1" width="24%">
+                <strong>String</strong>
+            </td>
+            <td valign="top" class="cheat_sheet_output_cell_2">
+                let custom­erName: string= "John Doe";
+            </td>
+        </tr>
+        <tr class="countrow">
+            <td valign="top" class="cheat_sheet_output_cell_1">
+                <strong>Number</strong>
+            </td>
+            <td valign="top" class="cheat_sheet_output_cell_2">
+                let price: number = 19.95;
+                <code>const pi : number = 3.14159;</code>
+            </td>
+        </tr>
+        <tr class="altrow countrow">
+            <td valign="top" class="cheat_sheet_output_cell_1">
+                <strong>Boolean</strong>
+            </td>
+            <td valign="top" class="cheat_sheet_output_cell_2">
+                let shipped: boolean = false;
+            </td>
+        </tr>
+        <tr class="countrow">
+            <td valign="top" class="cheat_sheet_output_cell_1">
+                <strong>Date</strong>
+            </td>
+            <td valign="top" class="cheat_sheet_output_cell_2">
+                let orderDate: Date = new Date(2017, 2, 9);
+            </td>
+        </tr>
+        <tr class="altrow countrow">
+            <td valign="top" class="cheat_sheet_output_cell_1">
+                <strong>Any</strong>
+				<p>Any is more or less what it sounds like: A type that accepts any value. In some sense, it's a way to opt out of type checking. It also allows us to declare mixed collections.</p>
+            </td>
+            <td valign="top" class="cheat_sheet_output_cell_2">
+                let something: any = "Can be anythi­ng";
+				<pre>"use strict";
+
+let mystery : any = 4; 		// number
+mystery = "four"; 			// string -- no error
+
+const not_only_strings : any[] = [];
+
+not_only_strings.push("This Works!")
+not_only_strings.push(42); // This does too.</pre>
+            </td>
+        </tr>
+        <tr class="countrow">
+            <td valign="top" class="cheat_sheet_output_cell_1">
+                <strong>Enum</strong>
+				<p>Enums allow you to associate names with intever values. The name comes from the fact that they're enumerable.</p>
+				<p><strong>ES6 Alternative:</strong> <a href="http://www.2ality.com/2014/12/es6-symbols.html">Symbols provide an interesting alternative to enums</a></p>
+				<pre>const MY_KEY = Symbol();
+let obj = {};
+
+obj[MY_KEY] = 123;
+console.log(obj[MY_KEY]); // 123</pre>
+<pre>const FOO = Symbol();
+let obj = {
+    [FOO]() {
+        return 'bar';
+    }
+};
+console.log(obj[FOO]()); // bar</pre>
+            </td>
+            <td valign="top" class="cheat_sheet_output_cell_2">
+                enum Color {Red, Green, Blue};
+				<pre>"use strict";
+
+// This is an example from the TypeScript docs.
+//    http://bit.ly/1XQjl2Y
+
+enum Color { Red, Green, Blue };
+const red : Color = Color.Red;
+
+// Enums are like associative arrays. Each enum constant is associated with an index, starting at 0.
+
+console.log(Color[0]); // 'Red'
+
+// You can start from any number instead of zero, if you want.
+//    Note that indexing a non-existent enum constant returns undefined,
+//    but doesn't throw an error.
+
+enum RomanceLanguages { Spanish = 1, French, Italian, Romanian, Portuguese };
+console.log(RomanceLanguages[4]); // 'Romanian'
+console.log(RomanceLanguages[0]); // undefined </pre>
+            </td>
+        </tr>
+        <tr class="altrow countrow">
+            <td valign="top" class="cheat_sheet_output_cell_1">
+                Array
+				<p>TypeScript treats arrays as their own type, and requires that you declare the type of what's inside of them, as well.</p>
+				<ol><li>Array&lt;[ Item Type]&gt;</li>
+<li>
+[]
+</li>
+</ol>
+            </td>
+            <td valign="top" class="cheat_sheet_output_cell_2">
+                let cards: string[] = ['Visa', 'Maste­rCa­rd'];
+<pre>"use strict";
+
+// The item type, T, followed by brackets means, "an array whose items are of type T."
+const divine_lovers : string[] = ["Zeus", "Aphrodite"];
+
+// Writing Array<[Item Type]> means the same thing.
+const digits : Array<number> = [143219876, 112347890];
+
+// But this doesn't work. Hm. . . 
+/* We can't put 42 into only_strings because we declared that it can only contain items of type string. This is an example of TypeScript's compile-time complaints in action. */
+const only_strings : string[] = [];
+only_strings.push("This Works!")
+only_strings.push(42); // This doesn't.</pre>
+            </td>
+        </tr>
+        <tr class="countrow">
+            <td valign="top" class="cheat_sheet_output_cell_1">
+                Null
+            </td>
+            <td valign="top" class="cheat_sheet_output_cell_2">
+                let orderId: number = null;
+            </td>
+        </tr>
+		<tr class="countrow">
+            <td valign="top" class="cheat_sheet_output_cell_1">
+                The Last Type: Functions
+				<p>One of JavaScript's greatest strengths is that it treats functions as first class citizens. This means we can pass them as arguments and return them from functions ike any other value. How does TypeScript handle that?
+
+Simple. Function name; parenthetical list of typed arguments; fat arrow; return type.</p>
+<p>The same pattern applies if you're returning a function. In that case, though, you wrap the type of the function you return -- that is, everything after the fat arrow -- in parentheses.</p>
+            </td>
+            <td valign="top" class="cheat_sheet_output_cell_2">
+               <pre>"use strict";
+
+// This example illustrates that you can annotate your functions types before defining them.
+let multiply : (first : number, second : number) => number;
+multiply = function (first, second) {
+  return first * second;
+}</pre>
+<pre>"use strict";
+
+let multiplyFirst : ( first : number) => ((second : number) => number);
+multiplyFirst = function (first) {
+  return function (num) {
+    return first * num;
+  }
+} 
+
+console.log(multiply(5, 2)); // '10'
+console.log(multiplyFirst(9)(2)); // '18'</pre>
+            </td>
+        </tr>
+		<tr class="countrow">
+            <td valign="top" class="cheat_sheet_output_cell_1">
+                Return Types
+				<p>TypeScript allows you to mark the type of the value that a function returns.
+
+Just as a variable's type indicates what sort of data the variable contains, a function's return type indicates what sort of data it returns.
+
+All the types we've seen so far are valid return types. In particuar, you'll use void almost exclusively as the return type of a function with no return statement.
+
+You denote a return type the same way you denote a variable type: With a colon and a type keyword, this time after the arguments list.</p>
+            </td>
+            <td valign="top" class="cheat_sheet_output_cell_2">
+                <pre>"use strict";
+
+function capitalizeName (name : string) : string {
+  return name.toUpperCase();
+}
+
+// Shoutout to @achm4m0 (Alberto) for notifying me of an error here!
+console.log(capitalizeName('geronimo')); // 'GERONIMO'
+
+// But:
+console.log(capitalizeName(42)); // Error; 42 isn't a string.
+
+// TypeScript checks at compile-time if you're returning the right type.
+function even_broken (num : number) : boolean {
+   return (num % 2); // WRONG. This will cause a compile-time error.
+}
+
+function even (num : number) : boolean {
+   return (num % 2 == 0); // Much better; this works.
+}</pre>
+            </td>
+        </tr>
+        <tr class="altrow countrow">
+            <td valign="top" class="cheat_sheet_output_cell_1">
+                Tuple
+				<p>Tuples are another collection data type. They're useful for collecting a known number of items into an array-like structure. You can declare each item to be of a specific type.</p>
+				<code>[(Item Type), . . . , (Item Type)]</code>
+            </td>
+            <td valign="top" class="cheat_sheet_output_cell_2">
+                let stateT­axR­ates: [string, number];
+				<pre>"use strict";
+
+// [Date, Month, Year] :: Triplet of numbers
+let date_triplet : [number, number, number];
+date_triplet = [31, 6, 2016];
+
+// [Name, Age]
+let athena : [string, number];
+athena = ['Athena', 9386];
+
+// You retrieve items with indexes, as with arrays. 
+//  TS remembers the type for you.
+var name : string = athena[0];
+const age : number = athena[1];
+
+// But:
+name  = athena[1]; // No dice. We're writing TypeScript now.</pre>
+            </td>
+        </tr>
+        <tr class="countrow">
+            <td valign="top" class="cheat_sheet_output_cell_1">
+                Void
+				<p>Finally, we have Void. This is the typeclass associated with the values undefined or null. Unlike the other types, you won't use this to declare variables. It's not that you can't. Just that, if you do, you can only set that varible to null or undefined.</p>
+				<p>The main reason void exists is to mark functions without return statements.</p>
+            </td>
+            <td valign="top" class="cheat_sheet_output_cell_2">
+<pre>function log(msg: string): void {
+	console.log(msg);
+}</pre>
+					<pre>"use strict";
+
+let the_void : void = undefined;
+the_void = null;
+
+the_void = "nothing"; // Error.</pre>
+            </td>
+        </tr>
+        <tr class="altrow countrow">
+            <td valign="top" class="cheat_sheet_output_cell_1">
+                Const
+            </td>
+            <td valign="top" class="cheat_sheet_output_cell_2">
+                const lives: number = 99;
+            </td>
+        </tr>
+    </tbody>
+</table>
+							
+							<h5>Usage</h5>
+							<table border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="uk-table uk-table-divider"><tbody><tr class="altrow countrow"><td valign="top" class="cheat_sheet_output_cell_1"><div style="padding: 3px 8px;">Public (default)</div></td><td valign="top" class="cheat_sheet_output_cell_2"><div style="padding: 3px 8px;">public firstName: string;</div></td></tr><tr class="countrow"><td valign="top" class="cheat_sheet_output_cell_1"><div style="padding: 3px 8px;">Protected</div></td><td valign="top" class="cheat_sheet_output_cell_2"><div style="padding: 3px 8px;">protected inventory: number;</div></td></tr><tr class="altrow countrow"><td valign="top" class="cheat_sheet_output_cell_1"><div style="padding: 3px 8px;">Private</div></td><td valign="top" class="cheat_sheet_output_cell_2"><div style="padding: 3px 8px;">private outOfS­tock: boolean;</div></td></tr><tr class="countrow"><td valign="top" class="cheat_sheet_output_cell_1"><div style="padding: 3px 8px;">Read Only</div></td><td valign="top" class="cheat_sheet_output_cell_2"><div style="padding: 3px 8px;">readonly pi: number = 3.14159;</div></td></tr><tr class="altrow countrow"><td valign="top" class="cheat_sheet_output_cell_1"><div style="padding: 3px 8px;">Static</div></td><td valign="top" class="cheat_sheet_output_cell_2"><div style="padding: 3px 8px;">static log(msg: string) { consol­e.l­og(msg) };</div></td></tr></tbody></table>
+							
+							<h5>Scope/­Mod­ifiers</h5>
+<table border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="uk-table uk-table-divider">
+    <tbody>
+        <tr>
+            <td>
+                <strong>Public (default)</strong>
+            </td>
+            <td>
+                public firstName: string;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Protected</strong>
+            </td>
+            <td>
+               protected inventory: number;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Private</strong>
+				<p>TypeScript's <code>private</code> access modifier is handy, but it is <em>just</em> syntactical sugar. Its compile-time checks against your code do <em>not</em> prevent other code, or even your code, from accessing private properties at runtime.</p>
+            </td>
+            <td>
+               private outOfS­tock: boolean;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Read Only</strong>
+            </td>
+            <td>
+                readonly pi: number = 3.14159;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Static</strong>
+            </td>
+            <td>
+                static log(msg: string) { consol­e.l­og(msg) };
+            </td>
+        </tr>
+    </tbody>
+</table>
+							
+							<h5>Class</h5>
+<ul><li>Use <strong>classes</strong> to easily create similar objects;</li>
+<li>Use <strong>interfaces</strong> to describe and enforce the shape and behavior of different classes; and</li>
+<li>Combine classes and interfaces to create robust, self-documentining components.</li>
+</ul>
+<pre>class OrderLogic {
+    constructor(public order: IOrder) { }
+
+    getOrderTotal(): number {
+        let sum: number = 0;
+
+        for (let orderDetail of this.order.orderDetails)
+        {
+            sum += orderDetail.price;
+        }
+        return sum;
+    }
+}</pre>
+
+<h5>Class Properties</h5>
+<p>In JavaScript, classes can only contain method definitions. Adding properties is a syntax error.</p>
+
+<p>In TypeScript, you must add instance properties if you assign to them using <code>this</code>. Otherwise, your code won't compile.</p>
+<p>You'll need to add a property for every instance variable you plan to access with <code>this</code>. </p>
+<pre>// list_classes.ts
+
+"use strict";
+
+class ListComponent {
+
+    // Adding a property is as simpleas adding its name and type
+    //   at the top of the class.
+    things : Array<ListItem>; // Or -- things : ListItem[];
+
+    constructor () {
+        this.things = []; 
+    }
+
+}
+
+class ListItem {
+
+    name : string;
+
+    constructor (name) {
+        this.name = name;
+    }
+
+}
+
+// Usage
+const item = new ListItem('Thing to Do');
+console.log(item.name); // 'Thing to Do'
+</pre>
+
+<h5>Class : Access Modifiers</h5>
+<p>TypeScript provides two access modifiers:</p>
+<ol><li><code>public</code>. You can read or write <em>public</em> properties from anywhere. These behave identically to object properties in vanilla JavaScript.</li>
+<li><code>private</code>. You can <em>only</em> read or write a <em>private</em> property from <em>inside of the class</em> that "owns" the property. </li>
+</ol>
+<pre>// list_classes_private.ts
+
+"use strict";
+
+// ListComponent maintains a list of things that a user can
+//   add to and delete from. This is a pure JavaScript class.
+class ListComponent {
+
+  private things : Array<ListItem>;
+
+    constructor () {
+        this.things = []; 
+    }
+
+}
+
+// A ListItem is a wrapper around the items in our list.
+//   This is also pure JavaScript, for now.
+class ListItem {
+
+  private name : string;
+
+    constructor (name) {
+        this.name = name;
+    }
+
+}
+
+const item = new ListItem('Thing to Do');
+console.log(item.name); // Property 'name' is private</pre>
+<p>The classes are still valid, but you'll notice that the last line causes a compiler error. TypeScript reports: <em>Property 'name' is private and only accessible within the class 'ListItem'.</em></p>
+
+<h5>Subclasses</h5>
+<p>TypeScript also lets you use subclasses, just as does vanilla JavaScript:</p>
+<pre>"use strict"; 
+
+class CompletedListItem extends ListItem {
+
+    completed : boolean;
+
+    constructor (name : string) {
+        super(name);
+        this.completed = true;
+    }
+
+}</pre>
+
+<h5>Property Shorthand</h5>
+<p>TypeScript offers a shorthand for creating and assigning properties.</p>
+<pre>// list_classes_shorthand.ts
+
+"use strict";
+
+class ListComponent {
+
+    constructor (private _things : ListItem[]) { }
+
+    get things () : ListItem[] { return this._things; }
+
+}
+
+class ListItem {
+
+    constructor (private _name) { }
+
+    get name () : string { return this._name; }
+
+}
+
+const item = new ListItem('Thing to Do');
+console.log(item.name); // Property 'name' is private
+
+item.name = 'Fish';
+console.log(item.name); // </pre>
+
+<h5>Abstract Classes</h5>
+<pre>abstract class Person {
+  name: string;
+  monthlySalary: number;
+  monthlyBenefits: number;
+
+  abstract calcSalary(): number;
+}</pre>
+
+<h5>Inheri­tance and Implem­enting Interfaces</h5>
+<pre>interface IGPS {
+  getLocation() number;
+}
+
+interface ISelfDrive extends IGPS {
+  drive(latitude: number, longitude: number, elevation: number) : void;
+}
+
+class Vehicle {
+  make: string;
+  model: string;
+  year: number;
+}
+
+class FlyingCar extends Vehicle implements ISelfDrive {
+   hasGps: boolean;
+
+  drive(latitude: number, longitude: number, elevation: number) {
+  }
+
+  getLocation(): number {
+  }
+}</pre>
+
+<h5>Interfaces</h5>
+<pre>interface IOrderDetail {
+  productName: string;
+  quantity: number;
+  price: number;
+  orderDate: Date;
+  shipped: boolean;
+  //Optional
+  outOfStock?: boolean;
+  //Method
+  calcTax: (taxRate: number) => number;
+}</pre>
+<p>An <strong>interface</strong> is a tool for enforcing a particular shape. If a class implements an interface, it <em>must</em> contain the instance variables and methods listed in the interface. </p>
+<p>Creating an interface is much the same as creating a class, except you use the <code>interface</code> keyword instead of <code>class</code>. Otherwise, you list properties and their types identically:</p>
+<pre>// interfaces.ts
+"use strict";
+
+interface User {
+    name : string;
+    email : string;
+}</pre>
+<pre>// interfaces_optional.ts
+
+"use strict";
+
+interface User {
+    name : string;
+    email : string;
+    avatar? : Object;
+}
+
+class RegisteredUser implements User {
+
+  constructor (public name : string, public email : string) { }
+
+}
+
+class ImageUser implements User {
+
+  constructor (public name : string,
+               public email : string,
+               public avatar : Object) { }
+
+}</pre>
+<p>Any object that implements the <code>User</code> interface <em>must</em> have a <code>name</code> and <code>email</code> property, or the TypeScript compiler will scream at us with an "Interface not implemented properly" error.</p>
+<p>Using an interface is like creating a subclass, but you use <code>implements</code> in place of <code>extends</code>.</p>
+<pre>// interfaces.ts
+
+class RegisteredUser implements User {
+
+  // Shorthand
+  constructor (public name : string, public email : string) { }
+
+}</pre>
+
+<h5>Interface : Method Signatures</h5>
+<p>Interfaces also allow you to specify <em>methods</em> that a class must implement, while allowing the classes themselves decide on the implementation details.</p>
+<pre>// interfaces_methods.ts
+
+"use strict";
+
+interface User {
+    // PROPERTIES
+    name : string;
+    email : string;
+    avatar? : Object;
+
+  // API
+  print () : void;
+}
+
+class RegisteredUser implements User {
+
+  constructor (public name : string, public email : string) { }
+
+  print () : void {
+    console.log(`Name: ${this.name} | Email: ${this.email} | No avatar.`);
+  }
+
+}
+
+class ImageUser implements User {
+
+  constructor (public name : string,
+               public email : string,
+               public avatar : Object) { }
+
+  print () : void {
+    console.log(`Name: ${this.name} | Email: ${this.email} | Has avatar.`);
+  }
+
+}
+
+const user = new RegisteredUser('Peleke', 'resil.design@gmail.com');
+user.print();</pre>
+<ol><li>If you omit <code>print</code> in either class, you'll get a compiler error;</li>
+<li>If you declare <code>print</code> with the wrong type in either class, you'll get a compiler error; and</li>
+<li>Each class implements <code>print</code> <em>differently</em>. </li>
+</ol>
+
+<h5>Optional Parameters</h5>
+<pre>class Util {
+  log(msg: string, logDate?: Date) {
+    if (logDate)
+      console.log(logDate + ' ' + msg);
+    else
+      console.log(new Date() + ' ' + msg);
+  }
+}</pre>
+
+<h5>Rest Parameters</h5>
+<pre>class Order {
+  addOrderDetails(...orderDetails: IOrderDetail[]) {
+  }
+}</pre>
+
+<h5>Namespaces</h5>
+<pre>namespace AcmeCorp.Logging {
+  export class Logger {
+       static log(msg: string) : void {
+        console.log(msg);
+      };
+  }
+}
+
+/// <reference path="AcmeCorp.Logging.ts" />
+
+//Alias
+import logger = AcmeCorp.Logging.Logger;
+
+namespace AcmeCorp.OnlineStore {
+  class OrderLogic {
+    calcOrder(): number {
+        logger.log("calculating order");
+        return 0;
+    }
+  }
+}</pre>
+<h5>Using Classes to Create Mixins</h5>
+<p>Occasionally, we want classes to expose some API that would be best expressed in terms of an interface -- say, <code>Printable</code>, or <code>Identifiable</code> -- but which they'll all implement in the same way.</p>
+<p>One possibility is to create subclasses, but this approach fails on two major fronts.</p>
+<ol><li>Classes can only inherit from a single parent class. If we need to implement multiple sets of behavior -- <em>both</em> <code>Printable</code> and <code>Identifiable</code>, for instance -- then subclassing doesn't work.</li>
+<li>If the objects that need to implement the interfaces aren't closely related, subclassing is the wrong abstraction. To have a <code>Book</code> and <code>Person</code> both inherit from an <code>Identifiable</code> base class because they both have an ID makes no sense from the standpoint of building a class hierarchy.</li>
+</ol><p>The correct abstraction in this case is the interface. But writing the same implementation in <em>each</em> class that implements it is suboptimal. On</p>
+<p>one hand, it's more typing. And typing sucks. More seriously, writing the same code in several places is brittle, and if you ever need to change what you intend to be a common implementation, you'll have to rewrite the code in every class that implements the interface. </p>
+<p>What we'd want is a way to create an interface that allows us to include implementations. Languages like <a href="http://docs.groovy-lang.org/next/html/documentation/core-traits.html">Groovy</a> solve the problem directly with <em>traits</em> -- in effect, interfaces that can host default method implementations. </p>
+<p>JavaScript doesn't directly support traits,but has made use of the <a href="https://api.jquery.com/jquery.extend/">mixin pattern</a> for quite some time to achieve the same ends. TypeScript provides a little sugar to create mixins by using <em>classes</em> with the <em>implements</em> keyword.</p>
+<h3>Partial Classes</h3>
+<p>Creating a class to use as a mixin is almost identical to creating an interface. There are two differences:</p>
+<ol><li>You use the <code>class</code> keyword, instead of <code>interface</code>; and</li>
+<li>You include method definitions.</li>
+</ol><pre><code class="language-typescript">// mixins.ts
+
+"use strict";
+
+class Printable {
+
+    text : string;
+
+    print () : void {
+        console.log(this.text);
+    }
+
+}
+
+class Identifiable {
+
+    name : string;
+    id : number;
+
+    identify () : void {
+        console.log(`My name is ${this.name}, and my ID is ${this.id}`);
+    }
+}
+
+class Book implements Printable, Identifiable { // LINE A
+
+  name : string;
+  id : number;
+
+  text : string;
+
+    constructor (name : string, id : number, text : string) {
+        this.name = name;
+        this.id = id;
+
+        this.text = text;
+    }
+
+    // DUMMY methods to satisfy the compiler. If we don't have these, TS
+    //   will complain with "Interface not implemented properly".
+    // Printable 
+    print () : void { }
+
+    // Identifiable
+    identify () : void { }
+
+}
+applyMixins(Book, [Printable, Identifiable]);
+
+const bad_novel = new Book('A Buncha Nonsense', 2190, 'This book/Is awful. FIN');
+bad_novel.print();
+
+// NECESSARY EVIL :: 
+//  From TS docs :: http://www.typescriptlang.org/docs/handbook/mixins.html
+function applyMixins(derivedCtor: any, baseCtors: any[]) {
+    baseCtors.forEach(baseCtor =&gt; {
+        Object.getOwnPropertyNames(baseCtor.prototype).forEach(name =&gt; {
+            derivedCtor.prototype[name] = baseCtor.prototype[name];
+        });
+    });
+}</code></pre>
+<p>Notice that these "mixin classes" do <em>not</em> contain constructors. That means you can't instantiate them. Instead, you'll use them purely to collect method definitions and property signatures. </p>
+<p>Note <strong>Line A</strong>. The reason we can get away with something as weird as implementing a class is because TypeScript treats classes that you implement as interfaces. In other words, it checks that the implementing class contains the same method signatures and instance variables as the "class" you're implementing, but ignores method implementations. We'll see how to get them back in a minute.</p>
+<p>Once you've defined your mixin classes, you create your extending class using <code>implements</code>. And, just as you do when implementing a normal interface, you provide an implementation for the methods that it exposes. </p>
+<p>The only difference is that, here, we implement a no-op, <em>dummy</em> implementation. This is for two reasons. If we don't do this, the compiler will complain that our class doesn't implement its interfaces properly.</p>
+<p>Of course, we don't want the no-op. We want the method definition inside the partial class. To apply this, we have to use a helper function provided in the <a href="http://www.typescriptlang.org/docs/handbook/mixins.html">TypeScript documentation</a>: <code>applyMixins</code>. It replaces your dummy implementations with the real ones in your partial classes. You'll have to use <code>applyMixins</code> for every mixin class you create. </p>
+<p>If you decide to use mixins, I recommend collecting all the <code>applyMixins</code> calls into their own module, or at least into their own chunk of the program. That way you can keep track of where the magic happens.</p>
+<p>Frankly, I find all this to be more trouble than it's worth. But you'll see this pattern in the wild, whether you use it or not, so it's important to know that it's available.</p>
+						</div>
+					</li>
+					<li>
+						<h3 class="uk-accordion-title">CHEAT SHEET (V4.0.0) TYPESCRIPT</h3>
+						<div class="uk-accordion-content">
+<div class="l-content-small grid-fluid docs-content cheatsheet">
+<table>
+<tbody><tr>
+<th>Bootstrapping</th>
+<th><p><code>import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code><b>platformBrowserDynamic().bootstrapModule</b>(AppModule);</code></td>
+<td><p>Bootstraps the app, using the root component from the specified <code>NgModule</code>. </p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>NgModules</th>
+<th><p><code>import { NgModule } from '@angular/core';</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code>@<b>NgModule</b>({&nbsp;declarations:&nbsp;...,&nbsp;imports:&nbsp;...,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exports:&nbsp;...,&nbsp;providers:&nbsp;...,&nbsp;bootstrap:&nbsp;...})<br>class&nbsp;MyModule&nbsp;{}</code></td>
+<td><p>Defines a module that contains components, directives, pipes, and providers.</p>
+</td>
+</tr><tr>
+<td><code><b>declarations:</b>&nbsp;[MyRedComponent,&nbsp;MyBlueComponent,&nbsp;MyDatePipe]</code></td>
+<td><p>List of components, directives, and pipes that belong to this module.</p>
+</td>
+</tr><tr>
+<td><code><b>imports:</b>&nbsp;[BrowserModule,&nbsp;SomeOtherModule]</code></td>
+<td><p>List of modules to import into this module. Everything from the imported modules<is>available to <code>declarations</code> of this module.</is></p></td>
+</tr><tr>
+<td><code><b>exports:</b>&nbsp;[MyRedComponent,&nbsp;MyDatePipe]</code></td>
+<td><p>List of components, directives, and pipes visible to modules that import this module.</p>
+</td>
+</tr><tr>
+<td><code><b>providers:</b>&nbsp;[MyService,&nbsp;{&nbsp;provide:&nbsp;...&nbsp;}]</code></td>
+<td><p>List of dependency injection providers visible both to the contents of this module and to importers of this module.</p>
+</td>
+</tr><tr>
+<td><code><b>bootstrap:</b>&nbsp;[MyAppComponent]</code></td>
+<td><p>List of components to bootstrap when this module is bootstrapped.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Template syntax</th>
+<th></th>
+</tr>
+<tr>
+<td><code>&lt;input&nbsp;<b>[value]</b>="firstName"&gt;</code></td>
+<td><p>Binds property <code>value</code> to the result of expression <code>firstName</code>.</p>
+</td>
+</tr><tr>
+<td><code>&lt;div&nbsp;<b>[attr.role]</b>="myAriaRole"&gt;</code></td>
+<td><p>Binds attribute <code>role</code> to the result of expression <code>myAriaRole</code>.</p>
+</td>
+</tr><tr>
+<td><code>&lt;div&nbsp;<b>[class.extra-sparkle]</b>="isDelightful"&gt;</code></td>
+<td><p>Binds the presence of the CSS class <code>extra-sparkle</code> on the element to the truthiness of the expression <code>isDelightful</code>.</p>
+</td>
+</tr><tr>
+<td><code>&lt;div&nbsp;<b>[style.width.px]</b>="mySize"&gt;</code></td>
+<td><p>Binds style property <code>width</code> to the result of expression <code>mySize</code> in pixels. Units are optional.</p>
+</td>
+</tr><tr>
+<td><code>&lt;button&nbsp;<b>(click)</b>="readRainbow($event)"&gt;</code></td>
+<td><p>Calls method <code>readRainbow</code> when a click event is triggered on this button element (or its children) and passes in the event object.</p>
+</td>
+</tr><tr>
+<td><code>&lt;div&nbsp;title="Hello&nbsp;<b>{{ponyName}}</b>"&gt;</code></td>
+<td><p>Binds a property to an interpolated string, for example, "Hello Seabiscuit". Equivalent to:
+<code>&lt;div [title]="'Hello ' + ponyName"&gt;</code></p>
+</td>
+</tr><tr>
+<td><code>&lt;p&gt;Hello&nbsp;<b>{{ponyName}}</b>&lt;/p&gt;</code></td>
+<td><p>Binds text content to an interpolated string, for example, "Hello Seabiscuit".</p>
+</td>
+</tr><tr>
+<td><code>&lt;my-cmp&nbsp;<b>[(title)]</b>="name"&gt;</code></td>
+<td><p>Sets up two-way data binding. Equivalent to: <code>&lt;my-cmp [title]="name" (titleChange)="name=$event"&gt;</code></p>
+</td>
+</tr><tr>
+<td><code>&lt;video&nbsp;<b>#movieplayer</b>&nbsp;...&gt;<br>&nbsp;&nbsp;&lt;button&nbsp;<b>(click)</b>="movieplayer.play()"&gt;<br>&lt;/video&gt;</code></td>
+<td><p>Creates a local variable <code>movieplayer</code> that provides access to the <code>video</code> element instance in data-binding and event-binding expressions in the current template.</p>
+</td>
+</tr><tr>
+<td><code>&lt;p&nbsp;<b>*myUnless</b>="myExpression"&gt;...&lt;/p&gt;</code></td>
+<td><p>The <code>*</code> symbol turns the current element into an embedded template. Equivalent to:
+<code>&lt;ng-template [myUnless]="myExpression"&gt;&lt;p&gt;...&lt;/p&gt;&lt;/ng-template&gt;</code></p>
+</td>
+</tr><tr>
+<td><code>&lt;p&gt;Card&nbsp;No.:&nbsp;<b>{{cardNumber&nbsp;|&nbsp;myCardNumberFormatter}}</b>&lt;/p&gt;</code></td>
+<td><p>Transforms the current value of expression <code>cardNumber</code> via the pipe called <code>myCardNumberFormatter</code>.</p>
+</td>
+</tr><tr>
+<td><code>&lt;p&gt;Employer:&nbsp;<b>{{employer?.companyName}}</b>&lt;/p&gt;</code></td>
+<td><p>The safe navigation operator (<code>?</code>) means that the <code>employer</code> field is optional and if <code>undefined</code>, the rest of the expression should be ignored.</p>
+</td>
+</tr><tr>
+<td><code>&lt;<b>svg:</b>rect&nbsp;x="0"&nbsp;y="0"&nbsp;width="100"&nbsp;height="100"/&gt;</code></td>
+<td><p>An SVG snippet template needs an <code>svg:</code> prefix on its root element to disambiguate the SVG element from an HTML component.</p>
+</td>
+</tr><tr>
+<td><code>&lt;<b>svg</b>&gt;<br>&nbsp;&nbsp;&lt;rect&nbsp;x="0"&nbsp;y="0"&nbsp;width="100"&nbsp;height="100"/&gt;<br>&lt;/<b>svg</b>&gt;</code></td>
+<td><p>An <code>&lt;svg&gt;</code> root element is detected as an SVG element automatically, without the prefix.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Built-in directives</th>
+<th><p><code>import { CommonModule } from '@angular/common';</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code>&lt;section&nbsp;<b>*ngIf</b>="showSection"&gt;</code></td>
+<td><p>Removes or recreates a portion of the DOM tree based on the <code>showSection</code> expression.</p>
+</td>
+</tr><tr>
+<td><code>&lt;li&nbsp;<b>*ngFor</b>="let&nbsp;item&nbsp;of&nbsp;list"&gt;</code></td>
+<td><p>Turns the li element and its contents into a template, and uses that to instantiate a view for each item in list.</p>
+</td>
+</tr><tr>
+<td><code>&lt;div&nbsp;<b>[ngSwitch]</b>="conditionExpression"&gt;<br>&nbsp;&nbsp;&lt;ng-template&nbsp;<b>[<b>ngSwitchCase</b>]</b>="case1Exp"&gt;...&lt;/ng-template&gt;<br>&nbsp;&nbsp;&lt;ng-template&nbsp;<b>ngSwitchCase</b>="case2LiteralString"&gt;...&lt;/ng-template&gt;<br>&nbsp;&nbsp;&lt;ng-template&nbsp;<b>ngSwitchDefault</b>&gt;...&lt;/ng-template&gt;<br>&lt;/div&gt;</code></td>
+<td><p>Conditionally swaps the contents of the div by selecting one of the embedded templates based on the current value of <code>conditionExpression</code>.</p>
+</td>
+</tr><tr>
+<td><code>&lt;div&nbsp;<b>[ngClass]</b>="{active:&nbsp;isActive,&nbsp;disabled:&nbsp;isDisabled}"&gt;</code></td>
+<td><p>Binds the presence of CSS classes on the element to the truthiness of the associated map values. The right-hand expression should return {class-name: true/false} map.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Forms</th>
+<th><p><code>import { FormsModule } from '@angular/forms';</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code>&lt;input&nbsp;<b>[(ngModel)]</b>="userName"&gt;</code></td>
+<td><p>Provides two-way data-binding, parsing, and validation for form controls.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Class decorators</th>
+<th><p><code>import { Directive, ... } from '@angular/core';</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code><b>@Component({...})</b><br>class&nbsp;MyComponent()&nbsp;{}</code></td>
+<td><p>Declares that a class is a component and provides metadata about the component.</p>
+</td>
+</tr><tr>
+<td><code><b>@Directive({...})</b><br>class&nbsp;MyDirective()&nbsp;{}</code></td>
+<td><p>Declares that a class is a directive and provides metadata about the directive.</p>
+</td>
+</tr><tr>
+<td><code><b>@Pipe({...})</b><br>class&nbsp;MyPipe()&nbsp;{}</code></td>
+<td><p>Declares that a class is a pipe and provides metadata about the pipe.</p>
+</td>
+</tr><tr>
+<td><code><b>@Injectable()</b><br>class&nbsp;MyService()&nbsp;{}</code></td>
+<td><p>Declares that a class has dependencies that should be injected into the constructor when the dependency injector is creating an instance of this class.
+</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Directive configuration</th>
+<th><p><code>@Directive({ property1: value1, ... })</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code><b>selector:</b>&nbsp;'.cool-button:not(a)'</code></td>
+<td><p>Specifies a CSS selector that identifies this directive within a template. Supported selectors include <code>element</code>,
+<code>[attribute]</code>, <code>.class</code>, and <code>:not()</code>.</p>
+<p>Does not support parent-child relationship selectors.</p>
+</td>
+</tr><tr>
+<td><code><b>providers:</b>&nbsp;[MyService,&nbsp;{&nbsp;provide:&nbsp;...&nbsp;}]</code></td>
+<td><p>List of dependency injection providers for this directive and its children.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Component configuration</th>
+<th><p>
+<code>@Component</code> extends <code>@Directive</code>,<so>the <code>@Directive</code> configuration applies to components as well</so></p></th>
+</tr>
+<tr>
+<td><code><b>moduleId:</b>&nbsp;module.id</code></td>
+<td><p>If set, the <code>templateUrl</code> and <code>styleUrl</code> are resolved relative to the component.</p>
+</td>
+</tr><tr>
+<td><code><b>viewProviders:</b>&nbsp;[MyService,&nbsp;{&nbsp;provide:&nbsp;...&nbsp;}]</code></td>
+<td><p>List of dependency injection providers scoped to this component's view.</p>
+</td>
+</tr><tr>
+<td><code><b>template:</b>&nbsp;'Hello&nbsp;{{name}}'<br><b>templateUrl:</b>&nbsp;'my-component.html'</code></td>
+<td><p>Inline template or external template URL of the component's view.</p>
+</td>
+</tr><tr>
+<td><code><b>styles:</b>&nbsp;['.primary&nbsp;{color:&nbsp;red}']<br><b>styleUrls:</b>&nbsp;['my-component.css']</code></td>
+<td><p>List of inline CSS styles or external stylesheet URLs for styling the component’s view.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Class field decorators for directives and components</th>
+<th><p><code>import { Input, ... } from '@angular/core';</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code><b>@Input()</b>&nbsp;myProperty;</code></td>
+<td><p>Declares an input property that you can update via property binding (example:
+<code>&lt;my-cmp [myProperty]="someExpression"&gt;</code>).</p>
+</td>
+</tr><tr>
+<td><code><b>@Output()</b>&nbsp;myEvent&nbsp;=&nbsp;new&nbsp;EventEmitter();</code></td>
+<td><p>Declares an output property that fires events that you can subscribe to with an event binding (example: <code>&lt;my-cmp (myEvent)="doSomething()"&gt;</code>).</p>
+</td>
+</tr><tr>
+<td><code><b>@HostBinding('class.valid')</b>&nbsp;isValid;</code></td>
+<td><p>Binds a host element property (here, the CSS class <code>valid</code>) to a directive/component property (<code>isValid</code>).</p>
+</td>
+</tr><tr>
+<td><code><b>@HostListener('click',&nbsp;['$event'])</b>&nbsp;onClick(e)&nbsp;{...}</code></td>
+<td><p>Subscribes to a host element event (<code>click</code>) with a directive/component method (<code>onClick</code>), optionally passing an argument (<code>$event</code>).</p>
+</td>
+</tr><tr>
+<td><code><b>@ContentChild(myPredicate)</b>&nbsp;myChildComponent;</code></td>
+<td><p>Binds the first result of the component content query (<code>myPredicate</code>) to a property (<code>myChildComponent</code>) of the class.</p>
+</td>
+</tr><tr>
+<td><code><b>@ContentChildren(myPredicate)</b>&nbsp;myChildComponents;</code></td>
+<td><p>Binds the results of the component content query (<code>myPredicate</code>) to a property (<code>myChildComponents</code>) of the class.</p>
+</td>
+</tr><tr>
+<td><code><b>@ViewChild(myPredicate)</b>&nbsp;myChildComponent;</code></td>
+<td><p>Binds the first result of the component view query (<code>myPredicate</code>) to a property (<code>myChildComponent</code>) of the class. Not available for directives.</p>
+</td>
+</tr><tr>
+<td><code><b>@ViewChildren(myPredicate)</b>&nbsp;myChildComponents;</code></td>
+<td><p>Binds the results of the component view query (<code>myPredicate</code>) to a property (<code>myChildComponents</code>) of the class. Not available for directives.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Directive and component change detection and lifecycle hooks</th>
+<th><p>(implemented as class methods)
+</p>
+</th>
+</tr>
+<tr>
+<td><code><b>constructor(myService:&nbsp;MyService,&nbsp;...)</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.</p>
+</td>
+</tr><tr>
+<td><code><b>ngOnChanges(changeRecord)</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called after every change to input properties and before processing content or child views.</p>
+</td>
+</tr><tr>
+<td><code><b>ngOnInit()</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called after the constructor, initializing input properties, and the first call to <code>ngOnChanges</code>.</p>
+</td>
+</tr><tr>
+<td><code><b>ngDoCheck()</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.</p>
+</td>
+</tr><tr>
+<td><code><b>ngAfterContentInit()</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called after <code>ngOnInit</code> when the component's or directive's content has been initialized.</p>
+</td>
+</tr><tr>
+<td><code><b>ngAfterContentChecked()</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called after every check of the component's or directive's content.</p>
+</td>
+</tr><tr>
+<td><code><b>ngAfterViewInit()</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called after <code>ngAfterContentInit</code> when the component's view has been initialized. Applies to components only.</p>
+</td>
+</tr><tr>
+<td><code><b>ngAfterViewChecked()</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called after every check of the component's view. Applies to components only.</p>
+</td>
+</tr><tr>
+<td><code><b>ngOnDestroy()</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called once, before the instance is destroyed.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Dependency injection configuration</th>
+<th></th>
+</tr>
+<tr>
+<td><code>{&nbsp;<b>provide</b>:&nbsp;MyService,&nbsp;<b>useClass</b>:&nbsp;MyMockService&nbsp;}</code></td>
+<td><p>Sets or overrides the provider for <code>MyService</code> to the <code>MyMockService</code> class.</p>
+</td>
+</tr><tr>
+<td><code>{&nbsp;<b>provide</b>:&nbsp;MyService,&nbsp;<b>useFactory</b>:&nbsp;myFactory&nbsp;}</code></td>
+<td><p>Sets or overrides the provider for <code>MyService</code> to the <code>myFactory</code> factory function.</p>
+</td>
+</tr><tr>
+<td><code>{&nbsp;<b>provide</b>:&nbsp;MyValue,&nbsp;<b>useValue</b>:&nbsp;41&nbsp;}</code></td>
+<td><p>Sets or overrides the provider for <code>MyValue</code> to the value <code>41</code>.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Routing and navigation</th>
+<th><p><code>import { Routes, RouterModule, ... } from '@angular/router';</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code>const&nbsp;routes:&nbsp;<b>Routes</b>&nbsp;=&nbsp;[<br>&nbsp;&nbsp;{&nbsp;path:&nbsp;'',&nbsp;component:&nbsp;HomeComponent&nbsp;},<br>&nbsp;&nbsp;{&nbsp;path:&nbsp;'path/:routeParam',&nbsp;component:&nbsp;MyComponent&nbsp;},<br>&nbsp;&nbsp;{&nbsp;path:&nbsp;'staticPath',&nbsp;component:&nbsp;...&nbsp;},<br>&nbsp;&nbsp;{&nbsp;path:&nbsp;'**',&nbsp;component:&nbsp;...&nbsp;},<br>&nbsp;&nbsp;{&nbsp;path:&nbsp;'oldPath',&nbsp;redirectTo:&nbsp;'/staticPath'&nbsp;},<br>&nbsp;&nbsp;{&nbsp;path:&nbsp;...,&nbsp;component:&nbsp;...,&nbsp;data:&nbsp;{&nbsp;message:&nbsp;'Custom'&nbsp;}&nbsp;}<br>]);<br><br>const&nbsp;routing&nbsp;=&nbsp;RouterModule.forRoot(routes);</code></td>
+<td><p>Configures routes for the application. Supports static, parameterized, redirect, and wildcard routes. Also supports custom route data and resolve.</p>
+</td>
+</tr><tr>
+<td><code><br>&lt;<b>router-outlet</b>&gt;&lt;/<b>router-outlet</b>&gt;<br>&lt;<b>router-outlet</b>&nbsp;name="aux"&gt;&lt;/<b>router-outlet</b>&gt;<br></code></td>
+<td><p>Marks the location to load the component of the active route.</p>
+</td>
+</tr><tr>
+<td><code><br>&lt;a&nbsp;routerLink="/path"&gt;<br>&lt;a&nbsp;<b>[routerLink]</b>="[&nbsp;'/path',&nbsp;routeParam&nbsp;]"&gt;<br>&lt;a&nbsp;<b>[routerLink]</b>="[&nbsp;'/path',&nbsp;{&nbsp;matrixParam:&nbsp;'value'&nbsp;}&nbsp;]"&gt;<br>&lt;a&nbsp;<b>[routerLink]</b>="[&nbsp;'/path'&nbsp;]"&nbsp;[queryParams]="{&nbsp;page:&nbsp;1&nbsp;}"&gt;<br>&lt;a&nbsp;<b>[routerLink]</b>="[&nbsp;'/path'&nbsp;]"&nbsp;fragment="anchor"&gt;<br></code></td>
+<td><p>Creates a link to a different view based on a route instruction consisting of a route path, required and optional parameters, query parameters, and a fragment. To navigate to a root route, use the <code>/</code> prefix; for a child route, use the <code>./</code>prefix; for a sibling or parent, use the <code>../</code> prefix.</p>
+</td>
+</tr><tr>
+<td><code>&lt;a&nbsp;[routerLink]="[&nbsp;'/path'&nbsp;]"&nbsp;routerLinkActive="active"&gt;</code></td>
+<td><p>The provided classes are added to the element when the <code>routerLink</code> becomes the current active route.</p>
+</td>
+</tr><tr>
+<td><code>class&nbsp;<b>CanActivate</b>Guard&nbsp;implements&nbsp;<b>CanActivate</b>&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;canActivate(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;route:&nbsp;ActivatedRouteSnapshot,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state:&nbsp;RouterStateSnapshot<br>&nbsp;&nbsp;&nbsp;&nbsp;):&nbsp;Observable&lt;boolean&gt;|Promise&lt;boolean&gt;|boolean&nbsp;{&nbsp;...&nbsp;}<br>}<br><br>{&nbsp;path:&nbsp;...,&nbsp;canActivate:&nbsp;[<b>CanActivate</b>Guard]&nbsp;}</code></td>
+<td><p>An interface for defining a class that the router should call first to determine if it should activate this component. Should return a boolean or an Observable/Promise that resolves to a boolean.</p>
+</td>
+</tr><tr>
+<td><code>class&nbsp;<b>CanDeactivate</b>Guard&nbsp;implements&nbsp;<b>CanDeactivate</b>&lt;T&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;canDeactivate(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;component:&nbsp;T,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;route:&nbsp;ActivatedRouteSnapshot,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state:&nbsp;RouterStateSnapshot<br>&nbsp;&nbsp;&nbsp;&nbsp;):&nbsp;Observable&lt;boolean&gt;|Promise&lt;boolean&gt;|boolean&nbsp;{&nbsp;...&nbsp;}<br>}<br><br>{&nbsp;path:&nbsp;...,&nbsp;canDeactivate:&nbsp;[<b>CanDeactivate</b>Guard]&nbsp;}</code></td>
+<td><p>An interface for defining a class that the router should call first to determine if it should deactivate this component after a navigation. Should return a boolean or an Observable/Promise that resolves to a boolean.</p>
+</td>
+</tr><tr>
+<td><code>class&nbsp;<b>CanActivateChild</b>Guard&nbsp;implements&nbsp;<b>CanActivateChild</b>&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;canActivateChild(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;route:&nbsp;ActivatedRouteSnapshot,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state:&nbsp;RouterStateSnapshot<br>&nbsp;&nbsp;&nbsp;&nbsp;):&nbsp;Observable&lt;boolean&gt;|Promise&lt;boolean&gt;|boolean&nbsp;{&nbsp;...&nbsp;}<br>}<br><br>{&nbsp;path:&nbsp;...,&nbsp;canActivateChild:&nbsp;[CanActivateGuard],<br>&nbsp;&nbsp;&nbsp;&nbsp;children:&nbsp;...&nbsp;}</code></td>
+<td><p>An interface for defining a class that the router should call first to determine if it should activate the child route. Should return a boolean or an Observable/Promise that resolves to a boolean.</p>
+</td>
+</tr><tr>
+<td><code>class&nbsp;<b>Resolve</b>Guard&nbsp;implements&nbsp;<b>Resolve</b>&lt;T&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;resolve(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;route:&nbsp;ActivatedRouteSnapshot,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state:&nbsp;RouterStateSnapshot<br>&nbsp;&nbsp;&nbsp;&nbsp;):&nbsp;Observable&lt;any&gt;|Promise&lt;any&gt;|any&nbsp;{&nbsp;...&nbsp;}<br>}<br><br>{&nbsp;path:&nbsp;...,&nbsp;resolve:&nbsp;[<b>Resolve</b>Guard]&nbsp;}</code></td>
+<td><p>An interface for defining a class that the router should call first to resolve route data before rendering the route. Should return a value or an Observable/Promise that resolves to a value.</p>
+</td>
+</tr><tr>
+<td><code>class&nbsp;<b>CanLoad</b>Guard&nbsp;implements&nbsp;<b>CanLoad</b>&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;canLoad(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;route:&nbsp;Route<br>&nbsp;&nbsp;&nbsp;&nbsp;):&nbsp;Observable&lt;boolean&gt;|Promise&lt;boolean&gt;|boolean&nbsp;{&nbsp;...&nbsp;}<br>}<br><br>{&nbsp;path:&nbsp;...,&nbsp;canLoad:&nbsp;[<b>CanLoad</b>Guard],&nbsp;loadChildren:&nbsp;...&nbsp;}</code></td>
+<td><p>An interface for defining a class that the router should call first to check if the lazy loaded module should be loaded. Should return a boolean or an Observable/Promise that resolves to a boolean.</p>
+</td>
+</tr>
+</tbody></table>
+</div>
+						</div>
+					</li>
 				</ul>
 			</div>			
 		</section>
@@ -255,6 +1495,7 @@
 				Copyright May 2017
 			</div>
 		</footer>
+		<!--<div class="vertical-grid-lines"></div>-->
 		<!-- END :: BODY -->
 	</body>
 </html>	
