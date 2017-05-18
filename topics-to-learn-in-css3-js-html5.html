@@ -71,7 +71,7 @@
 			.uk-accordion-content {
 			
 			padding: 1.5em;
-			border: 1px solid #CCC;
+			border: 1px solid #FFF;
 			margin-top: 1.5em;
 			}
 			
@@ -88,6 +88,8 @@
 			padding: 24px;
 			background-color: #ffe0b2;
 			/*background: #ffe0b2 url(images/baseline-pattern-24px.png) repeat top left;*/
+			}
+			body.show-grid {
 			background-image: linear-gradient(rgba(0, 119, 179, 0.2) 1px, transparent 1px);
     background-position-x: left;
     background-position-y: top;
@@ -178,7 +180,7 @@
 		
 		<section>
 			<div class="uk-container uk-container-medium">
-				<h1>UI Developers Referance</h1>
+				<h1 class="page-title">UI Developers Referance</h1>
 				<ul uk-accordion="multiple: false">
 					<li class="uk-open">
 						<h3 class="uk-accordion-title">CSS Baseline Grid ( Verticle Rhythm )</h3>
@@ -381,6 +383,8 @@ npm cache clean
 npm install -g @angular/cli@latest</pre>
 						</div>
 					</li>
+					
+					<!-- START : Accordion -->
 					<li>
 						<h3 class="uk-accordion-title">Color</h3>
 						<div class="uk-accordion-content">
@@ -390,6 +394,8 @@ npm install -g @angular/cli@latest</pre>
 							
 						</div>
 					</li>
+					<!-- END : Accordion -->
+					
 					<li>
 						<h3 class="uk-accordion-title">UI Component Libraries</h3>
 						<div class="uk-accordion-content">
@@ -1486,6 +1492,165 @@ function applyMixins(derivedCtor: any, baseCtors: any[]) {
 </div>
 						</div>
 					</li>
+					
+					<!-- START : Accordion -->
+					<li>
+						<h3 class="uk-accordion-title">Add & Remove Classes With JavaScript Property classList</h3>
+						<div class="uk-accordion-content">
+							<h4>Element.classList</h4>
+							<p>The <code>classList</code> property returns a token list of the class attribute of the element in question. Luckily for us, it also comes with a few handy methods:</p>
+							<pre>// adds class "foo" to el
+el.classList.add("foo");
+
+// removes class "bar" from el
+el.classList.remove("bar");
+
+// toggles the class "foo"
+el.classList.toggle("foo");
+
+// outputs "true" to console if el contains "foo", "false" if not
+console.log( el.classList.contains("foo") );
+
+// add multiple classes to el
+el.classList.add( "foo", "bar" );</pre>
+
+<table class="w3-table-all notranslate">
+  <tbody><tr>
+  <th style="width:25%">Method</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>add(<em>class1, class2, ...</em>)</td>
+    <td>Adds one or more class names to an element.<br><br>If the  specified class already exist, the class will not be added</td>
+  </tr>
+  <tr>
+    <td>contains(<em>class</em>)</td>
+    <td>
+  Returns a Boolean value, indicating whether an element has the  specified class name.
+  <p>Possible values:</p>
+  <ul>
+      <li>true - the element contains the specified class name</li>
+      <li>false - the element does not contain the specified class name</li>
+  </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>item(<em>index</em>)</td>
+    <td>Returns the class name with a specified index number from an  element. Index starts at 0.<br><br>Returns <em>null</em> if the index is  out of range</td>
+  </tr>
+  <tr>
+    <td>remove(<em>class1, class2, ...</em>)</td>
+    <td>Removes one or more class names from an element.<br><br>
+  <strong>Note:</strong> Removing a class that does not exist, does NOT  throw an error</td>
+  </tr>
+  <tr>
+    <td>toggle(<em>class, </em>true|false)</td>
+    <td>Toggles between a class name for an element.<br><br>The first  parameter removes the specified class from an element, and returns  false. <br>If the class does not exist, it is added to the element, and the  return value is true.<br><br>The optional second parameter is a Boolean  value that forces the  class to be added or removed, regardless of whether or not it already  existed. For example:<br><br>Remove a class: <em>element</em>.classList.toggle("classToRemove", false); <br>Add a class:
+  <em>element</em>.classList.toggle("classToAdd",  true);<br><br><strong>Note: </strong>The second parameter is not  supported in Internet Explorer or Opera 12 and earlier.</td>
+  </tr>
+
+</tbody></table>
+						</div>
+					</li>
+					<!-- END : Accordion -->
+					
+					<!-- START : Accordion -->
+					<li>
+						<h3 class="uk-accordion-title">Cross Browser Calculation of X & Y Position</h3>
+						<div class="uk-accordion-content">
+<pre>
+// REF : http://callmenick.com/post/cross-browser-calculation-of-x-y-position
+//==========================================
+
+function getPosition(e) {
+  var posx = 0;
+  var posy = 0;
+
+  if (!e) var e = window.event;
+
+  if (e.pageX || e.pageY) {
+    posx = e.pageX;
+    posy = e.pageY;
+  }
+  else if (e.clientX || e.clientY) {
+    posx = e.clientX + document.body.scrollLeft
+      + document.documentElement.scrollLeft;
+    posy = e.clientY + document.body.scrollTop
+      + document.documentElement.scrollTop;
+  }
+
+  return {
+    x: posx,
+    y: posy
+  }
+}
+
+//Usage
+//======================
+document.addEventListener( "click", function(e) {
+  var x = getPosition(e).x;
+  var y = getPosition(e).y;
+  console.log("x pos: "+ x +" // y pos:"+ y);
+});
+</pre>
+						</div>
+					</li>
+					<!-- END : Accordion -->
+					
+					<!-- START : Accordion -->
+					<li>
+						<h3 class="uk-accordion-title">Title</h3>
+						<div class="uk-accordion-content">
+							<ul class="uk-list uk-list-large">
+								<li><a href="https://www.viget.com/articles/color-contrast" target="_blank">Color Contrast for Better Readability (viget.com)</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- END : Accordion -->
+					
+					<!-- START : Accordion -->
+					<li>
+						<h3 class="uk-accordion-title">Title</h3>
+						<div class="uk-accordion-content">
+							<ul class="uk-list uk-list-large">
+								<li><a href="https://www.viget.com/articles/color-contrast" target="_blank">Color Contrast for Better Readability (viget.com)</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- END : Accordion -->
+					
+					<!-- START : Accordion -->
+					<li>
+						<h3 class="uk-accordion-title">Title</h3>
+						<div class="uk-accordion-content">
+							<ul class="uk-list uk-list-large">
+								<li><a href="https://www.viget.com/articles/color-contrast" target="_blank">Color Contrast for Better Readability (viget.com)</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- END : Accordion -->
+					
+					<!-- START : Accordion -->
+					<li>
+						<h3 class="uk-accordion-title">Title</h3>
+						<div class="uk-accordion-content">
+							<ul class="uk-list uk-list-large">
+								<li><a href="https://www.viget.com/articles/color-contrast" target="_blank">Color Contrast for Better Readability (viget.com)</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- END : Accordion -->
+					
+					<!-- START : Accordion -->
+					<li>
+						<h3 class="uk-accordion-title">Title</h3>
+						<div class="uk-accordion-content">
+							<ul class="uk-list uk-list-large">
+								<li><a href="https://www.viget.com/articles/color-contrast" target="_blank">Color Contrast for Better Readability (viget.com)</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- END : Accordion -->
 				</ul>
 			</div>			
 		</section>
@@ -1497,5 +1662,12 @@ function applyMixins(derivedCtor: any, baseCtors: any[]) {
 		</footer>
 		<!--<div class="vertical-grid-lines"></div>-->
 		<!-- END :: BODY -->
+		
+		<script>
+		var pageTitle = document.querySelector('.page-title');
+		pageTitle.addEventListener('click', function(){
+			document.body.classList.toggle('show-grid');
+		});
+		</script>
 	</body>
 </html>	
