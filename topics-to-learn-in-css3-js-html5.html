@@ -240,6 +240,38 @@
 							<code>npm install -g yarn</code>
 							<h5>You can update to the latest version of Yarn</h5>
 							<code>yarn self-update</code>
+							<ul class="postList">
+    <li><code>npm init</code> === <code>yarn init</code>
+    </li>
+    <li><code>npm link</code> === <code>yarn link</code>
+    </li>
+    <li><code>npm outdated</code> === <code>yarn outdated</code>
+    </li>
+    <li><code>npm publish</code> === <code>yarn publish</code>
+    </li>
+    <li><code>npm run</code> === <code>yarn run</code>
+    </li>
+    <li><code>npm cache clean</code> === <code>yarn cache clean</code>
+    </li>
+    <li><code>npm login</code> === <code>yarn login</code> (and logout)</li>
+    <li><code>npm test</code> === <code>yarn test</code>
+    </li>
+    <li><code>npm install --production</code> === <code>yarn --production</code>
+    </li>
+</ul>
+<pre>yarn                  # Install all dependencies from package.json
+yarn install               # Alias for yarn
+yarn init                  # Initialize an npm repository
+yarn add [package]         # Install npm package
+yarn upgrade [package]     # Upgrade npm package
+yarn remove [package]      # Uninstall npm package</pre>
+
+<h5>Install from Multiple Registries</h5>
+<p>By default, it scans the npm registry for your package as follows: <code>yarn add &ltpkg-name></code></p>
+<p>Install a package from a remote gzipped tarball file as follows: <code>yarn add &lt;https://thatproject.code/package.tgz></code></p>
+<p>Install a package from your local file system as follows: <code>yarn add file:/path/to/local/folder</code></p>
+<p>Install a package from a remote git repository like so: <code>yarn add &lt;git remote-url></code></p>
+
 						</div>
 					</li>
 					<li>
