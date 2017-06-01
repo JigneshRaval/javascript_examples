@@ -75,7 +75,9 @@
 			margin-top: 1.5em;
 			}
 			
-			
+			.font-roboto {
+				font-family: 'Roboto', sans-serif;
+			}
 			body {
 			font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
 			font-family: 'Lato', sans-serif;
@@ -85,7 +87,7 @@
 			min-height: 100%;
 			color: #373D3F ;
 			margin: 0 auto;
-			padding: 24px;
+			padding: 0;
 			background-color: #ffe0b2;
 			/*background: #ffe0b2 url(images/baseline-pattern-24px.png) repeat top left;*/
 			}
@@ -172,15 +174,159 @@
 				white-space: pre-wrap; 
 	word-wrap: break-word; 
 			}
+			.nav-panel {
+				/*background: linear-gradient(to left, #28a5f5, #1e87f0);*/
+			}
+			.header {
+				background-color: #FFF;
+				overflow: auto;
+			}
+			.tm-navbar-container:not(.uk-navbar-transparent) {
+    background: linear-gradient(to left, #28a5f5, #1e87f0);
+}
+.uk-navbar-container *, .uk-navbar-container *:hover,
+.uk-navbar-container a, .uk-navbar-container a:hover { color: #FFF !important; }
 		</style>
 		
 	</head>
 	<body>
-		<!-- START :: BODY -->
-		
-		<section>
-			<div class="uk-container uk-container-medium">
-				<h1 class="page-title">UI Developers Referance</h1>
+
+	
+<!-- START :: HEADER -->
+<div uk-sticky="media: 960" class="uk-navbar-container tm-navbar-container uk-sticky uk-sticky-fixed">
+    <div class="uk-container uk-container-expand">
+        <nav class="uk-navbar">
+            <div class="uk-navbar-left">
+                <a href="../" class="uk-navbar-item uk-logo font-roboto"><img uk-svg="" src="../images/uikit-logo.svg" class="uk-margin-small-right" hidden="hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="34" viewBox="0 0 28 34" ratio="1" class="uk-margin-small-right uk-svg">
+                        <polygon fill="#fff" points="19.1,4.1 13.75,1 8.17,4.45 13.6,7.44 "></polygon>
+                        <path fill="#fff" d="M21.67,5.43l-5.53,3.34l6.26,3.63v9.52l-8.44,4.76L5.6,21.93v-7.38L0,11.7v13.51l13.75,8.08L28,25.21V9.07 L21.67,5.43z"></path>
+					</svg> UI Dev Resources
+				</a>
+			</div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav uk-visible@m">
+                    <li><a href="../pro">Pro</a>
+					</li>
+                    <li class="uk-active"><a href="../docs/">Documentation</a>
+					</li>
+                    <li><a href="../changelog">Changelog</a>
+					</li>
+				</ul>
+				
+                <a uk-navbar-toggle-icon="" href="#offcanvas" uk-toggle="" class="uk-navbar-toggle uk-hidden@m uk-navbar-toggle-icon uk-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" ratio="1">
+                        <rect y="9" width="20" height="2"></rect>
+                        <rect y="3" width="20" height="2"></rect>
+                        <rect y="15" width="20" height="2"></rect>
+					</svg>
+				</a>
+			</div>
+		</nav>
+	</div>
+</div>
+<!-- END :: HEADER -->
+
+<!-- START :: CONTENT -->
+<div class="uk-flex">
+	
+	<!-- START :: LEFT PANEL -->
+	<div class="nav-panel uk-width-1-4 uk-tile uk-tile-default">
+		<ul class="uk-tab-left" uk-tab="connect: #component-tab-left; animation: uk-animation-fade">
+			<li><a href="#">Active</a></li>
+			<li><a href="#">Item</a></li>
+			<li><a href="#">Item</a></li>
+		</ul>
+	</div>
+	<!-- END :: LEFT PANEL -->
+	
+	<div class="uk-width-1-8">
+		<div class="uk-container">
+			<ul id="component-tab-left" class="uk-switcher">
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3 class="uk-accordion-title">CSS Baseline Grid ( Verticle Rhythm )</h3>
+					<div class="uk-accordion-content">
+						<ul class="uk-list uk-list-large">
+							<li><a href="http://typecast.com/blog/4-simple-steps-to-vertical-rhythm" target="_blank">4 Simple Steps to Vertical Rhythm</a></li>
+							<li><a href="https://xavierbertels.com/blog/baseline-grid-workflow" target="_blank">Baseline Grid Workflow (How To)</a></li>
+						</ul>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3 class="uk-accordion-title">CSS Unit Calculation</h3>
+					<div class="uk-accordion-content">
+						<div class="content">
+							<h4>What is an EM?</h4>
+							<p>Wikipedia puts it well: <q>"An em is a unit of measurement in the field of typography, equal to the size of the current font."</q> If your font-size is at 16 pixels, then 1em = 16px</p>
+							<p>For more information visit <a href="http://en.wikipedia.org/wiki/Em_(typography)">Wikipedia</a> and <a href="https://developer.mozilla.org/en/CSS-2_Quick_Reference/Units">Mozilla MDN</a>.</p>
+							<h4>What is the text sizing difference between PX, EM, %, PT?</h4>
+							<p>Pixels and points are static measurements, but commonly used in different mediums. Pixels are used on screens because screens are measured in pixels. Although points can be used on screen, they are the standard in printing because they are a factor of <abbr title="dots per inch">DPI</abbr>.</p>
+							<p>Percent and EMs on the other hand are relative measurements. The size of an EM or percentage unit depends on its parent. If body text is sized at 12 pixels, then text set at 120% or 1.2 EM inside the body will be 1.2 * 12, or 14.4 pixels.</p>
+							<h4>How do I convert between PX, EM, %, and PT?</h4>
+							<p>Assuming you aren’t using PXtoEM.com to keep it simple, here are the formulas PXtoEM.com uses.</p>
+							<p><strong>Note:</strong> 16px is used as the body text size in all conversions because that is the browser default. You will change 16px to your base text size.</p>
+							<dl>
+								<dt>PX to EM</dt>
+								<dd>Formula: size in pixels / parent size in pixels</dd>
+								<dd>Example: 12px / 16px = .75em</dd>
+								
+								<dt>PX to %</dt>
+								<dd>Formula: size in pixels / parent size in pixels * 100</dd>
+								<dd>Example: 12px / 16px * 100 = 75%</dd>
+								
+								<dt>PX to PT</dt>
+								<dd>Formula: size in pixels * (points per inch / pixels per inch)</dd>
+								<dd>Example: 16px * (72pt / 96px) = 12pt</dd>
+								
+								<dt>EM to PX</dt><dt>
+								</dt><dd>Formula: size in EMs * parent size in pixels</dd>
+								<dd>Example: .75em * 16px = 12px</dd>
+								
+								<dt>EM to %</dt>
+								<dd>Formula: size in EMs * 100</dd>
+								<dd>Example: .75em * 100 = 75%</dd>
+							</dl>
+							<h4>Why size your text with EMs in CSS?</h4>
+							<p>Style sheets that use EMs are easier to maintain for the designer (especially with PXtoEM.com at your side) and more accessible to end-users.</p>
+							<p>Style sheets become easier to maintain because all text set in EMs scale to the body font-size. Only one element\'s font-size needs to change instead of individually changing the font-size of each element.</p>
+							<p>Accessibility is increased for end-users because text is scaled based on their preferences rather than set statically in pixels. Additionally, end-users can use hot keys to scale the text in all browsers. Many people have difficulty reading small text on a computer screen.</p>
+							<p>For more information visit <a href="http://www.alistapart.com/articles/howtosizetextincss/">A List Apart</a>, <a href="http://www.informit.com/articles/article.aspx?p=397663">informIT</a>, <a href="http://jontangerine.com/log/2007/09/the-incredible-em-and-elastic-layouts-with-css">Jon Tan\'s Blog</a>, and <a href="http://www.thesug.org/blogs/kyles/Lists/Posts/Post.aspx?List=89c8858b%2D90d2%2D4750%2Da11a%2De599248e6c69&amp;ID=22">this SharePoint Blog</a>.</p>
+						</div>
+					</div>
+					<!-- START : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					
+					<!-- END : TAB CONTENT -->
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- END :: CONTENT -->
+	
+		<div>
+				
+				
+				
+
+				
+				
+				
+				<!-- START :: BODY -->
+		<section class="uk-width-1-8">
+			<div class="uk-container">
+				
+
 				<ul uk-accordion="multiple: false">
 					<li class="uk-open">
 						<h3 class="uk-accordion-title">CSS Baseline Grid ( Verticle Rhythm )</h3>
@@ -1631,10 +1777,12 @@ document.addEventListener( "click", function(e) {
 					
 					<!-- START : Accordion -->
 					<li>
-						<h3 class="uk-accordion-title">Title</h3>
+						<h3 class="uk-accordion-title">ES6+</h3>
 						<div class="uk-accordion-content">
+							<h4>Promise</h4>
 							<ul class="uk-list uk-list-large">
-								<li><a href="https://www.viget.com/articles/color-contrast" target="_blank">Color Contrast for Better Readability (viget.com)</a></li>
+								<li><a href="http://trycatchfail.com/blog/post/Practical-Promises-in-JavaScript-What-are-they-and-how-do-I-use-them" target="_blank">Practical Promises in JavaScript - What are they, and how do I use them? ( Multipart Series )</a></li>
+								<li><a href="https://coligo.io/javascript-promises-plain-simple/" target="_blank">JavaScript Promises: Plain and Simple</a></li>
 							</ul>
 						</div>
 					</li>
@@ -1686,6 +1834,11 @@ document.addEventListener( "click", function(e) {
 				</ul>
 			</div>			
 		</section>
+		
+			
+		</div>
+		
+		
 		
 		<footer>
 			<div class="uk-container uk-container-medium">
