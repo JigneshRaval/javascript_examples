@@ -1,205 +1,48 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
-		<title>UI Developers Referance</title>
-		
-		<!-- FAVICON -->
-		<link rel='shortcut icon' type='image/x-icon' href='images/favicon.png' />
-		
-		<!-- Fonts -->
-		<!--<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;subset=latin-ext" rel="stylesheet">-->
-		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin-ext" rel="stylesheet">
-		<!-- jQuery -->
-		<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
-		<script src="js/jquery-3.2.1.js"></script>
-		
-		<!-- Bootstrap 4 -->
-		<!--
-			<link rel="stylesheet" href="css/bootstrap.css">
-			<script src="js/bootstrap-4.js"></script>
-		-->
-		
-		<!-- UIKit Version 3.0.0-Beta.22 ( https://getuikit.com/ ) -->
-		<link rel="stylesheet" href="css/uikit.css">
-		<script src="js/uikit.js"></script>
-		<script src="js/uikit-icons.js"></script>
-		
-		<!-- Your Custom Styles -->
-		<link href="css/main.css" rel="stylesheet">
-		
-		<style>
-		.vertical-grid-lines {
-		display: block;
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    pointer-events: none;
-    user-select: none;
-    top: 0px;
-	bottom:0;
-    height: 100%;
-	z-index: 0;
-    
-	background-image: linear-gradient(rgba(0, 119, 179, 0.2) 1px, transparent 1px);
-    background-position-x: left;
-    background-position-y: top;
-    background-size: 8px 8px;
-		}
-			* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-			}
-			html {
-			height: 100%;
-			}
-			.uk-accordion-title {
-			background-color: #FFF;
-			padding: 0.375em;
-			font-size: 2em;
-			line-height: 1.5;
-			margin: 0.75em 0;
-			font-weight: 300;
-			}
-			.uk-accordion-title:hover {
-			box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-			}
-			.uk-accordion-content {
-			
-			padding: 1.5em;
-			border: 1px solid #FFF;
-			margin-top: 1.5em;
-			}
-			
-			.font-roboto {
-				font-family: 'Roboto', sans-serif;
-			}
-			body {
-			font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
-			font-family: 'Lato', sans-serif;
-			font-family: 'Roboto', sans-serif;
-			line-height: 1.5;
-			font-size: 100%;
-			min-height: 100%;
-			color: #373D3F ;
-			margin: 0 auto;
-			padding: 0;
-			background-color: #ffe0b2;
-			/*background: #ffe0b2 url(images/baseline-pattern-24px.png) repeat top left;*/
-			}
-			body.show-grid {
-			background-image: linear-gradient(rgba(0, 119, 179, 0.2) 1px, transparent 1px);
-    background-position-x: left;
-    background-position-y: top;
-    background-size: 8px 8px;
-			}
-			body:active {
-				background-image: none;
-			}
-			/*body:after {
-			position: absolute;
-			width: auto;
-			height: auto;
-			z-index: 9999;
-			content: '';
-			display: block;
-			pointer-events: none;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-			background: url(images/baseline-pattern-24px.png) repeat top left;
-			}
-			body:active:after {
-			display: none;
-			}*/
-			
-			/* Baseline Grid Calculation
-			-----------------------------------*/
-			h1, .uk-h1, h2, .uk-h2, h3, .uk-h3, h4, .uk-h4, h5, .uk-h5, h6, .uk-h6 {
-			font-weight: 500;
-			font-family: 'Roboto', sans-serif;
-			}
-			h1 {				
-			font-size: 4.5em; /* 72/16 = 4.5 */
-			line-height: 1;
-			margin: 0.6666666666666667em 0;
-			}
-			h2 {
-			font-size: 3em; /* we need 48px font-size so 48 / 16 = 3em */
-			line-height: 1;
-			margin: 0.5em 0; /* Now H2's font-size is 48. we need 24px top/bottom margin so 24/48 = 0.5em */
-			}
-			h3 {
-			font-size: 2em; /* 32 / 16 = 2em */
-			line-height: 1.5;
-			margin: 0.75em 0;
-			}
-			h4 {
-			font-size: 1.5em; /* 24 / 16 = 1.5 */
-			line-height: 1;
-			margin: 1em 0;
-			}
-			h5 {
-			font-size: 1em; /* 16 / 16 = 1.5 */
-			line-height: 3;
-			margin: 0 0 1.5em 0;
-			}
-			p {
-			font-size: 1em; /* we need font-size 16px so 16 / 16 = 1em or 1rem */
-			line-height: 1.714285714285714; /* we need line height 24px so 24 / 14 ( current font-size of P tag ) = 1.714285714285714em */
-			margin: 0 0 1.714285714285714em 0;
-			}
-			em, strong, code {
-			font-size: 1em; /* As if em and strong is inside P tag which has font size 14px so 14 ( Our traget or required font size ) / 14 ( P tag font-size ) = 1em; */
-			line-height: 1.714285714285714;
-			}
-			.text-uppercase {
-				    text-transform: uppercase;
-			}
-			:not(pre) > code, :not(pre) > kbd, :not(pre) > samp {
-				font-size: 1em;
-				line-height: 1.5;
-			}
-			pre {
-				font-size: 1rem;
-				padding: 1rem;
-				color: #373D3F;
-				border-radius: 0;
-				border-width: 0;
-				white-space: pre-wrap; 
-	word-wrap: break-word; 
-			}
-			.nav-panel {
-				/*background: linear-gradient(to left, #28a5f5, #1e87f0);*/
-			}
-			.header {
-				background-color: #FFF;
-				overflow: auto;
-			}
-			.tm-navbar-container:not(.uk-navbar-transparent) {
-    background: linear-gradient(to left, #28a5f5, #1e87f0);
-}
-.uk-navbar-container *, .uk-navbar-container *:hover,
-.uk-navbar-container a, .uk-navbar-container a:hover { color: #FFF !important; }
-.uk-tab > * > a { font-size: 1rem; padding: 5px 15px 5px 10px; }
-.uk-tab-left > * > a { border-right-width : 2px; }
-		</style>
-		
-	</head>
-	<body>
 
-	
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>UI Developers Referance</title>
+
+	<!-- FAVICON -->
+	<link rel='shortcut icon' type='image/x-icon' href='images/favicon.png' />
+
+	<!-- Fonts -->
+	<!--<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;subset=latin-ext" rel="stylesheet">-->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin-ext" rel="stylesheet">
+	<!-- jQuery -->
+	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+	<script src="../js/jquery-3.2.1.js"></script>
+
+	<!-- Bootstrap 4 -->
+	<!--
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<script src="js/bootstrap-4.js"></script>
+	-->
+
+	<!-- UIKit Version 3.0.0-Beta.22 ( https://getuikit.com/ ) -->
+	<link rel="stylesheet" href="../css/uikit.css">
+	<script src="../js/uikit.js"></script>
+	<script src="../js/uikit-icons.js"></script>
+
+	<!-- Your Custom Styles -->
+	<link href="./main.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/github.css">
+</head>
+
+<body>
+
 <!-- START :: HEADER -->
-<div uk-sticky="media: 960" class="uk-navbar-container tm-navbar-container uk-sticky uk-sticky-fixed">
+<div uk-sticky="media: 960" class="uk-navbar-container tm-navbar-container uk-sticky uk-sticky-fixed uk-active uk-sticky-below">
     <div class="uk-container uk-container-expand">
         <nav class="uk-navbar">
             <div class="uk-navbar-left">
-                <a href="../" class="uk-navbar-item uk-logo font-roboto"><img uk-svg="" src="../images/uikit-logo.svg" class="uk-margin-small-right" hidden="hidden">
+				<a href="#offcanvas-usage" uk-toggle uk-icon="icon: menu"><span class="uk-invisible">Open</span></a>
+                <a href="#" class="uk-navbar-item uk-logo font-roboto"><img uk-svg="" src="../images/uikit-logo.svg" class="uk-margin-small-right" hidden="hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="34" viewBox="0 0 28 34" ratio="1" class="uk-margin-small-right uk-svg">
                         <polygon fill="#fff" points="19.1,4.1 13.75,1 8.17,4.45 13.6,7.44 "></polygon>
                         <path fill="#fff" d="M21.67,5.43l-5.53,3.34l6.26,3.63v9.52l-8.44,4.76L5.6,21.93v-7.38L0,11.7v13.51l13.75,8.08L28,25.21V9.07 L21.67,5.43z"></path>
@@ -208,14 +51,14 @@
 			</div>
             <div class="uk-navbar-right">
                 <ul class="uk-navbar-nav uk-visible@m">
-                    <li><a href="../pro">Pro</a>
+                    <li><a href="#">Pro</a>
 					</li>
-                    <li class="uk-active"><a href="../docs/">Documentation</a>
+                    <li class="uk-active"><a href="#">Documentation</a>
 					</li>
-                    <li><a href="../changelog">Changelog</a>
+                    <li><a href="#">Changelog</a>
 					</li>
 				</ul>
-				
+
                 <a uk-navbar-toggle-icon="" href="#offcanvas" uk-toggle="" class="uk-navbar-toggle uk-hidden@m uk-navbar-toggle-icon uk-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" ratio="1">
                         <rect y="9" width="20" height="2"></rect>
@@ -231,19 +74,132 @@
 
 <!-- START :: CONTENT -->
 <div class="uk-flex">
-	
-	<!-- START :: LEFT PANEL -->
-	<div class="nav-panel uk-width-1-4 uk-tile uk-tile-default">
-		<ul class="uk-tab-left" uk-tab="connect: #component-tab-left; animation: uk-animation-fade">
+
+	<!-- START :: INDEX PANEL ( Offcanvas Panel ) -->
+	<!--
+	<div class="uk-offcanvas-content">
+
+		<div id="offcanvas-usage" uk-offcanvas="mode: push; overlay: true">
+			<div class="uk-offcanvas-bar">
+
+				<button class="uk-offcanvas-close" type="button" uk-close></button>
+
+				<h3>Title</h3>
+
+				<ul class="uk-tab-right" uk-tab="connect: #component-tab-left; animation: uk-animation-fade">
+					<li><a href="#">CSS Baseline Grid ( Verticle Rhythm )</a></li>
+					<li><a href="#">CSS Unit Calculation</a></li>
+					<li><a href="#">Yarn</a></li>
+					<li><a href="#">Angular2 CLI</a></li>
+					<li><a href="#">Color Tools</a></li>
+					<li><a href="#">UI Component Libraries</a></li>
+					<li><a href="#">Typescript</a></li>
+					<li><a href="#">JavaScript Tips & Tricks</a></li>
+					<li><a href="#" uk-toggle="target: #toggle-usage">ES6+</a>
+						<ul id="toggle-usage" class="uk-tab-left" uk-tab="connect: #es6-topics; animation: uk-animation-fade">
+							<li><a href="#">Promise</a></li>
+							<li><a href="#">Item</a></li>
+							<li><a href="#">Item</a></li>
+						</ul>
+					</li>
+					<li><a href="#">CHEAT SHEET (V4.0.0) TYPESCRIPT</a></li>
+					<li><a href="#">Chrome Plugins</a></li>
+					<li><a href="#">UI Kits/PSD/Sketch</a></li>
+					<li><a href="#">CSS Flexbox Learning Guides</a></li>
+					<li><a href="#">CSS Grid</a></li>
+				</ul>
+
+			</div>
+		</div>
+
+	</div>
+	-->
+	<!-- END :: INDEX PANEL ( Offcanvas Panel ) -->
+
+	<!-- START :: INDEX PANEL -->
+	<div class="nav-panel uk-width-1-5 uk-light uk-background-secondary tm-sidebar-left">
+		<ul class="uk-tab-right uk-nav-parent-icon" uk-tab="connect: #component-tab-left; animation: uk-animation-fade">
 			<li><a href="#">CSS Baseline Grid ( Verticle Rhythm )</a></li>
 			<li><a href="#">CSS Unit Calculation</a></li>
 			<li><a href="#">Yarn</a></li>
+			<li><a href="#">Angular2 CLI</a></li>
+			<li><a href="#">Color Tools</a></li>
+			<li><a href="#">UI Component Libraries</a></li>
+			<li><a href="#">Typescript</a></li>
+			<li><a href="#">JavaScript Tips & Tricks</a></li>
+			<li><a href="#" uk-toggle="target: #toggle_usage_1">ES6+</a>
+                <ul id="toggle_usage_1" class="uk-tab-left" uk-tab="connect: #es6-topics; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
+                    <li><a href="#">Promise</a></li>
+                    <li><a href="#">Item</a></li>
+                    <li><a href="#">Item</a></li>
+                </ul>
+			</li>
+			<li><a href="#">CHEAT SHEET (V4.0.0) TYPESCRIPT</a></li>
+			<li><a href="#">Chrome Plugins</a></li>
+			<li><a href="#">UI Kits/PSD/Sketch</a></li>
+			<li><a href="#">CSS Flexbox Learning Guides</a></li>
+			<li><a href="#">CSS Grid</a></li>
+			<li><a href="#1">AMD/UMD Pattern</a></li>
+			<li><a href="#1">Javascript Plugin Development patterns</a></li>
+			<li><a href="#1">Extend Javascript Objects</a></li>
+			<li><a href="#1">JavaScript MVC Pattern</a></li>
+			<li><a href="#1">Javascript Gotchas or Quirks</a></li>
+			<li><a href="#1">Diffrent Array Methods</a></li>
+			<li><a href="#1">Tips & Tricks</a></li>
+			<li><a href="#1">Event Delegation</a></li>
+			<li><a href="#1">JavaScript Custom Events</a></li>
+			<li><a href="#1">jQuery equivalent methods in plain JavaScript</a></li>
+			<li><a href="#1">ES6 equivalent in ES5</a></li>
+			<li><a href="#essjs" uk-toggle="target: #toggle_usage_2">JavaScript Utility Functions</a>
+				<ul id="toggle_usage_2" class="uk-tab-left" uk-tab="connect: #js-utility-funcs; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
+					<li><a href="#deb">Debounce Method</a></li>
+					<li><a href="#rmp">Revealing Module Pattern</a></li>
+					<li><a href="#1">Pub-Sub Pattern</a></li>
+					<li><a href="#1">Factory Pattern</a></li>
+					<li><a href="#1">Singleton Pattern</a></li>
+					<li><a href="#1">Pub-Sub Pattern</a></li>
+				</ul>
+			</li>
+			<li><a href="#1">JavaScript Method Chaining</a></li>
+			<li><a href="#1">Scope Chain</a></li>
+			<li><a href="#1">The "this" Keyword</a></li>
+			<li><a href="#promises">Promises</a></li>
+			<li><a href="#webwork">Web Workers</a></li>
+			<li><a href="#servwork">Service Workers</a></li>
+			<li><a href="#jsdesignpatterns" uk-toggle="target: #toggle_usage_3">JavaScript Design Patterns</a>
+				<ul id="toggle_usage_3" class="uk-tab-left" uk-tab="connect: #js-design-patterns; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
+					<li><a href="#mp">Module Pattern</a></li>
+					<li><a href="#rmp">Revealing Module Pattern</a></li>
+					<li><a href="#1">Pub-Sub Pattern</a></li>
+					<li><a href="#1">Factory Pattern</a></li>
+					<li><a href="#1">Singleton Pattern</a></li>
+					<li><a href="#1">Pub-Sub Pattern</a></li>
+					<li><a href="#1">Constructor Pattern</a></li>
+					<li><a href="#1">Observer Pattern</a></li>
+					<li><a href="#1">Mediator Pattern</a></li>
+					<li><a href="#1">Prototype Pattern</a></li>
+					<li><a href="#1">Command Pattern</a></li>
+					<li><a href="#1">Facade Pattern</a></li>
+					<li><a href="#1">Mixin Pattern</a></li>
+					<li><a href="#1">Decorator Pattern</a></li>
+					<li><a href="#1">Flyweight Pattern</a></li>
+				</ul>
+			</li>
+			<li><a href="#1">HTML5 APIs</a>
+				<ul>
+					<li><a href="#fapi">Fetch API</a></li>
+					<li><a href="#gapi">GeoLocation API</a></li>
+					<li><a href="#vbapi">Vibration API</a></li>
+					<li><a href="#pushapi">Push Notification API</a></li>
+				</ul>
+			</li>
 		</ul>
 	</div>
-	<!-- END :: LEFT PANEL -->
-	
-	<div class="uk-width-1-8">
+	<!-- END :: INDEX PANEL -->
+
+	<div class="uk-width-1-7" style="margin-left: 20%;">
 		<div class="uk-container">
+
 			<ul id="component-tab-left" class="uk-switcher">
 				<li>
 					<!-- START : TAB CONTENT -->
@@ -258,8 +214,8 @@
 				</li>
 				<li>
 					<!-- START : TAB CONTENT -->
-					<h3 class="uk-accordion-title">CSS Unit Calculation</h3>
-					<div class="uk-accordion-content">
+					<h3>CSS Unit Calculation</h3>
+					<div>
 						<div class="content">
 							<h4>What is an EM?</h4>
 							<p>Wikipedia puts it well: <q>"An em is a unit of measurement in the field of typography, equal to the size of the current font."</q> If your font-size is at 16 pixels, then 1em = 16px</p>
@@ -274,19 +230,19 @@
 								<dt>PX to EM</dt>
 								<dd>Formula: size in pixels / parent size in pixels</dd>
 								<dd>Example: 12px / 16px = .75em</dd>
-								
+
 								<dt>PX to %</dt>
 								<dd>Formula: size in pixels / parent size in pixels * 100</dd>
 								<dd>Example: 12px / 16px * 100 = 75%</dd>
-								
+
 								<dt>PX to PT</dt>
 								<dd>Formula: size in pixels * (points per inch / pixels per inch)</dd>
 								<dd>Example: 16px * (72pt / 96px) = 12pt</dd>
-								
+
 								<dt>EM to PX</dt><dt>
 								</dt><dd>Formula: size in EMs * parent size in pixels</dd>
 								<dd>Example: .75em * 16px = 12px</dd>
-								
+
 								<dt>EM to %</dt>
 								<dd>Formula: size in EMs * 100</dd>
 								<dd>Example: .75em * 100 = 75%</dd>
@@ -302,30 +258,30 @@
 				</li>
 				<li>
 					<!-- START : TAB CONTENT -->
-					<h3 class="uk-accordion-title">Yarn</h3>
-						<div class="uk-accordion-content">
-							<h5>You can install yarn through NPM</h5>
-							<code>npm install -g yarn</code>
-							<h5>You can update to the latest version of Yarn</h5>
-							<code>yarn self-update</code>
-							<ul class="postList">
-    <li><code>npm init</code> === <code>yarn init</code>
-    </li>
-    <li><code>npm link</code> === <code>yarn link</code>
-    </li>
-    <li><code>npm outdated</code> === <code>yarn outdated</code>
-    </li>
-    <li><code>npm publish</code> === <code>yarn publish</code>
-    </li>
-    <li><code>npm run</code> === <code>yarn run</code>
-    </li>
-    <li><code>npm cache clean</code> === <code>yarn cache clean</code>
-    </li>
-    <li><code>npm login</code> === <code>yarn login</code> (and logout)</li>
-    <li><code>npm test</code> === <code>yarn test</code>
-    </li>
-    <li><code>npm install --production</code> === <code>yarn --production</code>
-    </li>
+					<h3>Yarn</h3>
+					<div>
+						<h5>You can install yarn through NPM</h5>
+						<code>npm install -g yarn</code>
+						<h5>You can update to the latest version of Yarn</h5>
+						<code>yarn self-update</code>
+						<ul class="postList">
+<li><code>npm init</code> === <code>yarn init</code>
+</li>
+<li><code>npm link</code> === <code>yarn link</code>
+</li>
+<li><code>npm outdated</code> === <code>yarn outdated</code>
+</li>
+<li><code>npm publish</code> === <code>yarn publish</code>
+</li>
+<li><code>npm run</code> === <code>yarn run</code>
+</li>
+<li><code>npm cache clean</code> === <code>yarn cache clean</code>
+</li>
+<li><code>npm login</code> === <code>yarn login</code> (and logout)</li>
+<li><code>npm test</code> === <code>yarn test</code>
+</li>
+<li><code>npm install --production</code> === <code>yarn --production</code>
+</li>
 </ul>
 <pre>yarn                  # Install all dependencies from package.json
 yarn install               # Alias for yarn
@@ -340,117 +296,37 @@ yarn remove [package]      # Uninstall npm package</pre>
 <p>Install a package from your local file system as follows: <code>yarn add file:/path/to/local/folder</code></p>
 <p>Install a package from a remote git repository like so: <code>yarn add &lt;git remote-url></code></p>
 
-						</div>
+					</div>
 					<!-- END : TAB CONTENT -->
 				</li>
 				<li>
 					<!-- START : TAB CONTENT -->
-					
-					<!-- END : TAB CONTENT -->
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
-<!-- END :: CONTENT -->
-	
-	
-	
-		<div>
-				
-				
-				
-
-				
-				
-				
-				<!-- START :: BODY -->
-		<section class="uk-width-1-8">
-			<div class="uk-container">
-				
-
-				<ul uk-accordion="multiple: false">
-					<li class="uk-open">
-						<h3 class="uk-accordion-title">CSS Baseline Grid ( Verticle Rhythm )</h3>
-						<div class="uk-accordion-content">
-							<ul class="uk-list uk-list-large">
-								<li><a href="http://typecast.com/blog/4-simple-steps-to-vertical-rhythm" target="_blank">4 Simple Steps to Vertical Rhythm</a></li>
-								<li><a href="https://xavierbertels.com/blog/baseline-grid-workflow" target="_blank">Baseline Grid Workflow (How To)</a></li>
-							</ul>
-						</div>
-					</li>
-					<li>
-						<h3 class="uk-accordion-title">CSS Unit Calculation</h3>
-						<div class="uk-accordion-content">
-							<div class="content">
-								<h4>What is an EM?</h4>
-								<p>Wikipedia puts it well: <q>"An em is a unit of measurement in the field of typography, equal to the size of the current font."</q> If your font-size is at 16 pixels, then 1em = 16px</p>
-								<p>For more information visit <a href="http://en.wikipedia.org/wiki/Em_(typography)">Wikipedia</a> and <a href="https://developer.mozilla.org/en/CSS-2_Quick_Reference/Units">Mozilla MDN</a>.</p>
-								<h4>What is the text sizing difference between PX, EM, %, PT?</h4>
-								<p>Pixels and points are static measurements, but commonly used in different mediums. Pixels are used on screens because screens are measured in pixels. Although points can be used on screen, they are the standard in printing because they are a factor of <abbr title="dots per inch">DPI</abbr>.</p>
-								<p>Percent and EMs on the other hand are relative measurements. The size of an EM or percentage unit depends on its parent. If body text is sized at 12 pixels, then text set at 120% or 1.2 EM inside the body will be 1.2 * 12, or 14.4 pixels.</p>
-								<h4>How do I convert between PX, EM, %, and PT?</h4>
-								<p>Assuming you aren’t using PXtoEM.com to keep it simple, here are the formulas PXtoEM.com uses.</p>
-								<p><strong>Note:</strong> 16px is used as the body text size in all conversions because that is the browser default. You will change 16px to your base text size.</p>
-								<dl>
-									<dt>PX to EM</dt>
-									<dd>Formula: size in pixels / parent size in pixels</dd>
-									<dd>Example: 12px / 16px = .75em</dd>
-									
-									<dt>PX to %</dt>
-									<dd>Formula: size in pixels / parent size in pixels * 100</dd>
-									<dd>Example: 12px / 16px * 100 = 75%</dd>
-									
-									<dt>PX to PT</dt>
-									<dd>Formula: size in pixels * (points per inch / pixels per inch)</dd>
-									<dd>Example: 16px * (72pt / 96px) = 12pt</dd>
-									
-									<dt>EM to PX</dt><dt>
-									</dt><dd>Formula: size in EMs * parent size in pixels</dd>
-									<dd>Example: .75em * 16px = 12px</dd>
-									
-									<dt>EM to %</dt>
-									<dd>Formula: size in EMs * 100</dd>
-									<dd>Example: .75em * 100 = 75%</dd>
-								</dl>
-								<h4>Why size your text with EMs in CSS?</h4>
-								<p>Style sheets that use EMs are easier to maintain for the designer (especially with PXtoEM.com at your side) and more accessible to end-users.</p>
-								<p>Style sheets become easier to maintain because all text set in EMs scale to the body font-size. Only one element\'s font-size needs to change instead of individually changing the font-size of each element.</p>
-								<p>Accessibility is increased for end-users because text is scaled based on their preferences rather than set statically in pixels. Additionally, end-users can use hot keys to scale the text in all browsers. Many people have difficulty reading small text on a computer screen.</p>
-								<p>For more information visit <a href="http://www.alistapart.com/articles/howtosizetextincss/">A List Apart</a>, <a href="http://www.informit.com/articles/article.aspx?p=397663">informIT</a>, <a href="http://jontangerine.com/log/2007/09/the-incredible-em-and-elastic-layouts-with-css">Jon Tan\'s Blog</a>, and <a href="http://www.thesug.org/blogs/kyles/Lists/Posts/Post.aspx?List=89c8858b%2D90d2%2D4750%2Da11a%2De599248e6c69&amp;ID=22">this SharePoint Blog</a>.</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						
-					</li>
-					<li>
-						<h3 class="uk-accordion-title">Angular2 CLI</h3>
-						<div class="uk-accordion-content">
-							<h5 class="text-uppercase">Installation</h5>
-							<code>npm install -g @angular/cli</code>
-							<h5 class="text-uppercase">To start a new application or project</h5>
-							<code>ng new project-name</code>
-							<h5 class="text-uppercase"><code>ng new</code> options</h5>
-							<ul><li><code>--dry-run</code> (alias <code>d</code>): Only output the files created and operations performed. It doesn't actually create the project.</li>
-								<li><code>--verbose</code> (alias <code>v</code>): Show more information</li>
-								<li><code>--skip-npm</code>: Don't run any npm commands like installing dependencies</li>
-								<li><code>--skip-git</code>: Don't create a new git repo for this project</li>
-								<li><code>--directory</code>: Specify the directory you want to create this project in</li>
-							</ul>
-							<h5 class="text-uppercase">Serve Our Application</h5>
-							<code>ng serve</code>
-							<code>ng serve --host 0.0.0.0 --port 4201</code>
-							<h5 class="text-uppercase">Run those unit tests using Karma</h5>
-							<code>ng test --no-watch</code>
-							<p>By default, the CLI keeps running the tests. Use the <code>--no-watch</code> flag to stop testing once all tests have run.</p>
-							<p>Note that tests are executed after a build is successfully executed. As mentioned in the log, the build artifacts is&nbsp;stored in the <code>dist/</code> directory. You can also create a build of your project independently from the <code>ng test</code> command line by running:</p>
-							<h5>Initialize a New Application</h5>
-							<p>Let's say you already have a folder that you've started working in. The ng init command is here so that you can use the current folder you're already working in.</p>
-							<p>In the folder you are working in, run:</p>
-							<code>ng init project-name</code>
-							<h5 class="text-uppercase"><code>ng init</code> options</h5>
-							<ul><li><code>--dry-run</code> (alias <code>d</code>): Only output the files created and operations performed. It doesn't actually create the project.</li>
+					<h3>Angular2 CLI</h3>
+					<div>
+						<h5 class="text-uppercase">Installation</h5>
+						<code>npm install -g @angular/cli</code>
+						<h5 class="text-uppercase">To start a new application or project</h5>
+						<code>ng new project-name</code>
+						<h5 class="text-uppercase"><code>ng new</code> options</h5>
+						<ul><li><code>--dry-run</code> (alias <code>d</code>): Only output the files created and operations performed. It doesn't actually create the project.</li>
+							<li><code>--verbose</code> (alias <code>v</code>): Show more information</li>
+							<li><code>--skip-npm</code>: Don't run any npm commands like installing dependencies</li>
+							<li><code>--skip-git</code>: Don't create a new git repo for this project</li>
+							<li><code>--directory</code>: Specify the directory you want to create this project in</li>
+						</ul>
+						<h5 class="text-uppercase">Serve Our Application</h5>
+						<code>ng serve</code>
+						<code>ng serve --host 0.0.0.0 --port 4201</code>
+						<h5 class="text-uppercase">Run those unit tests using Karma</h5>
+						<code>ng test --no-watch</code>
+						<p>By default, the CLI keeps running the tests. Use the <code>--no-watch</code> flag to stop testing once all tests have run.</p>
+						<p>Note that tests are executed after a build is successfully executed. As mentioned in the log, the build artifacts is&nbsp;stored in the <code>dist/</code> directory. You can also create a build of your project independently from the <code>ng test</code> command line by running:</p>
+						<h5>Initialize a New Application</h5>
+						<p>Let's say you already have a folder that you've started working in. The ng init command is here so that you can use the current folder you're already working in.</p>
+						<p>In the folder you are working in, run:</p>
+						<code>ng init project-name</code>
+						<h5 class="text-uppercase"><code>ng init</code> options</h5>
+						<ul><li><code>--dry-run</code> (alias <code>d</code>): Only output the files created and operations performed. It doesn't actually create the project.</li>
 <li><code>--verbose</code> (alias <code>v</code>): Show more information</li>
 <li><code>--skip-npm</code>: Don't run any npm commands like installing dependencies</li>
 <li><code>--name</code>: Name the new project you are creating</li>
@@ -563,41 +439,46 @@ ng g component feature/new-cmp
 <pre>npm uninstall -g @angular/cli
 npm cache clean
 npm install -g @angular/cli@latest</pre>
-						</div>
-					</li>
-					
-					<!-- START : Accordion -->
-					<li>
-						<h3 class="uk-accordion-title">Color</h3>
-						<div class="uk-accordion-content">
-							<ul class="uk-list uk-list-large">
-								<li><a href="https://www.viget.com/articles/color-contrast" target="_blank">Color Contrast for Better Readability (viget.com)</a></li>
-							</ul>
-							
-						</div>
-					</li>
-					<!-- END : Accordion -->
-					
-					<li>
-						<h3 class="uk-accordion-title">UI Component Libraries</h3>
-						<div class="uk-accordion-content">
-							<ul class="uk-list uk-list-large">
-								<li>
-									<a href="https://getuikit.com/" target="_blank">UIKit <span>Version 3.0.0-Beta.22</span></a>
-									<p>A lightweight and modular front-end framework
-									for developing fast and powerful web interfaces.</p>
-								</li>
-							</ul>
-							
-						</div>
-					</li>
-					<li>
-						<h3 class="uk-accordion-title">Typescript Cheatsheet</h3>
-						<div class="uk-accordion-content">
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>Color Tools</h3>
+					<div>
+						<ul class="uk-list uk-list-large">
+							<li><a href="https://www.viget.com/articles/color-contrast" target="_blank">Color Contrast for Better Readability (viget.com)</a></li>
+							<li>
+								<a href="http://ambiance.somethingjustlikethis.com/" target="_blank">ambiance</a>
+								<p>If you are a Developer, Designer or an Artist - you know how frustrating choosing the perfect colors can be sometimes. At the peak of this frustration you can be really dangerous to others. So, to keep the rest of us safe - ambiance. was born.</p>
+							</li>
+						</ul>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>UI Component Libraries</h3>
+					<div>
+						<ul class="uk-list uk-list-large">
+							<li>
+								<a href="https://getuikit.com/" target="_blank">UIKit <span>Version 3.0.0-Beta.22</span></a>
+								<p>A lightweight and modular front-end framework
+								for developing fast and powerful web interfaces.</p>
+							</li>
+						</ul>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+
+						<h3>Typescript</h3>
+						<div>
 						<span>https://www.cheatography.com/gregfinzer/cheat-sheets/typescript/</span>
 						<h5>To install TypeScript, run:</h5>
 						<code>npm install --global typescript</code>
-						
+
 						<h5>TypeScript's Basic Types</h5>
 						<p>TypeScript exposes nine types for us to work with. Whether you use them or not is up to you: <strong>Type annotations are always optional in TypeScript</strong>.</p>
 						<ol><li>Boolean;</li>
@@ -611,47 +492,47 @@ npm install -g @angular/cli@latest</pre>
 <li>Function.</li>
 </ol>
 
-<table border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="uk-table uk-table-divider">
+<table border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="uk-table uk-table-divider uk-table-hover">
     <tbody>
-        <tr class="altrow countrow">
-            <td valign="top" class="cheat_sheet_output_cell_1" width="24%">
+        <tr>
+            <td width="24%">
                 <strong>String</strong>
             </td>
-            <td valign="top" class="cheat_sheet_output_cell_2">
+            <td>
                 let custom­erName: string= "John Doe";
             </td>
         </tr>
-        <tr class="countrow">
-            <td valign="top" class="cheat_sheet_output_cell_1">
+        <tr>
+            <td>
                 <strong>Number</strong>
             </td>
-            <td valign="top" class="cheat_sheet_output_cell_2">
+            <td>
                 let price: number = 19.95;
                 <code>const pi : number = 3.14159;</code>
             </td>
         </tr>
-        <tr class="altrow countrow">
-            <td valign="top" class="cheat_sheet_output_cell_1">
+        <tr>
+            <td>
                 <strong>Boolean</strong>
             </td>
-            <td valign="top" class="cheat_sheet_output_cell_2">
+            <td>
                 let shipped: boolean = false;
             </td>
         </tr>
-        <tr class="countrow">
-            <td valign="top" class="cheat_sheet_output_cell_1">
+        <tr>
+            <td>
                 <strong>Date</strong>
             </td>
-            <td valign="top" class="cheat_sheet_output_cell_2">
+            <td>
                 let orderDate: Date = new Date(2017, 2, 9);
             </td>
         </tr>
-        <tr class="altrow countrow">
-            <td valign="top" class="cheat_sheet_output_cell_1">
+        <tr>
+            <td>
                 <strong>Any</strong>
 				<p>Any is more or less what it sounds like: A type that accepts any value. In some sense, it's a way to opt out of type checking. It also allows us to declare mixed collections.</p>
             </td>
-            <td valign="top" class="cheat_sheet_output_cell_2">
+            <td>
                 let something: any = "Can be anythi­ng";
 				<pre>"use strict";
 
@@ -664,8 +545,8 @@ not_only_strings.push("This Works!")
 not_only_strings.push(42); // This does too.</pre>
             </td>
         </tr>
-        <tr class="countrow">
-            <td valign="top" class="cheat_sheet_output_cell_1">
+        <tr>
+            <td>
                 <strong>Enum</strong>
 				<p>Enums allow you to associate names with intever values. The name comes from the fact that they're enumerable.</p>
 				<p><strong>ES6 Alternative:</strong> <a href="http://www.2ality.com/2014/12/es6-symbols.html">Symbols provide an interesting alternative to enums</a></p>
@@ -682,7 +563,7 @@ let obj = {
 };
 console.log(obj[FOO]()); // bar</pre>
             </td>
-            <td valign="top" class="cheat_sheet_output_cell_2">
+            <td>
                 enum Color {Red, Green, Blue};
 				<pre>"use strict";
 
@@ -705,8 +586,8 @@ console.log(RomanceLanguages[4]); // 'Romanian'
 console.log(RomanceLanguages[0]); // undefined </pre>
             </td>
         </tr>
-        <tr class="altrow countrow">
-            <td valign="top" class="cheat_sheet_output_cell_1">
+        <tr>
+            <td>
                 Array
 				<p>TypeScript treats arrays as their own type, and requires that you declare the type of what's inside of them, as well.</p>
 				<ol><li>Array&lt;[ Item Type]&gt;</li>
@@ -715,7 +596,7 @@ console.log(RomanceLanguages[0]); // undefined </pre>
 </li>
 </ol>
             </td>
-            <td valign="top" class="cheat_sheet_output_cell_2">
+            <td>
                 let cards: string[] = ['Visa', 'Maste­rCa­rd'];
 <pre>"use strict";
 
@@ -725,30 +606,30 @@ const divine_lovers : string[] = ["Zeus", "Aphrodite"];
 // Writing Array<[Item Type]> means the same thing.
 const digits : Array<number> = [143219876, 112347890];
 
-// But this doesn't work. Hm. . . 
+// But this doesn't work. Hm. . .
 /* We can't put 42 into only_strings because we declared that it can only contain items of type string. This is an example of TypeScript's compile-time complaints in action. */
 const only_strings : string[] = [];
 only_strings.push("This Works!")
 only_strings.push(42); // This doesn't.</pre>
             </td>
         </tr>
-        <tr class="countrow">
-            <td valign="top" class="cheat_sheet_output_cell_1">
+        <tr>
+            <td>
                 Null
             </td>
-            <td valign="top" class="cheat_sheet_output_cell_2">
+            <td>
                 let orderId: number = null;
             </td>
         </tr>
-		<tr class="countrow">
-            <td valign="top" class="cheat_sheet_output_cell_1">
+		<tr>
+            <td>
                 The Last Type: Functions
 				<p>One of JavaScript's greatest strengths is that it treats functions as first class citizens. This means we can pass them as arguments and return them from functions ike any other value. How does TypeScript handle that?
 
 Simple. Function name; parenthetical list of typed arguments; fat arrow; return type.</p>
 <p>The same pattern applies if you're returning a function. In that case, though, you wrap the type of the function you return -- that is, everything after the fat arrow -- in parentheses.</p>
             </td>
-            <td valign="top" class="cheat_sheet_output_cell_2">
+            <td>
                <pre>"use strict";
 
 // This example illustrates that you can annotate your functions types before defining them.
@@ -763,14 +644,14 @@ multiplyFirst = function (first) {
   return function (num) {
     return first * num;
   }
-} 
+}
 
 console.log(multiply(5, 2)); // '10'
 console.log(multiplyFirst(9)(2)); // '18'</pre>
             </td>
         </tr>
-		<tr class="countrow">
-            <td valign="top" class="cheat_sheet_output_cell_1">
+		<tr>
+            <td>
                 Return Types
 				<p>TypeScript allows you to mark the type of the value that a function returns.
 
@@ -780,7 +661,7 @@ All the types we've seen so far are valid return types. In particuar, you'll use
 
 You denote a return type the same way you denote a variable type: With a colon and a type keyword, this time after the arguments list.</p>
             </td>
-            <td valign="top" class="cheat_sheet_output_cell_2">
+            <td>
                 <pre>"use strict";
 
 function capitalizeName (name : string) : string {
@@ -803,13 +684,13 @@ function even (num : number) : boolean {
 }</pre>
             </td>
         </tr>
-        <tr class="altrow countrow">
-            <td valign="top" class="cheat_sheet_output_cell_1">
+        <tr>
+            <td>
                 Tuple
 				<p>Tuples are another collection data type. They're useful for collecting a known number of items into an array-like structure. You can declare each item to be of a specific type.</p>
 				<code>[(Item Type), . . . , (Item Type)]</code>
             </td>
-            <td valign="top" class="cheat_sheet_output_cell_2">
+            <td>
                 let stateT­axR­ates: [string, number];
 				<pre>"use strict";
 
@@ -821,7 +702,7 @@ date_triplet = [31, 6, 2016];
 let athena : [string, number];
 athena = ['Athena', 9386];
 
-// You retrieve items with indexes, as with arrays. 
+// You retrieve items with indexes, as with arrays.
 //  TS remembers the type for you.
 var name : string = athena[0];
 const age : number = athena[1];
@@ -830,13 +711,13 @@ const age : number = athena[1];
 name  = athena[1]; // No dice. We're writing TypeScript now.</pre>
             </td>
         </tr>
-        <tr class="countrow">
-            <td valign="top" class="cheat_sheet_output_cell_1">
+        <tr>
+            <td>
                 Void
 				<p>Finally, we have Void. This is the typeclass associated with the values undefined or null. Unlike the other types, you won't use this to declare variables. It's not that you can't. Just that, if you do, you can only set that varible to null or undefined.</p>
 				<p>The main reason void exists is to mark functions without return statements.</p>
             </td>
-            <td valign="top" class="cheat_sheet_output_cell_2">
+            <td>
 <pre>function log(msg: string): void {
 	console.log(msg);
 }</pre>
@@ -848,20 +729,20 @@ the_void = null;
 the_void = "nothing"; // Error.</pre>
             </td>
         </tr>
-        <tr class="altrow countrow">
-            <td valign="top" class="cheat_sheet_output_cell_1">
+        <tr>
+            <td>
                 Const
             </td>
-            <td valign="top" class="cheat_sheet_output_cell_2">
+            <td>
                 const lives: number = 99;
             </td>
         </tr>
     </tbody>
 </table>
-							
+
 							<h5>Usage</h5>
-							<table border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="uk-table uk-table-divider"><tbody><tr class="altrow countrow"><td valign="top" class="cheat_sheet_output_cell_1"><div style="padding: 3px 8px;">Public (default)</div></td><td valign="top" class="cheat_sheet_output_cell_2"><div style="padding: 3px 8px;">public firstName: string;</div></td></tr><tr class="countrow"><td valign="top" class="cheat_sheet_output_cell_1"><div style="padding: 3px 8px;">Protected</div></td><td valign="top" class="cheat_sheet_output_cell_2"><div style="padding: 3px 8px;">protected inventory: number;</div></td></tr><tr class="altrow countrow"><td valign="top" class="cheat_sheet_output_cell_1"><div style="padding: 3px 8px;">Private</div></td><td valign="top" class="cheat_sheet_output_cell_2"><div style="padding: 3px 8px;">private outOfS­tock: boolean;</div></td></tr><tr class="countrow"><td valign="top" class="cheat_sheet_output_cell_1"><div style="padding: 3px 8px;">Read Only</div></td><td valign="top" class="cheat_sheet_output_cell_2"><div style="padding: 3px 8px;">readonly pi: number = 3.14159;</div></td></tr><tr class="altrow countrow"><td valign="top" class="cheat_sheet_output_cell_1"><div style="padding: 3px 8px;">Static</div></td><td valign="top" class="cheat_sheet_output_cell_2"><div style="padding: 3px 8px;">static log(msg: string) { consol­e.l­og(msg) };</div></td></tr></tbody></table>
-							
+							<table border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="uk-table uk-table-divider"><tbody><tr><td><div style="padding: 3px 8px;">Public (default)</div></td><td><div style="padding: 3px 8px;">public firstName: string;</div></td></tr><tr><td><div style="padding: 3px 8px;">Protected</div></td><td><div style="padding: 3px 8px;">protected inventory: number;</div></td></tr><tr><td><div style="padding: 3px 8px;">Private</div></td><td><div style="padding: 3px 8px;">private outOfS­tock: boolean;</div></td></tr><tr><td><div style="padding: 3px 8px;">Read Only</div></td><td><div style="padding: 3px 8px;">readonly pi: number = 3.14159;</div></td></tr><tr><td><div style="padding: 3px 8px;">Static</div></td><td><div style="padding: 3px 8px;">static log(msg: string) { consol­e.l­og(msg) };</div></td></tr></tbody></table>
+
 							<h5>Scope/­Mod­ifiers</h5>
 <table border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="uk-table uk-table-divider">
     <tbody>
@@ -908,7 +789,7 @@ the_void = "nothing"; // Error.</pre>
         </tr>
     </tbody>
 </table>
-							
+
 							<h5>Class</h5>
 <ul><li>Use <strong>classes</strong> to easily create similar objects;</li>
 <li>Use <strong>interfaces</strong> to describe and enforce the shape and behavior of different classes; and</li>
@@ -944,7 +825,7 @@ class ListComponent {
     things : Array<ListItem>; // Or -- things : ListItem[];
 
     constructor () {
-        this.things = []; 
+        this.things = [];
     }
 
 }
@@ -980,7 +861,7 @@ class ListComponent {
   private things : Array<ListItem>;
 
     constructor () {
-        this.things = []; 
+        this.things = [];
     }
 
 }
@@ -1003,7 +884,7 @@ console.log(item.name); // Property 'name' is private</pre>
 
 <h5>Subclasses</h5>
 <p>TypeScript also lets you use subclasses, just as does vanilla JavaScript:</p>
-<pre>"use strict"; 
+<pre>"use strict";
 
 class CompletedListItem extends ListItem {
 
@@ -1269,7 +1150,7 @@ class Book implements Printable, Identifiable { // LINE A
 
     // DUMMY methods to satisfy the compiler. If we don't have these, TS
     //   will complain with "Interface not implemented properly".
-    // Printable 
+    // Printable
     print () : void { }
 
     // Identifiable
@@ -1281,7 +1162,7 @@ applyMixins(Book, [Printable, Identifiable]);
 const bad_novel = new Book('A Buncha Nonsense', 2190, 'This book/Is awful. FIN');
 bad_novel.print();
 
-// NECESSARY EVIL :: 
+// NECESSARY EVIL ::
 //  From TS docs :: http://www.typescriptlang.org/docs/handbook/mixins.html
 function applyMixins(derivedCtor: any, baseCtors: any[]) {
     baseCtors.forEach(baseCtor =&gt; {
@@ -1298,10 +1179,206 @@ function applyMixins(derivedCtor: any, baseCtors: any[]) {
 <p>If you decide to use mixins, I recommend collecting all the <code>applyMixins</code> calls into their own module, or at least into their own chunk of the program. That way you can keep track of where the magic happens.</p>
 <p>Frankly, I find all this to be more trouble than it's worth. But you'll see this pattern in the wild, whether you use it or not, so it's important to know that it's available.</p>
 						</div>
-					</li>
-					<li>
-						<h3 class="uk-accordion-title">CHEAT SHEET (V4.0.0) TYPESCRIPT</h3>
-						<div class="uk-accordion-content">
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>JavaScript Tips & Tricks</h3>
+					<ul uk-accordion>
+						<li>
+							<!-- START : ACCORDION CONTENT -->
+							<h3 class="uk-accordion-title">Add & Remove Classes With JavaScript Property classList</h3>
+							<div class="uk-accordion-content">
+								<h4>Element.classList</h4>
+								<p>The <code>classList</code> property returns a token list of the class attribute of the element in question. Luckily for us, it also comes with a few handy methods:</p>
+								<pre>// adds class "foo" to el
+	el.classList.add("foo");
+
+	// removes class "bar" from el
+	el.classList.remove("bar");
+
+	// toggles the class "foo"
+	el.classList.toggle("foo");
+
+	// outputs "true" to console if el contains "foo", "false" if not
+	console.log( el.classList.contains("foo") );
+
+	// add multiple classes to el
+	el.classList.add( "foo", "bar" );</pre>
+
+	<table class="w3-table-all notranslate">
+	  <tbody><tr>
+	  <th style="width:25%">Method</th>
+		<th>Description</th>
+	  </tr>
+	  <tr>
+		<td>add(<em>class1, class2, ...</em>)</td>
+		<td>Adds one or more class names to an element.<br><br>If the  specified class already exist, the class will not be added</td>
+	  </tr>
+	  <tr>
+		<td>contains(<em>class</em>)</td>
+		<td>
+	  Returns a Boolean value, indicating whether an element has the  specified class name.
+	  <p>Possible values:</p>
+	  <ul>
+		  <li>true - the element contains the specified class name</li>
+		  <li>false - the element does not contain the specified class name</li>
+	  </ul>
+		</td>
+	  </tr>
+	  <tr>
+		<td>item(<em>index</em>)</td>
+		<td>Returns the class name with a specified index number from an  element. Index starts at 0.<br><br>Returns <em>null</em> if the index is  out of range</td>
+	  </tr>
+	  <tr>
+		<td>remove(<em>class1, class2, ...</em>)</td>
+		<td>Removes one or more class names from an element.<br><br>
+	  <strong>Note:</strong> Removing a class that does not exist, does NOT  throw an error</td>
+	  </tr>
+	  <tr>
+		<td>toggle(<em>class, </em>true|false)</td>
+		<td>Toggles between a class name for an element.<br><br>The first  parameter removes the specified class from an element, and returns  false. <br>If the class does not exist, it is added to the element, and the  return value is true.<br><br>The optional second parameter is a Boolean  value that forces the  class to be added or removed, regardless of whether or not it already  existed. For example:<br><br>Remove a class: <em>element</em>.classList.toggle("classToRemove", false); <br>Add a class:
+	  <em>element</em>.classList.toggle("classToAdd",  true);<br><br><strong>Note: </strong>The second parameter is not  supported in Internet Explorer or Opera 12 and earlier.</td>
+	  </tr>
+
+	</tbody></table>
+							</div>
+							<!-- END : ACCORDION CONTENT -->
+						</li>
+						
+
+						<li>
+							<!-- START : ACCORDION CONTENT -->
+							<h3 class="uk-accordion-title">Cross Browser Calculation of X & Y Position</h3>
+							<div class="uk-accordion-content">
+<pre>
+// REF : http://callmenick.com/post/cross-browser-calculation-of-x-y-position
+//==========================================
+
+function getPosition(e) {
+  var posx = 0;
+  var posy = 0;
+
+  if (!e) var e = window.event;
+
+  if (e.pageX || e.pageY) {
+	posx = e.pageX;
+	posy = e.pageY;
+  }
+  else if (e.clientX || e.clientY) {
+	posx = e.clientX + document.body.scrollLeft
+	  + document.documentElement.scrollLeft;
+	posy = e.clientY + document.body.scrollTop
+	  + document.documentElement.scrollTop;
+  }
+
+  return {
+	x: posx,
+	y: posy
+  }
+}
+
+//Usage
+//======================
+document.addEventListener( "click", function(e) {
+  var x = getPosition(e).x;
+  var y = getPosition(e).y;
+  console.log("x pos: "+ x +" // y pos:"+ y);
+});
+</pre>
+							</div>
+							<!-- END : ACCORDION CONTENT -->
+						</li>
+						
+						<li>
+							<!-- START : ACCORDION CONTENT -->
+							<h3 class="uk-accordion-title">Debounce function</h3>
+							<div class="uk-accordion-content">
+<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>The debounce function can be a game-changer when it comes to event-fueled performance.  If you aren't using a debouncing function with a scroll, resize, key* event, you're probably doing it wrong.  Here's a debounce function to keep your code efficient:</p>
+								<p>The debounce function will not allow a callback to be used more than once per given time frame.  This is especially important when assigning a callback function to frequently-firing events.</p>
+							</article>
+						</section>
+<pre>
+// EXAMPLE 1
+//=======================
+	
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
+
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
+// Usage
+var myEfficientFn = debounce(function() {
+	// All the taxing stuff you do
+}, 250);
+window.addEventListener('resize', myEfficientFn);
+</pre>
+
+<pre>
+// EXAMPLE 2
+//=======================
+
+var typingTimer; //timer identifier
+
+this.document.on('keyup', function(event) {
+	var self = this;
+	
+	//on keyup, start the countdown
+	clearTimeout(typingTimer);
+	
+	typingTimer = setTimeout(function() {
+		
+		// Your code to save document or Call function 
+		doneTyping();
+		
+	}, 500);
+});
+</pre>
+							</div>
+							<!-- END : ACCORDION CONTENT -->
+						</li>
+						
+					</ul>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+						<h3>ES6+</h3>
+						<ul id="es6-topics" class="uk-switcher">
+							<li>
+								<h4>Promise</h4>
+								<ul class="uk-list uk-list-large">
+									<li><a href="http://trycatchfail.com/blog/post/Practical-Promises-in-JavaScript-What-are-they-and-how-do-I-use-them" target="_blank">Practical Promises in JavaScript - What are they, and how do I use them? ( Multipart Series )</a></li>
+									<li><a href="https://coligo.io/javascript-promises-plain-simple/" target="_blank">JavaScript Promises: Plain and Simple</a></li>
+								</ul>
+							</li>
+							<li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+							<li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, sed do eiusmod.</li>
+						</ul>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+<h3>CHEAT SHEET (V4.0.0) TYPESCRIPT</h3>
+						<div>
 <div class="l-content-small grid-fluid docs-content cheatsheet">
 <table>
 <tbody><tr>
@@ -1673,190 +1750,466 @@ function applyMixins(derivedCtor: any, baseCtors: any[]) {
 </tbody></table>
 </div>
 						</div>
-					</li>
-					
-					<!-- START : Accordion -->
-					<li>
-						<h3 class="uk-accordion-title">Add & Remove Classes With JavaScript Property classList</h3>
-						<div class="uk-accordion-content">
-							<h4>Element.classList</h4>
-							<p>The <code>classList</code> property returns a token list of the class attribute of the element in question. Luckily for us, it also comes with a few handy methods:</p>
-							<pre>// adds class "foo" to el
-el.classList.add("foo");
-
-// removes class "bar" from el
-el.classList.remove("bar");
-
-// toggles the class "foo"
-el.classList.toggle("foo");
-
-// outputs "true" to console if el contains "foo", "false" if not
-console.log( el.classList.contains("foo") );
-
-// add multiple classes to el
-el.classList.add( "foo", "bar" );</pre>
-
-<table class="w3-table-all notranslate">
-  <tbody><tr>
-  <th style="width:25%">Method</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>add(<em>class1, class2, ...</em>)</td>
-    <td>Adds one or more class names to an element.<br><br>If the  specified class already exist, the class will not be added</td>
-  </tr>
-  <tr>
-    <td>contains(<em>class</em>)</td>
-    <td>
-  Returns a Boolean value, indicating whether an element has the  specified class name.
-  <p>Possible values:</p>
-  <ul>
-      <li>true - the element contains the specified class name</li>
-      <li>false - the element does not contain the specified class name</li>
-  </ul>
-    </td>
-  </tr>
-  <tr>
-    <td>item(<em>index</em>)</td>
-    <td>Returns the class name with a specified index number from an  element. Index starts at 0.<br><br>Returns <em>null</em> if the index is  out of range</td>
-  </tr>
-  <tr>
-    <td>remove(<em>class1, class2, ...</em>)</td>
-    <td>Removes one or more class names from an element.<br><br>
-  <strong>Note:</strong> Removing a class that does not exist, does NOT  throw an error</td>
-  </tr>
-  <tr>
-    <td>toggle(<em>class, </em>true|false)</td>
-    <td>Toggles between a class name for an element.<br><br>The first  parameter removes the specified class from an element, and returns  false. <br>If the class does not exist, it is added to the element, and the  return value is true.<br><br>The optional second parameter is a Boolean  value that forces the  class to be added or removed, regardless of whether or not it already  existed. For example:<br><br>Remove a class: <em>element</em>.classList.toggle("classToRemove", false); <br>Add a class:
-  <em>element</em>.classList.toggle("classToAdd",  true);<br><br><strong>Note: </strong>The second parameter is not  supported in Internet Explorer or Opera 12 and earlier.</td>
-  </tr>
-
-</tbody></table>
-						</div>
-					</li>
-					<!-- END : Accordion -->
-					
-					<!-- START : Accordion -->
-					<li>
-						<h3 class="uk-accordion-title">Cross Browser Calculation of X & Y Position</h3>
-						<div class="uk-accordion-content">
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>Chrome Addons</h3>
+					<div>
+						<ul class="uk-list uk-list-large">
+							<li>
+								<a href="http://cssdig.com/" target="_blank">CSS Dig</span></a>
+								<p>Analyze your CSS in a new way. Consolidate, refactor, and gawk at the 37 shades of blue your site somehow ended up with.</p>
+							</li>
+							<li>
+								<a href="http://yuanchuan.name/css-doodle/" target="_blank">css-doodle</span></a>
+								<p>A web component for drawing patterns with css.</p>
+							</li>
+						</ul>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>UI Kits/PSD/Sketch</h3>
+					<div>
+						<ul class="uk-list uk-list-large">
+							<li>
+								<a href="https://speckyboy.com/free-mobile-ui-kits-ios-android/" target="_blank">50 Free Mobile UI Kits for iOS & Android</span></a>
+							</li>
+							<li>
+								<a href="https://www.sketchappsources.com/" target="_blank">Sketch App Sources</span></a>
+								<p>Sketch App Sources provides free and premium design resources for Sketch App. We curate hundreds of resources to make designing, prototyping, and iterating faster and more enjoyable.</p>
+							</li>
+						</ul>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>CSS Flexbox Learning Guides</h3>
+					<div>
+						<ul class="uk-list uk-list-large">
+							<li>
+								<a href="https://tympanus.net/codrops/css_reference/flexbox/" target="_blank">tympanus Flexbox Referance</span></a>
+							</li>
+							<li>
+								<a href="https://www.sketchappsources.com/" target="_blank">Sketch App Sources</span></a>
+								<p>Sketch App Sources provides free and premium design resources for Sketch App. We curate hundreds of resources to make designing, prototyping, and iterating faster and more enjoyable.</p>
+							</li>
+						</ul>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>CSS Grid</h3>
+					<div>
+						<ul class="uk-list uk-list-large">
+							<li>
+								<a href="http://learncssgrid.com/" target="_blank">Learn CSS Grid (A guide to learning CSS grid by @jonsuh)</span></a>
+							</li>
+							<li>
+								<a href="https://www.sketchappsources.com/" target="_blank">Sketch App Sources</span></a>
+								<p>Sketch App Sources provides free and premium design resources for Sketch App. We curate hundreds of resources to make designing, prototyping, and iterating faster and more enjoyable.</p>
+							</li>
+						</ul>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>AMD/UMD Pattern</h3>
+					<div class="example" id="example1">
+					<h2 class="example__title grd_wg">UMD: JavaScript modules that run anywhere</h2>
 <pre>
-// REF : http://callmenick.com/post/cross-browser-calculation-of-x-y-position
-//==========================================
+(function (root, factory) {
+    if (typeof define === "function" && define.amd) {
+        define(["jquery", "underscore"], factory);
+    } else if (typeof exports === "object") {
+        module.exports = factory(require("jquery"), require("underscore"));
+    } else {
+        root.Requester = factory(root.$, root._);
+    }
+}(this, function ($, _) {
+    // this is where I defined my module implementation
 
-function getPosition(e) {
-  var posx = 0;
-  var posy = 0;
+    var Requester = { // ... };
+	
+    return Requester;
+}));</pre>
 
-  if (!e) var e = window.event;
+<pre>
+// EXAMPLE 1
+//==============================================
 
-  if (e.pageX || e.pageY) {
-    posx = e.pageX;
-    posy = e.pageY;
-  }
-  else if (e.clientX || e.clientY) {
-    posx = e.clientX + document.body.scrollLeft
-      + document.documentElement.scrollLeft;
-    posy = e.clientY + document.body.scrollTop
-      + document.documentElement.scrollTop;
-  }
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD
+        define(['jquery'], factory);
+    } else if (typeof exports === 'object') {
+        // Node, CommonJS-like
+        module.exports = factory(require('jquery'));
+    } else {
+        // Browser globals (root is window)
+        root.returnExports = factory(root.jQuery);
+    }
+}(this, function ($) {
+    //    methods
+    function myFunc(){};
 
-  return {
-    x: posx,
-    y: posy
-  }
+    //    exposed public method
+    return myFunc;
+}));
+</pre>
+
+<pre>
+// EXAMPLE 2
+//==============================================
+
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD
+        define(['jquery', 'underscore'], factory);
+    } else if (typeof exports === 'object') {
+        // Node, CommonJS-like
+        module.exports = factory(require('jquery'), require('underscore'));
+    } else {
+        // Browser globals (root is window)
+        root.returnExports = factory(root.jQuery, root._);
+    }
+}(this, function ($, _) {
+    //    methods
+    function a(){};    //    private because it's not returned (see below)
+    function b(){};    //    public because it's returned
+    function c(){};    //    public because it's returned
+
+    //    exposed public methods
+    return {
+        b: b,
+        c: c
+    }
+}));</pre>
+						<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>ExampleDescription</p>
+							</article>
+						</section>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+<div class="example" id="example1">
+<h2 class="example__title grd_wg">Extend OR Clone Object</h2>
+<pre>
+var defaults = {
+	letterDelay: 100, //milliseconds
+	sentenceDelay: 1000, //milliseconds
+	loop: false,
+	startOnFocus: true,
+	shuffle: false,
+	showCursor: true,
+	cursor: '|'
+};
+	
+// EXAMPLE 1
+//=========================================
+
+function extend(obj1, obj2) {
+	var obj = {};
+	for (var key in obj1) {
+		obj[key] = obj2[key] === undefined ? obj1[key] : obj2[key];
+	}
+	return obj;
 }
 
-//Usage
-//======================
-document.addEventListener( "click", function(e) {
-  var x = getPosition(e).x;
-  var y = getPosition(e).y;
-  console.log("x pos: "+ x +" // y pos:"+ y);
-});
+// Usage
+var options = extend(defaults, options);
+
+// EXAMPLE 2
+//=========================================
+
+function extendDefaults(source, properties) {
+	var property;
+	for (property in properties) {
+		if (properties.hasOwnProperty(property)) {
+			source[property] = properties[property];
+		}
+	}
+	return source;
+}
+// Usage
+var options = extendDefaults(defaults, options);
+
 </pre>
-						</div>
-					</li>
-					<!-- END : Accordion -->
-					
-					<!-- START : Accordion -->
-					<li>
-						<h3 class="uk-accordion-title">ES6+</h3>
-						<div class="uk-accordion-content">
-							<h4>Promise</h4>
-							<ul class="uk-list uk-list-large">
-								<li><a href="http://trycatchfail.com/blog/post/Practical-Promises-in-JavaScript-What-are-they-and-how-do-I-use-them" target="_blank">Practical Promises in JavaScript - What are they, and how do I use them? ( Multipart Series )</a></li>
-								<li><a href="https://coligo.io/javascript-promises-plain-simple/" target="_blank">JavaScript Promises: Plain and Simple</a></li>
-							</ul>
-						</div>
-					</li>
-					<!-- END : Accordion -->
-					
-					<!-- START : Accordion -->
-					<li>
-						<h3 class="uk-accordion-title">Title</h3>
-						<div class="uk-accordion-content">
-							<ul class="uk-list uk-list-large">
-								<li><a href="https://www.viget.com/articles/color-contrast" target="_blank">Color Contrast for Better Readability (viget.com)</a></li>
-							</ul>
-						</div>
-					</li>
-					<!-- END : Accordion -->
-					
-					<!-- START : Accordion -->
-					<li>
-						<h3 class="uk-accordion-title">Title</h3>
-						<div class="uk-accordion-content">
-							<ul class="uk-list uk-list-large">
-								<li><a href="https://www.viget.com/articles/color-contrast" target="_blank">Color Contrast for Better Readability (viget.com)</a></li>
-							</ul>
-						</div>
-					</li>
-					<!-- END : Accordion -->
-					
-					<!-- START : Accordion -->
-					<li>
-						<h3 class="uk-accordion-title">Title</h3>
-						<div class="uk-accordion-content">
-							<ul class="uk-list uk-list-large">
-								<li><a href="https://www.viget.com/articles/color-contrast" target="_blank">Color Contrast for Better Readability (viget.com)</a></li>
-							</ul>
-						</div>
-					</li>
-					<!-- END : Accordion -->
-					
-					<!-- START : Accordion -->
-					<li>
-						<h3 class="uk-accordion-title">Title</h3>
-						<div class="uk-accordion-content">
-							<ul class="uk-list uk-list-large">
-								<li><a href="https://www.viget.com/articles/color-contrast" target="_blank">Color Contrast for Better Readability (viget.com)</a></li>
-							</ul>
-						</div>
-					</li>
-					<!-- END : Accordion -->
-				</ul>
-			</div>			
-		</section>
-		
-			
+
+<pre>
+// SYNTEX : Object.assign(target, ...sources)
+// The Object.assign() method is used to copy the values of all enumerable own properties from one or more source objects to a target object. 
+//It will return the target object.
+/**
+ * REF : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+ *
+ * var obj = { a: 1 };
+ * var copy = Object.assign({}, obj);
+ * console.log(copy); // { a: 1 }
+*/
+
+
+// Object.assign ponyfill
+// REF. : https://github.com/pawelgrzybek/siema/blob/master/src/siema.js
+//=====================================
+
+const objectAssign = Object.assign || function(srcObj) {
+	for (let i = 1; i &lt; arguments.length; i++) {
+		for (const objProperty in arguments[i]) {
+			if (Object.prototype.hasOwnProperty.call(arguments[i], objProperty)) {
+				srcObj[objProperty] = arguments[i][objProperty];
+			}
+		}
+	}
+	
+	return srcObj;
+};
+
+// Merge defaults with user's settings
+this.config = objectAssign({
+	selector: '.siema',
+	duration: 200,
+	easing: 'ease-out',
+	perPage: 1,
+	startIndex: 0,
+	draggable: true,
+	threshold: 20,
+	loop: false,
+}, options);
+</pre>
+
+<pre>
+// REF. : https://googlechrome.github.io/samples/object-assign-es6/
+//====================================================================
+
+'use strict';
+
+// Merge an object
+let first = {name: 'Tony'};
+let last = {lastName: 'Stark'};
+let person = Object.assign(first, last);
+
+ChromeSamples.log(person);
+// {name: 'Tony', lastName: 'Stark'}
+
+ChromeSamples.log(first);
+// first = {name: 'Tony', lastName: 'Stark'} as the target also changed
+
+// Merge multiple sources
+let a = Object.assign({foo: 0}, {bar: 1}, {baz: 2});
+ChromeSamples.log(a);
+// {foo: 0, bar: 1, baz: 2}
+
+// Merge and overwrite equal keys
+let b = Object.assign({foo: 0}, {foo: 1}, {foo: 2});
+ChromeSamples.log(b);
+// {foo: 2}
+
+// Clone an object
+let obj = {person: 'Thor Odinson'};
+let clone = Object.assign({}, obj);
+ChromeSamples.log(clone);
+// {person: 'Thor Odinson'}	
+</pre>
+
+						<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>To support ES2015 class inheritance, TypeScript transpiles the ES2015 extends keyword functionality to a function named __extends, which executes the code needed to setup the inheritance. Here is the code for the __extends function:</p>
+							</article>
+						</section>
+<pre>
+// REF : https://www.accelebrate.com/blog/javascript-es6-classes-and-prototype-inheritance-part-1-of-2/
+//=====
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+/**
+ * The above code is a little hard to follow, so here is an expanded, documented version of it. 
+ * Review the added source code comments to understand the purpose of each line of code. 
+ * The __extends function works with any pair of parent and child objects.
+*/
+// declare a variable to reference the extends function
+var __extends;
+
+if (this && this.__extends) {
+
+	// the extends function is already defined within the context
+	// of this code, so use the existing __extends function
+	__extends = this.__extends;
+
+} else {
+// the extends function is not already defined within the current
+// context; therefore, define it
+__extends = function (child, parent) {
+
+  // mixin pattern for copying parent constructor function properties
+  // as static properties to the child constructor function
+  // properties on constructor function are commonly known as static
+  // properties
+  for (var parentPropertyName in parent) {
+
+    // only copy properties specifically defined on the parent
+    if (parent.hasOwnProperty(parentPropertyName)) {
+      // for primitive types, this will copy the value,
+      // for object types, this will copy the reference only
+      child[parentPropertyName] = parent[parentPropertyName];
+    }
+
+  }
+
+  // constructor function for the object that instantiated child objects
+  // will inherit from
+  // this function is unique within the context of each call to extend
+
+  function __() {
+    this.constructor = child;
+  }
+
+  if (parent === null) {
+
+    // objects instantiated with the child constructor function will
+    // inherit from an object that inherits from nothing, not even
+    // the built-in JavaScript Object
+    child.prototype = Object.create(parent);
+
+  } else {
+
+    // assign the prototype property of the parent constructor function
+    // to the prototype property of the constructor function defined
+    // above
+    __.prototype = parent.prototype;
+
+    // create the object that all instances of the child will inherit
+    // from, and assign it to the prototype property of the child
+    // constructor function
+    child.prototype = new __();
+
+  }
+
+};
+</pre>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+<div class="example" id="example1">
+						<h2 class="example__title grd_wg">Event Delegation</h2>
+<pre>
+// HTML 
+
+&lt;h2>Great Web resources&lt;/h2>
+&lt;ul id="resources">
+	&lt;li>&lt;a href="http://opera.com/wsc">Opera Web Standards Curriculum&lt;/a>&lt;/li>
+	&lt;li>&lt;a href="http://sitepoint.com">Sitepoint&lt;/a>&lt;/li>
+	&lt;li>&lt;a href="http://alistapart.com">A List Apart&lt;/a>&lt;/li>
+	&lt;li>&lt;a href="http://yuiblog.com">YUI Blog&lt;/a>&lt;/li>
+	&lt;li>&lt;a href="http://blameitonthevoices.com">Blame it on the voices&lt;/a>&lt;/li>
+	&lt;li>&lt;a href="http://oddlyspecific.com">Oddly specific&lt;/a>&lt;/li>
+	&lt;/ul>
+</pre>
+<pre>
+// Classic event handling example
+
+(function(){
+	var resources = document.getElementById('resources');
+	var links = resources.getElementsByTagName('a');
+	var all = links.length;
+	
+	for(var i=0; i&lt;all; i++){
+		// Attach a listener to each link
+		links[i].addEventListener('click',handler,false);
+	};
+	
+	function handler(e){
+		var x = e.target; // Get the link that was clicked
+		alert(x);
+		e.preventDefault();
+	};
+})();
+</pre>
+<pre>
+// This could also be done with a single event handler:
+
+(function(){
+	var resources = document.getElementById('resources');
+	resources.addEventListener('click',handler,false);
+	
+	function handler(e){
+		var x = e.target; // get the link tha
+		if(x.nodeName.toLowerCase() === 'a'){
+			alert('Event delegation:' + x);
+			e.preventDefault();
+		}
+	};
+})();
+</pre>
+						<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>ExampleDescription</p>
+							</article>
+						</section>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+
+					<!-- END : TAB CONTENT -->
+				</li>
+			</ul>
 		</div>
-		
-		
-		
-		<footer>
-			<div class="uk-container uk-container-medium">
-				Copyright May 2017
-			</div>
-		</footer>
-		<!--<div class="vertical-grid-lines"></div>-->
-		<!-- END :: BODY -->
-		
+	</div>
+</div>
+<!-- END :: CONTENT -->
+
+<script src="../js/highlight.pack.js"></script>
 		<script>
-		var pageTitle = document.querySelector('.page-title');
-		pageTitle.addEventListener('click', function(){
+		$(document).ready(function() {
+			$('pre').each(function(i, block) {
+				hljs.highlightBlock(block);
+			});
+		});
+		</script>
+		<script>
+		var ukLogo = document.querySelector('.uk-logo');
+		ukLogo.addEventListener('click', function(){
 			document.body.classList.toggle('show-grid');
 		});
 		</script>
 	</body>
-</html>	
+</html>
