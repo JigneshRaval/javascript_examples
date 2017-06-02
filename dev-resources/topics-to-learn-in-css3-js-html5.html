@@ -130,7 +130,7 @@
 			<li><a href="#" uk-toggle="target: #toggle_usage_1">ES6+</a>
                 <ul id="toggle_usage_1" class="uk-tab-left" uk-tab="connect: #es6-topics; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
                     <li><a href="#">Promise</a></li>
-                    <li><a href="#">Item</a></li>
+                    <li><a href="#">Generator</a></li>
                     <li><a href="#">Item</a></li>
                 </ul>
 			</li>
@@ -1370,7 +1370,61 @@ this.document.on('keyup', function(event) {
 									<li><a href="https://coligo.io/javascript-promises-plain-simple/" target="_blank">JavaScript Promises: Plain and Simple</a></li>
 								</ul>
 							</li>
-							<li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+							<li>
+<h4>ES6 Generator</h4>
+<pre>
+// Example 1:
+// REF.: https://medium.com/ecmascript-2015/es6-generators-4494aa135ad3
+//============================================================
+
+// ES6 ( ES2015 )
+//------------------------------------------
+function* random1_10 () {
+  while (true) {
+    yield Math.floor(Math.random() * 10) + 1;
+  }
+}
+let rand = random1_10();
+console.log(rand.next());
+console.log(rand.next());
+
+// ES5
+//------------------------------------------
+function random1_10 () {
+  return {
+    next: function() {
+      return {
+        value: Math.floor(Math.random() * 10) + 1,
+        done: false
+      };
+    }
+  };
+}
+let rand = random1_10();
+console.log(rand.next());
+console.log(rand.next());
+
+// Mixing Generators
+//------------------------------------------
+function* random (max) {
+  yield Math.floor(Math.random() * max) + 1;
+}
+function* random1_20 () {
+  while (true) {
+    yield* random(20);
+  }
+}
+let rand = random1_20();
+console.log(rand.next());
+console.log(rand.next());
+</pre>
+						<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>ExampleDescription</p>
+							</article>
+						</section>
+							</li>
 							<li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, sed do eiusmod.</li>
 						</ul>
 					<!-- END : TAB CONTENT -->
