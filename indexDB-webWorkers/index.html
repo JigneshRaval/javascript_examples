@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>IndexedDB + WebWorkers</title>
+		<style>
+			body { 
+			font-family: Arial;
+			line-height: 1.8;
+			margin: 1em auto;
+			width: 50%;
+			}
+			button {
+			font-family: Arial;
+			}
+			a {
+			display: inline-block;
+			padding: 5px 20px;
+			border: 1px solid blue;
+			text-decoration: none;
+			text-transform: uppercase;
+			}
+			a:hover {
+			background-color: #EEE;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>How to Outsource IndexedDB Transactions to Web Workers</h1>
+		Result: <div id="result"></div>
+		<a href="#" onclick="readAll()">read all</a>
+		<a href="#" onclick="add()">add</a>
+		<a href="#" onclick="clearDB()">Delete Database</a>
+	</body>
+	<script>
+		w = new Worker('./handleDb.js');
+		
+		w.onmessage = function(event) {
+			document.getElementById('result').innerHTML = event.data;
+		};
+		
+		
+		
+		function readAll() {
+			w.postMessage('readAll');
+		}
+		
+		function add() {
+			w.postMessage('add');
+		};
+		
+		function clearDB() {
+			w.postMessage('clearDB');
+		};
+		
+		document.addEventListener("DOMContentLoaded", function(){
+			
+			if("indexedDB" in window) {
+				console.log("YES!!! I CAN DO IT!!! WOOT!!!");
+				w.postMessage('init');
+				
+			} 
+			else {
+				console.log("I has a sad.");
+			}
+			
+		},false);
+		
+	</script>
+</html>

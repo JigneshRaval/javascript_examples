@@ -55,7 +55,7 @@
 					</li>
                     <li class="uk-active"><a href="#">Documentation</a>
 					</li>
-                    <li><a href="#">Changelog</a>
+                    <li><a href="#" class="read-mode">Read Mode</a>
 					</li>
 				</ul>
 
@@ -129,9 +129,9 @@
 			<li><a href="#">JavaScript Tips & Tricks</a></li>
 			<li><a href="#" uk-toggle="target: #toggle_usage_1">ES6+</a>
                 <ul id="toggle_usage_1" class="uk-tab-left" uk-tab="connect: #es6-topics; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
-                    <li><a href="#">Promise</a></li>
+					<li><a href="#promises">ES6 Promises</a></li>
                     <li><a href="#">Generator</a></li>
-                    <li><a href="#">Item</a></li>
+                    <li><a href="#">Iterator</a></li>
                 </ul>
 			</li>
 			<li><a href="#">CHEAT SHEET (V4.0.0) TYPESCRIPT</a></li>
@@ -142,30 +142,28 @@
 			<li><a href="#1">AMD/UMD Pattern</a></li>
 			<li><a href="#1">Javascript Plugin Development patterns</a></li>
 			<li><a href="#1">Extend Javascript Objects</a></li>
+			<li><a href="#" uk-toggle="target: #toggle_usage_0">JavaScript</a>
+				<ul id="toggle_usage_0" class="uk-tab-left" uk-tab="connect: #javascript_topics; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
+                    <li><a href="#">Articles</a></li>
+					<li><a href="#">Creating Objects in JavaScript</a></li>
+                    <li><a href="#">The lexical this</a></li>
+                    <li><a href="#">Event Delegation</a></li>
+					<li><a href="#">Array Methods</a></li>
+                </ul>
+			</li>
 			<li><a href="#1">JavaScript MVC Pattern</a></li>
 			<li><a href="#1">Javascript Gotchas or Quirks</a></li>
 			<li><a href="#1">Diffrent Array Methods</a></li>
-			<li><a href="#1">Tips & Tricks</a></li>
-			<li><a href="#1">Event Delegation</a></li>
 			<li><a href="#1">JavaScript Custom Events</a></li>
 			<li><a href="#1">jQuery equivalent methods in plain JavaScript</a></li>
 			<li><a href="#1">ES6 equivalent in ES5</a></li>
 			<li><a href="#essjs" uk-toggle="target: #toggle_usage_2">JavaScript Utility Functions</a>
 				<ul id="toggle_usage_2" class="uk-tab-left" uk-tab="connect: #js-utility-funcs; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
 					<li><a href="#deb">Debounce Method</a></li>
-					<li><a href="#rmp">Revealing Module Pattern</a></li>
-					<li><a href="#1">Pub-Sub Pattern</a></li>
-					<li><a href="#1">Factory Pattern</a></li>
-					<li><a href="#1">Singleton Pattern</a></li>
-					<li><a href="#1">Pub-Sub Pattern</a></li>
 				</ul>
 			</li>
 			<li><a href="#1">JavaScript Method Chaining</a></li>
 			<li><a href="#1">Scope Chain</a></li>
-			<li><a href="#1">The "this" Keyword</a></li>
-			<li><a href="#promises">Promises</a></li>
-			<li><a href="#webwork">Web Workers</a></li>
-			<li><a href="#servwork">Service Workers</a></li>
 			<li><a href="#jsdesignpatterns" uk-toggle="target: #toggle_usage_3">JavaScript Design Patterns</a>
 				<ul id="toggle_usage_3" class="uk-tab-left" uk-tab="connect: #js-design-patterns; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
 					<li><a href="#mp">Module Pattern</a></li>
@@ -185,12 +183,15 @@
 					<li><a href="#1">Flyweight Pattern</a></li>
 				</ul>
 			</li>
-			<li><a href="#1">HTML5 APIs</a>
-				<ul>
+			<li><a href="#1" uk-toggle="target: #toggle_usage_4">HTML5 APIs</a>
+				<ul id="toggle_usage_4" class="uk-tab-left" uk-tab="connect: #html5_apis; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
+					<li><a href="#fapi">IndexedDB ( Local Storage )</a></li>
 					<li><a href="#fapi">Fetch API</a></li>
 					<li><a href="#gapi">GeoLocation API</a></li>
 					<li><a href="#vbapi">Vibration API</a></li>
 					<li><a href="#pushapi">Push Notification API</a></li>
+					<li><a href="#webwork">Web Workers</a></li>
+					<li><a href="#servwork">Service Workers</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -2160,8 +2161,209 @@ __extends = function (child, parent) {
 				</li>
 				<li>
 					<!-- START : TAB CONTENT -->
+
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>JavaScript</h3>
+					<ul id="javascript_topics" class="uk-switcher">
+						<li>
+							<ul class="uk-list uk-list-large">
+								<li><a href="https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom" target="_blank">Shadow DOM v1: Self-Contained Web Components</a></li>
+								<li>
+									<a href="https://developers.google.com/web/fundamentals/getting-started/primers/customelements" target="_blank">Custom Elements v1: Reusable Web Components</a>
+								</li>
+								<li>
+									<a href="https://zellwk.com/blog/es6/" target="_blank">Introduction to commonly used ES6 features</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<h4>Creating Objects in JavaScript</h4>
+
 <div class="example" id="example1">
-						<h2 class="example__title grd_wg">Event Delegation</h2>
+						<h2 class="example__title grd_wg" id="1" name="1">Creating Objects in JavaScript</h2>
+						<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>This is the easiest way to create a JavaScript Object. Using an object literal, you both define and create an object in one statement.</p>
+
+								<p>An object literal is a list of name:value pairs (like age:50) inside curly braces {}.</p>
+							</article>
+							<span class="arrow"></span>
+						</section>
+						<pre>var person = { 
+	firstName:"John",
+	lastName:"Doe",
+	age:50,
+	eyeColor:"blue"
+};</pre>
+						
+					</div>
+					<div class="example" id="example1">
+						<h2 class="example__title grd_wg">Create Object Using the JavaScript Keyword <code>new</code></h2>
+						
+						<pre>var person = new Object();
+						
+person.firstName = "John";
+person.lastName = "Doe";
+person.age = 50;
+person.eyeColor = "blue";</pre>
+
+						<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>A function that is called using new operator for creation of new objects is called a Constructor Function.</p>
+<p>Creating a function creates an object of type Function. That means, any new function will have its __proto__ point to prototype of 'Function'.</p>
+<p>As a side note: Function is a global internal Object, it doesn't have any properties of its own but inherits them from Function.prototype.</p>
+<p>Further, objects of type Function have another property called 'prototype' pointing to the prototype of the objects which will be created using this function.</p>
+							</article>
+							<span class="arrow"></span>
+						</section>
+
+						<pre>function Person(name, age){
+   this.name = name;
+   this.age = age;
+   this.shoutYourName = function(){
+                              alert('My name is ' + name +'!');
+                        };
+}
+//create Objects
+var John = new Person('John'25);
+var Donn = new Person('Donn'29);
+
+console.log(John.name);  //John
+console.log(John.age);  //25
+John.shoutYourName();   //alerts 'My name is John!'</pre>
+						
+					</div>
+						</li>
+						<li>
+<h2>The lexical this</h2>
+<h3 id="the-lexical-this">The lexical this</h3>
+<p><code>this</code> is a unique keyword whose value changes depending on how it is called. When it’s called <strong>outside of any function</strong>, <code>this</code> defaults to the <code>Window</code> object in the browser.</p>
+<pre><code class="lang-js">console.log(this) // Window
+</code></pre>
+<figure>
+  <img src="https://zellwk.com/images/2017/es6/window.png" alt="This defaults to window object in browsers">
+  <figcaption>This defaults to window object in browsers</figcaption>
+</figure>
+
+<p>When <code>this</code> is called in a <strong>simple function call</strong>, <code>this</code> is set to the global object. In the case of browsers, <code>this</code> will always be <code>Window</code>.</p>
+<pre><code class="lang-js">function hello () {
+  console.log(this)
+}
+
+hello() // Window
+</code></pre>
+<p>JavaScript always sets <code>this</code> to the window object within a simple function call. This explains why the <code>this</code> value within functions like <code>setTimeout</code> is always <code>Window</code>.</p>
+<p>When <code>this</code> is called in an <strong>object method</strong>, <code>this</code> would be the object itself:</p>
+<pre><code class="lang-js">let o = {
+  sayThis: function() {
+    console.log(this)
+  }
+}
+
+o.sayThis() // o
+</code></pre>
+<figure>
+  <img src="https://zellwk.com/images/2017/es6/object.png" alt="This refers to the object when the function is called in an object method.">
+  <figcaption>This refers to the object when the function is called in an object method.</figcaption>
+</figure>
+
+<p>When the function is called as a <strong>constructor</strong>, <code>this</code> refers to the <strong>newly constructed object</strong>.</p>
+<pre><code class="lang-js">function Person (age) {
+  this.age = age
+}
+
+let greg = new Person(22)
+let thomas = new Person(24)
+
+console.log(greg) // this.age = 22
+console.log(thomas) // this.age = 24
+</code></pre>
+<figure>
+  <img src="https://zellwk.com/images/2017/es6/constructor.png" alt="This refers to the constructed object called with the new keyword or Object.create().">
+  <figcaption>This refers to the constructed object called with the new keyword or Object.create().</figcaption>
+</figure>
+
+<p>When used in an event listener, <code>this</code> is set to the element that fired the event.</p>
+<pre><code class="lang-js">let button = document.querySelector(&#39;button&#39;)
+
+button.addEventListener(&#39;click&#39;, function() {
+  console.log(this) // button
+})
+</code></pre>
+<p>As you can see in the above situations, the value of <code>this</code> is set by the function that calls it. Every function defines it’s own <code>this</code> value.</p>
+<p>In <strong>fat arrow functions</strong>, <code>this</code> <strong>never gets bound to a new value</strong>, no matter how the function is called. <code>this</code> will always be the same <code>this</code> value as its surrounding code. (By the way, lexical means relating to, which I guess, is how the lexical <code>this</code> got its name).</p>
+<p>Okay, that sounds confusing, so let’s go through a few real examples.</p>
+<p>First, you <strong>never want to use arrow functions to declare object methods</strong>, because you can’t reference the object with <code>this</code> anymore.</p>
+<pre><code class="lang-js">let o = {
+  // Don&#39;t do this
+  notThis: () =&gt; {
+    console.log(this) // Window
+    this.objectThis() // Uncaught TypeError: this.objectThis is not a function
+  },
+  // Do this
+  objectThis: function () {
+    console.log(this) // o
+  }
+  // Or this, which is a new shorthand
+  objectThis2 () {
+    console.log(this) // o
+  }
+}
+</code></pre>
+<p>Second, you <em>may not</em> want to use arrow functions to create event listeners because <code>this</code> no longer binds to the element you attached your event listener to.</p>
+<p>However, you can always get the right <code>this</code> context with <code>event.currentTarget</code>. Which is why I said <em>may not</em>.</p>
+<pre><code class="lang-js">button.addEventListener(&#39;click&#39;, function () {
+  console.log(this) // button
+})
+
+button.addEventListener(&#39;click&#39;, e =&gt; {
+  console.log(this) // Window
+  console.log(event.currentTarget) // button
+})
+</code></pre>
+<p>Third, you <strong>may want</strong> to use the lexical <code>this</code> in places where the <code>this</code> <strong>binding changes without you wanting it to</strong>. An example is the timeout function, so you never have to deal with the <code>this</code>, <code>that</code> or <code>self</code> nonsense.</p>
+<pre><code class="lang-js">let o = {
+  // Old way
+  oldDoSthAfterThree: function () {
+    let that = this
+    setTimeout(function () {
+      console.log(this) // Window
+      console.log(that) // o
+    })
+  },
+  // Arrow function way
+  doSthAfterThree: function () {
+    setTimeout(() =&gt; {
+      console.log(this) // o
+    }, 3000)
+  }
+}
+</code></pre>
+<p>This use case is particularly helpful if you needed to add or remove a class after some time has elapsed:</p>
+<pre><code class="lang-js">let o = {
+  button: document.querySelector(&#39;button&#39;)
+  endAnimation: function () {
+    this.button.classList.add(&#39;is-closing&#39;)
+    setTimeout(() =&gt; {
+      this.button.classList.remove(&#39;is-closing&#39;)
+      this.button.classList.remove(&#39;is-open&#39;)
+    }, 3000)
+  }
+}
+</code></pre>
+<p>Finally, feel free to use the fat arrow function anywhere else to help make your code neater and shorter, like the <code>moreThan20</code> example we had above:</p>
+<pre><code class="lang-js">let array = [1,7,98,5,4,2]
+let moreThan20 = array.filter(num =&gt; num &gt; 20)
+</code></pre>
+						</li>
+						<li>
+						<div class="example" id="example1">
+							<h2 class="example__title grd_wg">Event Delegation</h2>
 <pre>
 // HTML 
 
@@ -2217,22 +2419,199 @@ __extends = function (child, parent) {
 								<p>ExampleDescription</p>
 							</article>
 						</section>
-					</div>
+							</div>
+						</li>
+						<li>
+							<h3>Array Methods</h3>
+							<div>
+								<h4>Create Array</h4>
+								<pre><code>var myArray = []</code></pre>
+								<pre><code>var myArray = new Array(4)
+								// Output
+								[undefined, undefined, undefined, undefined]
+								</code></pre>
+								<p>You may find that iterating over a sparse array to apply a certain transformation is hard.</p>
+								<pre>> const arr = new Array(4);
+> arr.map((elem, index) => index);
+[undefined, undefined, undefined, undefined]</pre>
+
+<p>To solve this, you can use Array.apply when creating the array.</p>
+<pre>> const arr = Array.apply(null, new Array(4));
+> arr.map((elem, index) => index);
+[0, 1, 2, 3]</pre>
+
+<h4>2. Passing an empty parameter to a method</h4>
+<p>If you want to call a method and ignore one of its parameters, then JavaScript will complain if you keep it empty.</p>
+<pre>> method('parameter1', , 'parameter3');
+Uncaught SyntaxError: Unexpected token ,</pre>
+<p>A workaround that people usually resort to is to pass either <code>null</code> or <code>undefined</code>.</p>
+<pre>> method('parameter1', null, 'parameter3') // or
+> method('parameter1', undefined, 'parameter3');</pre>
+<p>I personally don’t like using null since JavaScript treats it as an object and that’s just weird. With the introduction of spread operators in ES6, there is a neater way of passing empty parameters to a method. As previously mentioned, arrays are sparse in nature and so passing empty values to it is totally okay. We’ll use this to our advantage.</p>
+<pre>> method(...['parameter1', , 'parameter3']); // works!</pre>
+
+<h4>3. Unique array values</h4>
+<p>I always wonder why the Array constructor does not have a designated method to facilitate the use of unique array values. Spread operators are here for the rescue. Use spread operators with the Set constructor to generate unique array values.</p>
+<pre>> const arr = [...new Set([1, 2, 3, 3])];
+[1, 2, 3]</pre>
+
+<h4>Get Ramdom value from Array</h4>
+<pre>// selecting a random array item
+var selectFruit = ["Apple", "Orange", "Banana", "Cherry"];
+
+var pickAFruit = function () {
+	var todaysFruit = selectFruit[Math.floor(Math.random() * selectFruit.length)];
+	return todaysFruit;
+};</pre>
+
+<h4>Get Biggest value from Array</h4>
+<pre>// traversing an array in search of big num
+ 
+var myArray = [4, 5, 6, 99, 68, 7, 24];
+var biggestNum = 0;
+ 
+for (var i = 0; i < myArray.length; i++) {
+    if (myArray[i] > biggestNum) {
+        biggestNum = myArray[i];
+    }
+}
+console.log(biggestNum);
+ 
+// displays 99</pre>
+
+<h4>Get longest string on an Array</h4>
+<pre>var fruits = ["Apple", "Banana", "Orange", "Pomegranate", "Peach"];
+var largest = 0;
+var largestName = "";
+for (var i = 0; i < fruits.length; i++) {
+    if (fruits[i].length > largest) {
+        largest = fruits[i].length;
+        largestName = fruits[i];
+    }
+}
+console.log(largestName);
+// Displays Pomegranate</pre>
+
+<h4>Getting array items from behind to front</h4>
+<pre>var newArray = [1, 2, 3, 4];
+
+console.log(newArray.slice(-1)); // [4]
+console.log(newArray.slice(-2)); // [3, 4]
+console.log(newArray.slice(-3)); // [2, 3, 4]
+console.log(newArray.slice(-4)); // [1, 2, 3, 4]</pre>
+
+<h4>Short-circuits conditionals</h4>
+<p>If you have to execute a function just if a condition is <code class="highlighter-rouge">true</code>, like this:</p>
+<pre>if(condition){
+    dosomething();
+}
+
+// You can use a short-circuit just like this:
+condition && dosomething();
+</pre>
+
+<h4>Set variable default values using “||”</h4>
+<p>If you have to set a default value to variables, you can simple do this:</p>
+<pre>var a;
+
+console.log(a); //undefined
+
+a = a || 'default value';
+
+console.log(a); //default value
+
+a = a || 'new value';
+
+console.log(a); //default value</pre>
+							</div>
+						</li>
+					</ul>
+					
 					<!-- END : TAB CONTENT -->
 				</li>
 				<li>
 					<!-- START : TAB CONTENT -->
+					<h3>Improving your Async functions with WebWorkers</h3>
+ <blockquote>
+  <p>JS shall have but one Thread (in the browser at least)</p>
 
+  <p>– Thus spoke the master programmer.</p>
+</blockquote>
+
+<p>JS runs in a single thread in the browser, this is the truth.</p>
+
+<p>Somewhere in its own universe, there exists a Queue which holds messages
+and functions associated with them.</p>
+
+<p>Every time an event (i.e, a user clicks a button) is registered, there’s
+a runtime check to see whether there’s any listener attached to that event.
+If there’s one, it will enqueue the message. Otherwise, it will be lost
+forever.</p>
+
+<p>Now, our event loop processes one message at a time, meaning that if you
+do some CPU intensive operation (i.e, number crunching) this will indeed
+‘block’ the one Thread, rendering our application useless.</p>
+
+<p>This is true even for <code class="highlighter-rouge">async</code> functions, which will be queued as soon as
+invoked and executed as soon as possible (immediately given the queue is
+empty).</p>
+
+<p>I/O such as requests to external resources are non-blocking though, so you
+can request a file as large as you want without fear. The associated
+callback, however, will show the same characteristics of an <code class="highlighter-rouge">async</code> function.</p>
+
+<p>Strategies for processing lots of data vary a lot. You could partition data
+and set timeouts for processing bits of it a time for example. But to unleash
+the full power of asynchronous processing, you should use Web Workers.</p>
+
+<p>To do so, you separate the processing part in a different file (possibly
+‘my_worker.js’), create a worker with <code class="highlighter-rouge">newWorker = new Worker('my_worker.js');</code>
+and offload the processing to it.</p>
+<pre>// my_worker.js
+const do_a_lot_of_processing = (data) => {
+    ....
+}
+
+onmessage = (e) => {
+    postMessage(do_a_lot_of_processing(e.data));
+}
+
+// main.js
+const myWorker = new Worker('my_worker.js');
+
+async function get_useful_data() {
+    const raw_data = await request(some_url);
+    myWorker.postmessage(raw_data);
+}
+
+const show_data => (e) {
+    const data = e.data;
+    ...
+}
+
+myWorker.onmessage(show_data);
+get_useful_data();</pre>
 					<!-- END : TAB CONTENT -->
 				</li>
 				<li>
 					<!-- START : TAB CONTENT -->
-
-					<!-- END : TAB CONTENT -->
-				</li>
-				<li>
-					<!-- START : TAB CONTENT -->
-
+					<h3>HTML5 APIs</h3>
+					<ul id="html5_apis" class="uk-switcher">
+						<li>
+							<ul class="uk-list uk-list-large">
+								<li><a href="https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom" target="_blank">Shadow DOM v1: Self-Contained Web Components</a></li>
+								<li>
+									<a href="https://developers.google.com/web/fundamentals/getting-started/primers/customelements" target="_blank">Custom Elements v1: Reusable Web Components</a>
+								</li>
+								<li>
+									<a href="https://zellwk.com/blog/es6/" target="_blank">Introduction to commonly used ES6 features</a>
+								</li>
+								<li>
+									<a href="https://code.tutsplus.com/tutorials/working-with-indexeddb--net-34673" target="_blank">Working With IndexedDB</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
 					<!-- END : TAB CONTENT -->
 				</li>
 				<li>
@@ -2263,6 +2642,14 @@ __extends = function (child, parent) {
 		var ukLogo = document.querySelector('.uk-logo');
 		ukLogo.addEventListener('click', function(){
 			document.body.classList.toggle('show-grid');
+		});
+		
+		// Toggle Reading Mode
+		var readModeBtn = document.querySelector('.read-mode');
+		var bodyElem = document.getElementsByTagName('body')[0];
+		
+		readModeBtn.addEventListener('click', function() {
+			document.body.classList.toggle('isReadModeOn')
 		});
 		</script>
 	</body>

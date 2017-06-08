@@ -37,8 +37,12 @@ body {
 	color: #373D3F ;
 	margin: 0 auto;
 	padding: 0;
+	background-color: #EEE;
+	/*background-color: #ffe0b2;
+	background: #ffe0b2 url(images/baseline-pattern-24px.png) repeat top left;*/
+}
+.isReadModeOn {
 	background-color: #ffe0b2;
-	/*background: #ffe0b2 url(images/baseline-pattern-24px.png) repeat top left;*/
 }
 body.show-grid {
 	background-image: linear-gradient(rgba(0, 119, 179, 0.2) 1px, transparent 1px);
