@@ -4,10 +4,10 @@
 	</head>
 	<body>
 		<h3>ES6 Classes Examples</h3>
-		
+
 		<script>
 			'use strict';
-			
+
 			// Example 1: Creating a new class (declaration-form)
 			// ===============================================================
 			class Polygon {
@@ -16,73 +16,73 @@
 					this.height = height;
 					this.width = width;
 				}
-				
+
 				sayName() {
 					console.log('Hi, I am a ', this.name + '.');
 				}
-				
+
 				sayHistory() {
 					console.log('Polygon is derived from the greek word polus (many).')
 				}
 			}
-			
+
 			let p = new Polygon(300, 400);
 			p.sayName();
 			console.log(p.height, p.width);
-			
+
 			// Extending a Polygon class created above
 			class Square extends Polygon {
 				constructor(length) {
-					
+
 				}
 			}
-			
+
 			// EXAMPLE 2
 			//====================================================================
-			
+
 			class Vehicle {
 				constructor(name, type) {
 					this.name = name;
 					this.type = type;
 				}
-				
+
 				getName() {
 					return this.name;
 				}
-				
+
 				getType() {
 					return this.type;
 				}
 			}
-			
+
 			let car = new Vehicle('Tesla', 'Car');
 			console.log(car.getName());
 			car.getType();
-			
+
 			// Example 3
 			//====================
 			// Person constructor function
 			// when called with the "new" operator,
 			// a new Person object is created
-			
+
 			function Person(firstName, lastName) {
 				// the "new" operator sets the reference of
 				// "this" to a new object
 				this.firstName = firstName;
 				this.lastName = lastName;
 			}
-			
+
 			// this property referencing the function will
 			// be configured on person's prototype object,
 			// and will be inherited by students
 			Person.prototype.getFullName = function() {
 				return this.firstName + " " + this.lastName;
 			};
-			
+
 			// Student constructor function
 			// when called with the "new" operator,
 			// a new Student object is created
-			
+
 			function Student(studentId, firstName, lastName) {
 				// the "new" operator sets the reference of "this" to
 				// a new object, the new object is then passed to the
@@ -91,54 +91,54 @@
 				this._super.call(this, firstName, lastName);
 				this.studentId = studentId;
 			}
-			
+
 			// students will inherit from a new object
 			// which inherits from the parent
 			Student.prototype = Object.create(Person.prototype);
-			
+
 			// set the constructor property back to the Student
 			// constructor function
 			Student.prototype.constructor = Student;
-			
+
 			// "_super" is NOT part of ES5, its a convention
 			// defined by the developer
 			// set the "_super" to the Person constructor function
 			Student.prototype._super = Person;
-			
+
 			// this will exist on the student's prototype object
 			Student.prototype.getStudentInfo = function() {
 				return this.studentId + " " + this.lastName + ", " + this.firstName;
 			};
-			
+
 			// instantiate a new Student object
 			var student = new Student(1, "Bob", "Smith");
-			
+
 			// invoking function on parent prototype
 			// outputs "Bob Smith"
 			console.log(student.getFullName());
-			
+
 			// invoking function on child prototype
 			// output "1 Smith, Bob"
 			console.log(student.getStudentInfo());
-			
+
 			// Example 4
 			//======================
 			function BaseClass(name) {
 				this.name = name;
 			}
-			
+
 			BaseClass.prototype.foo = function(args) {
 				return 'This is the foo method with argument: ' + args;
 			}
-			
+
 			function SubClass(name) {
 				BaseClass.call(this, name);
 			}
-			
+
 			SubClass.prototype = Object.create(BaseClass.prototype);
 			SubClass.prototype.constructor = SubClass;
 			var subInst = new SubClass("Test 123");
-			
+
 			console.log("SubClass :", subInst.foo("Design"), subInst instanceof SubClass, subInst instanceof BaseClass);
 		</script>
 	</body>

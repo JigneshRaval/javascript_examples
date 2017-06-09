@@ -128,10 +128,10 @@
 			<li><a href="#">Typescript</a></li>
 			<li><a href="#">JavaScript Tips & Tricks</a></li>
 			<li><a href="#" uk-toggle="target: #toggle_usage_1">ES6+</a>
-                <ul id="toggle_usage_1" class="uk-tab-left" uk-tab="connect: #es6-topics; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
+                <ul id="toggle_usage_1" class="uk-tab-left" uk-tab="connect: #es6_topics; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
 					<li><a href="#promises">ES6 Promises</a></li>
                     <li><a href="#">Generator</a></li>
-                    <li><a href="#">Iterator</a></li>
+                    <li><a href="#">Class</a></li>
                 </ul>
 			</li>
 			<li><a href="#">CHEAT SHEET (V4.0.0) TYPESCRIPT</a></li>
@@ -225,7 +225,7 @@
 							<p>Pixels and points are static measurements, but commonly used in different mediums. Pixels are used on screens because screens are measured in pixels. Although points can be used on screen, they are the standard in printing because they are a factor of <abbr title="dots per inch">DPI</abbr>.</p>
 							<p>Percent and EMs on the other hand are relative measurements. The size of an EM or percentage unit depends on its parent. If body text is sized at 12 pixels, then text set at 120% or 1.2 EM inside the body will be 1.2 * 12, or 14.4 pixels.</p>
 							<h4>How do I convert between PX, EM, %, and PT?</h4>
-							<p>Assuming you aren’t using PXtoEM.com to keep it simple, here are the formulas PXtoEM.com uses.</p>
+							<p>Assuming you aren't using PXtoEM.com to keep it simple, here are the formulas PXtoEM.com uses.</p>
 							<p><strong>Note:</strong> 16px is used as the body text size in all conversions because that is the browser default. You will change 16px to your base text size.</p>
 							<dl>
 								<dt>PX to EM</dt>
@@ -1363,7 +1363,7 @@ this.document.on('keyup', function(event) {
 				<li>
 					<!-- START : TAB CONTENT -->
 						<h3>ES6+</h3>
-						<ul id="es6-topics" class="uk-switcher">
+						<ul id="es6_topics" class="uk-switcher">
 							<li>
 								<h4>Promise</h4>
 								<ul class="uk-list uk-list-large">
@@ -1426,7 +1426,76 @@ console.log(rand.next());
 							</article>
 						</section>
 							</li>
-							<li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, sed do eiusmod.</li>
+							<li>
+								<h3>Class</h3>
+<pre>
+// ES6
+class Animal {
+  constructor(name, legsNumber) {
+    this.name = name;
+    this.legsNumber = legsNumber;
+  }
+  speak() {
+    console.log(this.name + ' makes a noise.');
+  }
+}
+
+// ES5
+var Animal = function (name, legsNumber) {
+  this.name = name;
+  this.legsNumber = legsNumber;
+};
+Animal.prototype.speak = function() {
+  console.log(this.name + ' makes a noise.');
+};
+</pre>
+
+<pre>
+// Inheritance
+// ES6
+class Snake extends Animal {
+  constructor(name: string) {
+    super(name, 0);
+  }
+  speak() {
+    console.log(this.name + ' hisses.');
+  }
+}
+class Horse extends Animal {
+  constructor(name: string) {
+    super(name, 4);
+  }
+  speak() {
+    console.log(this.name + ' whinnies.');
+  }
+}
+
+// ES5
+var Snake = function (name) {
+  Animal.apply(this, [name, 0]);
+};
+Snake.prototype = Object.create(Animal.prototype);
+Snake.prototype.constructor = Snake;
+Snake.prototype.speak = function() {
+  console.log(this.name + ' hisses.');
+};
+var Horse = function (name) {
+  Animal.apply(this, [name, 4]);
+};
+Horse.prototype = Object.create(Animal.prototype);
+Horse.prototype.constructor = Horse;
+Horse.prototype.speak = function() {
+  console.log(this.name + ' whinnies.');
+};
+
+// Usage
+var kaa = new Snake("Kaa the Python");
+var fury = new Horse("Fury the Horse");
+
+console.log(kaa.legsNumber);    //0
+console.log(fury.legsNumber);   //4
+</pre>
+							</li>
 						</ul>
 					<!-- END : TAB CONTENT -->
 				</li>
@@ -1648,7 +1717,7 @@ console.log(rand.next());
 </td>
 </tr><tr>
 <td><code><b>styles:</b>&nbsp;['.primary&nbsp;{color:&nbsp;red}']<br><b>styleUrls:</b>&nbsp;['my-component.css']</code></td>
-<td><p>List of inline CSS styles or external stylesheet URLs for styling the component’s view.</p>
+<td><p>List of inline CSS styles or external stylesheet URLs for styling the component's view.</p>
 </td>
 </tr>
 </tbody></table>
@@ -2177,6 +2246,12 @@ __extends = function (child, parent) {
 								<li>
 									<a href="https://zellwk.com/blog/es6/" target="_blank">Introduction to commonly used ES6 features</a>
 								</li>
+								<li>
+									<a href="https://una.im/local-css-vars/" target="_blank">Locally Scoped CSS Variables: What, How, and Why</a>
+								</li>
+								<li>
+									<a href="https://tympanus.net/codrops/collective/collective-321/" target="_blank">Collective #321</a>
+								</li>
 							</ul>
 						</li>
 						<li>
@@ -2242,7 +2317,7 @@ John.shoutYourName();   //alerts 'My name is John!'</pre>
 						<li>
 <h2>The lexical this</h2>
 <h3 id="the-lexical-this">The lexical this</h3>
-<p><code>this</code> is a unique keyword whose value changes depending on how it is called. When it’s called <strong>outside of any function</strong>, <code>this</code> defaults to the <code>Window</code> object in the browser.</p>
+<p><code>this</code> is a unique keyword whose value changes depending on how it is called. When it's called <strong>outside of any function</strong>, <code>this</code> defaults to the <code>Window</code> object in the browser.</p>
 <pre><code class="lang-js">console.log(this) // Window
 </code></pre>
 <figure>
@@ -2295,10 +2370,10 @@ button.addEventListener(&#39;click&#39;, function() {
   console.log(this) // button
 })
 </code></pre>
-<p>As you can see in the above situations, the value of <code>this</code> is set by the function that calls it. Every function defines it’s own <code>this</code> value.</p>
+<p>As you can see in the above situations, the value of <code>this</code> is set by the function that calls it. Every function defines it's own <code>this</code> value.</p>
 <p>In <strong>fat arrow functions</strong>, <code>this</code> <strong>never gets bound to a new value</strong>, no matter how the function is called. <code>this</code> will always be the same <code>this</code> value as its surrounding code. (By the way, lexical means relating to, which I guess, is how the lexical <code>this</code> got its name).</p>
-<p>Okay, that sounds confusing, so let’s go through a few real examples.</p>
-<p>First, you <strong>never want to use arrow functions to declare object methods</strong>, because you can’t reference the object with <code>this</code> anymore.</p>
+<p>Okay, that sounds confusing, so let's go through a few real examples.</p>
+<p>First, you <strong>never want to use arrow functions to declare object methods</strong>, because you can't reference the object with <code>this</code> anymore.</p>
 <pre><code class="lang-js">let o = {
   // Don&#39;t do this
   notThis: () =&gt; {
@@ -2447,7 +2522,7 @@ Uncaught SyntaxError: Unexpected token ,</pre>
 <p>A workaround that people usually resort to is to pass either <code>null</code> or <code>undefined</code>.</p>
 <pre>> method('parameter1', null, 'parameter3') // or
 > method('parameter1', undefined, 'parameter3');</pre>
-<p>I personally don’t like using null since JavaScript treats it as an object and that’s just weird. With the introduction of spread operators in ES6, there is a neater way of passing empty parameters to a method. As previously mentioned, arrays are sparse in nature and so passing empty values to it is totally okay. We’ll use this to our advantage.</p>
+<p>I personally don't like using null since JavaScript treats it as an object and that's just weird. With the introduction of spread operators in ES6, there is a neater way of passing empty parameters to a method. As previously mentioned, arrays are sparse in nature and so passing empty values to it is totally okay. We'll use this to our advantage.</p>
 <pre>> method(...['parameter1', , 'parameter3']); // works!</pre>
 
 <h4>3. Unique array values</h4>
@@ -2510,7 +2585,7 @@ console.log(newArray.slice(-4)); // [1, 2, 3, 4]</pre>
 condition && dosomething();
 </pre>
 
-<h4>Set variable default values using “||”</h4>
+<h4>Set variable default values using "||"</h4>
 <p>If you have to set a default value to variables, you can simple do this:</p>
 <pre>var a;
 
@@ -2543,14 +2618,14 @@ console.log(a); //default value</pre>
 <p>Somewhere in its own universe, there exists a Queue which holds messages
 and functions associated with them.</p>
 
-<p>Every time an event (i.e, a user clicks a button) is registered, there’s
-a runtime check to see whether there’s any listener attached to that event.
-If there’s one, it will enqueue the message. Otherwise, it will be lost
+<p>Every time an event (i.e, a user clicks a button) is registered, there's
+a runtime check to see whether there's any listener attached to that event.
+If there's one, it will enqueue the message. Otherwise, it will be lost
 forever.</p>
 
 <p>Now, our event loop processes one message at a time, meaning that if you
 do some CPU intensive operation (i.e, number crunching) this will indeed
-‘block’ the one Thread, rendering our application useless.</p>
+'block' the one Thread, rendering our application useless.</p>
 
 <p>This is true even for <code class="highlighter-rouge">async</code> functions, which will be queued as soon as
 invoked and executed as soon as possible (immediately given the queue is
@@ -2565,7 +2640,7 @@ and set timeouts for processing bits of it a time for example. But to unleash
 the full power of asynchronous processing, you should use Web Workers.</p>
 
 <p>To do so, you separate the processing part in a different file (possibly
-‘my_worker.js’), create a worker with <code class="highlighter-rouge">newWorker = new Worker('my_worker.js');</code>
+'my_worker.js'), create a worker with <code class="highlighter-rouge">newWorker = new Worker('my_worker.js');</code>
 and offload the processing to it.</p>
 <pre>// my_worker.js
 const do_a_lot_of_processing = (data) => {
@@ -2607,7 +2682,10 @@ get_useful_data();</pre>
 									<a href="https://zellwk.com/blog/es6/" target="_blank">Introduction to commonly used ES6 features</a>
 								</li>
 								<li>
-									<a href="https://code.tutsplus.com/tutorials/working-with-indexeddb--net-34673" target="_blank">Working With IndexedDB</a>
+									<a href="https://code.tutsplus.com/tutorials/working-with-indexeddb--net-34673" target="_blank">Working With IndexedDB (code.tutsplus.com)</a>
+								</li>
+								<li>
+									<a href="https://www.smashingmagazine.com/2014/09/building-simple-cross-browser-offline-todo-list-indexeddb-websql/" target="_blank">Building A Simple Cross-Browser Offline To-Do List With IndexedDB And WebSQL (smashingmagazine)</a>
 								</li>
 							</ul>
 						</li>

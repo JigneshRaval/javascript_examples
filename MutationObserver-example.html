@@ -1,0 +1,198 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IndexedDB + WebWorkers</title>
+    <style>
+        body {
+            font-family: Arial;
+            line-height: 1.8;
+            margin: 1em auto;
+            width: 50%;
+        }
+        
+        button {
+            font-family: Arial;
+        }
+        
+        a,
+        button {
+            display: inline-block;
+            padding: 5px 20px;
+            border: 1px solid blue;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        
+        a:hover {
+            background-color: #EEE;
+        }
+        
+        #msg {
+            height: 40px;
+            line-height: 40px;
+            color: white;
+            font-family: "courier new";
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        table {
+            border: 1px solid #EEE;
+            border-collapse: collapse;
+        }
+        
+        td,
+        th {
+            padding: 10px;
+            border-bottom: 1px solid #EEE;
+        }
+        
+        th {
+            background-color: #EEE;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>How to Use MutationObserver API for DOM Node Changes</h2>
+    <div id="msg"></div>
+    <br />
+    <button>Show Msg</button>
+    <p><code>MutationObserver</code> is a JavaScript native object with a set of properties and methods. It lets us observe
+        a change on any node like DOM Element, Document, Text, etc. By mutation, we mean the addition or removal of a node
+        and changes to a node’s attribute & data.</p>
+    <ul>
+        <li>Create a <code>MutationObserver</code> object with a user-defined callback function (the function is defined later
+            in the post). The function will execute on every mutation observed by the <code>MutationObserver</code>.</li>
+        <li>Create a config object to specify the kind of mutations to be observed by the <code>MutationObserver</code>.</li>
+        <li>Bind the <code>MutationObserver</code> to the target, which is the ‘msg’ <code>div</code> in our example.</li>
+    </ul>
+    <p>Below is a list of properties for the config object identifying the different kinds of mutations. Since in our example
+        we only deal with a child text node created for the message text, we’ve used the childList property.</p>
+    <h3>Kinds of mutations observed</h3>
+
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>When set to <code>true</code></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>childList</strong></td>
+                <td>Insertion and removal of the target’s child nodes are observed.</td>
+            </tr>
+            <tr>
+                <td><strong>attributes</strong></td>
+                <td>Changes in target’s attributes are observed.</td>
+            </tr>
+            <tr>
+                <td><strong>characterData</strong></td>
+                <td>Changes in target’s data are observed.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>Properties of <em>MutationRecord</em></h4>
+    <p>Every mutation in the <code>mutations</code> array is represented by the object <code>MutationRecord</code> with the
+        following properties.</p>
+    <table cellpadding="0" cellspacing="0" class="tbl01">
+        <thead>
+            <tr>
+                <td>Property</td>
+                <td>Returns</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>addedNodes</strong></td>
+                <td>Empty array or array of nodes added.</td>
+            </tr>
+            <tr>
+                <td><strong>attributeName</strong></td>
+                <td>Null or name of the attribute that was added, removed, or changed.</td>
+            </tr>
+            <tr>
+                <td><strong>attributeNamespace</strong></td>
+                <td>Null or namespace of the attribute that was added, removed, or changed.</td>
+            </tr>
+            <tr>
+                <td><strong>nextSibling</strong></td>
+                <td>Null or next sibling of the node that was added or removed.</td>
+            </tr>
+            <tr>
+                <td><strong>oldValue</strong></td>
+                <td>Null or previous value of the attribute or data changed.</td>
+            </tr>
+            <tr>
+                <td><strong>previousSibling</strong></td>
+                <td>Null or previous sibling of the node that was added or removed.</td>
+            </tr>
+            <tr>
+                <td><strong>removedNodes</strong></td>
+                <td>Empty array or array of nodes that removed.</td>
+            </tr>
+            <tr>
+                <td><strong>target</strong></td>
+                <td>Node targeted by the <code>MutationObserver</code></td>
+            </tr>
+            <tr>
+                <td><strong>type</strong></td>
+                <td>Type of mutation observed.</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<script>
+    // SRC : http://www.hongkiat.com/blog/mutationobserver-api/
+    
+    var msg = document.querySelector('#msg'),
+        SUCCESSMSG = "Changes Saved!";
+
+    /* Add button click event */
+    document
+        .querySelector('button')
+        .addEventListener('click', showMsg);
+
+    function showMsg() {
+        msg.textContent = SUCCESSMSG;
+        msg.style.background = 'teal';
+    }
+
+    (function startObservation() {
+        var
+            /* 1) Create a MutationObserver object*/
+            observer = new MutationObserver(
+                function (mutations) {
+                    mutationObserverCallback(mutations);
+                }),
+            /* 2) Create a config object */
+            config = {
+                childList: true
+            };
+
+        /* 3) Glue'em all */
+        observer.observe(msg, config);
+    })();
+
+    function mutationObserverCallback(mutations) {
+        /* Grab the first mutation */
+        var mutationRecord = mutations[0];
+        /* If a child node was added, 
+           hide the msg after 2s  */
+        if (mutationRecord.addedNodes[0] !== undefined)
+            setTimeout(hideMsg, 5000);
+    }
+
+    function hideMsg() {
+        msg.textContent = '';
+        msg.style.background = 'none';
+    }
+
+</script>
+
+</html>
