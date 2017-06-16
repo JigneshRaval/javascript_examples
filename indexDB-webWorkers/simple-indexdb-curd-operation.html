@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>IndexedDB + WebWorkers</title>
+		<title>IndexedDB</title>
 		<style>
 			body { 
 			font-family: Arial;
@@ -43,8 +43,8 @@
 			}
 			
 			const employeeData = [
-            { id: "00-01", name: "gopal", age: 35, email: "gopal@tutorialspoint.com" },
-            { id: "00-02", name: "prasad", age: 32, email: "prasad@tutorialspoint.com" }
+				{ id: "00-01", name: "gopal", age: 35, email: "gopal@tutorialspoint.com" },
+				{ id: "00-02", name: "prasad", age: 32, email: "prasad@tutorialspoint.com" }
 			];
 			var db;
 			var request = window.indexedDB.open("newDatabase", 1);
