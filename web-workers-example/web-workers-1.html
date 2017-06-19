@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Web Workers Example : 1</title>
+		<style>
+			body {
+            font-family: Arial;
+            line-height: 1.8;
+            margin: 1em auto;
+            width: 80%;
+			}
+			
+			button {
+            font-family: Arial;
+			}
+			
+			a,
+			button,
+			input[type=button] {
+            display: inline-block;
+            padding: 5px 20px;
+            border: 1px solid blue;
+            text-decoration: none;
+            text-transform: uppercase;
+			margin: 5px;
+			}
+			
+			a:hover {
+            background-color: #EEE;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Web Workers Example : 1</h2>
+		<p>SRC : https://lowrey.me/using-webworkers/</p>
+		
+		<input id="toggle" type="button" value="Start" />
+		
+		<div id="status">Preparing...</div>
+		
+		
+		
+		<script type="javascript/worker">
+			postMessage('Ready to start calculating');
+			let isRunning = false;
+			let pointsTotal = 0;
+			let pointsInside = 0;
+			const calc = () => {
+				const r = 5;
+				for (let i = 0; i < 100000; i++) {
+					pointsTotal++;
+					let x = Math.random() * r * 2 - r;
+					let y = Math.random() * r * 2 - r;
+					if (Math.pow(x, 2) + Math.pow(y, 2) < Math.pow(r, 2)) {
+						pointsInside++;
+					}
+				};
+				const pi = 4 * pointsInside / pointsTotal;
+			postMessage(`<span>${pointsInside} / ${pointsTotal}</span> == <strong>${pi}</strong>`);
+			if (isRunning) {
+			setTimeout(calc, 0);
+			}
+			};
+			onmessage = function(e) {
+			if (e.data === 'start') {
+			isRunning = true;
+			setTimeout(calc, 0);
+			} else if (e.data === 'pause') {
+			isRunning = false;
+			}
+			};
+		</script>
+		
+		<script>
+			function getInlineJS() {
+				var js = document.querySelector('[type="javascript/worker"]').textContent;
+				var blob = new Blob([js], {
+					"type": "text\/plain"
+				});
+				return URL.createObjectURL(blob);
+			}
+			
+			var ww = new Worker(getInlineJS());
+			
+			ww.onmessage = function(e) {
+				var msg = e.data;
+				document.getElementById('status').innerHTML = msg;
+			};
+			
+			let state = 'pause';
+			document.getElementById('toggle').addEventListener('click', () => {
+				if (state === 'pause') {
+					state = 'start';
+					document.getElementById('toggle').value = 'Pause';
+				} 
+				else {
+					state = 'pause';
+					document.getElementById('toggle').value = 'Start';
+				}
+				ww.postMessage(state);
+			}, false);
+		</script>
+	</body>
+</html>
