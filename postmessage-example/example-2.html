@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>postMessage Test - Parent File</title>
+		<script type="text/javascript">//<![CDATA[
+			window.onload=function(){
+				window.send = function() {
+					var iframe = document.getElementById('jsfiddle-frame').contentWindow;
+					var message = document.querySelector('#textOutput').value;
+					iframe.postMessage(message, '*');
+				}
+				window.addEventListener('message', function(event) {
+					document.querySelector('#textOutput').value = event.data;
+				}, false);
+			}//]]> 
+		</script>
+	</head>
+	<body>
+		<div>
+			<h3>
+				window.postMessage example with IFrame communication ( Main File )
+			</h3>
+			<p>SRC : https://lowrey.me/communicating-between-iframes-with-window-postmessage/</p>
+			<p>JSFiddle Demo : https://jsfiddle.net/lowrey/7zc7td4b/</p>
+			<div class="output">
+				<textarea id="textOutput" rows="7">Enter text and send...</textarea>
+				<button onclick="send()">
+					Send
+				</button>
+			</div>
+		</div>
+		<hr>
+		<h3>
+			Target Frame
+		</h3>
+		<iframe width="100%" height="300" id="jsfiddle-frame" src="example-2-iframe.html" frameborder="0"></iframe>
+	</body>
+</html>
