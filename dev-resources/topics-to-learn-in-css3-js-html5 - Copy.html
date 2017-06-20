@@ -1,0 +1,2787 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>UI Developers Referance</title>
+
+	<!-- FAVICON -->
+	<link rel='shortcut icon' type='image/x-icon' href='images/favicon.png' />
+
+	<!-- Fonts -->
+	<!--<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;subset=latin-ext" rel="stylesheet">-->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin-ext" rel="stylesheet">
+	<!-- jQuery -->
+	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+	<script src="../js/jquery-3.2.1.js"></script>
+
+	<!-- Bootstrap 4 -->
+	<!--
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<script src="js/bootstrap-4.js"></script>
+	-->
+
+	<!-- UIKit Version 3.0.0-Beta.22 ( https://getuikit.com/ ) -->
+	<link rel="stylesheet" href="../css/uikit.css">
+	<script src="../js/uikit.js"></script>
+	<script src="../js/uikit-icons.js"></script>
+
+	<!-- Your Custom Styles -->
+	<link href="./main.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/github.css">
+</head>
+
+<body>
+
+<!-- START :: HEADER -->
+<div uk-sticky="media: 960" class="uk-navbar-container tm-navbar-container uk-sticky uk-sticky-fixed uk-active uk-sticky-below">
+    <div class="uk-container uk-container-expand">
+        <nav class="uk-navbar">
+            <div class="uk-navbar-left">
+				<a href="#offcanvas-usage" uk-toggle uk-icon="icon: menu"><span class="uk-invisible">Open</span></a>
+                <a href="#" class="uk-navbar-item uk-logo font-roboto"><img uk-svg="" src="../images/uikit-logo.svg" class="uk-margin-small-right" hidden="hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="34" viewBox="0 0 28 34" ratio="1" class="uk-margin-small-right uk-svg">
+                        <polygon fill="#fff" points="19.1,4.1 13.75,1 8.17,4.45 13.6,7.44 "></polygon>
+                        <path fill="#fff" d="M21.67,5.43l-5.53,3.34l6.26,3.63v9.52l-8.44,4.76L5.6,21.93v-7.38L0,11.7v13.51l13.75,8.08L28,25.21V9.07 L21.67,5.43z"></path>
+					</svg> UI Dev Resources
+				</a>
+			</div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav uk-visible@m">
+                    <li><a href="#">Pro</a>
+					</li>
+                    <li class="uk-active"><a href="#">Documentation</a>
+					</li>
+                    <li><a href="#" class="read-mode">Read Mode</a>
+					</li>
+				</ul>
+
+                <a uk-navbar-toggle-icon="" href="#offcanvas" uk-toggle="" class="uk-navbar-toggle uk-hidden@m uk-navbar-toggle-icon uk-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" ratio="1">
+                        <rect y="9" width="20" height="2"></rect>
+                        <rect y="3" width="20" height="2"></rect>
+                        <rect y="15" width="20" height="2"></rect>
+					</svg>
+				</a>
+			</div>
+		</nav>
+	</div>
+</div>
+<!-- END :: HEADER -->
+
+<!-- START :: CONTENT -->
+<div class="uk-flex">
+
+	<!-- START :: INDEX PANEL ( Offcanvas Panel ) -->
+	<!--
+	<div class="uk-offcanvas-content">
+
+		<div id="offcanvas-usage" uk-offcanvas="mode: push; overlay: true">
+			<div class="uk-offcanvas-bar">
+
+				<button class="uk-offcanvas-close" type="button" uk-close></button>
+
+				<h3>Title</h3>
+
+				<ul class="uk-tab-right" uk-tab="connect: #component-tab-left; animation: uk-animation-fade">
+					<li><a href="#">CSS Baseline Grid ( Verticle Rhythm )</a></li>
+					<li><a href="#">CSS Unit Calculation</a></li>
+					<li><a href="#">Yarn</a></li>
+					<li><a href="#">Angular2 CLI</a></li>
+					<li><a href="#">Color Tools</a></li>
+					<li><a href="#">UI Component Libraries</a></li>
+					<li><a href="#">Typescript</a></li>
+					<li><a href="#">JavaScript Tips & Tricks</a></li>
+					<li><a href="#" uk-toggle="target: #toggle-usage">ES6+</a>
+						<ul id="toggle-usage" class="uk-tab-left" uk-tab="connect: #es6-topics; animation: uk-animation-fade">
+							<li><a href="#">Promise</a></li>
+							<li><a href="#">Item</a></li>
+							<li><a href="#">Item</a></li>
+						</ul>
+					</li>
+					<li><a href="#">CHEAT SHEET (V4.0.0) TYPESCRIPT</a></li>
+					<li><a href="#">Chrome Plugins</a></li>
+					<li><a href="#">UI Kits/PSD/Sketch</a></li>
+					<li><a href="#">CSS Flexbox Learning Guides</a></li>
+					<li><a href="#">CSS Grid</a></li>
+				</ul>
+
+			</div>
+		</div>
+
+	</div>
+	-->
+	<!-- END :: INDEX PANEL ( Offcanvas Panel ) -->
+
+	<!-- START :: INDEX PANEL -->
+	<div class="nav-panel uk-width-1-5 uk-light uk-background-secondary tm-sidebar-left">
+		<ul class="uk-tab-right uk-nav-parent-icon" uk-tab="connect: #component-tab-left; animation: uk-animation-fade">
+			<li><a href="#">CSS Baseline Grid ( Verticle Rhythm )</a></li>
+			<li><a href="#">CSS Unit Calculation</a></li>
+			<li><a href="#">Yarn</a></li>
+			<li><a href="#">Angular2 CLI</a></li>
+			<li><a href="#">Color Tools</a></li>
+			<li><a href="#">UI Component Libraries</a></li>
+			<li><a href="#">Typescript</a></li>
+			<li><a href="#">JavaScript Tips & Tricks</a></li>
+			<li><a href="#" uk-toggle="target: #toggle_usage_1">ES6+</a>
+                <ul id="toggle_usage_1" class="uk-tab-left" uk-tab="connect: #es6_topics; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
+					<li><a href="#promises">ES6 Promises</a></li>
+                    <li><a href="#">Generator</a></li>
+                    <li><a href="#">Class</a></li>
+                </ul>
+			</li>
+			<li><a href="#">CHEAT SHEET (V4.0.0) TYPESCRIPT</a></li>
+			<li><a href="#">Chrome Plugins</a></li>
+			<li><a href="#">UI Kits/PSD/Sketch</a></li>
+			<li><a href="#">CSS Flexbox Learning Guides</a></li>
+			<li><a href="#">CSS Grid</a></li>
+			<li><a href="#1">AMD/UMD Pattern</a></li>
+			<li><a href="#1">Javascript Plugin Development patterns</a></li>
+			<li><a href="#1">Extend Javascript Objects</a></li>
+			<li><a href="#" uk-toggle="target: #toggle_usage_0">JavaScript</a>
+				<ul id="toggle_usage_0" class="uk-tab-left" uk-tab="connect: #javascript_topics; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
+                    <li><a href="#">Articles</a></li>
+					<li><a href="#">Creating Objects in JavaScript</a></li>
+                    <li><a href="#">The lexical this</a></li>
+                    <li><a href="#">Event Delegation</a></li>
+					<li><a href="#">Array Methods</a></li>
+                </ul>
+			</li>
+			<li><a href="#1">JavaScript MVC Pattern</a></li>
+			<li><a href="#1">Javascript Gotchas or Quirks</a></li>
+			<li><a href="#1">Diffrent Array Methods</a></li>
+			<li><a href="#1">JavaScript Custom Events</a></li>
+			<li><a href="#1">jQuery equivalent methods in plain JavaScript</a></li>
+			<li><a href="#1">ES6 equivalent in ES5</a></li>
+			<li><a href="#essjs" uk-toggle="target: #toggle_usage_2">JavaScript Utility Functions</a>
+				<ul id="toggle_usage_2" class="uk-tab-left" uk-tab="connect: #js-utility-funcs; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
+					<li><a href="#deb">Debounce Method</a></li>
+				</ul>
+			</li>
+			<li><a href="#1">JavaScript Method Chaining</a></li>
+			<li><a href="#1">Scope Chain</a></li>
+			<li><a href="#jsdesignpatterns" uk-toggle="target: #toggle_usage_3">JavaScript Design Patterns</a>
+				<ul id="toggle_usage_3" class="uk-tab-left" uk-tab="connect: #js-design-patterns; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
+					<li><a href="#mp">Module Pattern</a></li>
+					<li><a href="#rmp">Revealing Module Pattern</a></li>
+					<li><a href="#1">Pub-Sub Pattern</a></li>
+					<li><a href="#1">Factory Pattern</a></li>
+					<li><a href="#1">Singleton Pattern</a></li>
+					<li><a href="#1">Pub-Sub Pattern</a></li>
+					<li><a href="#1">Constructor Pattern</a></li>
+					<li><a href="#1">Observer Pattern</a></li>
+					<li><a href="#1">Mediator Pattern</a></li>
+					<li><a href="#1">Prototype Pattern</a></li>
+					<li><a href="#1">Command Pattern</a></li>
+					<li><a href="#1">Facade Pattern</a></li>
+					<li><a href="#1">Mixin Pattern</a></li>
+					<li><a href="#1">Decorator Pattern</a></li>
+					<li><a href="#1">Flyweight Pattern</a></li>
+				</ul>
+			</li>
+			<li><a href="#1" uk-toggle="target: #toggle_usage_4">HTML5 APIs</a>
+				<ul id="toggle_usage_4" class="uk-tab-left" uk-tab="connect: #html5_apis; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
+					<li><a href="#fapi">IndexedDB ( Local Storage )</a></li>
+					<li><a href="#fapi">Fetch API</a></li>
+					<li><a href="#gapi">GeoLocation API</a></li>
+					<li><a href="#vbapi">Vibration API</a></li>
+					<li><a href="#pushapi">Push Notification API</a></li>
+					<li><a href="#webwork">Web Workers</a></li>
+					<li><a href="#servwork">Service Workers</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<!-- END :: INDEX PANEL -->
+
+	<div class="uk-width-1-7" style="margin-left: 20%;">
+		<div class="uk-container">
+
+			<ul id="component-tab-left" class="uk-switcher">
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>CSS Baseline Grid ( Verticle Rhythm )</h3>
+					<div>
+						<ul class="uk-list uk-list-large">
+							<li><a href="http://typecast.com/blog/4-simple-steps-to-vertical-rhythm" target="_blank">4 Simple Steps to Vertical Rhythm</a></li>
+							<li><a href="https://xavierbertels.com/blog/baseline-grid-workflow" target="_blank">Baseline Grid Workflow (How To)</a></li>
+						</ul>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>CSS Unit Calculation</h3>
+					<div>
+						<div class="content">
+							<h4>What is an EM?</h4>
+							<p>Wikipedia puts it well: <q>"An em is a unit of measurement in the field of typography, equal to the size of the current font."</q> If your font-size is at 16 pixels, then 1em = 16px</p>
+							<p>For more information visit <a href="http://en.wikipedia.org/wiki/Em_(typography)">Wikipedia</a> and <a href="https://developer.mozilla.org/en/CSS-2_Quick_Reference/Units">Mozilla MDN</a>.</p>
+							<h4>What is the text sizing difference between PX, EM, %, PT?</h4>
+							<p>Pixels and points are static measurements, but commonly used in different mediums. Pixels are used on screens because screens are measured in pixels. Although points can be used on screen, they are the standard in printing because they are a factor of <abbr title="dots per inch">DPI</abbr>.</p>
+							<p>Percent and EMs on the other hand are relative measurements. The size of an EM or percentage unit depends on its parent. If body text is sized at 12 pixels, then text set at 120% or 1.2 EM inside the body will be 1.2 * 12, or 14.4 pixels.</p>
+							<h4>How do I convert between PX, EM, %, and PT?</h4>
+							<p>Assuming you aren't using PXtoEM.com to keep it simple, here are the formulas PXtoEM.com uses.</p>
+							<p><strong>Note:</strong> 16px is used as the body text size in all conversions because that is the browser default. You will change 16px to your base text size.</p>
+							<dl>
+								<dt>PX to EM</dt>
+								<dd>Formula: size in pixels / parent size in pixels</dd>
+								<dd>Example: 12px / 16px = .75em</dd>
+
+								<dt>PX to %</dt>
+								<dd>Formula: size in pixels / parent size in pixels * 100</dd>
+								<dd>Example: 12px / 16px * 100 = 75%</dd>
+
+								<dt>PX to PT</dt>
+								<dd>Formula: size in pixels * (points per inch / pixels per inch)</dd>
+								<dd>Example: 16px * (72pt / 96px) = 12pt</dd>
+
+								<dt>EM to PX</dt><dt>
+								</dt><dd>Formula: size in EMs * parent size in pixels</dd>
+								<dd>Example: .75em * 16px = 12px</dd>
+
+								<dt>EM to %</dt>
+								<dd>Formula: size in EMs * 100</dd>
+								<dd>Example: .75em * 100 = 75%</dd>
+							</dl>
+							<h4>Why size your text with EMs in CSS?</h4>
+							<p>Style sheets that use EMs are easier to maintain for the designer (especially with PXtoEM.com at your side) and more accessible to end-users.</p>
+							<p>Style sheets become easier to maintain because all text set in EMs scale to the body font-size. Only one element\'s font-size needs to change instead of individually changing the font-size of each element.</p>
+							<p>Accessibility is increased for end-users because text is scaled based on their preferences rather than set statically in pixels. Additionally, end-users can use hot keys to scale the text in all browsers. Many people have difficulty reading small text on a computer screen.</p>
+							<p>For more information visit <a href="http://www.alistapart.com/articles/howtosizetextincss/">A List Apart</a>, <a href="http://www.informit.com/articles/article.aspx?p=397663">informIT</a>, <a href="http://jontangerine.com/log/2007/09/the-incredible-em-and-elastic-layouts-with-css">Jon Tan\'s Blog</a>, and <a href="http://www.thesug.org/blogs/kyles/Lists/Posts/Post.aspx?List=89c8858b%2D90d2%2D4750%2Da11a%2De599248e6c69&amp;ID=22">this SharePoint Blog</a>.</p>
+						</div>
+					</div>
+					<!-- START : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>Yarn</h3>
+					<div>
+						<h5>You can install yarn through NPM</h5>
+						<code>npm install -g yarn</code>
+						<h5>You can update to the latest version of Yarn</h5>
+						<code>yarn self-update</code>
+						<ul class="postList">
+<li><code>npm init</code> === <code>yarn init</code>
+</li>
+<li><code>npm link</code> === <code>yarn link</code>
+</li>
+<li><code>npm outdated</code> === <code>yarn outdated</code>
+</li>
+<li><code>npm publish</code> === <code>yarn publish</code>
+</li>
+<li><code>npm run</code> === <code>yarn run</code>
+</li>
+<li><code>npm cache clean</code> === <code>yarn cache clean</code>
+</li>
+<li><code>npm login</code> === <code>yarn login</code> (and logout)</li>
+<li><code>npm test</code> === <code>yarn test</code>
+</li>
+<li><code>npm install --production</code> === <code>yarn --production</code>
+</li>
+</ul>
+<pre>yarn                  # Install all dependencies from package.json
+yarn install               # Alias for yarn
+yarn init                  # Initialize an npm repository
+yarn add [package]         # Install npm package
+yarn upgrade [package]     # Upgrade npm package
+yarn remove [package]      # Uninstall npm package</pre>
+
+<h5>Install from Multiple Registries</h5>
+<p>By default, it scans the npm registry for your package as follows: <code>yarn add &ltpkg-name></code></p>
+<p>Install a package from a remote gzipped tarball file as follows: <code>yarn add &lt;https://thatproject.code/package.tgz></code></p>
+<p>Install a package from your local file system as follows: <code>yarn add file:/path/to/local/folder</code></p>
+<p>Install a package from a remote git repository like so: <code>yarn add &lt;git remote-url></code></p>
+
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>Angular2 CLI</h3>
+					<div>
+						<h5 class="text-uppercase">Installation</h5>
+						<code>npm install -g @angular/cli</code>
+						<h5 class="text-uppercase">To start a new application or project</h5>
+						<code>ng new project-name</code>
+						<h5 class="text-uppercase"><code>ng new</code> options</h5>
+						<ul><li><code>--dry-run</code> (alias <code>d</code>): Only output the files created and operations performed. It doesn't actually create the project.</li>
+							<li><code>--verbose</code> (alias <code>v</code>): Show more information</li>
+							<li><code>--skip-npm</code>: Don't run any npm commands like installing dependencies</li>
+							<li><code>--skip-git</code>: Don't create a new git repo for this project</li>
+							<li><code>--directory</code>: Specify the directory you want to create this project in</li>
+						</ul>
+						<h5 class="text-uppercase">Serve Our Application</h5>
+						<code>ng serve</code>
+						<code>ng serve --host 0.0.0.0 --port 4201</code>
+						<h5 class="text-uppercase">Run those unit tests using Karma</h5>
+						<code>ng test --no-watch</code>
+						<p>By default, the CLI keeps running the tests. Use the <code>--no-watch</code> flag to stop testing once all tests have run.</p>
+						<p>Note that tests are executed after a build is successfully executed. As mentioned in the log, the build artifacts is&nbsp;stored in the <code>dist/</code> directory. You can also create a build of your project independently from the <code>ng test</code> command line by running:</p>
+						<h5>Initialize a New Application</h5>
+						<p>Let's say you already have a folder that you've started working in. The ng init command is here so that you can use the current folder you're already working in.</p>
+						<p>In the folder you are working in, run:</p>
+						<code>ng init project-name</code>
+						<h5 class="text-uppercase"><code>ng init</code> options</h5>
+						<ul><li><code>--dry-run</code> (alias <code>d</code>): Only output the files created and operations performed. It doesn't actually create the project.</li>
+<li><code>--verbose</code> (alias <code>v</code>): Show more information</li>
+<li><code>--skip-npm</code>: Don't run any npm commands like installing dependencies</li>
+<li><code>--name</code>: Name the new project you are creating</li>
+</ul>
+<h5 class="text-uppercase">Generating Components, Directives, Pipes and Services</h5>
+<p>You can use the <code>ng generate</code> (or just <code>ng g</code>) command to generate Angular components:</p>
+<ul>
+<li>Create a new component <code>ng generate component hello</code>
+<pre>ng generate component my-new-component
+ng g component my-new-component # using the alias
+
+# components support relative path generation
+# if in the directory src/app/feature/ and you run
+ng g component new-cmp
+# your component will be generated in src/app/feature/new-cmp
+# but if you were to run
+ng g component ../newer-cmp
+# your component will be generated in src/app/newer-cmp
+# if in the directory src/app you can also run
+ng g component feature/new-cmp
+# and your component will be generated in src/app/feature/new-cmp</pre>
+<p class="note"><em>Note</em>: It's important to name your component simply. If a component is created with the name <code>hello</code>, these are the corresponding naming schemes:</p>
+<img src="images/angular-cli-images/generate-component.webp" />
+<ul><li><strong>Folder</strong>: <code>hello</code></li>
+<li><strong>Files</strong>: `hello.component.[css,html,spec.ts,ts]</li>
+<li><strong>Class</strong>: <code>HelloComponent</code></li>
+</ul>
+<p>If you use <code>ng generate component HelloComponent</code>, then your component class will be an undesirable <code>HelloComponentComponent</code>.</p>
+</li>
+<li>Create a new directive</li>
+<li>Create a new route <code>ng generate route about</code>
+<img src="images/angular-cli-images/generate-route.webp" />
+<blockquote>
+<p>The <code>+</code> dictates that a folder will be <em>lazy loaded</em> (read more in the <a href="https://angular.io/styleguide">style guide</a>. A typical lazy loaded folder contains a routing component, its child components, and their related assets and modules. </p>
+</blockquote>
+</li>
+<li>Create a new pipe</li>
+<li>Create a new service</li>
+</ul>
+<table class="uk-table uk-table-hover">
+<thead>
+<tr>
+<th>Scaffold</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-component">Component</a></td>
+<td><code>ng g component my-new-component</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-directive">Directive</a></td>
+<td><code>ng g directive my-new-directive</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-pipe">Pipe</a></td>
+<td><code>ng g pipe my-new-pipe</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-service">Service</a></td>
+<td><code>ng g service my-new-service</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-class">Class</a></td>
+<td><code>ng g class my-new-class</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-guard">Guard</a></td>
+<td><code>ng g guard my-new-guard</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-interface">Interface</a></td>
+<td><code>ng g interface my-new-interface</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-enum">Enum</a></td>
+<td><code>ng g enum my-new-enum</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-module">Module</a></td>
+<td><code>ng g module my-module</code></td>
+</tr></tbody></table>
+<h3><code>ng generate</code> options</h3>
+<ul><li><code>--flat</code>: Don't create the code in it's own directory. Just add all files to the current directory.</li>
+<li><code>--route=&lt;route&gt;</code>: Specify the parent route. Only used for generating <strong>components</strong> and <strong>routes</strong>.</li>
+<li><code>--skip-router-generation</code>: Don't create the route config. Only used for generating <strong>routes</strong>.</li>
+<li><code>--default</code>: The generated route should be a default route.</li>
+<li><code>--lazy</code>: Specify if route is lazy. <code>default true</code></li>
+</ul>
+<p>angular-cli will add reference to <code>components</code>, <code>directives</code> and <code>pipes</code> automatically in the <code>app.module.ts</code>. If you need to add this references to another custom module, follow this steps:</p>
+<ol>
+<li><code>ng g module new-module</code> to create a new module</li>
+<li>call <code>ng g component new-module/new-component</code></li>
+</ol>
+<p>This should add the new <code>component</code>, <code>directive</code> or <code>pipe</code> reference to the <code>new-module</code> you've created.</p>
+<h5>More Commands</h5>
+<ul><li>ng build</li>
+<li>ng test: Run unit tests with karma</li>
+<li>ng e2e: Run end-to-end tests with protractor</li>
+<li>ng get: Gets values for project</li>
+<li>ng set: Sets values for project</li>
+<li>ng github-pages:deploy: Build the app for production, setup GitHub repo, and publish</li>
+<li>ng lint: Run <a href="https://github.com/mgechev/codelyzer">codelyzer</a> to analyze code</li>
+<li>ng format</li>
+<li>ng doc</li>
+<li>ng version: Get the version of the CLI</li>
+</ul>
+<h5>Updating Angular CLI</h5>
+<pre>npm uninstall -g @angular/cli
+npm cache clean
+npm install -g @angular/cli@latest</pre>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>Color Tools</h3>
+					<div>
+						<ul class="uk-list uk-list-large">
+							<li><a href="https://www.viget.com/articles/color-contrast" target="_blank">Color Contrast for Better Readability (viget.com)</a></li>
+							<li>
+								<a href="http://ambiance.somethingjustlikethis.com/" target="_blank">ambiance</a>
+								<p>If you are a Developer, Designer or an Artist - you know how frustrating choosing the perfect colors can be sometimes. At the peak of this frustration you can be really dangerous to others. So, to keep the rest of us safe - ambiance. was born.</p>
+							</li>
+						</ul>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>UI Component Libraries</h3>
+					<div>
+						<ul class="uk-list uk-list-large">
+							<li>
+								<a href="https://getuikit.com/" target="_blank">UIKit <span>Version 3.0.0-Beta.22</span></a>
+								<p>A lightweight and modular front-end framework
+								for developing fast and powerful web interfaces.</p>
+							</li>
+						</ul>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+
+						<h3>Typescript</h3>
+						<div>
+						<span>https://www.cheatography.com/gregfinzer/cheat-sheets/typescript/</span>
+						<h5>To install TypeScript, run:</h5>
+						<code>npm install --global typescript</code>
+
+						<h5>TypeScript's Basic Types</h5>
+						<p>TypeScript exposes nine types for us to work with. Whether you use them or not is up to you: <strong>Type annotations are always optional in TypeScript</strong>.</p>
+						<ol><li>Boolean;</li>
+<li>Number;</li>
+<li>String;</li>
+<li>Array;</li>
+<li>Tuple;</li>
+<li>Enum;</li>
+<li>Any;</li>
+<li>Void;</li>
+<li>Function.</li>
+</ol>
+
+<table border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="uk-table uk-table-divider uk-table-hover">
+    <tbody>
+        <tr>
+            <td width="24%">
+                <strong>String</strong>
+            </td>
+            <td>
+                let custom­erName: string= "John Doe";
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Number</strong>
+            </td>
+            <td>
+                let price: number = 19.95;
+                <code>const pi : number = 3.14159;</code>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Boolean</strong>
+            </td>
+            <td>
+                let shipped: boolean = false;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Date</strong>
+            </td>
+            <td>
+                let orderDate: Date = new Date(2017, 2, 9);
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Any</strong>
+				<p>Any is more or less what it sounds like: A type that accepts any value. In some sense, it's a way to opt out of type checking. It also allows us to declare mixed collections.</p>
+            </td>
+            <td>
+                let something: any = "Can be anythi­ng";
+				<pre>"use strict";
+
+let mystery : any = 4; 		// number
+mystery = "four"; 			// string -- no error
+
+const not_only_strings : any[] = [];
+
+not_only_strings.push("This Works!")
+not_only_strings.push(42); // This does too.</pre>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Enum</strong>
+				<p>Enums allow you to associate names with intever values. The name comes from the fact that they're enumerable.</p>
+				<p><strong>ES6 Alternative:</strong> <a href="http://www.2ality.com/2014/12/es6-symbols.html">Symbols provide an interesting alternative to enums</a></p>
+				<pre>const MY_KEY = Symbol();
+let obj = {};
+
+obj[MY_KEY] = 123;
+console.log(obj[MY_KEY]); // 123</pre>
+<pre>const FOO = Symbol();
+let obj = {
+    [FOO]() {
+        return 'bar';
+    }
+};
+console.log(obj[FOO]()); // bar</pre>
+            </td>
+            <td>
+                enum Color {Red, Green, Blue};
+				<pre>"use strict";
+
+// This is an example from the TypeScript docs.
+//    http://bit.ly/1XQjl2Y
+
+enum Color { Red, Green, Blue };
+const red : Color = Color.Red;
+
+// Enums are like associative arrays. Each enum constant is associated with an index, starting at 0.
+
+console.log(Color[0]); // 'Red'
+
+// You can start from any number instead of zero, if you want.
+//    Note that indexing a non-existent enum constant returns undefined,
+//    but doesn't throw an error.
+
+enum RomanceLanguages { Spanish = 1, French, Italian, Romanian, Portuguese };
+console.log(RomanceLanguages[4]); // 'Romanian'
+console.log(RomanceLanguages[0]); // undefined </pre>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Array
+				<p>TypeScript treats arrays as their own type, and requires that you declare the type of what's inside of them, as well.</p>
+				<ol><li>Array&lt;[ Item Type]&gt;</li>
+<li>
+[]
+</li>
+</ol>
+            </td>
+            <td>
+                let cards: string[] = ['Visa', 'Maste­rCa­rd'];
+<pre>"use strict";
+
+// The item type, T, followed by brackets means, "an array whose items are of type T."
+const divine_lovers : string[] = ["Zeus", "Aphrodite"];
+
+// Writing Array<[Item Type]> means the same thing.
+const digits : Array<number> = [143219876, 112347890];
+
+// But this doesn't work. Hm. . .
+/* We can't put 42 into only_strings because we declared that it can only contain items of type string. This is an example of TypeScript's compile-time complaints in action. */
+const only_strings : string[] = [];
+only_strings.push("This Works!")
+only_strings.push(42); // This doesn't.</pre>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Null
+            </td>
+            <td>
+                let orderId: number = null;
+            </td>
+        </tr>
+		<tr>
+            <td>
+                The Last Type: Functions
+				<p>One of JavaScript's greatest strengths is that it treats functions as first class citizens. This means we can pass them as arguments and return them from functions ike any other value. How does TypeScript handle that?
+
+Simple. Function name; parenthetical list of typed arguments; fat arrow; return type.</p>
+<p>The same pattern applies if you're returning a function. In that case, though, you wrap the type of the function you return -- that is, everything after the fat arrow -- in parentheses.</p>
+            </td>
+            <td>
+               <pre>"use strict";
+
+// This example illustrates that you can annotate your functions types before defining them.
+let multiply : (first : number, second : number) => number;
+multiply = function (first, second) {
+  return first * second;
+}</pre>
+<pre>"use strict";
+
+let multiplyFirst : ( first : number) => ((second : number) => number);
+multiplyFirst = function (first) {
+  return function (num) {
+    return first * num;
+  }
+}
+
+console.log(multiply(5, 2)); // '10'
+console.log(multiplyFirst(9)(2)); // '18'</pre>
+            </td>
+        </tr>
+		<tr>
+            <td>
+                Return Types
+				<p>TypeScript allows you to mark the type of the value that a function returns.
+
+Just as a variable's type indicates what sort of data the variable contains, a function's return type indicates what sort of data it returns.
+
+All the types we've seen so far are valid return types. In particuar, you'll use void almost exclusively as the return type of a function with no return statement.
+
+You denote a return type the same way you denote a variable type: With a colon and a type keyword, this time after the arguments list.</p>
+            </td>
+            <td>
+                <pre>"use strict";
+
+function capitalizeName (name : string) : string {
+  return name.toUpperCase();
+}
+
+// Shoutout to @achm4m0 (Alberto) for notifying me of an error here!
+console.log(capitalizeName('geronimo')); // 'GERONIMO'
+
+// But:
+console.log(capitalizeName(42)); // Error; 42 isn't a string.
+
+// TypeScript checks at compile-time if you're returning the right type.
+function even_broken (num : number) : boolean {
+   return (num % 2); // WRONG. This will cause a compile-time error.
+}
+
+function even (num : number) : boolean {
+   return (num % 2 == 0); // Much better; this works.
+}</pre>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Tuple
+				<p>Tuples are another collection data type. They're useful for collecting a known number of items into an array-like structure. You can declare each item to be of a specific type.</p>
+				<code>[(Item Type), . . . , (Item Type)]</code>
+            </td>
+            <td>
+                let stateT­axR­ates: [string, number];
+				<pre>"use strict";
+
+// [Date, Month, Year] :: Triplet of numbers
+let date_triplet : [number, number, number];
+date_triplet = [31, 6, 2016];
+
+// [Name, Age]
+let athena : [string, number];
+athena = ['Athena', 9386];
+
+// You retrieve items with indexes, as with arrays.
+//  TS remembers the type for you.
+var name : string = athena[0];
+const age : number = athena[1];
+
+// But:
+name  = athena[1]; // No dice. We're writing TypeScript now.</pre>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Void
+				<p>Finally, we have Void. This is the typeclass associated with the values undefined or null. Unlike the other types, you won't use this to declare variables. It's not that you can't. Just that, if you do, you can only set that varible to null or undefined.</p>
+				<p>The main reason void exists is to mark functions without return statements.</p>
+            </td>
+            <td>
+<pre>function log(msg: string): void {
+	console.log(msg);
+}</pre>
+					<pre>"use strict";
+
+let the_void : void = undefined;
+the_void = null;
+
+the_void = "nothing"; // Error.</pre>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Const
+            </td>
+            <td>
+                const lives: number = 99;
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+							<h5>Usage</h5>
+							<table border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="uk-table uk-table-divider"><tbody><tr><td><div style="padding: 3px 8px;">Public (default)</div></td><td><div style="padding: 3px 8px;">public firstName: string;</div></td></tr><tr><td><div style="padding: 3px 8px;">Protected</div></td><td><div style="padding: 3px 8px;">protected inventory: number;</div></td></tr><tr><td><div style="padding: 3px 8px;">Private</div></td><td><div style="padding: 3px 8px;">private outOfS­tock: boolean;</div></td></tr><tr><td><div style="padding: 3px 8px;">Read Only</div></td><td><div style="padding: 3px 8px;">readonly pi: number = 3.14159;</div></td></tr><tr><td><div style="padding: 3px 8px;">Static</div></td><td><div style="padding: 3px 8px;">static log(msg: string) { consol­e.l­og(msg) };</div></td></tr></tbody></table>
+
+							<h5>Scope/­Mod­ifiers</h5>
+<table border="0" cellspacing="0" cellpadding="0" id="cheat_sheet_output_table" class="uk-table uk-table-divider">
+    <tbody>
+        <tr>
+            <td>
+                <strong>Public (default)</strong>
+            </td>
+            <td>
+                public firstName: string;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Protected</strong>
+            </td>
+            <td>
+               protected inventory: number;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Private</strong>
+				<p>TypeScript's <code>private</code> access modifier is handy, but it is <em>just</em> syntactical sugar. Its compile-time checks against your code do <em>not</em> prevent other code, or even your code, from accessing private properties at runtime.</p>
+            </td>
+            <td>
+               private outOfS­tock: boolean;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Read Only</strong>
+            </td>
+            <td>
+                readonly pi: number = 3.14159;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Static</strong>
+            </td>
+            <td>
+                static log(msg: string) { consol­e.l­og(msg) };
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+							<h5>Class</h5>
+<ul><li>Use <strong>classes</strong> to easily create similar objects;</li>
+<li>Use <strong>interfaces</strong> to describe and enforce the shape and behavior of different classes; and</li>
+<li>Combine classes and interfaces to create robust, self-documentining components.</li>
+</ul>
+<pre>class OrderLogic {
+    constructor(public order: IOrder) { }
+
+    getOrderTotal(): number {
+        let sum: number = 0;
+
+        for (let orderDetail of this.order.orderDetails)
+        {
+            sum += orderDetail.price;
+        }
+        return sum;
+    }
+}</pre>
+
+<h5>Class Properties</h5>
+<p>In JavaScript, classes can only contain method definitions. Adding properties is a syntax error.</p>
+
+<p>In TypeScript, you must add instance properties if you assign to them using <code>this</code>. Otherwise, your code won't compile.</p>
+<p>You'll need to add a property for every instance variable you plan to access with <code>this</code>. </p>
+<pre>// list_classes.ts
+
+"use strict";
+
+class ListComponent {
+
+    // Adding a property is as simpleas adding its name and type
+    //   at the top of the class.
+    things : Array<ListItem>; // Or -- things : ListItem[];
+
+    constructor () {
+        this.things = [];
+    }
+
+}
+
+class ListItem {
+
+    name : string;
+
+    constructor (name) {
+        this.name = name;
+    }
+
+}
+
+// Usage
+const item = new ListItem('Thing to Do');
+console.log(item.name); // 'Thing to Do'
+</pre>
+
+<h5>Class : Access Modifiers</h5>
+<p>TypeScript provides two access modifiers:</p>
+<ol><li><code>public</code>. You can read or write <em>public</em> properties from anywhere. These behave identically to object properties in vanilla JavaScript.</li>
+<li><code>private</code>. You can <em>only</em> read or write a <em>private</em> property from <em>inside of the class</em> that "owns" the property. </li>
+</ol>
+<pre>// list_classes_private.ts
+
+"use strict";
+
+// ListComponent maintains a list of things that a user can
+//   add to and delete from. This is a pure JavaScript class.
+class ListComponent {
+
+  private things : Array<ListItem>;
+
+    constructor () {
+        this.things = [];
+    }
+
+}
+
+// A ListItem is a wrapper around the items in our list.
+//   This is also pure JavaScript, for now.
+class ListItem {
+
+  private name : string;
+
+    constructor (name) {
+        this.name = name;
+    }
+
+}
+
+const item = new ListItem('Thing to Do');
+console.log(item.name); // Property 'name' is private</pre>
+<p>The classes are still valid, but you'll notice that the last line causes a compiler error. TypeScript reports: <em>Property 'name' is private and only accessible within the class 'ListItem'.</em></p>
+
+<h5>Subclasses</h5>
+<p>TypeScript also lets you use subclasses, just as does vanilla JavaScript:</p>
+<pre>"use strict";
+
+class CompletedListItem extends ListItem {
+
+    completed : boolean;
+
+    constructor (name : string) {
+        super(name);
+        this.completed = true;
+    }
+
+}</pre>
+
+<h5>Property Shorthand</h5>
+<p>TypeScript offers a shorthand for creating and assigning properties.</p>
+<pre>// list_classes_shorthand.ts
+
+"use strict";
+
+class ListComponent {
+
+    constructor (private _things : ListItem[]) { }
+
+    get things () : ListItem[] { return this._things; }
+
+}
+
+class ListItem {
+
+    constructor (private _name) { }
+
+    get name () : string { return this._name; }
+
+}
+
+const item = new ListItem('Thing to Do');
+console.log(item.name); // Property 'name' is private
+
+item.name = 'Fish';
+console.log(item.name); // </pre>
+
+<h5>Abstract Classes</h5>
+<pre>abstract class Person {
+  name: string;
+  monthlySalary: number;
+  monthlyBenefits: number;
+
+  abstract calcSalary(): number;
+}</pre>
+
+<h5>Inheri­tance and Implem­enting Interfaces</h5>
+<pre>interface IGPS {
+  getLocation() number;
+}
+
+interface ISelfDrive extends IGPS {
+  drive(latitude: number, longitude: number, elevation: number) : void;
+}
+
+class Vehicle {
+  make: string;
+  model: string;
+  year: number;
+}
+
+class FlyingCar extends Vehicle implements ISelfDrive {
+   hasGps: boolean;
+
+  drive(latitude: number, longitude: number, elevation: number) {
+  }
+
+  getLocation(): number {
+  }
+}</pre>
+
+<h5>Interfaces</h5>
+<pre>interface IOrderDetail {
+  productName: string;
+  quantity: number;
+  price: number;
+  orderDate: Date;
+  shipped: boolean;
+  //Optional
+  outOfStock?: boolean;
+  //Method
+  calcTax: (taxRate: number) => number;
+}</pre>
+<p>An <strong>interface</strong> is a tool for enforcing a particular shape. If a class implements an interface, it <em>must</em> contain the instance variables and methods listed in the interface. </p>
+<p>Creating an interface is much the same as creating a class, except you use the <code>interface</code> keyword instead of <code>class</code>. Otherwise, you list properties and their types identically:</p>
+<pre>// interfaces.ts
+"use strict";
+
+interface User {
+    name : string;
+    email : string;
+}</pre>
+<pre>// interfaces_optional.ts
+
+"use strict";
+
+interface User {
+    name : string;
+    email : string;
+    avatar? : Object;
+}
+
+class RegisteredUser implements User {
+
+  constructor (public name : string, public email : string) { }
+
+}
+
+class ImageUser implements User {
+
+  constructor (public name : string,
+               public email : string,
+               public avatar : Object) { }
+
+}</pre>
+<p>Any object that implements the <code>User</code> interface <em>must</em> have a <code>name</code> and <code>email</code> property, or the TypeScript compiler will scream at us with an "Interface not implemented properly" error.</p>
+<p>Using an interface is like creating a subclass, but you use <code>implements</code> in place of <code>extends</code>.</p>
+<pre>// interfaces.ts
+
+class RegisteredUser implements User {
+
+  // Shorthand
+  constructor (public name : string, public email : string) { }
+
+}</pre>
+
+<h5>Interface : Method Signatures</h5>
+<p>Interfaces also allow you to specify <em>methods</em> that a class must implement, while allowing the classes themselves decide on the implementation details.</p>
+<pre>// interfaces_methods.ts
+
+"use strict";
+
+interface User {
+    // PROPERTIES
+    name : string;
+    email : string;
+    avatar? : Object;
+
+  // API
+  print () : void;
+}
+
+class RegisteredUser implements User {
+
+  constructor (public name : string, public email : string) { }
+
+  print () : void {
+    console.log(`Name: ${this.name} | Email: ${this.email} | No avatar.`);
+  }
+
+}
+
+class ImageUser implements User {
+
+  constructor (public name : string,
+               public email : string,
+               public avatar : Object) { }
+
+  print () : void {
+    console.log(`Name: ${this.name} | Email: ${this.email} | Has avatar.`);
+  }
+
+}
+
+const user = new RegisteredUser('Peleke', 'resil.design@gmail.com');
+user.print();</pre>
+<ol><li>If you omit <code>print</code> in either class, you'll get a compiler error;</li>
+<li>If you declare <code>print</code> with the wrong type in either class, you'll get a compiler error; and</li>
+<li>Each class implements <code>print</code> <em>differently</em>. </li>
+</ol>
+
+<h5>Optional Parameters</h5>
+<pre>class Util {
+  log(msg: string, logDate?: Date) {
+    if (logDate)
+      console.log(logDate + ' ' + msg);
+    else
+      console.log(new Date() + ' ' + msg);
+  }
+}</pre>
+
+<h5>Rest Parameters</h5>
+<pre>class Order {
+  addOrderDetails(...orderDetails: IOrderDetail[]) {
+  }
+}</pre>
+
+<h5>Namespaces</h5>
+<pre>namespace AcmeCorp.Logging {
+  export class Logger {
+       static log(msg: string) : void {
+        console.log(msg);
+      };
+  }
+}
+
+/// <reference path="AcmeCorp.Logging.ts" />
+
+//Alias
+import logger = AcmeCorp.Logging.Logger;
+
+namespace AcmeCorp.OnlineStore {
+  class OrderLogic {
+    calcOrder(): number {
+        logger.log("calculating order");
+        return 0;
+    }
+  }
+}</pre>
+<h5>Using Classes to Create Mixins</h5>
+<p>Occasionally, we want classes to expose some API that would be best expressed in terms of an interface -- say, <code>Printable</code>, or <code>Identifiable</code> -- but which they'll all implement in the same way.</p>
+<p>One possibility is to create subclasses, but this approach fails on two major fronts.</p>
+<ol><li>Classes can only inherit from a single parent class. If we need to implement multiple sets of behavior -- <em>both</em> <code>Printable</code> and <code>Identifiable</code>, for instance -- then subclassing doesn't work.</li>
+<li>If the objects that need to implement the interfaces aren't closely related, subclassing is the wrong abstraction. To have a <code>Book</code> and <code>Person</code> both inherit from an <code>Identifiable</code> base class because they both have an ID makes no sense from the standpoint of building a class hierarchy.</li>
+</ol><p>The correct abstraction in this case is the interface. But writing the same implementation in <em>each</em> class that implements it is suboptimal. On</p>
+<p>one hand, it's more typing. And typing sucks. More seriously, writing the same code in several places is brittle, and if you ever need to change what you intend to be a common implementation, you'll have to rewrite the code in every class that implements the interface. </p>
+<p>What we'd want is a way to create an interface that allows us to include implementations. Languages like <a href="http://docs.groovy-lang.org/next/html/documentation/core-traits.html">Groovy</a> solve the problem directly with <em>traits</em> -- in effect, interfaces that can host default method implementations. </p>
+<p>JavaScript doesn't directly support traits,but has made use of the <a href="https://api.jquery.com/jquery.extend/">mixin pattern</a> for quite some time to achieve the same ends. TypeScript provides a little sugar to create mixins by using <em>classes</em> with the <em>implements</em> keyword.</p>
+<h3>Partial Classes</h3>
+<p>Creating a class to use as a mixin is almost identical to creating an interface. There are two differences:</p>
+<ol><li>You use the <code>class</code> keyword, instead of <code>interface</code>; and</li>
+<li>You include method definitions.</li>
+</ol><pre><code class="language-typescript">// mixins.ts
+
+"use strict";
+
+class Printable {
+
+    text : string;
+
+    print () : void {
+        console.log(this.text);
+    }
+
+}
+
+class Identifiable {
+
+    name : string;
+    id : number;
+
+    identify () : void {
+        console.log(`My name is ${this.name}, and my ID is ${this.id}`);
+    }
+}
+
+class Book implements Printable, Identifiable { // LINE A
+
+  name : string;
+  id : number;
+
+  text : string;
+
+    constructor (name : string, id : number, text : string) {
+        this.name = name;
+        this.id = id;
+
+        this.text = text;
+    }
+
+    // DUMMY methods to satisfy the compiler. If we don't have these, TS
+    //   will complain with "Interface not implemented properly".
+    // Printable
+    print () : void { }
+
+    // Identifiable
+    identify () : void { }
+
+}
+applyMixins(Book, [Printable, Identifiable]);
+
+const bad_novel = new Book('A Buncha Nonsense', 2190, 'This book/Is awful. FIN');
+bad_novel.print();
+
+// NECESSARY EVIL ::
+//  From TS docs :: http://www.typescriptlang.org/docs/handbook/mixins.html
+function applyMixins(derivedCtor: any, baseCtors: any[]) {
+    baseCtors.forEach(baseCtor =&gt; {
+        Object.getOwnPropertyNames(baseCtor.prototype).forEach(name =&gt; {
+            derivedCtor.prototype[name] = baseCtor.prototype[name];
+        });
+    });
+}</code></pre>
+<p>Notice that these "mixin classes" do <em>not</em> contain constructors. That means you can't instantiate them. Instead, you'll use them purely to collect method definitions and property signatures. </p>
+<p>Note <strong>Line A</strong>. The reason we can get away with something as weird as implementing a class is because TypeScript treats classes that you implement as interfaces. In other words, it checks that the implementing class contains the same method signatures and instance variables as the "class" you're implementing, but ignores method implementations. We'll see how to get them back in a minute.</p>
+<p>Once you've defined your mixin classes, you create your extending class using <code>implements</code>. And, just as you do when implementing a normal interface, you provide an implementation for the methods that it exposes. </p>
+<p>The only difference is that, here, we implement a no-op, <em>dummy</em> implementation. This is for two reasons. If we don't do this, the compiler will complain that our class doesn't implement its interfaces properly.</p>
+<p>Of course, we don't want the no-op. We want the method definition inside the partial class. To apply this, we have to use a helper function provided in the <a href="http://www.typescriptlang.org/docs/handbook/mixins.html">TypeScript documentation</a>: <code>applyMixins</code>. It replaces your dummy implementations with the real ones in your partial classes. You'll have to use <code>applyMixins</code> for every mixin class you create. </p>
+<p>If you decide to use mixins, I recommend collecting all the <code>applyMixins</code> calls into their own module, or at least into their own chunk of the program. That way you can keep track of where the magic happens.</p>
+<p>Frankly, I find all this to be more trouble than it's worth. But you'll see this pattern in the wild, whether you use it or not, so it's important to know that it's available.</p>
+						</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>JavaScript Tips & Tricks</h3>
+					<ul uk-accordion>
+						<li>
+							<!-- START : ACCORDION CONTENT -->
+							<h3 class="uk-accordion-title">Add & Remove Classes With JavaScript Property classList</h3>
+							<div class="uk-accordion-content">
+								<h4>Element.classList</h4>
+								<p>The <code>classList</code> property returns a token list of the class attribute of the element in question. Luckily for us, it also comes with a few handy methods:</p>
+								<pre>// adds class "foo" to el
+	el.classList.add("foo");
+
+	// removes class "bar" from el
+	el.classList.remove("bar");
+
+	// toggles the class "foo"
+	el.classList.toggle("foo");
+
+	// outputs "true" to console if el contains "foo", "false" if not
+	console.log( el.classList.contains("foo") );
+
+	// add multiple classes to el
+	el.classList.add( "foo", "bar" );</pre>
+
+	<table class="w3-table-all notranslate">
+	  <tbody><tr>
+	  <th style="width:25%">Method</th>
+		<th>Description</th>
+	  </tr>
+	  <tr>
+		<td>add(<em>class1, class2, ...</em>)</td>
+		<td>Adds one or more class names to an element.<br><br>If the  specified class already exist, the class will not be added</td>
+	  </tr>
+	  <tr>
+		<td>contains(<em>class</em>)</td>
+		<td>
+	  Returns a Boolean value, indicating whether an element has the  specified class name.
+	  <p>Possible values:</p>
+	  <ul>
+		  <li>true - the element contains the specified class name</li>
+		  <li>false - the element does not contain the specified class name</li>
+	  </ul>
+		</td>
+	  </tr>
+	  <tr>
+		<td>item(<em>index</em>)</td>
+		<td>Returns the class name with a specified index number from an  element. Index starts at 0.<br><br>Returns <em>null</em> if the index is  out of range</td>
+	  </tr>
+	  <tr>
+		<td>remove(<em>class1, class2, ...</em>)</td>
+		<td>Removes one or more class names from an element.<br><br>
+	  <strong>Note:</strong> Removing a class that does not exist, does NOT  throw an error</td>
+	  </tr>
+	  <tr>
+		<td>toggle(<em>class, </em>true|false)</td>
+		<td>Toggles between a class name for an element.<br><br>The first  parameter removes the specified class from an element, and returns  false. <br>If the class does not exist, it is added to the element, and the  return value is true.<br><br>The optional second parameter is a Boolean  value that forces the  class to be added or removed, regardless of whether or not it already  existed. For example:<br><br>Remove a class: <em>element</em>.classList.toggle("classToRemove", false); <br>Add a class:
+	  <em>element</em>.classList.toggle("classToAdd",  true);<br><br><strong>Note: </strong>The second parameter is not  supported in Internet Explorer or Opera 12 and earlier.</td>
+	  </tr>
+
+	</tbody></table>
+							</div>
+							<!-- END : ACCORDION CONTENT -->
+						</li>
+						
+
+						<li>
+							<!-- START : ACCORDION CONTENT -->
+							<h3 class="uk-accordion-title">Cross Browser Calculation of X & Y Position</h3>
+							<div class="uk-accordion-content">
+<pre>
+// REF : http://callmenick.com/post/cross-browser-calculation-of-x-y-position
+//==========================================
+
+function getPosition(e) {
+  var posx = 0;
+  var posy = 0;
+
+  if (!e) var e = window.event;
+
+  if (e.pageX || e.pageY) {
+	posx = e.pageX;
+	posy = e.pageY;
+  }
+  else if (e.clientX || e.clientY) {
+	posx = e.clientX + document.body.scrollLeft
+	  + document.documentElement.scrollLeft;
+	posy = e.clientY + document.body.scrollTop
+	  + document.documentElement.scrollTop;
+  }
+
+  return {
+	x: posx,
+	y: posy
+  }
+}
+
+//Usage
+//======================
+document.addEventListener( "click", function(e) {
+  var x = getPosition(e).x;
+  var y = getPosition(e).y;
+  console.log("x pos: "+ x +" // y pos:"+ y);
+});
+</pre>
+							</div>
+							<!-- END : ACCORDION CONTENT -->
+						</li>
+						
+						<li>
+							<!-- START : ACCORDION CONTENT -->
+							<h3 class="uk-accordion-title">Debounce function</h3>
+							<div class="uk-accordion-content">
+<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>The debounce function can be a game-changer when it comes to event-fueled performance.  If you aren't using a debouncing function with a scroll, resize, key* event, you're probably doing it wrong.  Here's a debounce function to keep your code efficient:</p>
+								<p>The debounce function will not allow a callback to be used more than once per given time frame.  This is especially important when assigning a callback function to frequently-firing events.</p>
+							</article>
+						</section>
+<pre>
+// EXAMPLE 1
+//=======================
+	
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
+
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
+// Usage
+var myEfficientFn = debounce(function() {
+	// All the taxing stuff you do
+}, 250);
+window.addEventListener('resize', myEfficientFn);
+</pre>
+
+<pre>
+// EXAMPLE 2
+//=======================
+
+var typingTimer; //timer identifier
+
+this.document.on('keyup', function(event) {
+	var self = this;
+	
+	//on keyup, start the countdown
+	clearTimeout(typingTimer);
+	
+	typingTimer = setTimeout(function() {
+		
+		// Your code to save document or Call function 
+		doneTyping();
+		
+	}, 500);
+});
+</pre>
+							</div>
+							<!-- END : ACCORDION CONTENT -->
+						</li>
+						
+					</ul>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+						<h3>ES6+</h3>
+						<ul id="es6_topics" class="uk-switcher">
+							<li>
+								<h4>Promise</h4>
+								<ul class="uk-list uk-list-large">
+									<li><a href="http://trycatchfail.com/blog/post/Practical-Promises-in-JavaScript-What-are-they-and-how-do-I-use-them" target="_blank">Practical Promises in JavaScript - What are they, and how do I use them? ( Multipart Series )</a></li>
+									<li><a href="https://coligo.io/javascript-promises-plain-simple/" target="_blank">JavaScript Promises: Plain and Simple</a></li>
+								</ul>
+							</li>
+							<li>
+<h4>ES6 Generator</h4>
+<pre>
+// Example 1:
+// REF.: https://medium.com/ecmascript-2015/es6-generators-4494aa135ad3
+//============================================================
+
+// ES6 ( ES2015 )
+//------------------------------------------
+function* random1_10 () {
+  while (true) {
+    yield Math.floor(Math.random() * 10) + 1;
+  }
+}
+let rand = random1_10();
+console.log(rand.next());
+console.log(rand.next());
+
+// ES5
+//------------------------------------------
+function random1_10 () {
+  return {
+    next: function() {
+      return {
+        value: Math.floor(Math.random() * 10) + 1,
+        done: false
+      };
+    }
+  };
+}
+let rand = random1_10();
+console.log(rand.next());
+console.log(rand.next());
+
+// Mixing Generators
+//------------------------------------------
+function* random (max) {
+  yield Math.floor(Math.random() * max) + 1;
+}
+function* random1_20 () {
+  while (true) {
+    yield* random(20);
+  }
+}
+let rand = random1_20();
+console.log(rand.next());
+console.log(rand.next());
+</pre>
+						<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>ExampleDescription</p>
+							</article>
+						</section>
+							</li>
+							<li>
+								<h3>Class</h3>
+<pre>
+// ES6
+class Animal {
+  constructor(name, legsNumber) {
+    this.name = name;
+    this.legsNumber = legsNumber;
+  }
+  speak() {
+    console.log(this.name + ' makes a noise.');
+  }
+}
+
+// ES5
+var Animal = function (name, legsNumber) {
+  this.name = name;
+  this.legsNumber = legsNumber;
+};
+Animal.prototype.speak = function() {
+  console.log(this.name + ' makes a noise.');
+};
+</pre>
+
+<pre>
+// Inheritance
+// ES6
+class Snake extends Animal {
+  constructor(name: string) {
+    super(name, 0);
+  }
+  speak() {
+    console.log(this.name + ' hisses.');
+  }
+}
+class Horse extends Animal {
+  constructor(name: string) {
+    super(name, 4);
+  }
+  speak() {
+    console.log(this.name + ' whinnies.');
+  }
+}
+
+// ES5
+var Snake = function (name) {
+  Animal.apply(this, [name, 0]);
+};
+Snake.prototype = Object.create(Animal.prototype);
+Snake.prototype.constructor = Snake;
+Snake.prototype.speak = function() {
+  console.log(this.name + ' hisses.');
+};
+var Horse = function (name) {
+  Animal.apply(this, [name, 4]);
+};
+Horse.prototype = Object.create(Animal.prototype);
+Horse.prototype.constructor = Horse;
+Horse.prototype.speak = function() {
+  console.log(this.name + ' whinnies.');
+};
+
+// Usage
+var kaa = new Snake("Kaa the Python");
+var fury = new Horse("Fury the Horse");
+
+console.log(kaa.legsNumber);    //0
+console.log(fury.legsNumber);   //4
+</pre>
+							</li>
+						</ul>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+<h3>CHEAT SHEET (V4.0.0) TYPESCRIPT</h3>
+						<div>
+<div class="l-content-small grid-fluid docs-content cheatsheet">
+<table>
+<tbody><tr>
+<th>Bootstrapping</th>
+<th><p><code>import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code><b>platformBrowserDynamic().bootstrapModule</b>(AppModule);</code></td>
+<td><p>Bootstraps the app, using the root component from the specified <code>NgModule</code>. </p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>NgModules</th>
+<th><p><code>import { NgModule } from '@angular/core';</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code>@<b>NgModule</b>({&nbsp;declarations:&nbsp;...,&nbsp;imports:&nbsp;...,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exports:&nbsp;...,&nbsp;providers:&nbsp;...,&nbsp;bootstrap:&nbsp;...})<br>class&nbsp;MyModule&nbsp;{}</code></td>
+<td><p>Defines a module that contains components, directives, pipes, and providers.</p>
+</td>
+</tr><tr>
+<td><code><b>declarations:</b>&nbsp;[MyRedComponent,&nbsp;MyBlueComponent,&nbsp;MyDatePipe]</code></td>
+<td><p>List of components, directives, and pipes that belong to this module.</p>
+</td>
+</tr><tr>
+<td><code><b>imports:</b>&nbsp;[BrowserModule,&nbsp;SomeOtherModule]</code></td>
+<td><p>List of modules to import into this module. Everything from the imported modules<is>available to <code>declarations</code> of this module.</is></p></td>
+</tr><tr>
+<td><code><b>exports:</b>&nbsp;[MyRedComponent,&nbsp;MyDatePipe]</code></td>
+<td><p>List of components, directives, and pipes visible to modules that import this module.</p>
+</td>
+</tr><tr>
+<td><code><b>providers:</b>&nbsp;[MyService,&nbsp;{&nbsp;provide:&nbsp;...&nbsp;}]</code></td>
+<td><p>List of dependency injection providers visible both to the contents of this module and to importers of this module.</p>
+</td>
+</tr><tr>
+<td><code><b>bootstrap:</b>&nbsp;[MyAppComponent]</code></td>
+<td><p>List of components to bootstrap when this module is bootstrapped.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Template syntax</th>
+<th></th>
+</tr>
+<tr>
+<td><code>&lt;input&nbsp;<b>[value]</b>="firstName"&gt;</code></td>
+<td><p>Binds property <code>value</code> to the result of expression <code>firstName</code>.</p>
+</td>
+</tr><tr>
+<td><code>&lt;div&nbsp;<b>[attr.role]</b>="myAriaRole"&gt;</code></td>
+<td><p>Binds attribute <code>role</code> to the result of expression <code>myAriaRole</code>.</p>
+</td>
+</tr><tr>
+<td><code>&lt;div&nbsp;<b>[class.extra-sparkle]</b>="isDelightful"&gt;</code></td>
+<td><p>Binds the presence of the CSS class <code>extra-sparkle</code> on the element to the truthiness of the expression <code>isDelightful</code>.</p>
+</td>
+</tr><tr>
+<td><code>&lt;div&nbsp;<b>[style.width.px]</b>="mySize"&gt;</code></td>
+<td><p>Binds style property <code>width</code> to the result of expression <code>mySize</code> in pixels. Units are optional.</p>
+</td>
+</tr><tr>
+<td><code>&lt;button&nbsp;<b>(click)</b>="readRainbow($event)"&gt;</code></td>
+<td><p>Calls method <code>readRainbow</code> when a click event is triggered on this button element (or its children) and passes in the event object.</p>
+</td>
+</tr><tr>
+<td><code>&lt;div&nbsp;title="Hello&nbsp;<b>{{ponyName}}</b>"&gt;</code></td>
+<td><p>Binds a property to an interpolated string, for example, "Hello Seabiscuit". Equivalent to:
+<code>&lt;div [title]="'Hello ' + ponyName"&gt;</code></p>
+</td>
+</tr><tr>
+<td><code>&lt;p&gt;Hello&nbsp;<b>{{ponyName}}</b>&lt;/p&gt;</code></td>
+<td><p>Binds text content to an interpolated string, for example, "Hello Seabiscuit".</p>
+</td>
+</tr><tr>
+<td><code>&lt;my-cmp&nbsp;<b>[(title)]</b>="name"&gt;</code></td>
+<td><p>Sets up two-way data binding. Equivalent to: <code>&lt;my-cmp [title]="name" (titleChange)="name=$event"&gt;</code></p>
+</td>
+</tr><tr>
+<td><code>&lt;video&nbsp;<b>#movieplayer</b>&nbsp;...&gt;<br>&nbsp;&nbsp;&lt;button&nbsp;<b>(click)</b>="movieplayer.play()"&gt;<br>&lt;/video&gt;</code></td>
+<td><p>Creates a local variable <code>movieplayer</code> that provides access to the <code>video</code> element instance in data-binding and event-binding expressions in the current template.</p>
+</td>
+</tr><tr>
+<td><code>&lt;p&nbsp;<b>*myUnless</b>="myExpression"&gt;...&lt;/p&gt;</code></td>
+<td><p>The <code>*</code> symbol turns the current element into an embedded template. Equivalent to:
+<code>&lt;ng-template [myUnless]="myExpression"&gt;&lt;p&gt;...&lt;/p&gt;&lt;/ng-template&gt;</code></p>
+</td>
+</tr><tr>
+<td><code>&lt;p&gt;Card&nbsp;No.:&nbsp;<b>{{cardNumber&nbsp;|&nbsp;myCardNumberFormatter}}</b>&lt;/p&gt;</code></td>
+<td><p>Transforms the current value of expression <code>cardNumber</code> via the pipe called <code>myCardNumberFormatter</code>.</p>
+</td>
+</tr><tr>
+<td><code>&lt;p&gt;Employer:&nbsp;<b>{{employer?.companyName}}</b>&lt;/p&gt;</code></td>
+<td><p>The safe navigation operator (<code>?</code>) means that the <code>employer</code> field is optional and if <code>undefined</code>, the rest of the expression should be ignored.</p>
+</td>
+</tr><tr>
+<td><code>&lt;<b>svg:</b>rect&nbsp;x="0"&nbsp;y="0"&nbsp;width="100"&nbsp;height="100"/&gt;</code></td>
+<td><p>An SVG snippet template needs an <code>svg:</code> prefix on its root element to disambiguate the SVG element from an HTML component.</p>
+</td>
+</tr><tr>
+<td><code>&lt;<b>svg</b>&gt;<br>&nbsp;&nbsp;&lt;rect&nbsp;x="0"&nbsp;y="0"&nbsp;width="100"&nbsp;height="100"/&gt;<br>&lt;/<b>svg</b>&gt;</code></td>
+<td><p>An <code>&lt;svg&gt;</code> root element is detected as an SVG element automatically, without the prefix.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Built-in directives</th>
+<th><p><code>import { CommonModule } from '@angular/common';</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code>&lt;section&nbsp;<b>*ngIf</b>="showSection"&gt;</code></td>
+<td><p>Removes or recreates a portion of the DOM tree based on the <code>showSection</code> expression.</p>
+</td>
+</tr><tr>
+<td><code>&lt;li&nbsp;<b>*ngFor</b>="let&nbsp;item&nbsp;of&nbsp;list"&gt;</code></td>
+<td><p>Turns the li element and its contents into a template, and uses that to instantiate a view for each item in list.</p>
+</td>
+</tr><tr>
+<td><code>&lt;div&nbsp;<b>[ngSwitch]</b>="conditionExpression"&gt;<br>&nbsp;&nbsp;&lt;ng-template&nbsp;<b>[<b>ngSwitchCase</b>]</b>="case1Exp"&gt;...&lt;/ng-template&gt;<br>&nbsp;&nbsp;&lt;ng-template&nbsp;<b>ngSwitchCase</b>="case2LiteralString"&gt;...&lt;/ng-template&gt;<br>&nbsp;&nbsp;&lt;ng-template&nbsp;<b>ngSwitchDefault</b>&gt;...&lt;/ng-template&gt;<br>&lt;/div&gt;</code></td>
+<td><p>Conditionally swaps the contents of the div by selecting one of the embedded templates based on the current value of <code>conditionExpression</code>.</p>
+</td>
+</tr><tr>
+<td><code>&lt;div&nbsp;<b>[ngClass]</b>="{active:&nbsp;isActive,&nbsp;disabled:&nbsp;isDisabled}"&gt;</code></td>
+<td><p>Binds the presence of CSS classes on the element to the truthiness of the associated map values. The right-hand expression should return {class-name: true/false} map.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Forms</th>
+<th><p><code>import { FormsModule } from '@angular/forms';</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code>&lt;input&nbsp;<b>[(ngModel)]</b>="userName"&gt;</code></td>
+<td><p>Provides two-way data-binding, parsing, and validation for form controls.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Class decorators</th>
+<th><p><code>import { Directive, ... } from '@angular/core';</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code><b>@Component({...})</b><br>class&nbsp;MyComponent()&nbsp;{}</code></td>
+<td><p>Declares that a class is a component and provides metadata about the component.</p>
+</td>
+</tr><tr>
+<td><code><b>@Directive({...})</b><br>class&nbsp;MyDirective()&nbsp;{}</code></td>
+<td><p>Declares that a class is a directive and provides metadata about the directive.</p>
+</td>
+</tr><tr>
+<td><code><b>@Pipe({...})</b><br>class&nbsp;MyPipe()&nbsp;{}</code></td>
+<td><p>Declares that a class is a pipe and provides metadata about the pipe.</p>
+</td>
+</tr><tr>
+<td><code><b>@Injectable()</b><br>class&nbsp;MyService()&nbsp;{}</code></td>
+<td><p>Declares that a class has dependencies that should be injected into the constructor when the dependency injector is creating an instance of this class.
+</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Directive configuration</th>
+<th><p><code>@Directive({ property1: value1, ... })</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code><b>selector:</b>&nbsp;'.cool-button:not(a)'</code></td>
+<td><p>Specifies a CSS selector that identifies this directive within a template. Supported selectors include <code>element</code>,
+<code>[attribute]</code>, <code>.class</code>, and <code>:not()</code>.</p>
+<p>Does not support parent-child relationship selectors.</p>
+</td>
+</tr><tr>
+<td><code><b>providers:</b>&nbsp;[MyService,&nbsp;{&nbsp;provide:&nbsp;...&nbsp;}]</code></td>
+<td><p>List of dependency injection providers for this directive and its children.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Component configuration</th>
+<th><p>
+<code>@Component</code> extends <code>@Directive</code>,<so>the <code>@Directive</code> configuration applies to components as well</so></p></th>
+</tr>
+<tr>
+<td><code><b>moduleId:</b>&nbsp;module.id</code></td>
+<td><p>If set, the <code>templateUrl</code> and <code>styleUrl</code> are resolved relative to the component.</p>
+</td>
+</tr><tr>
+<td><code><b>viewProviders:</b>&nbsp;[MyService,&nbsp;{&nbsp;provide:&nbsp;...&nbsp;}]</code></td>
+<td><p>List of dependency injection providers scoped to this component's view.</p>
+</td>
+</tr><tr>
+<td><code><b>template:</b>&nbsp;'Hello&nbsp;{{name}}'<br><b>templateUrl:</b>&nbsp;'my-component.html'</code></td>
+<td><p>Inline template or external template URL of the component's view.</p>
+</td>
+</tr><tr>
+<td><code><b>styles:</b>&nbsp;['.primary&nbsp;{color:&nbsp;red}']<br><b>styleUrls:</b>&nbsp;['my-component.css']</code></td>
+<td><p>List of inline CSS styles or external stylesheet URLs for styling the component's view.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Class field decorators for directives and components</th>
+<th><p><code>import { Input, ... } from '@angular/core';</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code><b>@Input()</b>&nbsp;myProperty;</code></td>
+<td><p>Declares an input property that you can update via property binding (example:
+<code>&lt;my-cmp [myProperty]="someExpression"&gt;</code>).</p>
+</td>
+</tr><tr>
+<td><code><b>@Output()</b>&nbsp;myEvent&nbsp;=&nbsp;new&nbsp;EventEmitter();</code></td>
+<td><p>Declares an output property that fires events that you can subscribe to with an event binding (example: <code>&lt;my-cmp (myEvent)="doSomething()"&gt;</code>).</p>
+</td>
+</tr><tr>
+<td><code><b>@HostBinding('class.valid')</b>&nbsp;isValid;</code></td>
+<td><p>Binds a host element property (here, the CSS class <code>valid</code>) to a directive/component property (<code>isValid</code>).</p>
+</td>
+</tr><tr>
+<td><code><b>@HostListener('click',&nbsp;['$event'])</b>&nbsp;onClick(e)&nbsp;{...}</code></td>
+<td><p>Subscribes to a host element event (<code>click</code>) with a directive/component method (<code>onClick</code>), optionally passing an argument (<code>$event</code>).</p>
+</td>
+</tr><tr>
+<td><code><b>@ContentChild(myPredicate)</b>&nbsp;myChildComponent;</code></td>
+<td><p>Binds the first result of the component content query (<code>myPredicate</code>) to a property (<code>myChildComponent</code>) of the class.</p>
+</td>
+</tr><tr>
+<td><code><b>@ContentChildren(myPredicate)</b>&nbsp;myChildComponents;</code></td>
+<td><p>Binds the results of the component content query (<code>myPredicate</code>) to a property (<code>myChildComponents</code>) of the class.</p>
+</td>
+</tr><tr>
+<td><code><b>@ViewChild(myPredicate)</b>&nbsp;myChildComponent;</code></td>
+<td><p>Binds the first result of the component view query (<code>myPredicate</code>) to a property (<code>myChildComponent</code>) of the class. Not available for directives.</p>
+</td>
+</tr><tr>
+<td><code><b>@ViewChildren(myPredicate)</b>&nbsp;myChildComponents;</code></td>
+<td><p>Binds the results of the component view query (<code>myPredicate</code>) to a property (<code>myChildComponents</code>) of the class. Not available for directives.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Directive and component change detection and lifecycle hooks</th>
+<th><p>(implemented as class methods)
+</p>
+</th>
+</tr>
+<tr>
+<td><code><b>constructor(myService:&nbsp;MyService,&nbsp;...)</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.</p>
+</td>
+</tr><tr>
+<td><code><b>ngOnChanges(changeRecord)</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called after every change to input properties and before processing content or child views.</p>
+</td>
+</tr><tr>
+<td><code><b>ngOnInit()</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called after the constructor, initializing input properties, and the first call to <code>ngOnChanges</code>.</p>
+</td>
+</tr><tr>
+<td><code><b>ngDoCheck()</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.</p>
+</td>
+</tr><tr>
+<td><code><b>ngAfterContentInit()</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called after <code>ngOnInit</code> when the component's or directive's content has been initialized.</p>
+</td>
+</tr><tr>
+<td><code><b>ngAfterContentChecked()</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called after every check of the component's or directive's content.</p>
+</td>
+</tr><tr>
+<td><code><b>ngAfterViewInit()</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called after <code>ngAfterContentInit</code> when the component's view has been initialized. Applies to components only.</p>
+</td>
+</tr><tr>
+<td><code><b>ngAfterViewChecked()</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called after every check of the component's view. Applies to components only.</p>
+</td>
+</tr><tr>
+<td><code><b>ngOnDestroy()</b>&nbsp;{&nbsp;...&nbsp;}</code></td>
+<td><p>Called once, before the instance is destroyed.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Dependency injection configuration</th>
+<th></th>
+</tr>
+<tr>
+<td><code>{&nbsp;<b>provide</b>:&nbsp;MyService,&nbsp;<b>useClass</b>:&nbsp;MyMockService&nbsp;}</code></td>
+<td><p>Sets or overrides the provider for <code>MyService</code> to the <code>MyMockService</code> class.</p>
+</td>
+</tr><tr>
+<td><code>{&nbsp;<b>provide</b>:&nbsp;MyService,&nbsp;<b>useFactory</b>:&nbsp;myFactory&nbsp;}</code></td>
+<td><p>Sets or overrides the provider for <code>MyService</code> to the <code>myFactory</code> factory function.</p>
+</td>
+</tr><tr>
+<td><code>{&nbsp;<b>provide</b>:&nbsp;MyValue,&nbsp;<b>useValue</b>:&nbsp;41&nbsp;}</code></td>
+<td><p>Sets or overrides the provider for <code>MyValue</code> to the value <code>41</code>.</p>
+</td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr>
+<th>Routing and navigation</th>
+<th><p><code>import { Routes, RouterModule, ... } from '@angular/router';</code>
+</p>
+</th>
+</tr>
+<tr>
+<td><code>const&nbsp;routes:&nbsp;<b>Routes</b>&nbsp;=&nbsp;[<br>&nbsp;&nbsp;{&nbsp;path:&nbsp;'',&nbsp;component:&nbsp;HomeComponent&nbsp;},<br>&nbsp;&nbsp;{&nbsp;path:&nbsp;'path/:routeParam',&nbsp;component:&nbsp;MyComponent&nbsp;},<br>&nbsp;&nbsp;{&nbsp;path:&nbsp;'staticPath',&nbsp;component:&nbsp;...&nbsp;},<br>&nbsp;&nbsp;{&nbsp;path:&nbsp;'**',&nbsp;component:&nbsp;...&nbsp;},<br>&nbsp;&nbsp;{&nbsp;path:&nbsp;'oldPath',&nbsp;redirectTo:&nbsp;'/staticPath'&nbsp;},<br>&nbsp;&nbsp;{&nbsp;path:&nbsp;...,&nbsp;component:&nbsp;...,&nbsp;data:&nbsp;{&nbsp;message:&nbsp;'Custom'&nbsp;}&nbsp;}<br>]);<br><br>const&nbsp;routing&nbsp;=&nbsp;RouterModule.forRoot(routes);</code></td>
+<td><p>Configures routes for the application. Supports static, parameterized, redirect, and wildcard routes. Also supports custom route data and resolve.</p>
+</td>
+</tr><tr>
+<td><code><br>&lt;<b>router-outlet</b>&gt;&lt;/<b>router-outlet</b>&gt;<br>&lt;<b>router-outlet</b>&nbsp;name="aux"&gt;&lt;/<b>router-outlet</b>&gt;<br></code></td>
+<td><p>Marks the location to load the component of the active route.</p>
+</td>
+</tr><tr>
+<td><code><br>&lt;a&nbsp;routerLink="/path"&gt;<br>&lt;a&nbsp;<b>[routerLink]</b>="[&nbsp;'/path',&nbsp;routeParam&nbsp;]"&gt;<br>&lt;a&nbsp;<b>[routerLink]</b>="[&nbsp;'/path',&nbsp;{&nbsp;matrixParam:&nbsp;'value'&nbsp;}&nbsp;]"&gt;<br>&lt;a&nbsp;<b>[routerLink]</b>="[&nbsp;'/path'&nbsp;]"&nbsp;[queryParams]="{&nbsp;page:&nbsp;1&nbsp;}"&gt;<br>&lt;a&nbsp;<b>[routerLink]</b>="[&nbsp;'/path'&nbsp;]"&nbsp;fragment="anchor"&gt;<br></code></td>
+<td><p>Creates a link to a different view based on a route instruction consisting of a route path, required and optional parameters, query parameters, and a fragment. To navigate to a root route, use the <code>/</code> prefix; for a child route, use the <code>./</code>prefix; for a sibling or parent, use the <code>../</code> prefix.</p>
+</td>
+</tr><tr>
+<td><code>&lt;a&nbsp;[routerLink]="[&nbsp;'/path'&nbsp;]"&nbsp;routerLinkActive="active"&gt;</code></td>
+<td><p>The provided classes are added to the element when the <code>routerLink</code> becomes the current active route.</p>
+</td>
+</tr><tr>
+<td><code>class&nbsp;<b>CanActivate</b>Guard&nbsp;implements&nbsp;<b>CanActivate</b>&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;canActivate(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;route:&nbsp;ActivatedRouteSnapshot,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state:&nbsp;RouterStateSnapshot<br>&nbsp;&nbsp;&nbsp;&nbsp;):&nbsp;Observable&lt;boolean&gt;|Promise&lt;boolean&gt;|boolean&nbsp;{&nbsp;...&nbsp;}<br>}<br><br>{&nbsp;path:&nbsp;...,&nbsp;canActivate:&nbsp;[<b>CanActivate</b>Guard]&nbsp;}</code></td>
+<td><p>An interface for defining a class that the router should call first to determine if it should activate this component. Should return a boolean or an Observable/Promise that resolves to a boolean.</p>
+</td>
+</tr><tr>
+<td><code>class&nbsp;<b>CanDeactivate</b>Guard&nbsp;implements&nbsp;<b>CanDeactivate</b>&lt;T&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;canDeactivate(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;component:&nbsp;T,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;route:&nbsp;ActivatedRouteSnapshot,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state:&nbsp;RouterStateSnapshot<br>&nbsp;&nbsp;&nbsp;&nbsp;):&nbsp;Observable&lt;boolean&gt;|Promise&lt;boolean&gt;|boolean&nbsp;{&nbsp;...&nbsp;}<br>}<br><br>{&nbsp;path:&nbsp;...,&nbsp;canDeactivate:&nbsp;[<b>CanDeactivate</b>Guard]&nbsp;}</code></td>
+<td><p>An interface for defining a class that the router should call first to determine if it should deactivate this component after a navigation. Should return a boolean or an Observable/Promise that resolves to a boolean.</p>
+</td>
+</tr><tr>
+<td><code>class&nbsp;<b>CanActivateChild</b>Guard&nbsp;implements&nbsp;<b>CanActivateChild</b>&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;canActivateChild(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;route:&nbsp;ActivatedRouteSnapshot,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state:&nbsp;RouterStateSnapshot<br>&nbsp;&nbsp;&nbsp;&nbsp;):&nbsp;Observable&lt;boolean&gt;|Promise&lt;boolean&gt;|boolean&nbsp;{&nbsp;...&nbsp;}<br>}<br><br>{&nbsp;path:&nbsp;...,&nbsp;canActivateChild:&nbsp;[CanActivateGuard],<br>&nbsp;&nbsp;&nbsp;&nbsp;children:&nbsp;...&nbsp;}</code></td>
+<td><p>An interface for defining a class that the router should call first to determine if it should activate the child route. Should return a boolean or an Observable/Promise that resolves to a boolean.</p>
+</td>
+</tr><tr>
+<td><code>class&nbsp;<b>Resolve</b>Guard&nbsp;implements&nbsp;<b>Resolve</b>&lt;T&gt;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;resolve(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;route:&nbsp;ActivatedRouteSnapshot,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state:&nbsp;RouterStateSnapshot<br>&nbsp;&nbsp;&nbsp;&nbsp;):&nbsp;Observable&lt;any&gt;|Promise&lt;any&gt;|any&nbsp;{&nbsp;...&nbsp;}<br>}<br><br>{&nbsp;path:&nbsp;...,&nbsp;resolve:&nbsp;[<b>Resolve</b>Guard]&nbsp;}</code></td>
+<td><p>An interface for defining a class that the router should call first to resolve route data before rendering the route. Should return a value or an Observable/Promise that resolves to a value.</p>
+</td>
+</tr><tr>
+<td><code>class&nbsp;<b>CanLoad</b>Guard&nbsp;implements&nbsp;<b>CanLoad</b>&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;canLoad(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;route:&nbsp;Route<br>&nbsp;&nbsp;&nbsp;&nbsp;):&nbsp;Observable&lt;boolean&gt;|Promise&lt;boolean&gt;|boolean&nbsp;{&nbsp;...&nbsp;}<br>}<br><br>{&nbsp;path:&nbsp;...,&nbsp;canLoad:&nbsp;[<b>CanLoad</b>Guard],&nbsp;loadChildren:&nbsp;...&nbsp;}</code></td>
+<td><p>An interface for defining a class that the router should call first to check if the lazy loaded module should be loaded. Should return a boolean or an Observable/Promise that resolves to a boolean.</p>
+</td>
+</tr>
+</tbody></table>
+</div>
+						</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>Chrome Addons</h3>
+					<div>
+						<ul class="uk-list uk-list-large">
+							<li>
+								<a href="http://cssdig.com/" target="_blank">CSS Dig</span></a>
+								<p>Analyze your CSS in a new way. Consolidate, refactor, and gawk at the 37 shades of blue your site somehow ended up with.</p>
+							</li>
+							<li>
+								<a href="http://yuanchuan.name/css-doodle/" target="_blank">css-doodle</span></a>
+								<p>A web component for drawing patterns with css.</p>
+							</li>
+						</ul>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>UI Kits/PSD/Sketch</h3>
+					<div>
+						<ul class="uk-list uk-list-large">
+							<li>
+								<a href="https://speckyboy.com/free-mobile-ui-kits-ios-android/" target="_blank">50 Free Mobile UI Kits for iOS & Android</span></a>
+							</li>
+							<li>
+								<a href="https://www.sketchappsources.com/" target="_blank">Sketch App Sources</span></a>
+								<p>Sketch App Sources provides free and premium design resources for Sketch App. We curate hundreds of resources to make designing, prototyping, and iterating faster and more enjoyable.</p>
+							</li>
+						</ul>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>CSS Flexbox Learning Guides</h3>
+					<div>
+						<ul class="uk-list uk-list-large">
+							<li>
+								<a href="https://tympanus.net/codrops/css_reference/flexbox/" target="_blank">tympanus Flexbox Referance</span></a>
+							</li>
+							<li>
+								<a href="https://www.sketchappsources.com/" target="_blank">Sketch App Sources</span></a>
+								<p>Sketch App Sources provides free and premium design resources for Sketch App. We curate hundreds of resources to make designing, prototyping, and iterating faster and more enjoyable.</p>
+							</li>
+						</ul>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>CSS Grid</h3>
+					<div>
+						<ul class="uk-list uk-list-large">
+							<li>
+								<a href="http://learncssgrid.com/" target="_blank">Learn CSS Grid (A guide to learning CSS grid by @jonsuh)</span></a>
+							</li>
+							<li>
+								<a href="https://www.sketchappsources.com/" target="_blank">Sketch App Sources</span></a>
+								<p>Sketch App Sources provides free and premium design resources for Sketch App. We curate hundreds of resources to make designing, prototyping, and iterating faster and more enjoyable.</p>
+							</li>
+						</ul>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>AMD/UMD Pattern</h3>
+					<div class="example" id="example1">
+					<h2 class="example__title grd_wg">UMD: JavaScript modules that run anywhere</h2>
+<pre>
+(function (root, factory) {
+    if (typeof define === "function" && define.amd) {
+        define(["jquery", "underscore"], factory);
+    } else if (typeof exports === "object") {
+        module.exports = factory(require("jquery"), require("underscore"));
+    } else {
+        root.Requester = factory(root.$, root._);
+    }
+}(this, function ($, _) {
+    // this is where I defined my module implementation
+
+    var Requester = { // ... };
+	
+    return Requester;
+}));</pre>
+
+<pre>
+// EXAMPLE 1
+//==============================================
+
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD
+        define(['jquery'], factory);
+    } else if (typeof exports === 'object') {
+        // Node, CommonJS-like
+        module.exports = factory(require('jquery'));
+    } else {
+        // Browser globals (root is window)
+        root.returnExports = factory(root.jQuery);
+    }
+}(this, function ($) {
+    //    methods
+    function myFunc(){};
+
+    //    exposed public method
+    return myFunc;
+}));
+</pre>
+
+<pre>
+// EXAMPLE 2
+//==============================================
+
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD
+        define(['jquery', 'underscore'], factory);
+    } else if (typeof exports === 'object') {
+        // Node, CommonJS-like
+        module.exports = factory(require('jquery'), require('underscore'));
+    } else {
+        // Browser globals (root is window)
+        root.returnExports = factory(root.jQuery, root._);
+    }
+}(this, function ($, _) {
+    //    methods
+    function a(){};    //    private because it's not returned (see below)
+    function b(){};    //    public because it's returned
+    function c(){};    //    public because it's returned
+
+    //    exposed public methods
+    return {
+        b: b,
+        c: c
+    }
+}));</pre>
+						<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>ExampleDescription</p>
+							</article>
+						</section>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+<div class="example" id="example1">
+<h2 class="example__title grd_wg">Extend OR Clone Object</h2>
+<pre>
+var defaults = {
+	letterDelay: 100, //milliseconds
+	sentenceDelay: 1000, //milliseconds
+	loop: false,
+	startOnFocus: true,
+	shuffle: false,
+	showCursor: true,
+	cursor: '|'
+};
+	
+// EXAMPLE 1
+//=========================================
+
+function extend(obj1, obj2) {
+	var obj = {};
+	for (var key in obj1) {
+		obj[key] = obj2[key] === undefined ? obj1[key] : obj2[key];
+	}
+	return obj;
+}
+
+// Usage
+var options = extend(defaults, options);
+
+// EXAMPLE 2
+//=========================================
+
+function extendDefaults(source, properties) {
+	var property;
+	for (property in properties) {
+		if (properties.hasOwnProperty(property)) {
+			source[property] = properties[property];
+		}
+	}
+	return source;
+}
+// Usage
+var options = extendDefaults(defaults, options);
+
+</pre>
+
+<pre>
+// SYNTEX : Object.assign(target, ...sources)
+// The Object.assign() method is used to copy the values of all enumerable own properties from one or more source objects to a target object. 
+//It will return the target object.
+/**
+ * REF : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+ *
+ * var obj = { a: 1 };
+ * var copy = Object.assign({}, obj);
+ * console.log(copy); // { a: 1 }
+*/
+
+
+// Object.assign ponyfill
+// REF. : https://github.com/pawelgrzybek/siema/blob/master/src/siema.js
+//=====================================
+
+const objectAssign = Object.assign || function(srcObj) {
+	for (let i = 1; i &lt; arguments.length; i++) {
+		for (const objProperty in arguments[i]) {
+			if (Object.prototype.hasOwnProperty.call(arguments[i], objProperty)) {
+				srcObj[objProperty] = arguments[i][objProperty];
+			}
+		}
+	}
+	
+	return srcObj;
+};
+
+// Merge defaults with user's settings
+this.config = objectAssign({
+	selector: '.siema',
+	duration: 200,
+	easing: 'ease-out',
+	perPage: 1,
+	startIndex: 0,
+	draggable: true,
+	threshold: 20,
+	loop: false,
+}, options);
+</pre>
+
+<pre>
+// REF. : https://googlechrome.github.io/samples/object-assign-es6/
+//====================================================================
+
+'use strict';
+
+// Merge an object
+let first = {name: 'Tony'};
+let last = {lastName: 'Stark'};
+let person = Object.assign(first, last);
+
+ChromeSamples.log(person);
+// {name: 'Tony', lastName: 'Stark'}
+
+ChromeSamples.log(first);
+// first = {name: 'Tony', lastName: 'Stark'} as the target also changed
+
+// Merge multiple sources
+let a = Object.assign({foo: 0}, {bar: 1}, {baz: 2});
+ChromeSamples.log(a);
+// {foo: 0, bar: 1, baz: 2}
+
+// Merge and overwrite equal keys
+let b = Object.assign({foo: 0}, {foo: 1}, {foo: 2});
+ChromeSamples.log(b);
+// {foo: 2}
+
+// Clone an object
+let obj = {person: 'Thor Odinson'};
+let clone = Object.assign({}, obj);
+ChromeSamples.log(clone);
+// {person: 'Thor Odinson'}	
+</pre>
+
+						<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>To support ES2015 class inheritance, TypeScript transpiles the ES2015 extends keyword functionality to a function named __extends, which executes the code needed to setup the inheritance. Here is the code for the __extends function:</p>
+							</article>
+						</section>
+<pre>
+// REF : https://www.accelebrate.com/blog/javascript-es6-classes-and-prototype-inheritance-part-1-of-2/
+//=====
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+/**
+ * The above code is a little hard to follow, so here is an expanded, documented version of it. 
+ * Review the added source code comments to understand the purpose of each line of code. 
+ * The __extends function works with any pair of parent and child objects.
+*/
+// declare a variable to reference the extends function
+var __extends;
+
+if (this && this.__extends) {
+
+	// the extends function is already defined within the context
+	// of this code, so use the existing __extends function
+	__extends = this.__extends;
+
+} else {
+// the extends function is not already defined within the current
+// context; therefore, define it
+__extends = function (child, parent) {
+
+  // mixin pattern for copying parent constructor function properties
+  // as static properties to the child constructor function
+  // properties on constructor function are commonly known as static
+  // properties
+  for (var parentPropertyName in parent) {
+
+    // only copy properties specifically defined on the parent
+    if (parent.hasOwnProperty(parentPropertyName)) {
+      // for primitive types, this will copy the value,
+      // for object types, this will copy the reference only
+      child[parentPropertyName] = parent[parentPropertyName];
+    }
+
+  }
+
+  // constructor function for the object that instantiated child objects
+  // will inherit from
+  // this function is unique within the context of each call to extend
+
+  function __() {
+    this.constructor = child;
+  }
+
+  if (parent === null) {
+
+    // objects instantiated with the child constructor function will
+    // inherit from an object that inherits from nothing, not even
+    // the built-in JavaScript Object
+    child.prototype = Object.create(parent);
+
+  } else {
+
+    // assign the prototype property of the parent constructor function
+    // to the prototype property of the constructor function defined
+    // above
+    __.prototype = parent.prototype;
+
+    // create the object that all instances of the child will inherit
+    // from, and assign it to the prototype property of the child
+    // constructor function
+    child.prototype = new __();
+
+  }
+
+};
+</pre>
+					</div>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>JavaScript</h3>
+					<ul id="javascript_topics" class="uk-switcher">
+						<li>
+							<ul class="uk-list uk-list-large">
+								<li><a href="https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom" target="_blank">Shadow DOM v1: Self-Contained Web Components</a></li>
+								<li>
+									<a href="https://developers.google.com/web/fundamentals/getting-started/primers/customelements" target="_blank">Custom Elements v1: Reusable Web Components</a>
+								</li>
+								<li>
+									<a href="https://zellwk.com/blog/es6/" target="_blank">Introduction to commonly used ES6 features</a>
+								</li>
+								<li>
+									<a href="https://una.im/local-css-vars/" target="_blank">Locally Scoped CSS Variables: What, How, and Why</a>
+								</li>
+								<li>
+									<a href="https://tympanus.net/codrops/collective/collective-321/" target="_blank">Collective #321</a>
+								</li>
+								<li>
+									<a href="https://css-tricks.com/introduction-webpack-entry-output-loaders-plugins/" target="_blank">Introduction to Webpack: Entry, Output, Loaders, and Plugins (css-tricks.com)</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<h3>JavaScript - What’s the difference between Null & Undefined?</h3>
+							<p>Null : Null means an empty or non-existent value. Null is assigned, and explicitly means nothing.</p>
+							<div><ul class="postList"><li name="b54d" id="b54d" class="graf graf--li graf-after--p"><code class="markup--code markup--li-code">null</code> is an assigned value. It means <em class="markup--em markup--li-em">nothing.</em></li><li name="ef9d" id="ef9d" class="graf graf--li graf-after--li"><code class="markup--code markup--li-code">undefined</code> means a variable has been declared but not defined yet.</li><li name="09b3" id="09b3" class="graf graf--li graf-after--li"><code class="markup--code markup--li-code">null</code> is an object. <code class="markup--code markup--li-code">undefined</code> is of type <code class="markup--code markup--li-code">undefined</code>.</li><li name="9376" id="9376" class="graf graf--li graf-after--li graf--trailing"><code class="markup--code markup--li-code">null&nbsp;!== undefined</code> but <code class="markup--code markup--li-code">null == undefined</code>.</li></ul></div>
+						</li>
+						<li>
+							<h4 name="bda8" id="bda8" class="graf graf--h4 graf--leading"><code class="markup--code markup--h4-code">3 + true ==&nbsp;4</code></h4>
+							<div class="section-inner sectionLayout--insetColumn">
+								
+								<p name="14c1" id="14c1" class="graf graf--p graf-after--h4">I’m not kidding either. In JavaScript, when the plus operator is placed between a <code class="markup--code markup--p-code">number</code> and a <code class="markup--code markup--p-code">boolean</code>, the <code class="markup--code markup--p-code">boolean</code> is converted to a <code class="markup--code markup--p-code">number</code>.</p>
+								<p name="52ae" id="52ae" class="graf graf--p graf-after--p graf--trailing">If you remember back to my <a href="https://hackernoon.com/javascript-showdown-vs-7be792be15b5" data-href="https://hackernoon.com/javascript-showdown-vs-7be792be15b5" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">JavaScript Showdown</a> article, <code class="markup--code markup--p-code">false == 0</code> and <code class="markup--code markup--p-code">true == 1</code>. With this in mind, <code class="markup--code markup--p-code">3 + true</code> is converted to <code class="markup--code markup--p-code">3 + 1</code> and thus we get the answer of <code class="markup--code markup--p-code"><strong class="markup--strong markup--p-strong">4</strong></code>.</p>
+							</div>
+						</li>
+						<li>
+							<h4><code>true +&nbsp;false</code></h4>
+							<div class="section-inner sectionLayout--insetColumn">
+    <h4 name="e46c" id="e46c" class="graf graf--h4 graf--leading">true +&nbsp;false</h4>
+    <p name="f505" id="f505" class="graf graf--p graf-after--h4 graf--trailing">This follows the same logic as the above example. When the plus operator is placed between two <code class="markup--code markup--p-code">booleans</code>, the <code class="markup--code markup--p-code">booleans</code> are converted to <code class="markup--code markup--p-code">numbers</code>. Thus, <code class="markup--code markup--p-code">true + false</code> is converted to <code class="markup--code markup--p-code">1 + 0</code> and we get an answer of <code class="markup--code markup--p-code"><strong class="markup--strong markup--p-strong">1</strong></code>.</p>
+</div>
+						</li>
+						<li>
+						<h4 name="7bf0" id="7bf0" class="graf graf--h4 graf--leading">1 + 1 +&nbsp;‘1’</h4>
+<div class="section-inner sectionLayout--insetColumn">
+    
+    <p name="3d0e" id="3d0e" class="graf graf--p graf-after--h4">Order of operations is important. In this instance, JavaScript evaluates the first <code class="markup--code markup--p-code">+</code> before anything else: <code class="markup--code markup--p-code">1 + 1</code> equals <code class="markup--code markup--p-code">2</code>. Then we move on and add in the <code class="markup--code markup--p-code">string</code> value of <code class="markup--code markup--p-code">'1'</code>. Concatenation occurs and the result is <code class="markup--code markup--p-code">'21'</code>.</p>
+    <p name="348b" id="348b" class="graf graf--p graf-after--p">Here’s the chain of events:</p><pre name="7d7d" id="7d7d" class="graf graf--pre graf-after--p graf--trailing">1 + 1 + '1'<br>  2   + '1'<br>       '21'</pre>
+</div>
+						</li>
+
+						<li>
+						<h4 name="f148" id="f148" class="graf graf--h4 graf--leading">-‘69’ +&nbsp;69</h4>
+<div class="section-inner sectionLayout--insetColumn"><p name="9109" id="9109" class="graf graf--p graf-after--h4">What if we attempt to negate a <code class="markup--code markup--p-code">string</code> and then add a <code class="markup--code markup--p-code">number</code>? As you should know by now, without the negation, our answer would be <code class="markup--code markup--p-code">'6969'</code>. However, the negation changes things.</p><p name="54c3" id="54c3" class="graf graf--p graf-after--p graf--trailing">The minus sign before <code class="markup--code markup--p-code">'69'</code> is a unary minus operator that will actually convert the <code class="markup--code markup--p-code">string</code> to a <code class="markup--code markup--p-code">number</code> and make it negative. Thus, our equation becomes <code class="markup--code markup--p-code">-69 + 69</code> which equals <code class="markup--code markup--p-code"><strong class="markup--strong markup--p-strong">0</strong></code>.</p></div>
+						</li>
+						<li>
+						 <h4 name="331c" id="331c" class="graf graf--h4 graf--startsWithSingleQuote graf--leading">‘1’ + 1 +&nbsp;1</h4>
+						<div class="section-inner sectionLayout--insetColumn">
+   
+    <p name="bbb1" id="bbb1" class="graf graf--p graf-after--h4">What changes when we have our string value first instead of last? Remember the order of operations and work from left to right:</p><pre name="3f77" id="3f77" class="graf graf--pre graf-after--p">'1' + 1 + 1<br>   '11' + 1<br>       '111'</pre>
+    <p name="5b1d" id="5b1d" class="graf graf--p graf-after--pre graf--trailing"><code class="markup--code markup--p-code">string + number = string</code>. So in this instance we’re left with one long string of <code class="markup--code markup--p-code">'111'</code>.</p>
+</div>	
+						</li>
+						<li>
+						<h4>String.prototype.startsWith()</h4>	
+						<p name="1aa8" id="1aa8" class="graf graf--p graf-after--h4">This method is used to verify if a string begins with the characters of a specified string or pre-defined regular expression <code class="markup--code markup--p-code">RegExp</code> which are defined patterns and can be used to search for characters in strings, and returns a Boolean of either <code class="markup--code markup--p-code">true</code> or <code class="markup--code markup--p-code">false</code>. Easy eh? it is also case sensitive and goes thus:</p>
+						<p name="8294" id="8294" class="graf graf--p graf-after--p"><code class="markup--code markup--p-code">str.startsWith(string|RegExp,position)</code>.<br><code class="markup--code markup--p-code">str</code> of course is the parent string.<br><code class="markup--code markup--p-code">string</code> the characters to be searched for.<br><code class="markup--code markup--p-code">RegExp</code> this is a predefined regular expression.<br><code class="markup--code markup--p-code">position</code> this is the position in which the verification starts, if it’s not specified it is assumed that the verification starts from the beginning (index zero).</p>
+<pre>var mix = “i absolutely love that this is medium!”
+console.log(mix.startsWith(‘i absolutely’)) // returns true
+console.log(mix.startsWith(‘welcome to raccoon city Alice’)) //returns false 
+console.log(mix.startsWith(‘love’,13))// returns true</pre>
+						</li>
+						<li>
+							<h4>Creating Objects in JavaScript</h4>
+
+<div class="example" id="example1">
+						<h2 class="example__title grd_wg" id="1" name="1">Creating Objects in JavaScript</h2>
+						<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>This is the easiest way to create a JavaScript Object. Using an object literal, you both define and create an object in one statement.</p>
+
+								<p>An object literal is a list of name:value pairs (like age:50) inside curly braces {}.</p>
+							</article>
+							<span class="arrow"></span>
+						</section>
+						<pre>var person = { 
+	firstName:"John",
+	lastName:"Doe",
+	age:50,
+	eyeColor:"blue"
+};</pre>
+						
+					</div>
+					<div class="example" id="example1">
+						<h2 class="example__title grd_wg">Create Object Using the JavaScript Keyword <code>new</code></h2>
+						
+						<pre>var person = new Object();
+						
+person.firstName = "John";
+person.lastName = "Doe";
+person.age = 50;
+person.eyeColor = "blue";</pre>
+
+						<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>A function that is called using new operator for creation of new objects is called a Constructor Function.</p>
+<p>Creating a function creates an object of type Function. That means, any new function will have its __proto__ point to prototype of 'Function'.</p>
+<p>As a side note: Function is a global internal Object, it doesn't have any properties of its own but inherits them from Function.prototype.</p>
+<p>Further, objects of type Function have another property called 'prototype' pointing to the prototype of the objects which will be created using this function.</p>
+							</article>
+							<span class="arrow"></span>
+						</section>
+
+						<pre>function Person(name, age){
+   this.name = name;
+   this.age = age;
+   this.shoutYourName = function(){
+                              alert('My name is ' + name +'!');
+                        };
+}
+//create Objects
+var John = new Person('John'25);
+var Donn = new Person('Donn'29);
+
+console.log(John.name);  //John
+console.log(John.age);  //25
+John.shoutYourName();   //alerts 'My name is John!'</pre>
+						
+					</div>
+						</li>
+						<li>
+<h2>The lexical this</h2>
+<h3 id="the-lexical-this">The lexical this</h3>
+<p><code>this</code> is a unique keyword whose value changes depending on how it is called. When it's called <strong>outside of any function</strong>, <code>this</code> defaults to the <code>Window</code> object in the browser.</p>
+<pre><code class="lang-js">console.log(this) // Window
+</code></pre>
+<figure>
+  <img src="https://zellwk.com/images/2017/es6/window.png" alt="This defaults to window object in browsers">
+  <figcaption>This defaults to window object in browsers</figcaption>
+</figure>
+
+<p>When <code>this</code> is called in a <strong>simple function call</strong>, <code>this</code> is set to the global object. In the case of browsers, <code>this</code> will always be <code>Window</code>.</p>
+<pre><code class="lang-js">function hello () {
+  console.log(this)
+}
+
+hello() // Window
+</code></pre>
+<p>JavaScript always sets <code>this</code> to the window object within a simple function call. This explains why the <code>this</code> value within functions like <code>setTimeout</code> is always <code>Window</code>.</p>
+<p>When <code>this</code> is called in an <strong>object method</strong>, <code>this</code> would be the object itself:</p>
+<pre><code class="lang-js">let o = {
+  sayThis: function() {
+    console.log(this)
+  }
+}
+
+o.sayThis() // o
+</code></pre>
+<figure>
+  <img src="https://zellwk.com/images/2017/es6/object.png" alt="This refers to the object when the function is called in an object method.">
+  <figcaption>This refers to the object when the function is called in an object method.</figcaption>
+</figure>
+
+<p>When the function is called as a <strong>constructor</strong>, <code>this</code> refers to the <strong>newly constructed object</strong>.</p>
+<pre><code class="lang-js">function Person (age) {
+  this.age = age
+}
+
+let greg = new Person(22)
+let thomas = new Person(24)
+
+console.log(greg) // this.age = 22
+console.log(thomas) // this.age = 24
+</code></pre>
+<figure>
+  <img src="https://zellwk.com/images/2017/es6/constructor.png" alt="This refers to the constructed object called with the new keyword or Object.create().">
+  <figcaption>This refers to the constructed object called with the new keyword or Object.create().</figcaption>
+</figure>
+
+<p>When used in an event listener, <code>this</code> is set to the element that fired the event.</p>
+<pre><code class="lang-js">let button = document.querySelector(&#39;button&#39;)
+
+button.addEventListener(&#39;click&#39;, function() {
+  console.log(this) // button
+})
+</code></pre>
+<p>As you can see in the above situations, the value of <code>this</code> is set by the function that calls it. Every function defines it's own <code>this</code> value.</p>
+<p>In <strong>fat arrow functions</strong>, <code>this</code> <strong>never gets bound to a new value</strong>, no matter how the function is called. <code>this</code> will always be the same <code>this</code> value as its surrounding code. (By the way, lexical means relating to, which I guess, is how the lexical <code>this</code> got its name).</p>
+<p>Okay, that sounds confusing, so let's go through a few real examples.</p>
+<p>First, you <strong>never want to use arrow functions to declare object methods</strong>, because you can't reference the object with <code>this</code> anymore.</p>
+<pre><code class="lang-js">let o = {
+  // Don&#39;t do this
+  notThis: () =&gt; {
+    console.log(this) // Window
+    this.objectThis() // Uncaught TypeError: this.objectThis is not a function
+  },
+  // Do this
+  objectThis: function () {
+    console.log(this) // o
+  }
+  // Or this, which is a new shorthand
+  objectThis2 () {
+    console.log(this) // o
+  }
+}
+</code></pre>
+<p>Second, you <em>may not</em> want to use arrow functions to create event listeners because <code>this</code> no longer binds to the element you attached your event listener to.</p>
+<p>However, you can always get the right <code>this</code> context with <code>event.currentTarget</code>. Which is why I said <em>may not</em>.</p>
+<pre><code class="lang-js">button.addEventListener(&#39;click&#39;, function () {
+  console.log(this) // button
+})
+
+button.addEventListener(&#39;click&#39;, e =&gt; {
+  console.log(this) // Window
+  console.log(event.currentTarget) // button
+})
+</code></pre>
+<p>Third, you <strong>may want</strong> to use the lexical <code>this</code> in places where the <code>this</code> <strong>binding changes without you wanting it to</strong>. An example is the timeout function, so you never have to deal with the <code>this</code>, <code>that</code> or <code>self</code> nonsense.</p>
+<pre><code class="lang-js">let o = {
+  // Old way
+  oldDoSthAfterThree: function () {
+    let that = this
+    setTimeout(function () {
+      console.log(this) // Window
+      console.log(that) // o
+    })
+  },
+  // Arrow function way
+  doSthAfterThree: function () {
+    setTimeout(() =&gt; {
+      console.log(this) // o
+    }, 3000)
+  }
+}
+</code></pre>
+<p>This use case is particularly helpful if you needed to add or remove a class after some time has elapsed:</p>
+<pre><code class="lang-js">let o = {
+  button: document.querySelector(&#39;button&#39;)
+  endAnimation: function () {
+    this.button.classList.add(&#39;is-closing&#39;)
+    setTimeout(() =&gt; {
+      this.button.classList.remove(&#39;is-closing&#39;)
+      this.button.classList.remove(&#39;is-open&#39;)
+    }, 3000)
+  }
+}
+</code></pre>
+<p>Finally, feel free to use the fat arrow function anywhere else to help make your code neater and shorter, like the <code>moreThan20</code> example we had above:</p>
+<pre><code class="lang-js">let array = [1,7,98,5,4,2]
+let moreThan20 = array.filter(num =&gt; num &gt; 20)
+</code></pre>
+						</li>
+						<li>
+						<div class="example" id="example1">
+							<h2 class="example__title grd_wg">Event Delegation</h2>
+<pre>
+// HTML 
+
+&lt;h2>Great Web resources&lt;/h2>
+&lt;ul id="resources">
+	&lt;li>&lt;a href="http://opera.com/wsc">Opera Web Standards Curriculum&lt;/a>&lt;/li>
+	&lt;li>&lt;a href="http://sitepoint.com">Sitepoint&lt;/a>&lt;/li>
+	&lt;li>&lt;a href="http://alistapart.com">A List Apart&lt;/a>&lt;/li>
+	&lt;li>&lt;a href="http://yuiblog.com">YUI Blog&lt;/a>&lt;/li>
+	&lt;li>&lt;a href="http://blameitonthevoices.com">Blame it on the voices&lt;/a>&lt;/li>
+	&lt;li>&lt;a href="http://oddlyspecific.com">Oddly specific&lt;/a>&lt;/li>
+	&lt;/ul>
+</pre>
+<pre>
+// Classic event handling example
+
+(function(){
+	var resources = document.getElementById('resources');
+	var links = resources.getElementsByTagName('a');
+	var all = links.length;
+	
+	for(var i=0; i&lt;all; i++){
+		// Attach a listener to each link
+		links[i].addEventListener('click',handler,false);
+	};
+	
+	function handler(e){
+		var x = e.target; // Get the link that was clicked
+		alert(x);
+		e.preventDefault();
+	};
+})();
+</pre>
+<pre>
+// This could also be done with a single event handler:
+
+(function(){
+	var resources = document.getElementById('resources');
+	resources.addEventListener('click',handler,false);
+	
+	function handler(e){
+		var x = e.target; // get the link tha
+		if(x.nodeName.toLowerCase() === 'a'){
+			alert('Event delegation:' + x);
+			e.preventDefault();
+		}
+	};
+})();
+</pre>
+						<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>ExampleDescription</p>
+							</article>
+						</section>
+							</div>
+						</li>
+						<li>
+							<h3>Array Methods</h3>
+							<div>
+								<h4>Create Array</h4>
+								<pre><code>var myArray = []</code></pre>
+								<pre><code>var myArray = new Array(4)
+								// Output
+								[undefined, undefined, undefined, undefined]
+								</code></pre>
+								<p>You may find that iterating over a sparse array to apply a certain transformation is hard.</p>
+								<pre>> const arr = new Array(4);
+> arr.map((elem, index) => index);
+[undefined, undefined, undefined, undefined]</pre>
+
+<p>To solve this, you can use Array.apply when creating the array.</p>
+<pre>> const arr = Array.apply(null, new Array(4));
+> arr.map((elem, index) => index);
+[0, 1, 2, 3]</pre>
+
+<h4>2. Passing an empty parameter to a method</h4>
+<p>If you want to call a method and ignore one of its parameters, then JavaScript will complain if you keep it empty.</p>
+<pre>> method('parameter1', , 'parameter3');
+Uncaught SyntaxError: Unexpected token ,</pre>
+<p>A workaround that people usually resort to is to pass either <code>null</code> or <code>undefined</code>.</p>
+<pre>> method('parameter1', null, 'parameter3') // or
+> method('parameter1', undefined, 'parameter3');</pre>
+<p>I personally don't like using null since JavaScript treats it as an object and that's just weird. With the introduction of spread operators in ES6, there is a neater way of passing empty parameters to a method. As previously mentioned, arrays are sparse in nature and so passing empty values to it is totally okay. We'll use this to our advantage.</p>
+<pre>> method(...['parameter1', , 'parameter3']); // works!</pre>
+
+<h4>3. Unique array values</h4>
+<p>I always wonder why the Array constructor does not have a designated method to facilitate the use of unique array values. Spread operators are here for the rescue. Use spread operators with the Set constructor to generate unique array values.</p>
+<pre>> const arr = [...new Set([1, 2, 3, 3])];
+[1, 2, 3]</pre>
+
+<h4>Get Ramdom value from Array</h4>
+<pre>// selecting a random array item
+var selectFruit = ["Apple", "Orange", "Banana", "Cherry"];
+
+var pickAFruit = function () {
+	var todaysFruit = selectFruit[Math.floor(Math.random() * selectFruit.length)];
+	return todaysFruit;
+};</pre>
+
+<h4>Get Biggest value from Array</h4>
+<pre>// traversing an array in search of big num
+ 
+var myArray = [4, 5, 6, 99, 68, 7, 24];
+var biggestNum = 0;
+ 
+for (var i = 0; i < myArray.length; i++) {
+    if (myArray[i] > biggestNum) {
+        biggestNum = myArray[i];
+    }
+}
+console.log(biggestNum);
+ 
+// displays 99</pre>
+
+<h4>Get longest string on an Array</h4>
+<pre>var fruits = ["Apple", "Banana", "Orange", "Pomegranate", "Peach"];
+var largest = 0;
+var largestName = "";
+for (var i = 0; i < fruits.length; i++) {
+    if (fruits[i].length > largest) {
+        largest = fruits[i].length;
+        largestName = fruits[i];
+    }
+}
+console.log(largestName);
+// Displays Pomegranate</pre>
+
+<h4>Getting array items from behind to front</h4>
+<pre>var newArray = [1, 2, 3, 4];
+
+console.log(newArray.slice(-1)); // [4]
+console.log(newArray.slice(-2)); // [3, 4]
+console.log(newArray.slice(-3)); // [2, 3, 4]
+console.log(newArray.slice(-4)); // [1, 2, 3, 4]</pre>
+
+<h4>Short-circuits conditionals</h4>
+<p>If you have to execute a function just if a condition is <code class="highlighter-rouge">true</code>, like this:</p>
+<pre>if(condition){
+    dosomething();
+}
+
+// You can use a short-circuit just like this:
+condition && dosomething();
+</pre>
+
+<h4>Set variable default values using "||"</h4>
+<p>If you have to set a default value to variables, you can simple do this:</p>
+<pre>var a;
+
+console.log(a); //undefined
+
+a = a || 'default value';
+
+console.log(a); //default value
+
+a = a || 'new value';
+
+console.log(a); //default value</pre>
+							</div>
+						</li>
+					</ul>
+					
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>Improving your Async functions with WebWorkers</h3>
+ <blockquote>
+  <p>JS shall have but one Thread (in the browser at least)</p>
+
+  <p>– Thus spoke the master programmer.</p>
+</blockquote>
+
+<p>JS runs in a single thread in the browser, this is the truth.</p>
+
+<p>Somewhere in its own universe, there exists a Queue which holds messages
+and functions associated with them.</p>
+
+<p>Every time an event (i.e, a user clicks a button) is registered, there's
+a runtime check to see whether there's any listener attached to that event.
+If there's one, it will enqueue the message. Otherwise, it will be lost
+forever.</p>
+
+<p>Now, our event loop processes one message at a time, meaning that if you
+do some CPU intensive operation (i.e, number crunching) this will indeed
+'block' the one Thread, rendering our application useless.</p>
+
+<p>This is true even for <code class="highlighter-rouge">async</code> functions, which will be queued as soon as
+invoked and executed as soon as possible (immediately given the queue is
+empty).</p>
+
+<p>I/O such as requests to external resources are non-blocking though, so you
+can request a file as large as you want without fear. The associated
+callback, however, will show the same characteristics of an <code class="highlighter-rouge">async</code> function.</p>
+
+<p>Strategies for processing lots of data vary a lot. You could partition data
+and set timeouts for processing bits of it a time for example. But to unleash
+the full power of asynchronous processing, you should use Web Workers.</p>
+
+<p>To do so, you separate the processing part in a different file (possibly
+'my_worker.js'), create a worker with <code class="highlighter-rouge">newWorker = new Worker('my_worker.js');</code>
+and offload the processing to it.</p>
+<pre>// my_worker.js
+const do_a_lot_of_processing = (data) => {
+    ....
+}
+
+onmessage = (e) => {
+    postMessage(do_a_lot_of_processing(e.data));
+}
+
+// main.js
+const myWorker = new Worker('my_worker.js');
+
+async function get_useful_data() {
+    const raw_data = await request(some_url);
+    myWorker.postmessage(raw_data);
+}
+
+const show_data => (e) {
+    const data = e.data;
+    ...
+}
+
+myWorker.onmessage(show_data);
+get_useful_data();</pre>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+					<h3>HTML5 APIs</h3>
+					<ul id="html5_apis" class="uk-switcher">
+						<li>
+							<ul class="uk-list uk-list-large">
+								<li><a href="https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom" target="_blank">Shadow DOM v1: Self-Contained Web Components</a></li>
+								<li>
+									<a href="https://developers.google.com/web/fundamentals/getting-started/primers/customelements" target="_blank">Custom Elements v1: Reusable Web Components</a>
+								</li>
+								<li>
+									<a href="https://zellwk.com/blog/es6/" target="_blank">Introduction to commonly used ES6 features</a>
+								</li>
+								<li>
+									<a href="https://code.tutsplus.com/tutorials/working-with-indexeddb--net-34673" target="_blank">Working With IndexedDB (code.tutsplus.com)</a>
+								</li>
+								<li>
+									<a href="https://www.smashingmagazine.com/2014/09/building-simple-cross-browser-offline-todo-list-indexeddb-websql/" target="_blank">Building A Simple Cross-Browser Offline To-Do List With IndexedDB And WebSQL (smashingmagazine)</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+
+					<!-- END : TAB CONTENT -->
+				</li>
+				<li>
+					<!-- START : TAB CONTENT -->
+
+					<!-- END : TAB CONTENT -->
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- END :: CONTENT -->
+
+<script src="../js/highlight.pack.js"></script>
+		<script>
+		$(document).ready(function() {
+			$('pre').each(function(i, block) {
+				hljs.highlightBlock(block);
+			});
+		});
+		</script>
+		<script>
+		var ukLogo = document.querySelector('.uk-logo');
+		ukLogo.addEventListener('click', function(){
+			document.body.classList.toggle('show-grid');
+		});
+		
+		// Toggle Reading Mode
+		var readModeBtn = document.querySelector('.read-mode');
+		var bodyElem = document.getElementsByTagName('body')[0];
+		
+		readModeBtn.addEventListener('click', function() {
+			document.body.classList.toggle('isReadModeOn')
+		});
+		</script>
+	</body>
+</html>
