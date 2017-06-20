@@ -118,7 +118,30 @@
 
 	<!-- START :: INDEX PANEL -->
 	<div class="nav-panel uk-width-1-5 uk-light uk-background-secondary tm-sidebar-left">
-		<ul class="uk-tab-right uk-nav-parent-icon" uk-tab="connect: #component-tab-left; animation: uk-animation-fade">
+		<ul class="uk-tab-right uk-nav-parent-icon">
+			<li><a href="#section_js">JavaScript</a>
+				<ul id="toggle_usage_0" class="uk-tab-left">
+                    <li><a href="#js_articles">Articles</a></li>
+					<li><a href="#js_null_undefined">What's the difference between Null & Undefined?</a></li>
+					<li><a href="#js_string_methods">String Methods</a></li>
+					<li><a href="#">Creating Objects in JavaScript</a></li>
+                    <li><a href="#">The lexical this</a></li>
+                    <li><a href="#">Event Delegation</a></li>
+					<li><a href="#">Array Methods</a></li>
+                </ul>
+			</li>
+			<li><a href="#">CSS</a>
+				<ul id="toggle_usage_0" class="uk-tab-left">
+                    <li><a href="#">Articles</a></li>
+					<li><a href="#">Creating Objects in JavaScript</a></li>
+                    <li><a href="#">The lexical this</a></li>
+                    <li><a href="#">Event Delegation</a></li>
+					<li><a href="#">Array Methods</a></li>
+                </ul>
+			</li>
+			<li><a href="#">HTML5</a>
+
+			</li>
 			<li><a href="#">CSS Baseline Grid ( Verticle Rhythm )</a></li>
 			<li><a href="#">CSS Unit Calculation</a></li>
 			<li><a href="#">Yarn</a></li>
@@ -127,8 +150,8 @@
 			<li><a href="#">UI Component Libraries</a></li>
 			<li><a href="#">Typescript</a></li>
 			<li><a href="#">JavaScript Tips & Tricks</a></li>
-			<li><a href="#" uk-toggle="target: #toggle_usage_1">ES6+</a>
-                <ul id="toggle_usage_1" class="uk-tab-left" uk-tab="connect: #es6_topics; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
+			<li><a href="#">ES6+</a>
+                <ul id="toggle_usage_1" class="uk-tab-left">
 					<li><a href="#promises">ES6 Promises</a></li>
                     <li><a href="#">Generator</a></li>
                     <li><a href="#">Class</a></li>
@@ -142,30 +165,22 @@
 			<li><a href="#1">AMD/UMD Pattern</a></li>
 			<li><a href="#1">Javascript Plugin Development patterns</a></li>
 			<li><a href="#1">Extend Javascript Objects</a></li>
-			<li><a href="#" uk-toggle="target: #toggle_usage_0">JavaScript</a>
-				<ul id="toggle_usage_0" class="uk-tab-left" uk-tab="connect: #javascript_topics; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
-                    <li><a href="#">Articles</a></li>
-					<li><a href="#">Creating Objects in JavaScript</a></li>
-                    <li><a href="#">The lexical this</a></li>
-                    <li><a href="#">Event Delegation</a></li>
-					<li><a href="#">Array Methods</a></li>
-                </ul>
-			</li>
+
 			<li><a href="#1">JavaScript MVC Pattern</a></li>
 			<li><a href="#1">Javascript Gotchas or Quirks</a></li>
 			<li><a href="#1">Diffrent Array Methods</a></li>
 			<li><a href="#1">JavaScript Custom Events</a></li>
 			<li><a href="#1">jQuery equivalent methods in plain JavaScript</a></li>
 			<li><a href="#1">ES6 equivalent in ES5</a></li>
-			<li><a href="#essjs" uk-toggle="target: #toggle_usage_2">JavaScript Utility Functions</a>
-				<ul id="toggle_usage_2" class="uk-tab-left" uk-tab="connect: #js-utility-funcs; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
+			<li><a href="#essjs">JavaScript Utility Functions</a>
+				<ul id="toggle_usage_2" class="uk-tab-left">
 					<li><a href="#deb">Debounce Method</a></li>
 				</ul>
 			</li>
 			<li><a href="#1">JavaScript Method Chaining</a></li>
 			<li><a href="#1">Scope Chain</a></li>
-			<li><a href="#jsdesignpatterns" uk-toggle="target: #toggle_usage_3">JavaScript Design Patterns</a>
-				<ul id="toggle_usage_3" class="uk-tab-left" uk-tab="connect: #js-design-patterns; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
+			<li><a href="#jsdesignpatterns">JavaScript Design Patterns</a>
+				<ul id="toggle_usage_3" class="uk-tab-left">
 					<li><a href="#mp">Module Pattern</a></li>
 					<li><a href="#rmp">Revealing Module Pattern</a></li>
 					<li><a href="#1">Pub-Sub Pattern</a></li>
@@ -183,8 +198,8 @@
 					<li><a href="#1">Flyweight Pattern</a></li>
 				</ul>
 			</li>
-			<li><a href="#1" uk-toggle="target: #toggle_usage_4">HTML5 APIs</a>
-				<ul id="toggle_usage_4" class="uk-tab-left" uk-tab="connect: #html5_apis; animation: uk-animation-fade" aria-hidden="true" hidden="hidden">
+			<li><a href="#1">HTML5 APIs</a>
+				<ul id="toggle_usage_4" class="uk-tab-left">
 					<li><a href="#fapi">IndexedDB ( Local Storage )</a></li>
 					<li><a href="#fapi">Fetch API</a></li>
 					<li><a href="#gapi">GeoLocation API</a></li>
@@ -200,8 +215,513 @@
 
 	<div class="uk-width-1-7" style="margin-left: 20%;">
 		<div class="uk-container">
+		
+		<!--===================================
+			START :: JavaScript Section
+		=======================================-->
+		<a name="section_js"></a>
+		<h3>JavaScript</h3>
 
-			<ul id="component-tab-left" class="uk-switcher">
+		<ul uk-accordion="multiple: true">
+			<!-- START : ACCORDION ITEM -->
+			<li class="uk-open">
+				<a name="js_articles"></a>
+				<h3 class="uk-accordion-title">Articles</h3>
+				<div class="uk-accordion-content">
+				<!-- START : ACCORDION CONTENT -->
+					<ul class="uk-list uk-list-large">
+						<li><a href="https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom" target="_blank">Shadow DOM v1: Self-Contained Web Components</a></li>
+						<li>
+							<a href="https://developers.google.com/web/fundamentals/getting-started/primers/customelements" target="_blank">Custom Elements v1: Reusable Web Components</a>
+						</li>
+						<li>
+							<a href="https://zellwk.com/blog/es6/" target="_blank">Introduction to commonly used ES6 features</a>
+						</li>
+						<li>
+							<a href="https://una.im/local-css-vars/" target="_blank">Locally Scoped CSS Variables: What, How, and Why</a>
+						</li>
+						<li>
+							<a href="https://tympanus.net/codrops/collective/collective-321/" target="_blank">Collective #321</a>
+						</li>
+						<li>
+							<a href="https://css-tricks.com/introduction-webpack-entry-output-loaders-plugins/" target="_blank">Introduction to Webpack: Entry, Output, Loaders, and Plugins (css-tricks.com)</a>
+						</li>
+					</ul>
+				<!-- END : ACCORDION CONTENT -->
+				</div>
+			</li>
+			<!-- END : ACCORDION ITEM -->
+
+			<!-- START : ACCORDION ITEM -->
+			<li class="uk-open">
+				<a name="js_null_undefined"></a>
+				<h3 class="uk-accordion-title">What's the difference between Null & Undefined?</h3>
+				<div class="uk-accordion-content">
+				<!-- START : ACCORDION CONTENT -->
+				<p>Null : Null means an empty or non-existent value. Null is assigned, and explicitly means nothing.</p>
+				<div><ul class="postList"><li name="b54d" id="b54d" class="graf graf--li graf-after--p"><code class="markup--code markup--li-code">null</code> is an assigned value. It means <em class="markup--em markup--li-em">nothing.</em></li><li name="ef9d" id="ef9d" class="graf graf--li graf-after--li"><code class="markup--code markup--li-code">undefined</code> means a variable has been declared but not defined yet.</li><li name="09b3" id="09b3" class="graf graf--li graf-after--li"><code class="markup--code markup--li-code">null</code> is an object. <code class="markup--code markup--li-code">undefined</code> is of type <code class="markup--code markup--li-code">undefined</code>.</li><li name="9376" id="9376" class="graf graf--li graf-after--li graf--trailing"><code class="markup--code markup--li-code">null&nbsp;!== undefined</code> but <code class="markup--code markup--li-code">null == undefined</code>.</li></ul></div>
+				<!-- END : ACCORDION CONTENT -->
+				</div>
+			</li>
+			<!-- END : ACCORDION ITEM -->
+		</ul>
+		
+		<a name="js_string_methods"></a>
+		<h3>String Methods</h3>
+		
+		<ul uk-accordion="multiple: true">
+			<!-- START : ACCORDION ITEM -->
+			<li class="uk-open">
+				<a name=""></a>
+				<h3 class="uk-accordion-title">String.prototype.startsWith()</h3>
+				<div class="uk-accordion-content">
+				<!-- START : ACCORDION CONTENT -->
+					<p name="1aa8" id="1aa8" class="graf graf--p graf-after--h4">This method is used to verify if a string begins with the characters of a specified string or pre-defined regular expression <code class="markup--code markup--p-code">RegExp</code> which are defined patterns and can be used to search for characters in strings, and returns a Boolean of either <code class="markup--code markup--p-code">true</code> or <code class="markup--code markup--p-code">false</code>. Easy eh? it is also case sensitive and goes thus:</p>
+				<p name="8294" id="8294" class="graf graf--p graf-after--p"><code class="markup--code markup--p-code">str.startsWith(string|RegExp,position)</code>.<br><code class="markup--code markup--p-code">str</code> of course is the parent string.<br><code class="markup--code markup--p-code">string</code> the characters to be searched for.<br><code class="markup--code markup--p-code">RegExp</code> this is a predefined regular expression.<br><code class="markup--code markup--p-code">position</code> this is the position in which the verification starts, if it's not specified it is assumed that the verification starts from the beginning (index zero).</p>
+<pre>var mix = "i absolutely love that this is medium!"
+console.log(mix.startsWith('i absolutely')) // returns true
+console.log(mix.startsWith('welcome to raccoon city Alice')) //returns false
+console.log(mix.startsWith('love',13))// returns true</pre>
+				<!-- END : ACCORDION CONTENT -->
+				</div>
+			</li>
+			<!-- END : ACCORDION ITEM -->
+			
+			<!-- START : ACCORDION ITEM -->
+			<li class="uk-open">
+				<a name=""></a>
+				<h3 class="uk-accordion-title">3 + true ==&nbsp;4</h3>
+				<div class="uk-accordion-content">
+				<!-- START : ACCORDION CONTENT -->
+					<p name="14c1" id="14c1" class="graf graf--p graf-after--h4">I'm not kidding either. In JavaScript, when the plus operator is placed between a <code class="markup--code markup--p-code">number</code> and a <code class="markup--code markup--p-code">boolean</code>, the <code class="markup--code markup--p-code">boolean</code> is converted to a <code class="markup--code markup--p-code">number</code>.</p>
+					<p name="52ae" id="52ae" class="graf graf--p graf-after--p graf--trailing">If you remember back to my <a href="https://hackernoon.com/javascript-showdown-vs-7be792be15b5" data-href="https://hackernoon.com/javascript-showdown-vs-7be792be15b5" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">JavaScript Showdown</a> article, <code class="markup--code markup--p-code">false == 0</code> and <code class="markup--code markup--p-code">true == 1</code>. With this in mind, <code class="markup--code markup--p-code">3 + true</code> is converted to <code class="markup--code markup--p-code">3 + 1</code> and thus we get the answer of <code class="markup--code markup--p-code"><strong class="markup--strong markup--p-strong">4</strong></code>.</p>
+				<!-- END : ACCORDION CONTENT -->
+				</div>
+			</li>
+			<!-- END : ACCORDION ITEM -->
+			
+			<!-- START : ACCORDION ITEM -->
+			<li class="uk-open">
+				<a name=""></a>
+				<h3 class="uk-accordion-title">true + false</h3>
+				<div class="uk-accordion-content">
+				<!-- START : ACCORDION CONTENT -->
+					<p name="f505" id="f505" class="graf graf--p graf-after--h4 graf--trailing">This follows the same logic as the above example. When the plus operator is placed between two <code class="markup--code markup--p-code">booleans</code>, the <code class="markup--code markup--p-code">booleans</code> are converted to <code class="markup--code markup--p-code">numbers</code>. Thus, <code class="markup--code markup--p-code">true + false</code> is converted to <code class="markup--code markup--p-code">1 + 0</code> and we get an answer of <code class="markup--code markup--p-code"><strong class="markup--strong markup--p-strong">1</strong></code>.</p>
+				<!-- END : ACCORDION CONTENT -->
+				</div>
+			</li>
+			<!-- END : ACCORDION ITEM -->
+			
+			<!-- START : ACCORDION ITEM -->
+			<li class="uk-open">
+				<a name=""></a>
+				<h3 class="uk-accordion-title"></h3>
+				<div class="uk-accordion-content">
+				<!-- START : ACCORDION CONTENT -->
+				
+				<!-- END : ACCORDION CONTENT -->
+				</div>
+			</li>
+			<!-- END : ACCORDION ITEM -->
+			
+			<!-- START : ACCORDION ITEM -->
+			<li class="uk-open">
+				<a name=""></a>
+				<h3 class="uk-accordion-title"></h3>
+				<div class="uk-accordion-content">
+				<!-- START : ACCORDION CONTENT -->
+				
+				<!-- END : ACCORDION CONTENT -->
+				</div>
+			</li>
+			<!-- END : ACCORDION ITEM -->
+		</ul>
+		<!--===================================
+			END :: JavaScript Section
+		=======================================-->
+		
+		
+		
+			<ul id="component-tab-left" class="uk-list uk-list-large">
+				<li>
+					<!-- START : TAB CONTENT -->
+					
+
+
+					<ul id="javascript_topics" class="uk-list uk-list-large">
+
+						<li>
+						<h4 name="7bf0" id="7bf0" class="graf graf--h4 graf--leading">1 + 1 +&nbsp;'1'</h4>
+<div class="section-inner sectionLayout--insetColumn">
+
+    <p name="3d0e" id="3d0e" class="graf graf--p graf-after--h4">Order of operations is important. In this instance, JavaScript evaluates the first <code class="markup--code markup--p-code">+</code> before anything else: <code class="markup--code markup--p-code">1 + 1</code> equals <code class="markup--code markup--p-code">2</code>. Then we move on and add in the <code class="markup--code markup--p-code">string</code> value of <code class="markup--code markup--p-code">'1'</code>. Concatenation occurs and the result is <code class="markup--code markup--p-code">'21'</code>.</p>
+    <p name="348b" id="348b" class="graf graf--p graf-after--p">Here's the chain of events:</p><pre name="7d7d" id="7d7d" class="graf graf--pre graf-after--p graf--trailing">1 + 1 + '1'<br>  2   + '1'<br>       '21'</pre>
+</div>
+						</li>
+
+						<li>
+						<h4 name="f148" id="f148" class="graf graf--h4 graf--leading">-'69' +&nbsp;69</h4>
+<div class="section-inner sectionLayout--insetColumn"><p name="9109" id="9109" class="graf graf--p graf-after--h4">What if we attempt to negate a <code class="markup--code markup--p-code">string</code> and then add a <code class="markup--code markup--p-code">number</code>? As you should know by now, without the negation, our answer would be <code class="markup--code markup--p-code">'6969'</code>. However, the negation changes things.</p><p name="54c3" id="54c3" class="graf graf--p graf-after--p graf--trailing">The minus sign before <code class="markup--code markup--p-code">'69'</code> is a unary minus operator that will actually convert the <code class="markup--code markup--p-code">string</code> to a <code class="markup--code markup--p-code">number</code> and make it negative. Thus, our equation becomes <code class="markup--code markup--p-code">-69 + 69</code> which equals <code class="markup--code markup--p-code"><strong class="markup--strong markup--p-strong">0</strong></code>.</p></div>
+						</li>
+						<li>
+						 <h4 name="331c" id="331c" class="graf graf--h4 graf--startsWithSingleQuote graf--leading">'1' + 1 +&nbsp;1</h4>
+						<div class="section-inner sectionLayout--insetColumn">
+
+    <p name="bbb1" id="bbb1" class="graf graf--p graf-after--h4">What changes when we have our string value first instead of last? Remember the order of operations and work from left to right:</p><pre name="3f77" id="3f77" class="graf graf--pre graf-after--p">'1' + 1 + 1<br>   '11' + 1<br>       '111'</pre>
+    <p name="5b1d" id="5b1d" class="graf graf--p graf-after--pre graf--trailing"><code class="markup--code markup--p-code">string + number = string</code>. So in this instance we're left with one long string of <code class="markup--code markup--p-code">'111'</code>.</p>
+</div>
+						</li>
+						
+						<li>
+							<h4>Creating Objects in JavaScript</h4>
+
+<div class="example" id="example1">
+						<h2 class="example__title grd_wg" id="1" name="1">Creating Objects in JavaScript</h2>
+						<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>This is the easiest way to create a JavaScript Object. Using an object literal, you both define and create an object in one statement.</p>
+
+								<p>An object literal is a list of name:value pairs (like age:50) inside curly braces {}.</p>
+							</article>
+							<span class="arrow"></span>
+						</section>
+						<pre>var person = {
+	firstName:"John",
+	lastName:"Doe",
+	age:50,
+	eyeColor:"blue"
+};</pre>
+
+					</div>
+					<div class="example" id="example1">
+						<h2 class="example__title grd_wg">Create Object Using the JavaScript Keyword <code>new</code></h2>
+
+						<pre>var person = new Object();
+
+person.firstName = "John";
+person.lastName = "Doe";
+person.age = 50;
+person.eyeColor = "blue";</pre>
+
+						<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>A function that is called using new operator for creation of new objects is called a Constructor Function.</p>
+<p>Creating a function creates an object of type Function. That means, any new function will have its __proto__ point to prototype of 'Function'.</p>
+<p>As a side note: Function is a global internal Object, it doesn't have any properties of its own but inherits them from Function.prototype.</p>
+<p>Further, objects of type Function have another property called 'prototype' pointing to the prototype of the objects which will be created using this function.</p>
+							</article>
+							<span class="arrow"></span>
+						</section>
+
+						<pre>function Person(name, age){
+   this.name = name;
+   this.age = age;
+   this.shoutYourName = function(){
+                              alert('My name is ' + name +'!');
+                        };
+}
+//create Objects
+var John = new Person('John'25);
+var Donn = new Person('Donn'29);
+
+console.log(John.name);  //John
+console.log(John.age);  //25
+John.shoutYourName();   //alerts 'My name is John!'</pre>
+
+					</div>
+						</li>
+						<li>
+<h2>The lexical this</h2>
+<h3 id="the-lexical-this">The lexical this</h3>
+<p><code>this</code> is a unique keyword whose value changes depending on how it is called. When it's called <strong>outside of any function</strong>, <code>this</code> defaults to the <code>Window</code> object in the browser.</p>
+<pre><code class="lang-js">console.log(this) // Window
+</code></pre>
+<figure>
+  <img src="https://zellwk.com/images/2017/es6/window.png" alt="This defaults to window object in browsers">
+  <figcaption>This defaults to window object in browsers</figcaption>
+</figure>
+
+<p>When <code>this</code> is called in a <strong>simple function call</strong>, <code>this</code> is set to the global object. In the case of browsers, <code>this</code> will always be <code>Window</code>.</p>
+<pre><code class="lang-js">function hello () {
+  console.log(this)
+}
+
+hello() // Window
+</code></pre>
+<p>JavaScript always sets <code>this</code> to the window object within a simple function call. This explains why the <code>this</code> value within functions like <code>setTimeout</code> is always <code>Window</code>.</p>
+<p>When <code>this</code> is called in an <strong>object method</strong>, <code>this</code> would be the object itself:</p>
+<pre><code class="lang-js">let o = {
+  sayThis: function() {
+    console.log(this)
+  }
+}
+
+o.sayThis() // o
+</code></pre>
+<figure>
+  <img src="https://zellwk.com/images/2017/es6/object.png" alt="This refers to the object when the function is called in an object method.">
+  <figcaption>This refers to the object when the function is called in an object method.</figcaption>
+</figure>
+
+<p>When the function is called as a <strong>constructor</strong>, <code>this</code> refers to the <strong>newly constructed object</strong>.</p>
+<pre><code class="lang-js">function Person (age) {
+  this.age = age
+}
+
+let greg = new Person(22)
+let thomas = new Person(24)
+
+console.log(greg) // this.age = 22
+console.log(thomas) // this.age = 24
+</code></pre>
+<figure>
+  <img src="https://zellwk.com/images/2017/es6/constructor.png" alt="This refers to the constructed object called with the new keyword or Object.create().">
+  <figcaption>This refers to the constructed object called with the new keyword or Object.create().</figcaption>
+</figure>
+
+<p>When used in an event listener, <code>this</code> is set to the element that fired the event.</p>
+<pre><code class="lang-js">let button = document.querySelector(&#39;button&#39;)
+
+button.addEventListener(&#39;click&#39;, function() {
+  console.log(this) // button
+})
+</code></pre>
+<p>As you can see in the above situations, the value of <code>this</code> is set by the function that calls it. Every function defines it's own <code>this</code> value.</p>
+<p>In <strong>fat arrow functions</strong>, <code>this</code> <strong>never gets bound to a new value</strong>, no matter how the function is called. <code>this</code> will always be the same <code>this</code> value as its surrounding code. (By the way, lexical means relating to, which I guess, is how the lexical <code>this</code> got its name).</p>
+<p>Okay, that sounds confusing, so let's go through a few real examples.</p>
+<p>First, you <strong>never want to use arrow functions to declare object methods</strong>, because you can't reference the object with <code>this</code> anymore.</p>
+<pre><code class="lang-js">let o = {
+  // Don&#39;t do this
+  notThis: () =&gt; {
+    console.log(this) // Window
+    this.objectThis() // Uncaught TypeError: this.objectThis is not a function
+  },
+  // Do this
+  objectThis: function () {
+    console.log(this) // o
+  }
+  // Or this, which is a new shorthand
+  objectThis2 () {
+    console.log(this) // o
+  }
+}
+</code></pre>
+<p>Second, you <em>may not</em> want to use arrow functions to create event listeners because <code>this</code> no longer binds to the element you attached your event listener to.</p>
+<p>However, you can always get the right <code>this</code> context with <code>event.currentTarget</code>. Which is why I said <em>may not</em>.</p>
+<pre><code class="lang-js">button.addEventListener(&#39;click&#39;, function () {
+  console.log(this) // button
+})
+
+button.addEventListener(&#39;click&#39;, e =&gt; {
+  console.log(this) // Window
+  console.log(event.currentTarget) // button
+})
+</code></pre>
+<p>Third, you <strong>may want</strong> to use the lexical <code>this</code> in places where the <code>this</code> <strong>binding changes without you wanting it to</strong>. An example is the timeout function, so you never have to deal with the <code>this</code>, <code>that</code> or <code>self</code> nonsense.</p>
+<pre><code class="lang-js">let o = {
+  // Old way
+  oldDoSthAfterThree: function () {
+    let that = this
+    setTimeout(function () {
+      console.log(this) // Window
+      console.log(that) // o
+    })
+  },
+  // Arrow function way
+  doSthAfterThree: function () {
+    setTimeout(() =&gt; {
+      console.log(this) // o
+    }, 3000)
+  }
+}
+</code></pre>
+<p>This use case is particularly helpful if you needed to add or remove a class after some time has elapsed:</p>
+<pre><code class="lang-js">let o = {
+  button: document.querySelector(&#39;button&#39;)
+  endAnimation: function () {
+    this.button.classList.add(&#39;is-closing&#39;)
+    setTimeout(() =&gt; {
+      this.button.classList.remove(&#39;is-closing&#39;)
+      this.button.classList.remove(&#39;is-open&#39;)
+    }, 3000)
+  }
+}
+</code></pre>
+<p>Finally, feel free to use the fat arrow function anywhere else to help make your code neater and shorter, like the <code>moreThan20</code> example we had above:</p>
+<pre><code class="lang-js">let array = [1,7,98,5,4,2]
+let moreThan20 = array.filter(num =&gt; num &gt; 20)
+</code></pre>
+						</li>
+						<li>
+						<div class="example" id="example1">
+							<h2 class="example__title grd_wg">Event Delegation</h2>
+<pre>
+// HTML
+
+&lt;h2>Great Web resources&lt;/h2>
+&lt;ul id="resources">
+	&lt;li>&lt;a href="http://opera.com/wsc">Opera Web Standards Curriculum&lt;/a>&lt;/li>
+	&lt;li>&lt;a href="http://sitepoint.com">Sitepoint&lt;/a>&lt;/li>
+	&lt;li>&lt;a href="http://alistapart.com">A List Apart&lt;/a>&lt;/li>
+	&lt;li>&lt;a href="http://yuiblog.com">YUI Blog&lt;/a>&lt;/li>
+	&lt;li>&lt;a href="http://blameitonthevoices.com">Blame it on the voices&lt;/a>&lt;/li>
+	&lt;li>&lt;a href="http://oddlyspecific.com">Oddly specific&lt;/a>&lt;/li>
+	&lt;/ul>
+</pre>
+<pre>
+// Classic event handling example
+
+(function(){
+	var resources = document.getElementById('resources');
+	var links = resources.getElementsByTagName('a');
+	var all = links.length;
+
+	for(var i=0; i&lt;all; i++){
+		// Attach a listener to each link
+		links[i].addEventListener('click',handler,false);
+	};
+
+	function handler(e){
+		var x = e.target; // Get the link that was clicked
+		alert(x);
+		e.preventDefault();
+	};
+})();
+</pre>
+<pre>
+// This could also be done with a single event handler:
+
+(function(){
+	var resources = document.getElementById('resources');
+	resources.addEventListener('click',handler,false);
+
+	function handler(e){
+		var x = e.target; // get the link tha
+		if(x.nodeName.toLowerCase() === 'a'){
+			alert('Event delegation:' + x);
+			e.preventDefault();
+		}
+	};
+})();
+</pre>
+						<section class="example__description">
+							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
+							<article>
+								<p>ExampleDescription</p>
+							</article>
+						</section>
+							</div>
+						</li>
+						<li>
+							<h3>Array Methods</h3>
+							<div>
+								<h4>Create Array</h4>
+								<pre><code>var myArray = []</code></pre>
+								<pre><code>var myArray = new Array(4)
+								// Output
+								[undefined, undefined, undefined, undefined]
+								</code></pre>
+								<p>You may find that iterating over a sparse array to apply a certain transformation is hard.</p>
+								<pre>> const arr = new Array(4);
+> arr.map((elem, index) => index);
+[undefined, undefined, undefined, undefined]</pre>
+
+<p>To solve this, you can use Array.apply when creating the array.</p>
+<pre>> const arr = Array.apply(null, new Array(4));
+> arr.map((elem, index) => index);
+[0, 1, 2, 3]</pre>
+
+<h4>2. Passing an empty parameter to a method</h4>
+<p>If you want to call a method and ignore one of its parameters, then JavaScript will complain if you keep it empty.</p>
+<pre>> method('parameter1', , 'parameter3');
+Uncaught SyntaxError: Unexpected token ,</pre>
+<p>A workaround that people usually resort to is to pass either <code>null</code> or <code>undefined</code>.</p>
+<pre>> method('parameter1', null, 'parameter3') // or
+> method('parameter1', undefined, 'parameter3');</pre>
+<p>I personally don't like using null since JavaScript treats it as an object and that's just weird. With the introduction of spread operators in ES6, there is a neater way of passing empty parameters to a method. As previously mentioned, arrays are sparse in nature and so passing empty values to it is totally okay. We'll use this to our advantage.</p>
+<pre>> method(...['parameter1', , 'parameter3']); // works!</pre>
+
+<h4>3. Unique array values</h4>
+<p>I always wonder why the Array constructor does not have a designated method to facilitate the use of unique array values. Spread operators are here for the rescue. Use spread operators with the Set constructor to generate unique array values.</p>
+<pre>> const arr = [...new Set([1, 2, 3, 3])];
+[1, 2, 3]</pre>
+
+<h4>Get Ramdom value from Array</h4>
+<pre>// selecting a random array item
+var selectFruit = ["Apple", "Orange", "Banana", "Cherry"];
+
+var pickAFruit = function () {
+	var todaysFruit = selectFruit[Math.floor(Math.random() * selectFruit.length)];
+	return todaysFruit;
+};</pre>
+
+<h4>Get Biggest value from Array</h4>
+<pre>// traversing an array in search of big num
+
+var myArray = [4, 5, 6, 99, 68, 7, 24];
+var biggestNum = 0;
+
+for (var i = 0; i < myArray.length; i++) {
+    if (myArray[i] > biggestNum) {
+        biggestNum = myArray[i];
+    }
+}
+console.log(biggestNum);
+
+// displays 99</pre>
+
+<h4>Get longest string on an Array</h4>
+<pre>var fruits = ["Apple", "Banana", "Orange", "Pomegranate", "Peach"];
+var largest = 0;
+var largestName = "";
+for (var i = 0; i < fruits.length; i++) {
+    if (fruits[i].length > largest) {
+        largest = fruits[i].length;
+        largestName = fruits[i];
+    }
+}
+console.log(largestName);
+// Displays Pomegranate</pre>
+
+<h4>Getting array items from behind to front</h4>
+<pre>var newArray = [1, 2, 3, 4];
+
+console.log(newArray.slice(-1)); // [4]
+console.log(newArray.slice(-2)); // [3, 4]
+console.log(newArray.slice(-3)); // [2, 3, 4]
+console.log(newArray.slice(-4)); // [1, 2, 3, 4]</pre>
+
+<h4>Short-circuits conditionals</h4>
+<p>If you have to execute a function just if a condition is <code class="highlighter-rouge">true</code>, like this:</p>
+<pre>if(condition){
+    dosomething();
+}
+
+// You can use a short-circuit just like this:
+condition && dosomething();
+</pre>
+
+<h4>Set variable default values using "||"</h4>
+<p>If you have to set a default value to variables, you can simple do this:</p>
+<pre>var a;
+
+console.log(a); //undefined
+
+a = a || 'default value';
+
+console.log(a); //default value
+
+a = a || 'new value';
+
+console.log(a); //default value</pre>
+							</div>
+						</li>
+					</ul>
+
+					<!-- END : TAB CONTENT -->
+				</li>
 				<li>
 					<!-- START : TAB CONTENT -->
 					<h3>CSS Baseline Grid ( Verticle Rhythm )</h3>
@@ -1246,7 +1766,7 @@ function applyMixins(derivedCtor: any, baseCtors: any[]) {
 							</div>
 							<!-- END : ACCORDION CONTENT -->
 						</li>
-						
+
 
 						<li>
 							<!-- START : ACCORDION CONTENT -->
@@ -1290,7 +1810,7 @@ document.addEventListener( "click", function(e) {
 							</div>
 							<!-- END : ACCORDION CONTENT -->
 						</li>
-						
+
 						<li>
 							<!-- START : ACCORDION CONTENT -->
 							<h3 class="uk-accordion-title">Debounce function</h3>
@@ -1305,7 +1825,7 @@ document.addEventListener( "click", function(e) {
 <pre>
 // EXAMPLE 1
 //=======================
-	
+
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for
 // N milliseconds. If `immediate` is passed, trigger the function on the
@@ -1341,22 +1861,22 @@ var typingTimer; //timer identifier
 
 this.document.on('keyup', function(event) {
 	var self = this;
-	
+
 	//on keyup, start the countdown
 	clearTimeout(typingTimer);
-	
+
 	typingTimer = setTimeout(function() {
-		
-		// Your code to save document or Call function 
+
+		// Your code to save document or Call function
 		doneTyping();
-		
+
 	}, 500);
 });
 </pre>
 							</div>
 							<!-- END : ACCORDION CONTENT -->
 						</li>
-						
+
 					</ul>
 					<!-- END : TAB CONTENT -->
 				</li>
@@ -1959,7 +2479,7 @@ console.log(fury.legsNumber);   //4
     // this is where I defined my module implementation
 
     var Requester = { // ... };
-	
+
     return Requester;
 }));</pre>
 
@@ -2037,7 +2557,7 @@ var defaults = {
 	showCursor: true,
 	cursor: '|'
 };
-	
+
 // EXAMPLE 1
 //=========================================
 
@@ -2071,7 +2591,7 @@ var options = extendDefaults(defaults, options);
 
 <pre>
 // SYNTEX : Object.assign(target, ...sources)
-// The Object.assign() method is used to copy the values of all enumerable own properties from one or more source objects to a target object. 
+// The Object.assign() method is used to copy the values of all enumerable own properties from one or more source objects to a target object.
 //It will return the target object.
 /**
  * REF : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
@@ -2094,7 +2614,7 @@ const objectAssign = Object.assign || function(srcObj) {
 			}
 		}
 	}
-	
+
 	return srcObj;
 };
 
@@ -2142,7 +2662,7 @@ ChromeSamples.log(b);
 let obj = {person: 'Thor Odinson'};
 let clone = Object.assign({}, obj);
 ChromeSamples.log(clone);
-// {person: 'Thor Odinson'}	
+// {person: 'Thor Odinson'}
 </pre>
 
 						<section class="example__description">
@@ -2161,8 +2681,8 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 
 /**
- * The above code is a little hard to follow, so here is an expanded, documented version of it. 
- * Review the added source code comments to understand the purpose of each line of code. 
+ * The above code is a little hard to follow, so here is an expanded, documented version of it.
+ * Review the added source code comments to understand the purpose of each line of code.
  * The __extends function works with any pair of parent and child objects.
 */
 // declare a variable to reference the extends function
@@ -2233,377 +2753,7 @@ __extends = function (child, parent) {
 
 					<!-- END : TAB CONTENT -->
 				</li>
-				<li>
-					<!-- START : TAB CONTENT -->
-					<h3>JavaScript</h3>
-					<ul id="javascript_topics" class="uk-switcher">
-						<li>
-							<ul class="uk-list uk-list-large">
-								<li><a href="https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom" target="_blank">Shadow DOM v1: Self-Contained Web Components</a></li>
-								<li>
-									<a href="https://developers.google.com/web/fundamentals/getting-started/primers/customelements" target="_blank">Custom Elements v1: Reusable Web Components</a>
-								</li>
-								<li>
-									<a href="https://zellwk.com/blog/es6/" target="_blank">Introduction to commonly used ES6 features</a>
-								</li>
-								<li>
-									<a href="https://una.im/local-css-vars/" target="_blank">Locally Scoped CSS Variables: What, How, and Why</a>
-								</li>
-								<li>
-									<a href="https://tympanus.net/codrops/collective/collective-321/" target="_blank">Collective #321</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<h4>Creating Objects in JavaScript</h4>
 
-<div class="example" id="example1">
-						<h2 class="example__title grd_wg" id="1" name="1">Creating Objects in JavaScript</h2>
-						<section class="example__description">
-							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
-							<article>
-								<p>This is the easiest way to create a JavaScript Object. Using an object literal, you both define and create an object in one statement.</p>
-
-								<p>An object literal is a list of name:value pairs (like age:50) inside curly braces {}.</p>
-							</article>
-							<span class="arrow"></span>
-						</section>
-						<pre>var person = { 
-	firstName:"John",
-	lastName:"Doe",
-	age:50,
-	eyeColor:"blue"
-};</pre>
-						
-					</div>
-					<div class="example" id="example1">
-						<h2 class="example__title grd_wg">Create Object Using the JavaScript Keyword <code>new</code></h2>
-						
-						<pre>var person = new Object();
-						
-person.firstName = "John";
-person.lastName = "Doe";
-person.age = 50;
-person.eyeColor = "blue";</pre>
-
-						<section class="example__description">
-							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
-							<article>
-								<p>A function that is called using new operator for creation of new objects is called a Constructor Function.</p>
-<p>Creating a function creates an object of type Function. That means, any new function will have its __proto__ point to prototype of 'Function'.</p>
-<p>As a side note: Function is a global internal Object, it doesn't have any properties of its own but inherits them from Function.prototype.</p>
-<p>Further, objects of type Function have another property called 'prototype' pointing to the prototype of the objects which will be created using this function.</p>
-							</article>
-							<span class="arrow"></span>
-						</section>
-
-						<pre>function Person(name, age){
-   this.name = name;
-   this.age = age;
-   this.shoutYourName = function(){
-                              alert('My name is ' + name +'!');
-                        };
-}
-//create Objects
-var John = new Person('John'25);
-var Donn = new Person('Donn'29);
-
-console.log(John.name);  //John
-console.log(John.age);  //25
-John.shoutYourName();   //alerts 'My name is John!'</pre>
-						
-					</div>
-						</li>
-						<li>
-<h2>The lexical this</h2>
-<h3 id="the-lexical-this">The lexical this</h3>
-<p><code>this</code> is a unique keyword whose value changes depending on how it is called. When it's called <strong>outside of any function</strong>, <code>this</code> defaults to the <code>Window</code> object in the browser.</p>
-<pre><code class="lang-js">console.log(this) // Window
-</code></pre>
-<figure>
-  <img src="https://zellwk.com/images/2017/es6/window.png" alt="This defaults to window object in browsers">
-  <figcaption>This defaults to window object in browsers</figcaption>
-</figure>
-
-<p>When <code>this</code> is called in a <strong>simple function call</strong>, <code>this</code> is set to the global object. In the case of browsers, <code>this</code> will always be <code>Window</code>.</p>
-<pre><code class="lang-js">function hello () {
-  console.log(this)
-}
-
-hello() // Window
-</code></pre>
-<p>JavaScript always sets <code>this</code> to the window object within a simple function call. This explains why the <code>this</code> value within functions like <code>setTimeout</code> is always <code>Window</code>.</p>
-<p>When <code>this</code> is called in an <strong>object method</strong>, <code>this</code> would be the object itself:</p>
-<pre><code class="lang-js">let o = {
-  sayThis: function() {
-    console.log(this)
-  }
-}
-
-o.sayThis() // o
-</code></pre>
-<figure>
-  <img src="https://zellwk.com/images/2017/es6/object.png" alt="This refers to the object when the function is called in an object method.">
-  <figcaption>This refers to the object when the function is called in an object method.</figcaption>
-</figure>
-
-<p>When the function is called as a <strong>constructor</strong>, <code>this</code> refers to the <strong>newly constructed object</strong>.</p>
-<pre><code class="lang-js">function Person (age) {
-  this.age = age
-}
-
-let greg = new Person(22)
-let thomas = new Person(24)
-
-console.log(greg) // this.age = 22
-console.log(thomas) // this.age = 24
-</code></pre>
-<figure>
-  <img src="https://zellwk.com/images/2017/es6/constructor.png" alt="This refers to the constructed object called with the new keyword or Object.create().">
-  <figcaption>This refers to the constructed object called with the new keyword or Object.create().</figcaption>
-</figure>
-
-<p>When used in an event listener, <code>this</code> is set to the element that fired the event.</p>
-<pre><code class="lang-js">let button = document.querySelector(&#39;button&#39;)
-
-button.addEventListener(&#39;click&#39;, function() {
-  console.log(this) // button
-})
-</code></pre>
-<p>As you can see in the above situations, the value of <code>this</code> is set by the function that calls it. Every function defines it's own <code>this</code> value.</p>
-<p>In <strong>fat arrow functions</strong>, <code>this</code> <strong>never gets bound to a new value</strong>, no matter how the function is called. <code>this</code> will always be the same <code>this</code> value as its surrounding code. (By the way, lexical means relating to, which I guess, is how the lexical <code>this</code> got its name).</p>
-<p>Okay, that sounds confusing, so let's go through a few real examples.</p>
-<p>First, you <strong>never want to use arrow functions to declare object methods</strong>, because you can't reference the object with <code>this</code> anymore.</p>
-<pre><code class="lang-js">let o = {
-  // Don&#39;t do this
-  notThis: () =&gt; {
-    console.log(this) // Window
-    this.objectThis() // Uncaught TypeError: this.objectThis is not a function
-  },
-  // Do this
-  objectThis: function () {
-    console.log(this) // o
-  }
-  // Or this, which is a new shorthand
-  objectThis2 () {
-    console.log(this) // o
-  }
-}
-</code></pre>
-<p>Second, you <em>may not</em> want to use arrow functions to create event listeners because <code>this</code> no longer binds to the element you attached your event listener to.</p>
-<p>However, you can always get the right <code>this</code> context with <code>event.currentTarget</code>. Which is why I said <em>may not</em>.</p>
-<pre><code class="lang-js">button.addEventListener(&#39;click&#39;, function () {
-  console.log(this) // button
-})
-
-button.addEventListener(&#39;click&#39;, e =&gt; {
-  console.log(this) // Window
-  console.log(event.currentTarget) // button
-})
-</code></pre>
-<p>Third, you <strong>may want</strong> to use the lexical <code>this</code> in places where the <code>this</code> <strong>binding changes without you wanting it to</strong>. An example is the timeout function, so you never have to deal with the <code>this</code>, <code>that</code> or <code>self</code> nonsense.</p>
-<pre><code class="lang-js">let o = {
-  // Old way
-  oldDoSthAfterThree: function () {
-    let that = this
-    setTimeout(function () {
-      console.log(this) // Window
-      console.log(that) // o
-    })
-  },
-  // Arrow function way
-  doSthAfterThree: function () {
-    setTimeout(() =&gt; {
-      console.log(this) // o
-    }, 3000)
-  }
-}
-</code></pre>
-<p>This use case is particularly helpful if you needed to add or remove a class after some time has elapsed:</p>
-<pre><code class="lang-js">let o = {
-  button: document.querySelector(&#39;button&#39;)
-  endAnimation: function () {
-    this.button.classList.add(&#39;is-closing&#39;)
-    setTimeout(() =&gt; {
-      this.button.classList.remove(&#39;is-closing&#39;)
-      this.button.classList.remove(&#39;is-open&#39;)
-    }, 3000)
-  }
-}
-</code></pre>
-<p>Finally, feel free to use the fat arrow function anywhere else to help make your code neater and shorter, like the <code>moreThan20</code> example we had above:</p>
-<pre><code class="lang-js">let array = [1,7,98,5,4,2]
-let moreThan20 = array.filter(num =&gt; num &gt; 20)
-</code></pre>
-						</li>
-						<li>
-						<div class="example" id="example1">
-							<h2 class="example__title grd_wg">Event Delegation</h2>
-<pre>
-// HTML 
-
-&lt;h2>Great Web resources&lt;/h2>
-&lt;ul id="resources">
-	&lt;li>&lt;a href="http://opera.com/wsc">Opera Web Standards Curriculum&lt;/a>&lt;/li>
-	&lt;li>&lt;a href="http://sitepoint.com">Sitepoint&lt;/a>&lt;/li>
-	&lt;li>&lt;a href="http://alistapart.com">A List Apart&lt;/a>&lt;/li>
-	&lt;li>&lt;a href="http://yuiblog.com">YUI Blog&lt;/a>&lt;/li>
-	&lt;li>&lt;a href="http://blameitonthevoices.com">Blame it on the voices&lt;/a>&lt;/li>
-	&lt;li>&lt;a href="http://oddlyspecific.com">Oddly specific&lt;/a>&lt;/li>
-	&lt;/ul>
-</pre>
-<pre>
-// Classic event handling example
-
-(function(){
-	var resources = document.getElementById('resources');
-	var links = resources.getElementsByTagName('a');
-	var all = links.length;
-	
-	for(var i=0; i&lt;all; i++){
-		// Attach a listener to each link
-		links[i].addEventListener('click',handler,false);
-	};
-	
-	function handler(e){
-		var x = e.target; // Get the link that was clicked
-		alert(x);
-		e.preventDefault();
-	};
-})();
-</pre>
-<pre>
-// This could also be done with a single event handler:
-
-(function(){
-	var resources = document.getElementById('resources');
-	resources.addEventListener('click',handler,false);
-	
-	function handler(e){
-		var x = e.target; // get the link tha
-		if(x.nodeName.toLowerCase() === 'a'){
-			alert('Event delegation:' + x);
-			e.preventDefault();
-		}
-	};
-})();
-</pre>
-						<section class="example__description">
-							<!--<p class="tr no-margin-all"><a href="javascript:;" class="lnk-view-more">View Detail</a></p>-->
-							<article>
-								<p>ExampleDescription</p>
-							</article>
-						</section>
-							</div>
-						</li>
-						<li>
-							<h3>Array Methods</h3>
-							<div>
-								<h4>Create Array</h4>
-								<pre><code>var myArray = []</code></pre>
-								<pre><code>var myArray = new Array(4)
-								// Output
-								[undefined, undefined, undefined, undefined]
-								</code></pre>
-								<p>You may find that iterating over a sparse array to apply a certain transformation is hard.</p>
-								<pre>> const arr = new Array(4);
-> arr.map((elem, index) => index);
-[undefined, undefined, undefined, undefined]</pre>
-
-<p>To solve this, you can use Array.apply when creating the array.</p>
-<pre>> const arr = Array.apply(null, new Array(4));
-> arr.map((elem, index) => index);
-[0, 1, 2, 3]</pre>
-
-<h4>2. Passing an empty parameter to a method</h4>
-<p>If you want to call a method and ignore one of its parameters, then JavaScript will complain if you keep it empty.</p>
-<pre>> method('parameter1', , 'parameter3');
-Uncaught SyntaxError: Unexpected token ,</pre>
-<p>A workaround that people usually resort to is to pass either <code>null</code> or <code>undefined</code>.</p>
-<pre>> method('parameter1', null, 'parameter3') // or
-> method('parameter1', undefined, 'parameter3');</pre>
-<p>I personally don't like using null since JavaScript treats it as an object and that's just weird. With the introduction of spread operators in ES6, there is a neater way of passing empty parameters to a method. As previously mentioned, arrays are sparse in nature and so passing empty values to it is totally okay. We'll use this to our advantage.</p>
-<pre>> method(...['parameter1', , 'parameter3']); // works!</pre>
-
-<h4>3. Unique array values</h4>
-<p>I always wonder why the Array constructor does not have a designated method to facilitate the use of unique array values. Spread operators are here for the rescue. Use spread operators with the Set constructor to generate unique array values.</p>
-<pre>> const arr = [...new Set([1, 2, 3, 3])];
-[1, 2, 3]</pre>
-
-<h4>Get Ramdom value from Array</h4>
-<pre>// selecting a random array item
-var selectFruit = ["Apple", "Orange", "Banana", "Cherry"];
-
-var pickAFruit = function () {
-	var todaysFruit = selectFruit[Math.floor(Math.random() * selectFruit.length)];
-	return todaysFruit;
-};</pre>
-
-<h4>Get Biggest value from Array</h4>
-<pre>// traversing an array in search of big num
- 
-var myArray = [4, 5, 6, 99, 68, 7, 24];
-var biggestNum = 0;
- 
-for (var i = 0; i < myArray.length; i++) {
-    if (myArray[i] > biggestNum) {
-        biggestNum = myArray[i];
-    }
-}
-console.log(biggestNum);
- 
-// displays 99</pre>
-
-<h4>Get longest string on an Array</h4>
-<pre>var fruits = ["Apple", "Banana", "Orange", "Pomegranate", "Peach"];
-var largest = 0;
-var largestName = "";
-for (var i = 0; i < fruits.length; i++) {
-    if (fruits[i].length > largest) {
-        largest = fruits[i].length;
-        largestName = fruits[i];
-    }
-}
-console.log(largestName);
-// Displays Pomegranate</pre>
-
-<h4>Getting array items from behind to front</h4>
-<pre>var newArray = [1, 2, 3, 4];
-
-console.log(newArray.slice(-1)); // [4]
-console.log(newArray.slice(-2)); // [3, 4]
-console.log(newArray.slice(-3)); // [2, 3, 4]
-console.log(newArray.slice(-4)); // [1, 2, 3, 4]</pre>
-
-<h4>Short-circuits conditionals</h4>
-<p>If you have to execute a function just if a condition is <code class="highlighter-rouge">true</code>, like this:</p>
-<pre>if(condition){
-    dosomething();
-}
-
-// You can use a short-circuit just like this:
-condition && dosomething();
-</pre>
-
-<h4>Set variable default values using "||"</h4>
-<p>If you have to set a default value to variables, you can simple do this:</p>
-<pre>var a;
-
-console.log(a); //undefined
-
-a = a || 'default value';
-
-console.log(a); //default value
-
-a = a || 'new value';
-
-console.log(a); //default value</pre>
-							</div>
-						</li>
-					</ul>
-					
-					<!-- END : TAB CONTENT -->
-				</li>
 				<li>
 					<!-- START : TAB CONTENT -->
 					<h3>Improving your Async functions with WebWorkers</h3>
@@ -2721,11 +2871,11 @@ get_useful_data();</pre>
 		ukLogo.addEventListener('click', function(){
 			document.body.classList.toggle('show-grid');
 		});
-		
+
 		// Toggle Reading Mode
 		var readModeBtn = document.querySelector('.read-mode');
 		var bodyElem = document.getElementsByTagName('body')[0];
-		
+
 		readModeBtn.addEventListener('click', function() {
 			document.body.classList.toggle('isReadModeOn')
 		});
