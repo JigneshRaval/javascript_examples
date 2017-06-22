@@ -307,6 +307,214 @@ console.log(mix.startsWith('love',13))// returns true</pre>
 				<div class="uk-accordion-content">
 				<!-- START : ACCORDION CONTENT -->
 					<p name="f505" id="f505" class="graf graf--p graf-after--h4 graf--trailing">This follows the same logic as the above example. When the plus operator is placed between two <code class="markup--code markup--p-code">booleans</code>, the <code class="markup--code markup--p-code">booleans</code> are converted to <code class="markup--code markup--p-code">numbers</code>. Thus, <code class="markup--code markup--p-code">true + false</code> is converted to <code class="markup--code markup--p-code">1 + 0</code> and we get an answer of <code class="markup--code markup--p-code"><strong class="markup--strong markup--p-strong">1</strong></code>.</p>
+<pre>
+// Method 1	
+var len = sessionStorage.length;
+for(var i=len; i > 0; i--){
+  var key1 = sessionStorage.key(i);
+  console.log("Key 1:", key1);
+  if(/^up_/.test(key1)){
+    console.log("TEST :", sessionStorage[key1]); 
+    sessionStorage.removeItem(key1);
+  }
+}
+
+// Method 2
+var i = sessionStorage.length;
+while(i--) {
+  var key = sessionStorage.key(i);
+  if(/foo/.test(key)) {
+    sessionStorage.removeItem(key);
+  }  
+}
+
+// Method 3
+Object.keys(sessionStorage)
+  .filter(function(k) { return /foo/.test(k); })
+  .forEach(function(k) {
+    sessionStorage.removeItem(k);
+  });
+</pre>
+
+<h3>JavaScript Array.filter()</h3>
+<p><strong>Use it when</strong>:  You want to remove unwanted elements based on a condition.</p>
+<p><strong>What it does</strong>: Like <code class="prettyprint">map()</code> it traverses the array from left to right invoking a callback function on each element.  The returned value must be a boolean identifying whether the element will be kept or discarded.  After all elements have been traversed <code class="prettyprint">filter()</code> returns a new array with all elements that returned true<sub>[2]</sub>.</p>
+<pre>
+var uniqueArray = array.filter(function(elem, index, array) {
+        return array.indexOf(elem) === index;
+    }
+);
+
+// Syntex
+array.filter(function(elem, index, array) {
+      ...
+}, thisArg);
+
+// ES6
+// array.filter((elem, index, arr) => arr.indexOf(elem) === index);
+
+// OLD WAY
+for(var i = 0; i < array.length; i++) {
+    if(array.indexOf(array[i]) === i) {
+        models.push(array[i]);
+    }
+}
+</pre>
+<pre>
+// Example 2
+var sidekicks = [
+    { name: "Robin",     hero: "Batman"   },
+    { name: "Supergirl", hero: "Superman" },
+    { name: "Oracle",    hero: "Batman"   },
+    { name: "Krypto",    hero: "Superman" }
+];
+
+var batKicks = [];
+
+for (var i = 0; i < sidekicks.length ; i++) {
+    if (sidekicks[i].hero === "Batman") {
+        batKicks.push(sidekicks[i]);
+    }
+}
+
+// Outputs: [
+//    { name: "Robin",  hero: "Batman"   },
+//    { name: "Oracle", hero: "Batman"   }
+// ]
+console.log(batKicks);
+
+// Example 3
+var sidekicks = [
+    { name: "Robin",     hero: "Batman"   },
+    { name: "Supergirl", hero: "Superman" },
+    { name: "Oracle",    hero: "Batman"   },
+    { name: "Krypto",    hero: "Superman" }
+];
+
+var batKicks = sidekicks.filter(function (el) {
+    return (el.hero === "Batman");
+});
+
+// Outputs: [
+//    { name: "Robin",  hero: "Batman"   },
+//    { name: "Oracle", hero: "Batman"   }
+// ]
+console.log(batKicks);
+
+var superKicks = sidekicks.filter(function (el) {
+    return (el.hero === "Superman");
+});
+
+// Outputs: [
+//    { name: "Supergirl", hero: "Superman" },
+//    { name: "Krypto",    hero: "Superman" }
+// ]
+console.log(superKicks);
+
+// Example 4
+// Chaining Methods
+var sortedBatKickNames = sidekicks.filter(function (el) {
+    return (el.hero === "Batman");
+}).map(function(el) {
+    return el.name;
+}).sort();
+
+// Outputs: ["Oracle", "Robin"];
+console.log(sortedBatKickNames);
+</pre>
+	<table>
+    <thead>
+        <tr>
+            <th>param</th>
+            <th>meaning</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>elem</td>
+            <td>element value</td>
+        </tr>
+        <tr>
+            <td>index</td>
+            <td>index in each traversal, moving from left to right</td>
+        </tr>
+        <tr>
+            <td>array</td>
+            <td>original array invoking the method</td>
+        </tr>
+        <tr>
+            <td>thisArg</td>
+            <td>(Optional) object that will be referred to as <code class="prettyprint">this</code> in callback</td>
+        </tr>
+    </tbody>
+</table>
+	
+<h3>JavaScript Array.map()</h3>
+<pre>
+var fahrenheit = [0, 32, 45, 50, 75, 80, 99, 120];
+
+var celcius = fahrenheit.map(function(elem) {
+    return Math.round((elem - 32) * 5 / 9);
+}); 
+
+// ES6
+// fahrenheit.map(elem => Math.round((elem - 32) * 5 / 9));
+
+celcius //  [-18, 0, 7, 10, 24, 27, 37, 49]	
+
+// Syntex:
+array.map(function(elem, index, array) {
+      ...
+}, thisArg);
+</pre>
+<table><thead>
+<tr>
+<th>param</th>
+<th>meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>elem</td>
+<td>element value</td>
+</tr>
+<tr>
+<td>index</td>
+<td>index in each traversal, moving from left to right</td>
+</tr>
+<tr>
+<td>array</td>
+<td>original array invoking the method</td>
+</tr>
+<tr>
+<td>thisArg</td>
+<td>(Optional) object that will be referred to as <code class="prettyprint">this</code> in callback</td>
+</tr>
+</tbody></table>
+
+<h3>JavaScript Array.reduce()</h3>
+<pre>
+var rockets = [
+    { country:'Russia', launches:32 },
+    { country:'US', launches:23 },
+    { country:'China', launches:16 },
+    { country:'Europe(ESA)', launches:7 },
+    { country:'India', launches:4 },
+    { country:'Japan', launches:3 }
+];
+
+var sum = rockets.reduce(function(prevVal, elem) {
+    return prevVal + elem.launches;
+}, 0);
+
+// ES6
+// rockets.reduce((prevVal, elem) => prevVal + elem.launches, 0); 
+
+sum // 85
+</pre>
+https://code.tutsplus.com/tutorials/how-to-use-map-filter-reduce-in-javascript--cms-26209
+https://danmartensen.svbtle.com/javascripts-map-reduce-and-filter
+http://adripofjavascript.com/blog/drips/filtering-arrays-with-array-filter
+http://cryto.net/~joepie91/blog/2015/05/04/functional-programming-in-javascript-map-filter-reduce/
 				<!-- END : ACCORDION CONTENT -->
 				</div>
 			</li>
