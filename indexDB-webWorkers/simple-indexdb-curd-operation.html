@@ -26,6 +26,16 @@
 			background-color: #EEE;
 			}
 		</style>
+	
+	</head>
+	<body>
+		<h1>Simple IndexedDB Example</h1>
+		<a href="#" id="test1">Read 1</a>
+		<a href="#" onclick="read()">Read </a>
+		<a href="#" onclick="readAll()">Read all </a>
+		<a href="#" onclick="add()">Add data </a>
+		<a href="#" onclick="remove()">Delete data </a>
+
 		
 		<script type="text/javascript">
 			// REF :: https://www.tutorialspoint.com/html5/html5_indexeddb.htm
@@ -67,10 +77,10 @@
 				}
 			}
 			
-			function read() {
+			function read(key, callback) {
 				var transaction = db.transaction(["employee"]);
 				var objectStore = transaction.objectStore("employee");
-				var request = objectStore.get("00-03");
+				var request = objectStore.get(key);
 				
 				request.onerror = function(event) {
 					alert("Unable to retrieve daa from database!");
@@ -79,7 +89,8 @@
 				request.onsuccess = function(event) {
 					// Do something with the request.result!
 					if(request.result) {
-						alert("Name: " + request.result.name + ", Age: " + request.result.age + ", Email: " + request.result.email);
+						//alert("Name: " + request.result.name + ", Age: " + request.result.age + ", Email: " + request.result.email);
+						callback(request.result);
 					}
 					
 					else {
@@ -140,16 +151,14 @@
 					alert("Kenny's entry has been removed from your database.");
 				};
 			}
+			
+			var btnOne = document.querySelector('#test1');
+			btnOne.addEventListener('click', function() {
+				read("00-03", function(value){
+					console.log("My Value:", value);
+				});
+			});
 		</script>
-		
-	</head>
-	<body>
-		<h1>Simple IndexedDB Example</h1>
-		<a href="#" onclick="read()">Read </a>
-		<a href="#" onclick="readAll()">Read all </a>
-		<a href="#" onclick="add()">Add data </a>
-		<a href="#" onclick="remove()">Delete data </a>
-		
 		
 	</body>
 </html>
