@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>Keep track of opened windows</title>
+	</head>
+	<body>
+		
+		<script>
+			var winGoogle = window.open('http://google.com', '_blank');
+			var winBing = window.open('http://bing.com', '_blank');
+			var winYahoo = window.open('http://yahoo.com', '_blank');
+			
+			setTimeout(function() {
+				//close the windows
+				winGoogle.close();
+				winBing.close();
+				winYahoo.close();	
+			}, 5000);
+			
+		</script>
+	</body>
+</html>
