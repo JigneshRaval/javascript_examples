@@ -1,0 +1,11 @@
+.wrap  
+  %ul.carousel.is-set
+    - 5.times do |i|
+      %li.carousel-seat
+        %h2= i + 1
+    %li.carousel-seat.is-ref
+      %h2 6
+
+.controls
+  %button.toggle Prev
+  %button.toggle{'data-toggle' => 'next'} Next

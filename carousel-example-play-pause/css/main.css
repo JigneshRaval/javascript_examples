@@ -1,0 +1,167 @@
+/*
+
+Basic Carousel layout
+
+*/
+
+.carousel-main {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    bottom: 20%;
+    right: 20%;
+    overflow: hidden;
+    background-color: red;
+}
+/*.carousel-main.preventDoubleTap {
+    pointer-events:none;
+}*/
+
+.carousel-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    opacity: 0;
+}
+
+/* 
+
+Animating carousel-items
+
+*/
+
+.carousel-item.active,
+.carousel-item.prev,
+.carousel-item.next {
+    opacity: 1;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-delay: 0s;
+}
+
+/* slide("_R") */
+@keyframes slideLeftOut {
+    0%   { transform: translateX(0%);}
+    100% { transform: translateX(-100%);}
+} 
+@keyframes slideRightIn {
+    0%   { transform: translateX(100%);}
+    100% { transform: translateX(0%);}
+} 
+
+.carousel-item.prev {
+    animation-name: slideLeftOut;
+}
+.carousel-item.active.next {
+    animation-name: slideRightIn;
+}
+
+/* slide("_L") */
+@keyframes slideRightOut {
+    0%   { transform: translateX(0%);}
+    100% { transform: translateX(100%);}
+} 
+@keyframes slideLeftIn {
+    0%   { transform: translateX(-100%);}
+    100% { transform: translateX(0%);}
+} 
+
+.carousel-item.prev.active {
+    animation-name: slideLeftIn;
+}
+.carousel-item.next {
+    animation-name: slideRightOut;
+}
+
+
+/* 
+
+Placeholders
+
+*/
+.carousel-item{
+    background-size: cover;
+}
+.carousel-item[data-slide-index="0"]{ background-image: url(../img/rooms_oceandouble.jpg); }
+.carousel-item[data-slide-index="1"]{ background-image: url(../img/rooms_oceanking.jpg); }
+.carousel-item[data-slide-index="2"]{ background-image: url(../img/rooms_pres.jpg); }
+.carousel-item[data-slide-index="3"]{ background-image: url(../img/rooms_serenity.jpg); }
+
+/*
+
+Buttons
+
+*/
+.carousel-btn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3em;
+    background: rgba(0,0,0,0.5);
+    outline: 0;
+    border: 0;
+}
+
+.carousel-btn[data-dir="_L"] {
+    left: 0;
+}
+.carousel-btn[data-dir="_R"] {
+    right: 0;
+}
+
+.carousel-btn[data-dir="_L"]:after,
+.carousel-btn[data-dir="_R"]:after {
+    content: '';
+    width: 2em;
+    height: 2em;
+    position: absolute;
+    margin-top: -1em;
+    transform: rotate(45deg);
+}
+
+.carousel-btn[data-dir="_L"]:after {
+    border-left: 0.5em solid red;
+    border-bottom: 0.5em solid red;
+    left: 1em;
+}
+
+.carousel-btn[data-dir="_R"]:after {
+    border-right: 0.5em solid red;
+    border-top: 0.5em solid red;
+    right: 1em;
+}
+
+/*
+
+Dots
+
+*/
+.carousel-dots {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2em;
+    text-align: center;
+}
+
+.carousel-dot {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background: black;
+    margin: 0 0.5em;
+    position: relative;
+    top: 0.5em;
+    transition: all 0.4s ease-out 0s;
+    transform: scale(1);
+}
+
+.carousel-dot.active {
+    background: red;
+    transform: scale(1.2);
+}
