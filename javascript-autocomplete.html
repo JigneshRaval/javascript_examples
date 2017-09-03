@@ -1,121 +1,129 @@
 <html>
-	<head>
+
+<head>
 	<style>
 		body {
 			font-family: Arial;
 			font-size: 16px;
 		}
-		input { 
+
+		input {
 			padding: 8px;
 			border: 1px solid #EEE;
 		}
-		#dropdown { display: none; }
-		ul {
-		
-		width: 250px;
-		margin:0;
-		padding:0;
-		list-style-type: none;
-		border: 1px solid #EEE;
-		height: 250px;
-		overflow-y: scroll;
+
+		#dropdown {
+			display: none;
 		}
+
+		ul {
+
+			width: 250px;
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			border: 1px solid #EEE;
+			height: 250px;
+			overflow-y: scroll;
+			box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+		}
+
 		ul li {
 			padding: 8px;
 		}
-		</style>
-	</head>
-	<body>
-		<h2>Please Enter the Value in the Box(click on the desired value)</h2>
-		
-		<input id='value' type="search" autocomplete="on" placeholder="country" />
-		<div id="dropdown">
-			<!--<select name="list" id="list"></select>-->
-			<ul name="list" id="list"></ul>
-		</div>
-		<script>
-			var arr = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
-			var input = document.getElementById('value');
-			var optionsVal = document.getElementById('list');
-			
-			input.addEventListener('keyup', show);
-			optionsVal.onclick = function (e) {
-				setVal(e.target.innerText);
-			};
-			
+	</style>
+</head>
+
+<body>
+	<h2>Please Enter the Value in the Box(click on the desired value)</h2>
+
+	<input id='value' type="search" autocomplete="on" placeholder="country" />
+	<div id="dropdown">
+		<ul name="list" id="list"></ul>
+	</div>
+	<script>
+		var arr = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina",
+			"Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus",
+			"Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil",
+			"British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde",
+			"Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire",
+			"Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica",
+			"Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia",
+			"Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon",
+			"Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala",
+			"Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India",
+			"Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan",
+			"Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya",
+			"Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives",
+			"Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat",
+			"Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand",
+			"Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea",
+			"Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia",
+			"Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia",
+			"Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain",
+			"Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland",
+			"Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga",
+			"Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine",
+			"United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)",
+			"Yemen", "Zambia", "Zimbabwe"
+		];
+
+		var jrAutocomplete = (function () {
+
 			//Use this function to replace potential characters that could break the regex
 			RegExp.escape = function (s) {
 				return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 			};
+
 			//shows the list
 			function show() {
 				var dropdown = document.getElementById('dropdown');
 				dropdown.style.display = 'none';
-				console.log(optionsVal.childNodes, optionsVal.childNodes.length);
-				
+
 				// As long as <ul> has a child node, remove it
-				while (optionsVal.hasChildNodes()) {   
+				while (optionsVal.hasChildNodes()) {
 					optionsVal.removeChild(optionsVal.firstChild);
 				}
-				
+
 				if (input.value) {
-					dropdown.style.display = 'block';
-					optionsVal.size = 3;
-					var textCountry = input.value;
-					
-					console.log(optionsVal);
-					
-					arr.filter(function(cat) {
-						var test = new RegExp('^'+textCountry, "ig");
-						
-						if(cat.match(test) && cat.match(test) != null) {
-							//console.log(cat.match(test));
-							//console.log(cat);
-							addValue(cat, cat);	
+					arr.filter(function (cat) {
+						var test = new RegExp('^' + input.value, "ig");
+
+						if (cat.match(test) && cat.match(test) != null) {
+							dropdown.style.display = 'block';
+							addValue(cat, cat);
 						}
-						return cat.indexOf(textCountry) > -1;
 					});
-					/*
-						for (var i = 0; i < arr.length; i++) {
-						var testableRegExp = new RegExp(RegExp.escape(textCountry), "i");
-						if (arr[i].match(testableRegExp)) {
-						addValue(arr[i], arr[i]);
-						
-						}
-						}
-					}*/
-					
-					var size = dropdown.children[0].children;
-					if (size.length > 0)
-					{
-						var defaultSize = 16;
-						if (size.length < 10)
-						{
-							defaultSize *= size.length;
-						}
-						else
-						{
-							defaultSize *= 10;
-						}
-						dropdown.children[0].style.height = defaultSize + "px";
-					}
-					
 				}
-			}
-			
+			};
+
 			function addValue(text, val) {
-				//var createOptions = document.createElement('option');
 				var createOptions = document.createElement('li');
 				optionsVal.appendChild(createOptions);
 				createOptions.innerHTML = text;
-				createOptions.value = val;
-			}
-			
+				createOptions.setAttribute('data-value', val);
+			};
+
 			//Settin the value in the box by firing the click event
 			function setVal(selectedVal) {
 				input.value = selectedVal;
 				document.getElementById('dropdown').style.display = 'none';
+			};
+
+			return {
+				showAutocompleteList: show,
+				addValueToDropdownList: addValue,
+				setValueToInput: setVal
 			}
-		</script>
-	</body>
+		})();
+
+		var input = document.getElementById('value');
+		var optionsVal = document.getElementById('list');
+		input.addEventListener('keyup', jrAutocomplete.showAutocompleteList);
+		optionsVal.onclick = function (e) {
+			jrAutocomplete.setValueToInput(e.target.innerText);
+		};
+	</script>
+</body>
+
 </html>
