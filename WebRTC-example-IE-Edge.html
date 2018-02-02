@@ -1,0 +1,107 @@
+<html>
+	<head>
+		<title>WebRTC Testing</title>
+	</head>
+	<body>
+		<script>
+			
+			// Include some helper functions
+			//import "helper.js";
+			// Create ICE gather options
+			var gatherOptions = new RTCIceGatherOptions();
+			gatherOptions.gatherPolicy = RTCIceGatherPolicy.relay;
+			gatherOptions.iceservers = [ { urls: "stun:stun1.example.net" } , 
+			{ urls:"turn:turn.example.org", username: "user", credential:"myPassword"} ];
+			// Create ICE gatherer objects
+			var iceGatherer = new RTCIceGatherer(gatherOptions);
+			// Prepare to signal local candidates as well as "end of candidates"
+			iceGatherer.onlocalcandidate = function (event) {
+				mySendLocalCandidate(event.candidate);
+			}; 
+			// Set up response function
+			mySignaller.onResponse = function(responseSignaller,response) {
+				// The Microsoft Edge ORTC implementation only supports a single response. 
+			};
+			
+			mySignaller.send({
+				"ice": iceGatherer.getLocalParameters()
+			});
+			
+			
+			// Helper functions used in all the examples (helper.js)
+			function trace(text) {
+				// This function is used for logging.
+				if (text[text.length - 1] === '\n') {
+					text = text.substring(0, text.length - 1);
+				}
+				if (window.performance) {
+					var now = (window.performance.now() / 1000).toFixed(3);
+					console.log(now + ': ' + text);
+					} else {
+					console.log(text);
+				}
+			}
+			
+			function errorHandler (error) {
+				trace('Error encountered: ' + error.name);
+			}
+			
+			function mySendLocalCandidate(candidate, component, kind){
+				// Set default values
+				kind = kind || "all";
+				component = component || RTCIceComponent.RTP;
+				parameters = parameters || null; 
+				// Signal the local candidate 
+				mySignaller.mySendLocalCandidate({
+					"candidate": candidate,
+					"component": component,
+					"kind": kind
+				});
+			}
+			
+			function myIceTransportStateChange(name, state){
+				switch(state){
+					case RTCIceTransportState.new:
+					trace('IceTransport: ' + name + ' Has been created');
+					break;
+					case RTCIceTransportState.checking:
+					trace('IceTransport: ' + name + ' Is checking');
+					break;
+					case RTCIceTransportState.connected:
+					trace('IceTransport: ' + name + ' Is connected');
+					break;
+					case RTCIceTransportState.disconnected:
+					trace('IceTransport: ' + name + ' Is disconnected');
+					break;
+					case RTCIceTransportState.completed:
+					trace('IceTransport: ' + name + ' Has finished checking (for now)');
+					break;
+					case RTCIceTransportState.closed:
+					trace('IceTransport: ' + name + ' Is closed');
+					break;
+					default:
+					trace('IceTransport: ' + name + ' Invalid state');
+				}
+			}
+			
+			function myDtlsTransportStateChange(name, state){
+				switch(state){
+					case RTCDtlsTransportState.new:
+					trace('DtlsTransport: ' + name + ' Has been created');
+					break;
+					case RTCDtlsTransportState.connecting:
+					trace('DtlsTransport: ' + name + ' Is connecting');
+					break;
+					case RTCDtlsTransportState.connected:
+					trace('DtlsTransport: ' + name + ' Is connected');
+					break;
+					case RTCDtlsTransportState.closed:
+					trace('DtlsTransport: ' + name + ' Is closed');
+					break;
+					default:
+					trace('DtlsTransport: ' + name + ' Invalid state');
+				}
+			}
+		</script>
+	</body>
+</html>

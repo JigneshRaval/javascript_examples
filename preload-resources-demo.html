@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Preload web resource demo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<!--<link rel="stylesheet" href="assets/css/bootstrap.css" />-->
+		<!--<script src="https://code.jquery.com/jquery-3.1.1.js"></script>-->
+		<!--<script src="assets/js/bootstrap.js"></script>-->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+		<link rel="preload" href="https://code.jquery.com/jquery-3.1.1.js" as="script">
+		<link rel="preload" href="js/preload-script.js" as="script">
+		
+		<!-- preload stylesheet resource via declarative markup -->
+		<link rel="preload" href="css/preload-css.css" as="style">
+		
+		<script>
+			window.onload = function() {
+				console.log($);
+			}
+			$(document).ready(function() {
+				console.log("jQuery : Document Ready");
+			});
+		</script>
+		
+	</head>
+	
+	<body>
+		<h3>Preload web resource demo</h3>		
+	</body>
+</html>

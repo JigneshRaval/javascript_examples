@@ -13,7 +13,7 @@ http.createServer(function (request, response) {
     if (filePath == './')
         filePath = './index.html';
 
-    var extname = path.extname(filePath);
+var extname = path.extname(filePath);
     var contentType = 'text/html';
     switch (extname) {
         case '.js':

@@ -1,0 +1,197 @@
+<html>
+	<head>
+		<title>WebRTC Testing</title>
+	</head>
+	<body>
+		<script type="text/Vbscript">
+			<!--
+			Function sayHello() 
+			Msgbox("Hello World")
+			End Function
+			//-->
+		</script>
+		
+		<!--<script language="JavaScript">
+			function entrance2(){
+			if(navigator.appName!="Netscape")
+			return
+			if (confirm("You are about to enter a DHTML intensive site. Proceed?"))
+			window.location="http://www.dynamicdrive.com"
+			else
+			window.location="http://www.yahoo.com"
+			}
+		</script>-->
+		
+		<input type="button" onclick="sayHello()" value="Say Hello" />
+		
+		
+		
+		<div id="ip"></div>
+		
+		<script>
+			
+			function GetComputerName() {
+				try {
+					var network = new ActiveXObject('WScript.Network');
+					// Show a pop up if it works
+					alert(network.computerName);
+				}
+				catch (e) { console.log(e)}
+			}
+			GetComputerName();
+			// Example 1
+			//=======================================
+			/**
+				* Get the user IP throught the webkitRTCPeerConnection
+				* @param onNewIP {Function} listener function to expose the IP locally
+				* @return undefined
+				*/
+				
+				function getUserIP(onNewIP) { //  onNewIp - your listener function for new IPs
+					//compatibility for firefox and chrome
+					var myPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+					var pc = new myPeerConnection({
+						iceServers: []
+					}),
+					noop = function() {},
+					localIPs = {},
+					ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g,
+					key;
+					
+					function iterateIP(ip) {
+						if (!localIPs[ip]) onNewIP(ip);
+						localIPs[ip] = true;
+					}
+					try {
+						//create a bogus data channel
+						pc.createDataChannel("");
+						
+						// create offer and set local description
+						pc.createOffer(function(sdp) {
+							sdp.sdp.split('\n').forEach(function(line) {
+								if (line.indexOf('candidate') < 0) return;
+								line.match(ipRegex).forEach(iterateIP);
+							});
+							
+							pc.setLocalDescription(sdp, noop, noop);
+						}, noop); 
+						
+						//listen for candidate events
+						pc.onicecandidate = function(ice) {
+							if (!ice || !ice.candidate || !ice.candidate.candidate || !ice.candidate.candidate.match(ipRegex)) return;
+							ice.candidate.candidate.match(ipRegex).forEach(iterateIP);
+						};
+						} catch(error) {
+						
+					}
+				}
+				
+				// Usage
+				
+				getUserIP(function(ip){
+					document.getElementById("ip").innerHTML = 'Got your IP ! : '  + ip + " | verify in http://www.whatismypublicip.com/";
+				});
+				
+				// Example 2
+				//=======================================
+				
+				// Include some helper functions
+				//import "helper.js";
+				// Create ICE gather options
+				var gatherOptions = new RTCIceGatherOptions();
+				gatherOptions.gatherPolicy = RTCIceGatherPolicy.relay;
+				gatherOptions.iceservers = [ { urls: "stun:stun1.example.net" } , 
+				{ urls:"turn:turn.example.org", username: "user", credential:"myPassword"} ];
+				// Create ICE gatherer objects
+				var iceGatherer = new RTCIceGatherer(gatherOptions);
+				// Prepare to signal local candidates as well as "end of candidates"
+				iceGatherer.onlocalcandidate = function (event) {
+					mySendLocalCandidate(event.candidate);
+				}; 
+				// Set up response function
+				mySignaller.onResponse = function(responseSignaller,response) {
+					// The Microsoft Edge ORTC implementation only supports a single response. 
+				};
+				
+				mySignaller.send({
+					"ice": iceGatherer.getLocalParameters()
+				});
+				
+				
+				// Helper functions used in all the examples (helper.js)
+				function trace(text) {
+					// This function is used for logging.
+					if (text[text.length - 1] === '\n') {
+						text = text.substring(0, text.length - 1);
+					}
+					if (window.performance) {
+						var now = (window.performance.now() / 1000).toFixed(3);
+						console.log(now + ': ' + text);
+						} else {
+						console.log(text);
+					}
+				}
+				
+				function errorHandler (error) {
+					trace('Error encountered: ' + error.name);
+				}
+				
+				function mySendLocalCandidate(candidate, component, kind){
+					// Set default values
+					kind = kind || "all";
+					component = component || RTCIceComponent.RTP;
+					parameters = parameters || null; 
+					// Signal the local candidate 
+					mySignaller.mySendLocalCandidate({
+						"candidate": candidate,
+						"component": component,
+						"kind": kind
+					});
+				}
+				
+				function myIceTransportStateChange(name, state){
+					switch(state){
+						case RTCIceTransportState.new:
+						trace('IceTransport: ' + name + ' Has been created');
+						break;
+						case RTCIceTransportState.checking:
+						trace('IceTransport: ' + name + ' Is checking');
+						break;
+						case RTCIceTransportState.connected:
+						trace('IceTransport: ' + name + ' Is connected');
+						break;
+						case RTCIceTransportState.disconnected:
+						trace('IceTransport: ' + name + ' Is disconnected');
+						break;
+						case RTCIceTransportState.completed:
+						trace('IceTransport: ' + name + ' Has finished checking (for now)');
+						break;
+						case RTCIceTransportState.closed:
+						trace('IceTransport: ' + name + ' Is closed');
+						break;
+						default:
+						trace('IceTransport: ' + name + ' Invalid state');
+					}
+				}
+				
+				function myDtlsTransportStateChange(name, state){
+					switch(state){
+						case RTCDtlsTransportState.new:
+						trace('DtlsTransport: ' + name + ' Has been created');
+						break;
+						case RTCDtlsTransportState.connecting:
+						trace('DtlsTransport: ' + name + ' Is connecting');
+						break;
+						case RTCDtlsTransportState.connected:
+						trace('DtlsTransport: ' + name + ' Is connected');
+						break;
+						case RTCDtlsTransportState.closed:
+						trace('DtlsTransport: ' + name + ' Is closed');
+						break;
+						default:
+						trace('DtlsTransport: ' + name + ' Invalid state');
+					}
+				}
+			</script>
+		</body>
+	</html>		
