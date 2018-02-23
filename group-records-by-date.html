@@ -1,0 +1,512 @@
+<html>
+	<head>
+		<title>Group and filter records by Date</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin-ext" rel="stylesheet">
+		<style>
+			body {
+            font-family: 'Open Sans', sans-serif;
+            font-family: 'Roboto', sans-serif;
+			}
+			pre { 
+			border: 1px dashed #333; 
+			padding: 1em 2em; 
+			font-family: Consolas,monospace; 
+			background-color: #EEE; 
+			overflow-x: scroll; 
+			font-size: 14px;  
+			white-space: pre-wrap; 
+			word-wrap: break-word; 
+			}
+			pre {
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			margin: 1em auto;
+			border: 1px dashed #333;
+			width: 100%;
+			padding: 1em 1.5em;
+			font-family: Inconsolata, Consolas, monospace, sans-serif;
+			font-size: 1em;
+			line-height: 1.5;
+			overflow: auto;
+			background: #F7FAFB;
+			border-radius: 3px;
+			position:relative;
+			}
+			code { 
+			background-color: #EEE;
+			font-family: Consolas,monospace;
+			border: solid 1px #CCC;
+			padding: 0 8px;
+			border-radius: 3px;
+			display: inline-block;
+			font-size: 14px;
+			}
+			pre code { background-color: transparent; padding: 0; display: block; border: 0px solid; }
+			pre:after {
+			content: "<CODE>";
+				position: absolute;
+				top:0;
+				right: 0;
+				padding: 5px 15px;
+				background: #999;
+				color: #FFF;
+				}
+				
+				section {
+				margin: 1em auto;
+				width: 60%;
+				}
+				.example {
+				}
+			</style>
+		</head>
+		<body>
+			<section>
+				<article class="example example-1">
+					<h3>Example 1 : Group array items by date</h3>
+<pre>
+// Example 1 : Group array items by date
+// Ref : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+//================================
+let outputContainer1 = document.querySelector('#output-example-1');
+
+let originalArray = [
+{title: "New Three 123", status: "pending", isDone: false, today: "2018-02-20T16:40:17.759Z", _id: "Eyt44n1svxIjOn5Y"},
+{title: "My First card", status: "pending", isDone: false, today: "2018-02-21T13:00:13.979Z", _id: "UlSoOrLBjX2RldgQ"},
+{title: "Sun Pharma", status: "completed", isDone: true, today: "2018-02-20T16:41:19.040Z", _id: "VbBEyndCIhPDB1Uf"},
+{title: "Design News", status: "pending", isDone: false, today: "2018-02-21T13:00:07.730Z", _id: "rpW4bVIYWjlPMgk6"},
+{title: "Amul India sddsd", status: "pending", isDone: false, today: "2018-02-20T16:41:13.087Z", _id: "uyISWNb7vapmRrNG"}
+];
+
+let outputObj = originalArray.reduce(function(base,cur){
+	
+	let newDate = new Date(cur.today);
+	
+	cur.today = newDate.getFullYear() +','+ (newDate.getMonth() + 1) +','+ newDate.getDate();
+	
+	if (cur.today in base) {
+		//let base[cur.today] =[];
+		if (new Date(cur.today).getTime() === new Date(cur.today).getTime()) {
+			base[cur.today].push(cur);
+		}
+		else {
+			return base;
+		}
+	}
+	else {
+		base[cur.today] = [];
+		base[cur.today].push(cur);
+	}
+	
+	return base;
+},{});
+
+console.log("Output : ", outputObj);
+
+outputContainer1.innerHTML = JSON.stringify(outputObj);
+
+
+/* Output Required
+------------------------------*/
+/*
+	{
+	'2018,2,20' : [
+	{title: "New Three 123", status: "pending", isDone: false, today: "2018-02-20T16:40:17.759Z", _id: "Eyt44n1svxIjOn5Y"},
+	{title: "Sun Pharma", status: "completed", isDone: true, today: "2018-02-20T16:41:19.040Z", _id: "VbBEyndCIhPDB1Uf"},
+	{title: "Amul India sddsd", status: "pending", isDone: false, today: "2018-02-20T16:41:13.087Z", _id: "uyISWNb7vapmRrNG"}
+	],
+	'2018,2,21' : [
+	{title: "My First card", status: "pending", isDone: false, today: "2018-02-21T13:00:13.979Z", _id: "UlSoOrLBjX2RldgQ"},
+	{title: "Design News", status: "pending", isDone: false, today: "2018-02-21T13:00:07.730Z", _id: "rpW4bVIYWjlPMgk6"}
+	]
+	}
+*/					
+
+
+let temp = Object.keys(outputObj).map(function(k){
+	console.log("K :", k, outputObj[k]);
+	
+	return outputObj[k];
+});
+
+console.log("Temp :", temp);
+</pre>
+					<pre id="output-example-1"></pre>
+					<script>
+						// Example 1 : Group array items by date
+						// Ref : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+						//================================
+						let outputContainer1 = document.querySelector('#output-example-1');
+						
+						let originalArray = [
+						{title: "New Three 123", status: "pending", isDone: false, today: "2018-02-20T16:40:17.759Z", _id: "Eyt44n1svxIjOn5Y"},
+						{title: "My First card", status: "pending", isDone: false, today: "2018-02-21T13:00:13.979Z", _id: "UlSoOrLBjX2RldgQ"},
+						{title: "Sun Pharma", status: "completed", isDone: true, today: "2018-02-20T16:41:19.040Z", _id: "VbBEyndCIhPDB1Uf"},
+						{title: "Design News", status: "pending", isDone: false, today: "2018-02-21T13:00:07.730Z", _id: "rpW4bVIYWjlPMgk6"},
+						{title: "Amul India sddsd", status: "pending", isDone: false, today: "2018-02-20T16:41:13.087Z", _id: "uyISWNb7vapmRrNG"}
+						];
+						
+						let outputObj = originalArray.reduce(function(base,cur){
+							
+							let newDate = new Date(cur.today);
+							
+							cur.today = newDate.getFullYear() +','+ (newDate.getMonth() + 1) +','+ newDate.getDate();
+							
+							if (cur.today in base) {
+								//let base[cur.today] =[];
+								if (new Date(cur.today).getTime() === new Date(cur.today).getTime()) {
+									base[cur.today].push(cur);
+								}
+								else {
+									return base;
+								}
+							}
+							else {
+								base[cur.today] = [];
+								base[cur.today].push(cur);
+							}
+							
+							return base;
+						},{});
+						
+						console.log("Output : ", outputObj);
+						
+						outputContainer1.innerHTML = '// Output\n' + JSON.stringify(outputObj);
+						
+						
+						/* Output Required
+						------------------------------*/
+						/*
+							{
+							'2018,2,20' : [
+							{title: "New Three 123", status: "pending", isDone: false, today: "2018-02-20T16:40:17.759Z", _id: "Eyt44n1svxIjOn5Y"},
+							{title: "Sun Pharma", status: "completed", isDone: true, today: "2018-02-20T16:41:19.040Z", _id: "VbBEyndCIhPDB1Uf"},
+							{title: "Amul India sddsd", status: "pending", isDone: false, today: "2018-02-20T16:41:13.087Z", _id: "uyISWNb7vapmRrNG"}
+							],
+							'2018,2,21' : [
+							{title: "My First card", status: "pending", isDone: false, today: "2018-02-21T13:00:13.979Z", _id: "UlSoOrLBjX2RldgQ"},
+							{title: "Design News", status: "pending", isDone: false, today: "2018-02-21T13:00:07.730Z", _id: "rpW4bVIYWjlPMgk6"}
+							]
+							}
+						*/					
+						
+						
+						let temp = Object.keys(outputObj).map(function(k){
+							console.log("K :", k, outputObj[k]);
+							
+							return outputObj[k];
+						});
+						
+						console.log("Temp :", temp);
+					</script>
+				</article>
+				
+				
+				
+				<article class="example example-2">
+					<h3>Example 2 : Counting instances of values in an object</h3>
+					<pre>
+// Example 2 : Counting instances of values in an object
+// Ref : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+//================================
+
+let outputContainer2 = document.querySelector('#output-example-2');
+
+var names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
+
+var countedNames = names.reduce(function (allNames, name) {
+	if (name in allNames) {
+		allNames[name]++;
+	}
+	else {
+		allNames[name] = 1;
+	}
+	
+	return allNames;
+}, {});
+
+// Output :
+// countedNames is:
+// { 'Alice': 2, 'Bob': 1, 'Tiff': 1, 'Bruce': 1 }
+
+outputContainer2.innerHTML = JSON.stringify(countedNames);
+					</pre>
+					<pre id="output-example-2"></pre>
+					<script>
+						// Example 2 : Counting instances of values in an object
+						// Ref : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+						//================================
+						
+						let outputContainer2 = document.querySelector('#output-example-2');
+						
+						var names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
+						
+						var countedNames = names.reduce(function (allNames, name) {
+							if (name in allNames) {
+								allNames[name]++;
+							}
+							else {
+								allNames[name] = 1;
+							}
+							
+							return allNames;
+						}, {});
+						
+						// Output :
+						// countedNames is:
+						// { 'Alice': 2, 'Bob': 1, 'Tiff': 1, 'Bruce': 1 }
+						
+						outputContainer2.innerHTML = '// Output\n' + JSON.stringify(countedNames);
+					</script>
+				</article>
+				
+				<article class="example example-3">
+					<h3>Example 3 : Bonding arrays contained in an array of objects using the spread operator and initialValue</h3>
+					<pre>
+// Example 3 : Bonding arrays contained in an array of objects using the spread operator and initialValue
+// Ref : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+//================================
+// friends - an array of objects 
+// where object field "books" - list of favorite books 
+
+let outputContainer3 = document.querySelector('#output-example-3');
+
+var friends = [{
+	name: 'Anna',
+	books: ['Bible', 'Harry Potter'],
+	age: 21
+	}, {
+	name: 'Bob',
+	books: ['War and peace', 'Romeo and Juliet'],
+	age: 26
+	}, {
+	name: 'Alice',
+	books: ['The Lord of the Rings', 'The Shining'],
+	age: 18
+}];
+
+// allbooks - list which will contain all friends' books +  
+// additional list contained in initialValue
+var allbooks = friends.reduce(function(prev, curr) {
+	return [...prev, ...curr.books];
+}, ['Alphabet']);
+
+// Output :
+// allbooks = [
+//   'Alphabet', 'Bible', 'Harry Potter', 'War and peace', 
+//   'Romeo and Juliet', 'The Lord of the Rings',
+//   'The Shining'
+// ]
+
+outputContainer3.innerHTML = allbooks;
+					</pre>
+					<pre id="output-example-3"></pre>
+					<script>				
+						// Example 3 : Bonding arrays contained in an array of objects using the spread operator and initialValue
+						// Ref : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+						//================================
+						// friends - an array of objects 
+						// where object field "books" - list of favorite books 
+						
+						let outputContainer3 = document.querySelector('#output-example-3');
+						
+						var friends = [{
+							name: 'Anna',
+							books: ['Bible', 'Harry Potter'],
+							age: 21
+							}, {
+							name: 'Bob',
+							books: ['War and peace', 'Romeo and Juliet'],
+							age: 26
+							}, {
+							name: 'Alice',
+							books: ['The Lord of the Rings', 'The Shining'],
+							age: 18
+						}];
+						
+						// allbooks - list which will contain all friends' books +  
+						// additional list contained in initialValue
+						var allbooks = friends.reduce(function(prev, curr) {
+							return [...prev, ...curr.books];
+						}, ['Alphabet']);
+						
+						// Output :
+						// allbooks = [
+						//   'Alphabet', 'Bible', 'Harry Potter', 'War and peace', 
+						//   'Romeo and Juliet', 'The Lord of the Rings',
+						//   'The Shining'
+						// ]
+						
+						outputContainer3.innerHTML = '// Output\n' + allbooks;
+					</script>
+				</article>
+				
+				<article class="example example-4">
+					<h3>Example 4 : Remove duplicate items in array</h3>
+					<pre>
+// Example 4 : Remove duplicate items in array
+// Ref : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+//================================
+let outputContainer4 = document.querySelector('#output-example-4');
+
+let arr = [1, 2, 1, 2, 3, 5, 4, 5, 3, 4, 4, 4, 4];
+
+let result = arr.sort().reduce((init, current) => {
+	if (init.length === 0 || init[init.length - 1] !== current) {
+		init.push(current);
+	}
+	
+	return init;
+}, []);
+
+console.log(result); //[1,2,3,4,5]
+
+outputContainer4.innerHTML = result;					</pre>
+					<pre id="output-example-4"></pre>
+					<script>				
+						// Example 4 : Remove duplicate items in array
+						// Ref : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+						//================================
+						let outputContainer4 = document.querySelector('#output-example-4');
+						
+						let arr = [1, 2, 1, 2, 3, 5, 4, 5, 3, 4, 4, 4, 4];
+						
+						let result = arr.sort().reduce((init, current) => {
+							if (init.length === 0 || init[init.length - 1] !== current) {
+								init.push(current);
+							}
+							
+							return init;
+						}, []);
+						
+						console.log(result); //[1,2,3,4,5]
+						
+						outputContainer4.innerHTML = '// Output\n' + result;
+					</script>
+				</article>
+				
+				<script>					
+					
+				</script>
+				
+				<article class="example example-5">
+					<h3>Example 5 : Group array items by date</h3>
+					<pre>
+// Example 5 : Group array items by date
+// Ref : https://stackoverflow.com/questions/48945753/javascript-group-items-from-array-of-objects-or-records-by-date
+//================================
+
+let outputContainer5 = document.querySelector('#output-example-5');
+
+var originalArray2 = [{
+	title: "New Three 123",
+	status: "pending",
+	isDone: false,
+	today: "2018-02-20T16:40:17.759Z",
+	_id: "Eyt44n1svxIjOn5Y"
+},
+{
+	title: "My First card",
+	status: "pending",
+	isDone: false,
+	today: "2018-02-21T13:00:13.979Z",
+	_id: "UlSoOrLBjX2RldgQ"
+},
+{
+	title: "Sun Pharma",
+	status: "completed",
+	isDone: true,
+	today: "2018-02-20T16:41:19.040Z",
+	_id: "VbBEyndCIhPDB1Uf"
+},
+{
+	title: "Design News",
+	status: "pending",
+	isDone: false,
+	today: "2018-02-21T13:00:07.730Z",
+	_id: "rpW4bVIYWjlPMgk6"
+},
+{
+	title: "Amul India sddsd",
+	status: "pending",
+	isDone: false,
+	today: "2018-02-20T16:41:13.087Z",
+	_id: "uyISWNb7vapmRrNG"
+}
+];
+
+var data = originalArray2.reduce(
+(acc, el)=>{
+	var today = el.today.split("T")[0].replace(/-/g, ",");
+	if(acc.hasOwnProperty(today)) acc[today].push(el);
+	else acc[today] = [el];
+	return acc;
+}, {}
+)
+
+console.log(data);
+
+outputContainer5.innerHTML = JSON.stringify(data);
+					</pre>
+					<pre id="output-example-5"></pre>
+					<script>
+						// Example 5 : Group array items by date
+						// Ref : https://stackoverflow.com/questions/48945753/javascript-group-items-from-array-of-objects-or-records-by-date
+						//================================
+						
+						let outputContainer5 = document.querySelector('#output-example-5');
+						
+						var originalArray2 = [{
+							title: "New Three 123",
+							status: "pending",
+							isDone: false,
+							today: "2018-02-20T16:40:17.759Z",
+							_id: "Eyt44n1svxIjOn5Y"
+						},
+						{
+							title: "My First card",
+							status: "pending",
+							isDone: false,
+							today: "2018-02-21T13:00:13.979Z",
+							_id: "UlSoOrLBjX2RldgQ"
+						},
+						{
+							title: "Sun Pharma",
+							status: "completed",
+							isDone: true,
+							today: "2018-02-20T16:41:19.040Z",
+							_id: "VbBEyndCIhPDB1Uf"
+						},
+						{
+							title: "Design News",
+							status: "pending",
+							isDone: false,
+							today: "2018-02-21T13:00:07.730Z",
+							_id: "rpW4bVIYWjlPMgk6"
+						},
+						{
+							title: "Amul India sddsd",
+							status: "pending",
+							isDone: false,
+							today: "2018-02-20T16:41:13.087Z",
+							_id: "uyISWNb7vapmRrNG"
+						}
+						];
+						
+						var data = originalArray2.reduce(
+						(acc, el)=>{
+							var today = el.today.split("T")[0].replace(/-/g, ",");
+							if(acc.hasOwnProperty(today)) acc[today].push(el);
+							else acc[today] = [el];
+							return acc;
+						}, {}
+						)
+						
+						console.log(data);
+						
+						outputContainer5.innerHTML = '// Output\n' + JSON.stringify(data);
+					</script>
+				</article>
+			</section>
+		</body>
+	</html>					
