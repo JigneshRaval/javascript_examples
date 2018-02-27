@@ -198,6 +198,24 @@ console.log("Temp :", temp);
 						});
 						
 						console.log("Temp :", temp);
+						
+						//------------------------------------
+						var groupBy = function(xs, key) {
+  return xs.reduce(function(rv, x) {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
+};
+var originalArray3 = [
+        {title: "New Three 123", status: "pending", isDone: false, today: "2018-02-20T16:40:17.759Z", _id: "Eyt44n1svxIjOn5Y"},
+        {title: "My First card", status: "pending", isDone: false, today: "2018-02-21T13:00:13.979Z", _id: "UlSoOrLBjX2RldgQ"},
+        {title: "Sun Pharma", status: "completed", isDone: true, today: "2018-02-20T16:41:19.040Z", _id: "VbBEyndCIhPDB1Uf"},
+        {title: "Design News", status: "pending", isDone: false, today: "2018-02-21T13:00:07.730Z", _id: "rpW4bVIYWjlPMgk6"},
+        {title: "Amul India sddsd", status: "pending", isDone: false, today: "2018-02-20T16:41:13.087Z", _id: "uyISWNb7vapmRrNG"}
+        ];
+
+
+console.log("Example 1234 :", groupBy(originalArray3, 'today'));
 					</script>
 				</article>
 				

@@ -1,0 +1,306 @@
+<html lang="en" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+	<head>
+		<title>OBJECT-FIT WITH IE AND EDGE FALLBACK</title>
+		<meta charset="UTF-8">
+		<meta name="robots" content="noindex">	
+		
+		
+		<style class="cp-pen-styles">
+			/*this css is nessary*/
+			.object-fit__cover {
+			object-fit: cover;
+			}
+			.object-fit__fill {
+			object-fit: fill;
+			}
+			.object-fit__contain {
+			object-fit: contain;
+			}
+			.object-fit__none {
+			object-fit: none;
+			}
+			.object-fit__scale-down {
+			object-fit: scale-down;
+			}
+			
+			img, video, svg {
+			height: 100%;
+			width: 100%;
+			opacity: 0.6;
+			}
+			
+			/*this css is for decoration*/
+			* {
+			box-sizing: border-box;
+			}
+			
+			html, body {
+			height: 100%;
+			width: 100%;
+			font-family: sans-serif;
+			}
+			
+			.object-fit__container {
+			position: relative;
+			overflow: hidden;
+			margin: 2%;
+			height: 200px;
+			width: 100%;
+			background: black;
+			}
+			.object-fit__container--large {
+			height: 400px;
+			}
+			.object-fit__container img {
+			opacity: 0.75;
+			}
+			.object-fit__container h1, .object-fit__container p {
+			z-index: 2;
+			display: block;
+			width: 100%;
+			text-align: center;
+			padding: 30px;
+			position: absolute;
+			}
+			.object-fit__container h1 {
+			top: 5%;
+			text-transform: uppercase;
+			font-size: 30px;
+			}
+			.object-fit__container p {
+			bottom: 5%;
+			}
+			.object-fit__container, 
+			.object-fit__container a {
+			color: white;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<h3>OBJECT-FIT WITH IE AND EDGE FALLBACK</h3>
+		<p><a href="https://codepen.io/arniebradfo/pen/eFtdf?editors=1010">OBJECT-FIT WITH IE AND EDGE FALLBACK (Requires Modernizr detection of object-fit css)</a></p>
+		<div class="object-fit__container object-fit__container--large">
+			
+			<video class="object-fit__cover" src="http://www.asirobots.com/wp-content/uploads/pages/video/Companies-BG-video-draft.mp4" autoplay muted loop></video>
+			
+			<h1>Object-Fit with IE and Edge fallback</h1>
+			<p>
+				Requires Modernizr detection of object-fit css. Description coming soon.
+				</br>
+				</br>
+				<a href="https://codepen.io/arniebradfo/pen/jEEWeV"></a>
+				</br>
+				</br>
+				<span class="status"></span>
+			</p>
+			
+		</div>
+		
+		<div class="object-fit__container">
+			<h1>Cover</h1>
+			<img class="object-fit__cover" src="http://blogs-images.forbes.com/startswithabang/files/2016/01/Milky_Way_at_Concordia_Camp_Karakoram_Range_Pakistan-1200x800.jpg">
+		</div>
+		
+		<div class="object-fit__container">
+			<h1>Fill</h1>
+			<img class="object-fit__fill" src="http://blogs-images.forbes.com/startswithabang/files/2016/01/Milky_Way_at_Concordia_Camp_Karakoram_Range_Pakistan-1200x800.jpg">
+		</div>
+		
+		<div class="object-fit__container">
+			<h1>Contain</h1>
+			<img class="object-fit__contain" src="http://blogs-images.forbes.com/startswithabang/files/2016/01/Milky_Way_at_Concordia_Camp_Karakoram_Range_Pakistan-1200x800.jpg">
+		</div>
+		
+		<div class="object-fit__container">
+			<h1>None</h1>
+			<img class="object-fit__none" src="http://blogs-images.forbes.com/startswithabang/files/2016/01/Milky_Way_at_Concordia_Camp_Karakoram_Range_Pakistan-1200x800.jpg">
+		</div>
+		
+		<div class="object-fit__container">
+			<h1>Scale-Down</h1>
+			<img class="object-fit__scale-down" src="http://blogs-images.forbes.com/startswithabang/files/2016/01/Milky_Way_at_Concordia_Camp_Karakoram_Range_Pakistan-1200x800.jpg">
+		</div>
+		
+		
+		
+		
+		<!--<script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js"></script>-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		<script>
+			// objectFitFallback.js
+			// requires modernizr
+			
+			// REFERENCES:
+			// https://css-tricks.com/almanac/properties/o/object-fit/
+			
+			(function(Modernizr) {
+				
+				// switch between height:100% and width:100% based on comparison of img and container aspect ratios
+				function coverFillSwitch(container, img, invert) {
+					if (!container || !img) return false;
+					
+					var imgHeight = img.naturalHeight || img.videoHeight;
+					var imgWidth = img.naturalWidth || img.videoWidth;
+					var containerRatio = container.offsetWidth / container.offsetHeight;
+					var imgRatio = imgWidth / imgHeight;
+					
+					var ratioComparison = false;
+					if (imgRatio >= containerRatio) ratioComparison = true;
+					if (invert) ratioComparison = !ratioComparison; // flip the bool
+					
+					if (ratioComparison) {
+						img.style.height = '100%';
+						img.style.width = 'auto';
+						} else {
+						img.style.height = 'auto';
+						img.style.width = '100%';
+					}
+					
+				}
+				
+				function objectFitResize() {
+					var i, img, container;
+					
+					var imgsCover = document.getElementsByClassName('object-fit__cover');
+					for (i = 0; i < imgsCover.length; i++) {
+						img = imgsCover[i];
+						container = img.parentElement;
+						if (container.classList.contains('object-fit__container')) {
+							coverFillSwitch(container, img);
+						}
+					}
+					
+					var imgsContain = document.getElementsByClassName('object-fit__contain');
+					for (i = 0; i < imgsContain.length; i++) {
+						img = imgsContain[i];
+						container = img.parentElement;
+						if (container.classList.contains('object-fit__container')) {
+							coverFillSwitch(container, img, true);
+						}
+					}
+				}
+				
+				// add absolute center image css properties
+				function applyStandardProperties(container, img) {
+					var containerStyle = window.getComputedStyle(container);
+					if (containerStyle.overflow !== 'hidden') container.style.overflow = 'hidden';
+					if (containerStyle.position !== 'relative' &&
+					containerStyle.position !== 'absolute' &&
+					containerStyle.position !== 'fixed') container.style.position = 'relative';
+					img.style.position = 'absolute';
+					img.style.top = '50%';
+					img.style.left = '50%';
+					img.style.transform = 'translate(-50%,-50%)';
+				}
+				
+				function objectFitInt() {
+					
+					var imgs = document.querySelectorAll('[class*="object-fit__"]');
+					for (var i = 0; i < imgs.length; i++) {
+						
+						var type = 'cover';
+						var img = imgs[i];
+						var container = img.parentElement;
+						
+						if (img.classList.contains('object-fit__container')) type = 'container';
+						if (img.classList.contains('object-fit__cover')) type = 'cover';
+						if (img.classList.contains('object-fit__fill')) type = 'fill';
+						if (img.classList.contains('object-fit__contain')) type = 'contain';
+						if (img.classList.contains('object-fit__none')) type = 'none';
+						if (img.classList.contains('object-fit__scale-down')) type = 'scale-down';
+						
+						switch (type) {
+							case 'container':
+							break;
+							case 'cover':
+							coverFillSwitch(container, img);
+							applyStandardProperties(container, img);
+							break;
+							case 'contain': // opposite of cover
+							coverFillSwitch(container, img, true);
+							applyStandardProperties(container, img);
+							break;
+							case 'fill':
+							img.style.height = '100%';
+							img.style.width = '100%';
+							applyStandardProperties(container, img);
+							break;
+							case 'none':
+							img.style.height = 'auto';
+							img.style.width = 'auto';
+							applyStandardProperties(container, img);
+							break;
+							case 'scale-down':
+							img.style.maxHeight = '100%';
+							img.style.maxWidth = '100%';
+							img.style.height = 'auto';
+							img.style.width = 'auto';
+							applyStandardProperties(container, img);
+							break;
+							default:
+							break;
+						}
+					}
+				}
+				
+				var resizeTimeout;
+				
+				function resizeThrottler() { // @source https://developer.mozilla.org/en-US/docs/Web/Events/resize
+					if (!resizeTimeout) {
+						resizeTimeout = setTimeout(function() {
+							resizeTimeout = null;
+							objectFitResize();
+						}, 66); // The objectFitResize will execute at a rate of 15fps
+					}
+				}
+				
+				// Modernizr.objectfit = Modernizr.testAllProps('objectFit'); // detect IE and Edge
+				if (!Modernizr.objectfit) {
+					window.addEventListener('load', objectFitInt, false);
+					window.addEventListener('resize', resizeThrottler, false);
+				}
+				
+			})(Modernizr);
+		</script>
+		
+		<div>
+			<h3>Example 2 : Polyfill for object-fit and object-position CSS properties on video elements. Works with IE9-11, Edge, Safari less then 10.</h3>
+			<p><a href="https://github.com/TricomB2B/object-fit-videos">Polyfill for object-fit and object-position CSS properties on video elements. Works with IE9-11, Edge, Safari less then 10.</a></p>
+			
+			<article >
+			<h1>object-fit-videos</h1>
+<p>An open-source polyfill for CSS <code>object-fit</code> and <code>object-position</code> on videos. Supports IE9-11, Edge, and Safari &lt;10 (and more?). Does nothing on browsers that support these properties.</p>
+<h3>Installation</h3>
+<div class="highlight highlight-source-shell"><pre>$ npm install --save object-fit-videos</pre></div>
+<p>Or <a href="https://yarnpkg.com/" rel="nofollow">yarn</a>!</p>
+<div class="highlight highlight-source-shell"><pre>$ yarn add object-fit-videos</pre></div>
+<h3>Usage</h3>
+<p>Include the polyfill in your markup</p>
+			<pre>&lt;script src="path/to/object-fit-videos/dist/object-fit-videos.min.js">&lt;/script></pre>
+			<pre>&lt;script src="./videos/object-fit-videos.js">&lt;/script></pre>
+<p>Add a special font-family CSS property for targeting IE/Edge or Safari</p>
+<pre>video {
+  object-fit: cover;
+  font-family: 'object-fit: cover;';
+}</pre>
+<p><code>object-position</code> can be used similarly. Note that <code>object-position</code> only supports keyword positioning at this time. That's <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>, and <code>center</code></p>
+<pre>video {
+  object-fit: cover;
+  object-position: left top;
+  font-family: 'object-fit: cover; object-position: left top;';
+}</pre>
+<p>Make the JavaScript call to initialize the videos with the special CSS property</p>
+<pre>objectFitVideos();</pre>
+<p>You can make the call before the closing <code>&lt;/body&gt;</code> tag or whenever the DOM is ready. The polyfill will do the rest.</p>
+<h3>Polyfilling Specific Elements</h3>
+<p>You can also pass elements to the <code>objectFitVideos()</code> function to only polyfill specific videos. A couple examples:</p>
+<pre>
+objectFitVideos(document.querySelectorAll('.videos'));
+
+objectFitVideos(document.getElementById('vid'));
+</pre>
+</article>
+			</div>
+	</body>
+	</html>				
