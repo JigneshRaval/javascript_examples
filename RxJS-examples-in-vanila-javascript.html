@@ -23,14 +23,14 @@
 
 	<link rel="stylesheet" href="css/bootstrap.css" />
 	<!--
-		<script src="js/tether.min.js"></script>
-		<script src="js/bootstrap-4.js"></script>
+			<script src="js/tether.min.js"></script>
+			<script src="js/bootstrap-4.js"></script>
 		-->
 
 	<!-- UIKit Version 3.0.0-Beta.22 ( https://getuikit.com/ ) -->
 	<!--<link rel="stylesheet" href="css/uikit.css" />
-		<script src="js/uikit.js"></script>
-		<script src="js/uikit-icons.js"></script>
+			<script src="js/uikit.js"></script>
+			<script src="js/uikit-icons.js"></script>
 		-->
 
 	<script src="https://unpkg.com/@reactivex/rxjs@5.5.6/dist/global/Rx.js"></script>
@@ -111,13 +111,74 @@
 	</section>
 
 	<article>
-		<p>Lorem ipsum dolor sit amet</p>
+		<h2>Simple Observable : Concat</h2>
+		<span class="ref">https://netbasal.com/rxjs-six-operators-that-you-must-know-5ed3b6e238a0</span>
+		<p>Subscribe to Observables in order but only when the previous completes, let me know, then move to the next one.</p>
+		<p>Use this operator when the order is important, for example when you need to send HTTP requests that should be in order.</p>
+		<pre>// Simulate HTTP requests
+const getPostOne$ = Rx.Observable.timer(3000).mapTo({ id: 1 });
+const getPostTwo$ = Rx.Observable.timer(1000).mapTo({ id: 2 });
+
+Rx.Observable.concat(getPostOne$, getPostTwo$).subscribe(res => console.log(res));</pre>
 		<script>
 			// Simulate HTTP requests
 			const getPostOne$ = Rx.Observable.timer(3000).mapTo({ id: 1 });
 			const getPostTwo$ = Rx.Observable.timer(1000).mapTo({ id: 2 });
 
 			Rx.Observable.concat(getPostOne$, getPostTwo$).subscribe(res => console.log(res));
+		</script>
+	</article>
+
+	<article>
+		<h2>Simple Observable : forkJoin</h2>
+		<span class="ref">https://netbasal.com/rxjs-six-operators-that-you-must-know-5ed3b6e238a0</span>
+		<p>Don’t let me know until all the Observables are complete, then give me all the values at once. ( Array )</p>
+		<p>Use this operator when the order is important, for example when you need to send HTTP requests that should be in order.</p>
+		<pre>
+// Simulate HTTP requests
+const getPostOneOne$ = Rx.Observable.timer(1000).mapTo({id: 1});
+const getPostTwoTwo$ = Rx.Observable.timer(2000).mapTo({id: 2});
+
+Rx.Observable.forkJoin(getPostOneOne$, getPostTwoTwo$).subscribe(res => console.log(res))
+</pre>
+		<script>
+			// Simulate HTTP requests
+			const getPostOneOne$ = Rx.Observable.timer(1000).mapTo({ id: 1 });
+			const getPostTwoTwo$ = Rx.Observable.timer(2000).mapTo({ id: 2 });
+
+			Rx.Observable.forkJoin(getPostOneOne$, getPostTwoTwo$).subscribe(res => console.log(res))
+		</script>
+	</article>
+
+	<article>
+		<h2>Observe X and Y position on mouse move</h2>
+		<pre>let Pair = [];
+
+const moves = Rx.Observable.fromEvent(document.body, "mousemove").map(e => [e.screenX, e.screenY]);
+
+const position = new Rx.BehaviorSubject([0, 0]);
+
+// Example without throttle
+// moves.subscribe(position);
+
+// Example with throttle
+moves.throttle(ev => Rx.Observable.interval(2000)).subscribe(position);
+
+position.subscribe(data => console.log('Mouse move :', data));</pre>
+		<script>
+			let Pair = [];
+
+			const moves = Rx.Observable.fromEvent(document.body, "mousemove").map(e => [e.screenX, e.screenY]);
+
+			const position = new Rx.BehaviorSubject([0, 0]);
+
+			// Example without throttle
+			// moves.subscribe(position);
+
+			// Example with throttle
+			moves.throttle(ev => Rx.Observable.interval(2000)).subscribe(position);
+
+			position.subscribe(data => console.log('Mouse move :', data));
 		</script>
 	</article>
 
