@@ -1,63 +1,144 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		
-		<title>HTML5 Structure</title>
-		
-		<!-- FAVICON -->
-		<link rel='shortcut icon' type='image/x-icon' href='images/favicon.png' />
-		
-		<!-- Fonts -->
-		<link rel="stylesheet" type='text/css' href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' />
-		<link rel="stylesheet" type='text/css' href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin-ext">
-		
-		<!-- jQuery -->
-		<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
-		<!--<script src="js/jquery-3.2.1.js"></script>-->
-		
-		<!-- Bootstrap 4 -->
-		<link rel="stylesheet" href="css/bootstrap.css" />
-		<script src="js/bootstrap-4.js"></script>
-		
-		<!-- UIKit Version 3.0.0-Beta.22 ( https://getuikit.com/ ) -->
-		<!--
-		<link rel="stylesheet" href="css/uikit.css" />
-		<script src="js/uikit.js"></script>
-		<script src="js/uikit-icons.js"></script>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>ES6 Array Methods</title>
+
+	<!-- FAVICON -->
+	<link rel='shortcut icon' type='image/x-icon' href='images/favicon.png' />
+
+	<!-- Fonts -->
+	<link rel="stylesheet" type='text/css' href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' />
+	<link rel="stylesheet" type='text/css' href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin-ext">
+
+	<!-- jQuery -->
+	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+	<!--<script src="js/jquery-3.2.1.js"></script>-->
+
+	<!-- Bootstrap 4 -->
+	<link rel="stylesheet" href="css/bootstrap.css" />
+
+	<!-- UIKit Version 3.0.0-Beta.22 ( https://getuikit.com/ ) -->
+	<!--
+			<link rel="stylesheet" href="css/uikit.css" />
+			<script src="js/uikit.js"></script>
+			<script src="js/uikit-icons.js"></script>
 		-->
-		
-		<!-- Your Custom Styles -->
-		<link href="css/main.css" rel="stylesheet" />		
-		
-	</head>
-	<body>
-		<!-- START :: BODY -->
+
+	<!-- Your Custom Styles -->
+	<link href="css/main.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+		<h5 class="my-0 mr-md-auto font-weight-normal">ES6 Array Methods</h5>
+		<nav class="my-2 my-md-0 mr-md-3">
+			<a class="p-2 text-dark" href="#">Features</a>
+			<a class="p-2 text-dark" href="#">Enterprise</a>
+			<a class="p-2 text-dark" href="#">Support</a>
+			<a class="p-2 text-dark" href="#">Pricing</a>
+		</nav>
+	</div>
+
+	<!-- START :: BODY -->
+
+	<section class="container">
 		<h1>ES6 Array Methods</h1>
-		<section class="Part1">
-			
-		</section>
-		
-		<aside>
-			
-		</aside>
-		
-		<figure>
-			<label>This is the first image</label>
-			<img src="image1.jpg">
-			<label>This is the second image</label>
-			<img src="image2.jpg">
-		</figure>
-		
-		<article>
-			<p>Lorem ipsum dolor sit amet</p>
+
+		<!-- START : Example -->
+		<article class="example example-one">
+			<h2>Clearing or truncating an array</h2>
+			<div class="example__content">
+				<p>SRC :
+					<a href="https://medium.freecodecamp.org/9-neat-javascript-tricks-e2742f2735c3">https://medium.freecodecamp.org/9-neat-javascript-tricks-e2742f2735c3</a>
+				</p>
+				<p>An easy way of clearing or truncating an array without reassigning it is by changing its length property value:</p>
+				<pre><code>const arr = [11, 22, 33, 44, 55, 66];
+
+// truncanting
+arr.length = 3;
+console.log(arr); //=> [11, 22, 33]
+
+// clearing
+arr.length = 0;
+console.log(arr); //=> []
+console.log(arr[2]); //=> undefined</code></pre>
+			</div>
+			<script>
+				(function () {
+					const arr = [11, 22, 33, 44, 55, 66];
+
+					console.log('Original array value :', arr);
+
+					// truncate array
+					arr.length = 3;
+					console.log('Truncated array value :', arr);
+
+					// clearing array
+					arr.length = 0;
+					console.log('Clearing array :', arr);
+				})()
+			</script>
 		</article>
-		
-		<footer>
-			Copyright May 2017
-		</footer>
-		<!-- END :: BODY -->
-	</body>
-</html>		
+		<!-- END : Example -->
+
+		<!-- START : Example -->
+		<article class="example example-one">
+			<h2>Simulating named parameters with object destructuring</h2>
+			<div class="example__content">
+				<p>SRC :
+					<a href="https://medium.freecodecamp.org/9-neat-javascript-tricks-e2742f2735c3">https://medium.freecodecamp.org/9-neat-javascript-tricks-e2742f2735c3</a>
+				</p>
+				<p>Chances are high that you’re already using configuration objects when you need to pass a variable set of options to some
+					function, like this:</p>
+				<pre><code>doSomething({ foo: 'Hello', bar: 'Hey!', baz: 42 });
+function doSomething(config) {
+  const foo = config.foo !== undefined ? config.foo : 'Hi';
+  const bar = config.bar !== undefined ? config.bar : 'Yo!';
+  const baz = config.baz !== undefined ? config.baz : 13;
+  // ...
+}</code></pre>
+				<p>This is an old but effective pattern, which tries to simulate named parameters in JavaScript. The function calling looks
+					fine. On the other hand, the config object handling logic is unnecessarily verbose. With ES2015 object destructuring,
+					you can circumvent this downside:</p>
+				<pre><code>function doSomething({ foo = 'Hi', bar = 'Yo!', baz = 13 }) {
+  // ...
+}</code></pre>
+				<p>And if you need to make the config object optional, it’s very simple, too:</p>
+				<pre><code>function doSomething({ foo = 'Hi', bar = 'Yo!', baz = 13 } = {}) {
+  // ...
+}</code></pre>
+			</div>
+			<script>
+					(function () {
+						doSomething({ foo: 'Hello', bar: 'Hey!', baz: 42 });
+
+						function doSomething(config) {
+							const foo = config.foo !== undefined ? config.foo : 'Hi';
+							const bar = config.bar !== undefined ? config.bar : 'Yo!';
+							const baz = config.baz !== undefined ? config.baz : 13;
+							// ...
+
+							console.log(foo, bar, baz);
+						}
+					})()
+			</script>
+		</article>
+		<!-- END : Example -->
+
+
+	</section>
+
+	<footer>
+		Copyright May 2017
+	</footer>
+	<!-- END :: BODY -->
+</body>
+
+</html>
