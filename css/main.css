@@ -1,0 +1,49 @@
+body {
+	font-size: 100%;
+	line-height: 1.5;
+	margin: 24px;
+}
+pre { 
+	border: 1px dashed #333; 
+	padding: 1em 2em; 
+	font-family: Consolas,monospace; 
+	background-color: #EEE; 
+	overflow-x: scroll; 
+	font-size: 14px;  
+	white-space: pre-wrap; 
+	word-wrap: break-word; 
+}
+pre {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 1em auto;
+	border: 1px dashed #333;
+	width: 100%;
+	padding: 1em 1.5em;
+	font-family: Inconsolata, Consolas, monospace, sans-serif;
+	font-size: 1em;
+	line-height: 1.5;
+	overflow: auto;
+	background: #F7FAFB;
+	border-radius: 3px;
+	position:relative;
+}
+code { 
+	background-color: #EEE;
+	font-family: Consolas,monospace;
+	border: solid 1px #CCC;
+	padding: 0 8px;
+	border-radius: 3px;
+	display: inline-block;
+	font-size: 14px;
+}
+pre code { background-color: transparent; padding: 0; display: block; border: 0px solid; }
+pre:after {
+	content: "<CODE>";
+	position: absolute;
+	top:0;
+	right: 0;
+	padding: 5px 15px;
+	background: #999;
+	color: #FFF;
+}

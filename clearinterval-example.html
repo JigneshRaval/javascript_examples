@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		
+		<p>A script on this page starts this clock:</p>
+		
+		<p id="demo"></p>
+		
+		<button onclick="myStopFunction()">Stop time</button>
+		
+		<button onclick="myStartFunction()">Start time</button>
+		
+		<script>
+			var myVar;
+			
+			function myTimer() {
+				var d = new Date();
+				var t = d.toLocaleTimeString();
+				document.getElementById("demo").innerHTML = t;
+			}
+			
+			function myStopFunction() {
+				console.log("Stop 1 :", myVar);
+				clearInterval(myVar);
+				console.log("Stop 2 :", myVar);
+			}
+			
+			function myStartFunction() {
+				console.log("Start 1 :", myVar);
+				myVar = setInterval(function(){ 
+					myTimer() 
+				}, 1000);
+				console.log("Start 2 :", myVar);
+			}
+		</script>
+		
+	</body>
+</html>

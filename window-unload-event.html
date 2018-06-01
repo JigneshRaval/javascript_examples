@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		
+		<script>
+			
+			/*window.onbeforeunload = function (e) {
+				alert('on unload calling...');
+				var a = 10;
+				var b = 20;
+				
+				console.log('Leaving window or tab');
+				var c = a + b;
+				console.log('Sum :', c);
+				return "Are you sure you want leave?";
+			};*/
+			
+			window.onbeforeunload = function (e) {
+				console.log('window.onbeforeunload :: Are you sure you want leave?');
+				message = "Are you sure you want leave?";
+				e.returnValue = message;
+				return message;
+			};
+			
+			function onUnloadCallback() {
+				console.log('Hi');
+				return "window.unload :: Are you sure you want leave?";
+			}
+			window.onunload = onUnloadCallback;
+			window.addEventListener('unload', onUnloadCallback);
+		</script>
+	</body>
+</html>
