@@ -1,0 +1,166 @@
+<html>
+
+<head>
+    <title>Observable in JavaScript</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <style>
+        body {
+            background-color: #EEE;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        main {
+            background-color: #FFF;
+            padding: 1em;
+            border: 1px solid #CCC;
+        }
+
+        .demo {
+            border: 1px solid #EEE;
+            margin: 2em 1em;
+            padding: 1em;
+        }
+
+        .further-reading {}
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1>A Beginner's Guide: Memoization</h1>
+        <div class="further-reading">
+            <h3>Further Reading</h3>
+<ul>
+    <li><a href="https://dev.to/milkstarz/a-beginners-guide-memoization-22f0">A Beginner's Guide: Memoization</a></li>
+    <li><a href="http://inlehmansterms.net/2015/03/01/javascript-memoization/">JavaScript Function Memoization</a></li>
+    <li><a href="https://www.sitepoint.com/implementing-memoization-in-javascript/">Implementing Memoization in JavaScript</a></li>
+</ul>
+
+
+        </div>
+        <!-- START : DEMO -->
+        <div class="demo">
+            <h4>Calculate factorial:</h4>
+
+            <div class="form-inline">
+                <div class="form-group mx-sm-3 mb-2">
+                    <input type="number" class="input__value form-control" />
+                </div>
+
+                <div class="form-group mx-sm-3 mb-2">
+                    <button class="btn btn-primary" onClick="calculateFactorial(event)">Calculate</button>
+                </div>
+            </div>
+
+            <!-- OUTPUT -->
+            <div class="demo__output">
+
+            </div>
+        </div>
+        <!-- END : DEMO -->
+
+        <script>
+
+            let output = document.querySelector('.demo__output');
+
+            // Simple factorial function ( ES5 )
+            function factorialES5(value) {
+
+                console.log('factorialES5 :', value);
+
+                if (value === 1) {
+                    return value;
+                }
+                return value * factorialES5(value - 1);
+            }
+
+            factorialES5(4);
+            // OUTPUT
+            // =========================
+            // factorial(4)
+            // 4! === 4 * 3 * 2 * 1 === 24
+
+            const factorialES6 = (value) => {
+
+                console.log('factorialES6 :', value);
+
+                if (value === 1) {
+                    return value;
+                }
+
+                return value * factorialES6(value - 1);
+
+
+            }
+
+            factorialES6(4);
+
+            // Using a memoized function, to calculate our factorial
+            // This will store result if it is already calculated
+            const scopedMemoizedFactorial = () => {
+                const fackCatch = {};
+
+                return (value) => {
+
+                    console.log('FackCatch :', fackCatch);
+
+                    if (value in fackCatch) {
+                        // If value is same, then return value from our fackCache
+                        return fackCatch[value];
+                    } else {
+                        // If value is new then, calculate factorial
+                        const result = factorialES5(value);
+                        fackCatch[value] = result;
+                        return result;
+                    }
+                }
+            }
+
+            // let getFactorialOf = scopedMemoizedFactorial();
+            // let factorialOutput = getFactorialOf(value);
+
+            // Demo code : Calculate factorial using javascript memoization teqniq
+            let getFactorialOf = scopedMemoizedFactorial();
+
+            function calculateFactorial(event) {
+                let inputElem = document.querySelector('.input__value');
+
+                let value = Number(inputElem.value);
+
+                if (value) {
+                    let factorialOutput = getFactorialOf(value);
+
+                    output.innerHTML = `Your factorial value of ${factorialOutput}`;
+                } else {
+                    output.innerHTML = `Please provide valid value`;
+                }
+
+            }
+        </script>
+
+        <div class="documentation">
+            <h2>What is memoization, really?</h2>
+            <p>Memoization is an optimization technique used primarily to speed up programs by storing the results of expensive
+                function calls and returning the cached result when the same inputs occur again.</p>
+            <h2>Limitations</h2>
+            <p>There are several things which must be kept in mind when implementing memoization. First, by storing old results,
+                memoized functions consume additional memory. In the Fibonacci example, the additional memory consumption
+                is unbounded. If memory usage is a concern, then a fixed size cache should be used. The overhead associated
+                with memoization can also make it impractical for functions with execute quickly or that are executed infrequently.</p>
+            <h2>Things to Remember</h2>
+            <ul>
+                <li>Memoization can potentially increase performance by caching the results of previous function calls.</li>
+                <li>Memoized functions store a cache which is indexed by their input arguments. &nbsp;If the arguments exist
+                    in the cache, then the cached value is returned. &nbsp;Otherwise, the function is executed and the newly
+                    computed value is added to the cache.</li>
+                <li>Object arguments should be stringified before using as an index.</li>
+                <li>Memoization can be automatically applied to referentially transparent functions.</li>
+                <li>Memoization may not be ideal for infrequently called or fast executing functions.</li>
+            </ul>
+        </div>
+
+    </main>
+</body>
+
+</html>

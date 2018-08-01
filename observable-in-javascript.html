@@ -1,0 +1,517 @@
+<html>
+
+<head>
+	<title>Observable in JavaScript</title>
+	<link rel="stylesheet" href="./css/bootstrap.min.css" />
+	<style>
+		body {
+			background-color: #EEE;
+			font-size: 18px;
+			line-height: 1.8;
+		}
+
+		main {
+			background-color: #FFF;
+			padding: 1em;
+			border: 1px solid #CCC;
+		}
+	</style>
+</head>
+
+<body>
+	<main class="container">
+		<h1>Understanding Observables in JavaScript - Part#1</h1>
+		<a href="http://anasfirdousi.com/understanding-observable-patterns-behind-observables-rxjs-rx.html#disqus_thread">Understanding Observables in JavaScript - Part#1</a>
+
+		<script>
+			// Create new Observable function
+			function Observable() {
+				this.x = 0;
+				this.observers = []
+			}
+
+			//Attaches an observer to the observable
+			Observable.prototype.add = function (observer) {
+				this.observers.push(observer);
+			}
+
+			//Removes an observer to the observable
+			Observable.prototype.remove = function (observer) {
+				let index = this.observers.indexOf(observer);
+				this.observers.splice(index, 1);
+			}
+
+			Observable.prototype.updateX = function (value) {
+				this.oldX = this.x;
+				this.x = value || 0;
+
+				// this will trigger notify method
+				this.notify({ x: value, oldX: this.oldX, message: 'X Updated' })
+			}
+
+			Observable.prototype.notify = function (payload) {
+				this.observers.forEach(function (observer) {
+					observer.update(payload);
+				});
+			}
+
+			// Create new observer and add it into list of observables
+			let Observer1 = {
+				update: function (payload) {
+					console.log('Observer 1', payload);
+				}
+			}
+
+			// Create new instance of Observable
+			let observable = new Observable();
+
+			// add observer into list of observables
+			observable.add(Observer1);
+
+			observable.updateX(150);
+			observable.updateX(345);
+
+			observable.remove(Observer1);
+
+			// this will not trigger as we have removed Observer1 from the list of Observables
+			observable.updateX(750);
+
+		</script>
+
+
+		<p>
+			It's 2016 and as a web application programmer, you must have heard of the term "Observables" by now. If you are programmer,
+			there are 3 ways to tackle buzz words in industry where 6 months old is classic. You either reject it and block yourself
+			from too much new stuff. Or, you either become an early adaptor having little to no knowledge of the technology but still
+			try to use it in your projects at work not caring what's going on behind the scenes. The third kind of mindset can be
+			different. You keep your eyes and mind open to buzz words, let them come your way. You dive deep into them and try to
+			dig into the benefits it can give you over your current style of solving a particular problem.I have planned to do this
+			series of observables in JavaScript taking the 3rd kind of mindset.
+
+			<br/> Let's look at some foundational concepts behind Observables in JavaScript and what's the inspiration behind it.
+
+			<h2>Patterns Behind Patterns</h2>
+			The coolest thing about design patterns is that they are composable. You can join 2 or more patterns to create a new one.
+			In order to wrap our head around Observables, we need to get a good grip of 2 software design patterns.
+
+			<ul>
+				<li>
+					Observer Pattern
+				</li>
+				<li>
+					Iterator Pattern
+				</li>
+			</ul>
+
+			<h1>
+				Observer Pattern
+			</h1>
+
+			<blockquote>
+				The Pattern
+			</blockquote>
+
+			<p>
+				<ul>
+					<li>
+						Defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and
+						updated automatically.
+					</li>
+					<li>
+						Defines 2 abstractions:
+						<ul>
+							<li>
+								Encapsulate core component in a Subject abstraction. They call it "Observable", the one that is being observed.
+							</li>
+							<li>
+								Encapsulate variable components, something that can change or extend over time in an Observer hierarchy. They call these
+								"Observers", usually a list of folks observing the observable.
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</p>
+
+			<blockquote>
+				What I first thought
+			</blockquote>
+
+			In a perfect academic world, you may think of it like this. Suppose Subject (the Observable) has a state, say variables 'x'
+			and 'y'. It also has an array, a list of folks to notify when there is a change in either 'x' or 'y'. When I first heard
+			of Observer pattern, I thought the Observable might emit an event i.e. they will shout out loud and whoever is interested
+			in listening to that particular event will get a notification and this notification may come with its payload, not necessarily.
+			This is not actually an Observer pattern. This is a Publisher / Subscriber or more commonly known as a Pub/Sub pattern.
+			You can think of Pub/Sub as an Observer pattern with more "broadcast" semantics. The subscriber of the event can be "anyone"
+			and can do "anything". I will explain this "anyone" and "anything" up next.
+
+			<blockquote>
+				If you have done apps in Angular 1.x then you may have used $broadcast and $on to publish an event and subscribe to that
+				event. The publisher has no knowledge of the subscribers, it just publishes/broadcasts/emits an event (with some event
+				data may be) and in any related or unrelated object/component, if you have $on that listens to the same event, you will
+				be able to get hold of that event. As I said, this pure pub/sub is more dynamic in nature where subscribers can subscribe
+				and unsubscribe without informing the publisher and publisher does not even care. I am not talking about how bad or how
+				good it is or in which scenario it can be beneficial, just trying to make my point on the nature of pure pub/sub.
+			</blockquote>
+
+			<br/>
+			<br/>
+			<blockquote>
+				What it actually is
+			</blockquote>
+
+			Observer pattern is different from Subscriber pattern in that the Observable(Pub equivalent) "maintains a list" of its observers(Sub
+			equivalent) and not "anyone" can listen to the changes in Observables. Observers explicitly ask Observables to add them
+			to the observer list the Observable maintains.
+
+			<h4>Observer Pattern in Code</h4>
+
+			Since "Observables" are the ones producing the event, they are sometimes referred to as "Producers" or "Publishers" ( in
+			a more pub/sub nature of things). The Observers are sometimes referred to as "Listeners" or "Subscribers" (in a more pub/sub
+			nature of things).
+
+			<br/>
+			<br/> Let's implement the Observer Pattern
+
+			<pre>
+        <code class="language-javascript">
+
+          function Observable() {
+
+            this.x = 0;
+            this.observers = [];
+
+          }
+
+          //Attaches an observer to the observable
+          Observable.prototype.add = function(observer){
+
+            this.observers.push(observer);
+
+          }
+
+          //Removes an observer to the observable
+          Observable.prototype.remove = function(observer){
+
+            var index = this.observers.indexOf(observer);
+            this.observers.splice(observer,1);
+
+          }
+
+          Observable.prototype.updateX = function(value){
+
+            this.oldX = this.x;
+            this.x = value || 0;
+            this.notify({x:value,oldX:this.oldX,message:'X Updated'});
+
+          }
+
+          Observable.prototype.notify = function(payload){
+
+            this.observers.forEach(function(observer){
+                observer.update(payload);
+            });
+
+          }
+
+        </code>
+      </pre>
+
+			<br/> Let's write observers(listeners) now and make use of our Observable.
+
+			<pre>
+        <code class="language-javascript">
+
+      var observer1 = {
+
+          update: function(payload){
+                console.log("Observable pushes update to Observer 1 :",payload);
+          }
+
+      }
+
+      var observer2 = {
+
+          update: function(payload){
+                console.log("Observable pushes update to Observer 2 :",payload);
+          }
+
+      }
+
+      var obs = new Observable();
+
+      obs.add(observer1);
+      obs.add(observer2);
+
+      obs.updateX(100);
+      obs.updateX(200);
+      obs.updateX(300);
+
+
+        </code>
+      </pre>
+
+			<h3>What's interesting here</h3>
+
+			<ul>
+				<li>
+					You have to explicitly ask Observable (obs) to add an observer to it's notification list.
+					<br/>
+					<br/>
+				</li>
+				<li>
+					<b>Push</b> over
+					<b>Pull</b> nature.
+					<br/>
+					<br/> Pull nature is common. Observer1 could have asked the Observable(obs) to tell what the value of 'x' is at some point
+					in time. That's pulling/requesting/asking value from the Observable. But that's not the case here. Pull is not continuous.
+					You pull/retrieve the value once and that's it. End of story. If you ever want the updated value again, you have to
+					ask for it again.
+					<br/> Push is different. Observable pushes the value of 'x' out to all of it's observers whenever 'x' get's updated. Push
+					is continuous. Whenever the value of 'x' gets updated , all the observers receive the update. This will happen continuously
+					until the observer asks the observable to remove it from it's notification list.
+					<br/>
+					<br/>
+				</li>
+
+				<li>
+
+					Each observer needs to adhere to an interface. Where is the interface?. If you are an observer, in order to observe i.e to
+					subscribe to our Observable(obs), you need to define a method 'update()' in yourself. The Observable than knows how
+					to notify each observer calling it's 'update' method. It can be any name anything but it has to be common across all
+					observers.
+
+				</li>
+
+			</ul>
+
+			<h4>Real World Examples of Observer Pattern</h4>
+
+			Where do we use or prefer pure Observer pattern?
+
+			<ul>
+				<li>
+					When we need to listen to continuous streams with decoupled publisher(Observable) and subscriber(Observer).
+				</li>
+				<li>
+					When we prefer Push over Pull behaviour.
+				</li>
+				<li>
+					Examples:
+					<ul>
+						<li>
+							Listening to continuous key strokes to get user input in a Search Box with type-ahead enabled.
+						</li>
+						<li>
+							Continuous monitoring of mouse pointer position to see which section of the UI user hovers over. This can be used for several
+							purposes but this discussion is out of scope of this article.
+						</li>
+						<li>
+							A screen listing all the stocks. Since the stocks change continuously over time, the stock observable needs to push data
+							to every observer.
+						</li>
+						<li>
+							Any dashboard where charts plot live values. Each time there is an update on the sales, the Observable has to update the
+							screen without user refreshing the page. In this scenario, a pub/sub with combination of pull can be helpful because
+							a user might want to request for a specific value over time which is pulling the value rather than a push behaviour.
+						</li>
+					</ul>
+				</li>
+			</ul>
+
+		</p>
+
+		<h1>
+			Iterator Pattern
+		</h1>
+
+		The other piece in the Observable puzzle is the Iterator Pattern.
+
+		<blockquote>
+			The Pattern
+		</blockquote>
+
+		<p>
+			<ul>
+				<li>
+					Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
+				</li>
+				<li>
+					"Polymorphic Traversal" is the name of the game!
+				</li>
+			</ul>
+		</p>
+
+		<blockquote>
+			Put it simply, we need to find an abstraction for the traversal of different data structures and create an algorithm which
+			is capable of interacting with each type of the data structure transparently and in the same manner.
+		</blockquote>
+
+		<p>
+			Suppose you are creating a "Social Network Aggregator". You want all your social accounts to be hooked up together and shown
+			to you on a single screen. There is a Search functional on this UI. You want to search for all your social friends across
+			Facebook, Twitter, Linked In e.t.c. Each of these networks has their own libraries and ways of querying data. Each of
+			them stores data in a different format. But as a user, typing a friends name in friend search textbox, does he care how
+			different social network implements and stores their friends data differently? Obviously, they don't care and they want
+			to traverse over their friend's list as if it's all coming from the same source with the exact same data structure. There
+			has to be one and only way to traverse any list irrespective of what it's source is.
+		</p>
+
+		<p>
+			The iterator pattern while traversing/iterating over a list only cares about 2 things,
+			<ul>
+				<li>
+					Does the list have more data (that we are interested in)? Does the list 'has Next' data pointer?
+				</li>
+				<li>
+					If it has more data, how can we get to the next data pointer?
+				</li>
+			</ul>
+		</p>
+
+		<br/> Let's implement the Iterator Pattern
+
+		<pre>
+        <code class="language-javascript">
+
+            function multiplesIterator(list,divisor){
+
+              this.cursor = 0;
+              this.list = list;
+              this.divisor = divisor;
+
+            }
+
+            multiplesIterator.prototype.next = function(){
+
+              while(this.cursor < this.list.length){
+
+                var value = this.list[this.cursor++];
+                if(value%this.divisor === 0){
+
+                  return value;
+
+                }
+
+              }
+
+            };
+
+            multiplesIterator.prototype.hasNext = function(){
+
+              var cur = this.cursor;
+              while(cur < this.list.length){
+                  if(this.list[cur++] % this.divisor ===0){
+                    return true;
+                  }
+              }
+
+              return false;
+            }
+
+
+        </code>
+        </pre> Let's make of our universal multiples iterator which can iterate over any integer array for any divisor.
+
+		<pre>
+          <code class="language-javascript">
+
+              var list = [1,3,5,8,10,12,14,16,18,20];
+              var divisor = 10;
+
+              var iterable = new multiplesIterator(list,divisor);
+
+              console.log(iterable.next(),iterable.hasNext());
+              console.log(iterable.next(),iterable.hasNext());
+              console.log(iterable.next(),iterable.hasNext());
+
+
+          </code>
+        </pre>
+
+
+		<h3>What's interesting here</h3>
+
+		<ul>
+			<li>
+				We have encapsulated traversing logic for any kind of list, any kind of data structure.
+			</li>
+			<li>
+				Iterators are interesting when
+				<ul>
+					<li>
+						Made generic to handle different types of data (Remember the Facebook/Twitter example?)
+					</li>
+					<li>
+						When they can be configured at run time. (Like we did in our example passing in a list and divisor at run time)
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+		<h2>
+			What's coming next?
+		</h2>
+		<p>
+			This was episode#1 on our journey of unleashing Observables in JavaScript. We learned that Observables are based on the composition
+			of Observer Pattern and Iterator Pattern. In our upcoming installments, we look into how can we do Functional Reactive
+			Programming with RxJS and will also look into extensive Observable support build into Angular 2.
+		</p>
+		<pre><code>
+// Final Code
+
+// Create new Observable function
+function Observable() {
+	this.x = 0;
+	this.observers = []
+}
+
+//Attaches an observer to the observable
+Observable.prototype.add = function (observer) {
+	this.observers.push(observer);
+}
+
+//Removes an observer to the observable
+Observable.prototype.remove = function (observer) {
+	let index = this.observers.indexOf(observer);
+	this.observers.splice(index, 1);
+}
+
+Observable.prototype.updateX = function (value) {
+	this.oldX = this.x;
+	this.x = value || 0;
+
+	// this will trigger notify method
+	this.notify({ x: value, oldX: this.oldX, message: 'X Updated' })
+}
+
+Observable.prototype.notify = function (payload) {
+	this.observers.forEach(function (observer) {
+		observer.update(payload);
+	});
+}
+
+// Create new observer and add it into list of observables
+let Observer1 = {
+	update: function (payload) {
+		console.log('Observer 1', payload);
+	}
+}
+
+// Create new instance of Observable
+let observable = new Observable();
+
+// add observer into list of observables
+observable.add(Observer1);
+
+observable.updateX(150);
+observable.updateX(345);
+
+observable.remove(Observer1);
+
+// this will not trigger as we have removed Observer1 from the list of Observables
+observable.updateX(750);
+</code></pre>
+	</main>
+</body>
+
+</html>
