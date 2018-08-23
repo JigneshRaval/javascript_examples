@@ -1,0 +1,254 @@
+<html>
+
+<head>
+	<title>Simple Javascript MVC</title>
+	<link rel="stylesheet" href="./css/bootstrap.min.css" />
+	<style>
+		.popover {
+			padding: 20px;
+			border: 1px solid red;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			width: 450px;
+			opacity: 0;
+		}
+
+		a,
+		a:hover {
+			text-decoration: none;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Bootstrap CSS -->
+	<div class="popover">Popover component</div>
+
+	<div id="app">
+
+		<!-- START : Header -->
+		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+			<h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
+			<nav class="my-2 my-md-0 mr-md-3">
+				<a class="p-2 text-dark" href="#">Features</a>
+				<a class="p-2 text-dark" href="#">Enterprise</a>
+				<a class="p-2 text-dark" href="#">Support</a>
+				<a class="p-2 text-dark" href="#">Pricing</a>
+			</nav>
+		</div>
+		<!-- END : Header -->
+
+		<!-- START : Content -->
+		<div class="container">
+
+			<div>
+				<a class="btn btn-outline-primary" href="javascript:;">Get My Position</a>
+			</div>
+
+
+			<div id="some-element">Some element</div>
+		</div>
+		<!-- END : Content -->
+
+	</div>
+
+	<script>
+		// https://stanko.github.io/javascript-get-element-offset/
+
+		function getElementOffset(el) {
+			let top = 0;
+			let left = 0;
+			let element = el;
+
+			// Loop through the DOM tree
+			// and add it's parent's offset to get page offset
+			do {
+				top += element.offsetTop || 0;
+				left += element.offsetLeft || 0;
+				element = element.offsetParent;
+			} while (element);
+
+			// Get Top and Left position of Target element like link, button of any element which triggers popover
+			return {
+				top: top,
+				left: left,
+			};
+		}
+		// 1. Target element ( Clickable Element )
+		var elem = document.querySelector('.btn-outline-primary');
+		// 2. Popover element, which will show on click of Target element
+		var popoverElem = document.querySelector('.popover');
+
+		let direction = 'top';
+
+		elem.addEventListener('click', function () {
+			// Top/Left position of clickable element
+			var position = getElementOffset(elem);
+
+			// Width of viewport area
+			let windowWidth = window.innerWidth;
+
+			// Target
+			let elemWidth = elem.offsetWidth;
+			let rightSpace = windowWidth - (position.left + elemWidth);
+			let leftSpace = position.left;
+
+			console.log('Element Height :', elem.offsetHeight, ' Element Width : ', elem.offsetWidth);
+
+			console.log('position :', position, ' windowWidth: ', windowWidth);
+
+			console.log('Left space : ', leftSpace, ' Right space : ', rightSpace);
+
+			// align center of relative element like link, button or whichever element which opens tooltip
+			let centerAlignmentSpace = (popoverElem.offsetWidth - elem.offsetWidth) / 2;
+
+			popoverElem.style.opacity = 1;
+			popoverElem.style.left = leftSpace - centerAlignmentSpace + 'px';
+
+			if (direction === 'top') {
+				if (position.top < 100) {
+					// If there is a less space on top side
+					popoverElem.style.top = position.top + elem.offsetHeight + 'px';
+				} else {
+					// If there is a More space on top side
+					popoverElem.style.top = (position.top - elem.offsetHeight) - (popoverElem.offsetHeight - elem.offsetHeight) + 'px';
+
+				}
+
+			} else if (direction === 'bottom') {
+				popoverElem.style.top = position.top + elem.offsetHeight + 'px';
+			}
+
+
+
+			if (leftSpace < 100) {
+				popoverElem.style.left = leftSpace + 'px';
+			}
+		});
+
+
+		/*
+		// Get distances to the top of the document with native JavaScript
+		// https://gomakethings.com/get-distances-to-the-top-of-the-document-with-native-javascript/
+		// Get current location's distance from the top of the page
+		var YPosition = window.pageYOffset;
+
+		// Get an element's distance from the top of the page
+		var getElemDistance = function ( elem ) {
+			var position = 0;
+			if (elem.offsetParent) {
+				do {
+					position += elem.offsetTop;
+					elem = elem.offsetParent;
+				} while (elem);
+			}
+			return position >= 0 ? position : 0;
+		};
+		var elem = document.querySelector('#some-element');
+		var output = getElemDistance( elem );
+		*/
+	</script>
+
+	<div class="tutorial-docs">
+		<div class="comment-body markdown-body markdown-format js-comment-body">
+			<h2><a href="https://juejin.im/entry/57cba52079bc440063ff0ae9">A picture of the scrollTop, offsetTop, scrollLeft, offsetLeft...</a></h2>
+			<h3 data-id="heading-0">a very well-marked picture</h3>
+			<p><img src="./cheatsheets/element-position-offset.jpg" /></p>
+			<h3 data-id="heading-1">Supplementary explanation</h3>
+			<p>The above picture has already been marked, and I will add a few more points:</p>
+			<ul>
+				<li><code>offsetTop</code>, <code>offsetLeft</code>: Read-only property. To determine the values ​​of these two properties,
+					you must first determine the element's <code>offsetParent</code>. <code>offsetParent</code>Refers to the <code>position</code>ancestor
+					element that is not static closest to the element, and points to the <code>body</code>element if not . Determined <code>offsetParent</code>,
+					<code>offsetLeft</code>refers to the <code>offsetParent</code>distance of the left side of the element offset , the
+					same reason <code>offsetTop</code>refers to the distance of the upper side offset.</li>
+				<li><code>offsetHeight</code>, <code>offsetWidth</code>: Read-only property. These two properties return the height or
+					width of the element, including the <strong>border, padding, and scroll bars of the</strong> element . The return value
+					is a rounded integer. As shown below:</li>
+			</ul>
+			<p><img src="./cheatsheets/element-offset-height-width.png" /></p>
+			<ul>
+				<li><code>scrollHeight</code>, <code>scrollWidth</code>: Read-only property. Returns the overall size of the element's
+					content, including the invisible part of the element (which needs to be scrolled to see). The return value <strong>includes
+						padding, but does not include margin and border</strong> . As shown below:</li>
+			</ul>
+			<p><img src="./cheatsheets/scrollheight.png" /></p>
+			<ul>
+				<li><code>scrollTop</code>, <code>scrollLeft</code>: The figure already shows very clear. 0 if the element cannot be
+					scrolled.
+				</li>
+				<li><code>window.innerWidth</code>, <code>window.innerHeight</code>: read only. The size of the viewport, including the
+					scroll bar</li>
+				<li><code>clientHeight</code>, <code>clientWidth</code>: Includes padding, but <strong>does not include border, margin,
+						and scroll bars</strong> . As shown below:</li>
+			</ul>
+			<p><img src="./cheatsheets/clientWidth-height.png" /></p>
+			<ul>
+				<li>
+					<code>Element.getBoundingClientRect()</code>: Read-only, returns a floating point value. This method is very useful
+					and is often used to determine the position of an element relative to a viewport. This method will return a <a href="https://link.juejin.im?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FMozilla%2FTech%2FXPCOM%2FReference%2FInterface%2FnsIDOMClientRect"
+					 rel="nofollow noopener noreferrer" target="_blank">DOMRect</a> object containing six attributes: left, top, width, height,
+					bottom, right:
+					<ul>
+						<li><code>left, right, top, bottom</code>: The distance between the elements (excluding the margin) relative to the
+							origin of the viewport (the top and left borders of the viewport).</li>
+						<li><code>height, width</code>: The overall size of the element, including the part that is hidden by scrolling; padding
+							and border are involved in the calculation. In addition, <code>heigth=bottom-top, width=right-left</code>.</li>
+					</ul>
+				</li>
+			</ul>
+			<p>The HTMLElement.offsetParent read-only property returns a reference to the object which is the closest (nearest in
+				the containment hierarchy) positioned containing element. If the element is non-positioned, the nearest table, table
+				cell or root element (html in standards compliant mode; body in quirks rendering mode) is returned by offsetParent.
+			</p>
+			<p>Returns null when the element has style.display set to "none". The offsetParent is useful because offsetTop and offsetLeft
+				are relative to its padding edge.</p>
+			<p>The <strong><code>HTMLElement.offsetLeft</code></strong> read-only property returns the number of pixels that the <em>upper
+					left corner of the</em> current element is offset to the left within the <a href="/en-US/docs/Web/API/HTMLElement/offsetParent"
+				 title="The HTMLElement.offsetParent read-only property returns a reference to the object which is the closest (nearest in the containment hierarchy) positioned containing element. If the element is non-positioned, the nearest table, table cell or root element (html in standards compliant mode; body in quirks rendering mode) is returned by&nbsp;offsetParent.
+					Returns null when the element has style.display set to &quot;none&quot;. The offsetParent is useful because offsetTop and offsetLeft are relative to its padding edge."><code>HTMLElement.offsetParent</code></a>
+				node.</p>
+			<p>For block-level elements, <code>offsetTop</code>, <code>offsetLeft</code>, <code>offsetWidth</code>, and <code>offsetHeight</code>				describe
+				the border box of an element relative to the <code>offsetParent</code>.</p>
+			<p>However, for inline-level elements (such as <strong>span</strong>) that can wrap from one line to the next, <code>offsetTop</code>				and
+				<code>offsetLeft</code> describe the positions of the <em>first</em> border box (use <a href="/en-US/docs/Web/API/Element/getClientRects"
+				 title="The Element.getClientRects() method returns a collection of DOMRect objects that indicate the bounding rectangles for each CSS border box in a client."><code>Element.getClientRects()</code></a>
+				to get its width and height), while <code>offsetWidth</code> and <code>offsetHeight</code> describe the dimensions of
+				the <em>bounding</em> border box (use <a href="/en-US/docs/Web/API/Element/getBoundingClientRect" title="The&nbsp;Element.getBoundingClientRect()&nbsp;method returns the size of an element and its position relative to the viewport."><code>Element.getBoundingClientRect()</code></a>
+				to get its position).&nbsp;Therefore, a box with the left, top, width and height of <code>offsetLeft, offsetTop, offsetWidth</code>				and
+				<code>offsetHeight</code> will not be a bounding box for a span with wrapped text.</p>
+			<pre><code>var colorTable = document.getElementById("t1");
+var tOLeft = colorTable.offsetLeft;
+
+if (tOLeft > 5) {
+  // large left offset: do something here
+}
+
+// EXAMPLE
+&lt;div style="width: 300px; border-color:blue;
+border-style:solid; border-width:1;">
+	&lt;span>Short span. &lt;/span>
+	&lt;span id="long">Long span that wraps within this div.&lt;/span>
+&lt;/div>
+
+&lt;div id="box" style="position: absolute; border-color: red;
+border-width: 1; border-style: solid; z-index: 10">
+&lt;/div>
+
+&lt;script>
+	var box = document.getElementById("box");
+	var long = document.getElementById("long");
+	box.style.left = long.offsetLeft + document.body.scrollLeft + "px";
+	box.style.top = long.offsetTop + document.body.scrollTop + "px";
+	box.style.width = long.offsetWidth + "px";
+	box.style.height = long.offsetHeight + "px";
+&lt;/script>
+</code></pre>>
+		</div>
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<html>
+
+<head>
+    <title>Position in JavaScript</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <style>
+        body {
+            background-color: #EEE;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        main {
+            background-color: #FFF;
+            padding: 1em;
+            border: 1px solid #CCC;
+        }
+
+        .demo {
+            border: 1px solid #EEE;
+            margin: 2em 1em;
+            padding: 1em;
+        }
+
+        .further-reading {}
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1>Position in Javascript</h1>
+        <!-- <div class="further-reading">
+            <h3>Further Reading</h3>
+            <ul>
+                <li>
+                    <a href="https://dev.to/milkstarz/a-beginners-guide-memoization-22f0">A Beginner's Guide: Memoization</a>
+                </li>
+                <li>
+                    <a href="http://inlehmansterms.net/2015/03/01/javascript-memoization/">JavaScript Function Memoization</a>
+                </li>
+                <li>
+                    <a href="https://www.sitepoint.com/implementing-memoization-in-javascript/">Implementing Memoization in JavaScript</a>
+                </li>
+            </ul>
+        </div> -->
+
+
+        <!-- START : DEMO -->
+        <div class="demo">
+            <h4>Calculate Position:</h4>
+
+            <div class="content">
+                <a href="#" class="foobar">Tooltip Link</a>
+            </div>
+
+            <!-- OUTPUT -->
+            <div class="demo__output">
+
+            </div>
+        </div>
+        <!-- END : DEMO -->
+
+        <script>
+            let output = document.querySelector('.demo__output');
+
+            // Helper function to get an element's exact position
+            function getPosition(el) {
+                var xPos = 0;
+                var yPos = 0;
+
+                while (el) {
+                    if (el.tagName == "BODY") {
+                        // deal with browser quirks with body/window/document and page scroll
+                        var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+                        var yScroll = el.scrollTop || document.documentElement.scrollTop;
+
+                        xPos += (el.offsetLeft - xScroll + el.clientLeft);
+                        yPos += (el.offsetTop - yScroll + el.clientTop);
+                    } else {
+                        // for all other non-BODY elements
+                        xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+                        yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+                    }
+
+                    el = el.offsetParent;
+                }
+                return {
+                    x: xPos,
+                    y: yPos
+                };
+            }
+
+            // deal with the page getting resized or scrolled
+            window.addEventListener("scroll", updatePosition, false);
+            window.addEventListener("resize", updatePosition, false);
+
+            var myElement = document.querySelector(".foobar");
+
+
+            function updatePosition() {
+                // add your code to update the position when your browser
+                // is resized or scrolled
+                var position = getPosition(myElement);
+
+            console.log(position);
+
+            output.innerHTML = `Element position is : X = ${position.x} and Y = ${position.y}`;
+            }
+        </script>
+
+    </main>
+</body>
+
+</html>
