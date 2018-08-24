@@ -22,6 +22,10 @@ OffsetHeight, is a measurement which includes the element borders, the element v
 
 is a measurement of the height of an element's content including content not visible on the screen due to overflow
 
+# Deep in Browser Viewport and Dimentions
+
+REF : http://ezcook.de/2017/06/05/Deep-in-Viewport/
+
 **Screen Size**
 
 `screen.width` and `screen.height` means the total width width and height of the user’s screen. These dimensions are measured in device px because they never change: they’re feature of the monitor and not of the browser.
