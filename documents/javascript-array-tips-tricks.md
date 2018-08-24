@@ -616,3 +616,479 @@ console.log(Array.from('foo'));
 console.log(Array.from([1, 2, 3], x => x + x));
 // expected output: Array [2, 4, 6]
 ```
+
+## Array.prototype.some()
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some
+
+The some() method tests whether at least one element in the array passes the test implemented by the provided function.
+
+`arr.some(callback[, thisArg])`
+
+
+    callback
+        Function to test for each element, taking three arguments:
+
+        currentValue
+            The current element being processed in the array.
+        index Optional
+            The index of the current element being processed in the array.
+        arrayOptional
+            The array some() was called upon.
+
+    thisArgOptional
+        Value to use as this when executing callback.
+
+```javascript
+// EXAMPLE 1
+function isBiggerThan10(element, index, array) {
+  return element > 10;
+}
+
+[2, 5, 8, 1, 4].some(isBiggerThan10);  // false
+[12, 5, 8, 1, 4].some(isBiggerThan10); // true
+
+// Using ES6 Arrow functions
+[2, 5, 8, 1, 4].some(x => x > 10);  // false
+[12, 5, 8, 1, 4].some(x => x > 10); // true
+```
+
+### Checking whether a value exists in an array
+
+```javascript
+var fruits = ['apple', 'banana', 'mango', 'guava'];
+
+// ES5
+function checkAvailability(arr, val) {
+  return arr.some(function(arrVal) {
+    return val === arrVal;
+  });
+}
+
+// ES6
+function checkAvailability(arr, val) {
+  return arr.some(arrVal => val === arrVal);
+}
+
+checkAvailability(fruits, 'kela');   // false
+checkAvailability(fruits, 'banana'); // true
+```
+
+## Finding an Average with the Reduce Method In JavaScript​
+
+```
+const average = euros.reduce((total, amount, index, array) => {
+  total + amount
+  return total/array.length
+}, 0);
+```
+
+```javascript
+const euros = [29.76, 41.85, 46.5];
+
+const average = euros.reduce((total, amount, index, array) => {
+  total += amount;
+  if( index === array.length-1) {
+    return total/array.length;
+  }else {
+    return total;
+  }
+});
+
+average // 39.37
+
+// OR
+const euro = [29.76, 41.85, 46.5];
+
+const above30 = euro.reduce((total, amount) => {
+  if (amount > 30) {
+    total.push(amount);
+  }
+  return total;
+}, []);
+
+above30 // [ 41.85, 46.5 ]
+```
+
+```javascript
+// Count number of items
+const fruitBasket = ['banana', 'cherry', 'orange', 'apple', 'cherry', 'orange', 'apple', 'banana', 'cherry', 'orange', 'fig' ];
+
+const count = fruitBasket.reduce( (tally, fruit) => {
+  tally[fruit] = (tally[fruit] || 0) + 1 ;
+  return tally;
+} , {})
+
+count // { banana: 2, cherry: 3, orange: 3, apple: 2, fig: 1 }
+```
+
+## Flattening an array of arrays with the Reduce Method In JavaScript​​
+
+```javascript
+// EXAMPLE 1
+// =====================
+const data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+
+const flat = data.reduce((total, amount) => {
+  return total.concat(amount);
+}, []);
+
+flat // [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+
+// EXAMPLE 2
+// =====================
+const data = [
+  {a: 'happy', b: 'robin', c: ['blue','green']},
+  {a: 'tired', b: 'panther', c: ['green','black','orange','blue']},
+  {a: 'sad', b: 'goldfish', c: ['green','red']}
+];
+
+const colors = data.reduce((total, amount) => {
+  amount.c.forEach( color => {
+      total.push(color);
+  })
+  return total;
+}, [])
+
+colors //['blue','green','green','black','orange','blue','green','red']
+
+// If we only need unique number then we can check to see of the number already exists in total before we push it.
+
+const uniqueColors = data.reduce((total, amount) => {
+  amount.c.forEach( color => {
+    if (total.indexOf(color) === -1){
+     total.push(color);
+    }
+  });
+  return total;
+}, []);
+
+uniqueColors // [ 'blue', 'red', 'green', 'black', 'orange']
+```
+
+## Piping with Array Reduce ( Reducing Functions )
+
+A pipeline is a term used for a list of functions that transform some initial value into a final value.
+
+You could write a function that takes an input, and returns (input + 1) * 2 — 1. The problem is that we know we are going to need to increment the amount three times, then double it, then decrement it, and then halve it at some point in the future. We don’t want to have to rewrite our function every time so we going to use reduce to create a pipeline.
+
+```javascript
+function increment(input) { return input + 1;}
+
+function decrement(input) { return input — 1; }
+
+function double(input) { return input * 2; }
+
+function halve(input) { return input / 2; }
+
+let pipeline = [increment, double, decrement];
+
+const result = pipeline.reduce(function(total, func) {
+  return func(total);
+}, 1);
+
+result // 3
+```
+
+## Creating a Tally with the Reduce Method In JavaScript​
+
+```javascript
+const fruitBasket = ['banana', 'cherry', 'orange', 'apple', 'cherry', 'orange', 'apple', 'banana', 'cherry', 'orange', 'fig' ];
+
+// To tally items in an array our initial value must be an empty object, not an empty array
+const count = fruitBasket.reduce( (tally, fruit) => {
+  tally[fruit] = (tally[fruit] || 0) + 1 ;
+  return tally;
+} , {})
+
+// OR
+
+const count = fruitBasket.reduce((tally, fruit) => {
+  if (!tally[fruit]) {
+    tally[fruit] = 1;
+  } else {
+    tally[fruit] = tally[fruit] + 1;
+  }
+  return tally;
+}, {});
+
+count // { banana: 2, cherry: 3, orange: 3, apple: 2, fig: 1 }
+```
+
+# Array Methods
+
+REF: https://medium.com/@shabeermothi_24117/javascript-array-methods-623f53dcf8bc
+
+JavaScript offers many handy methods to do these functions :
+
+1. Remove an element from the first index of an Array (Array.prototpye.shift()) | JSFiddle
+
+```javascript
+// variable 'arr'
+var arr = ["Apples", "Oranges", "Mangoes"];
+
+// remove first element "Apples" from 'arr'
+arr.shift();
+
+console.log(arr); // ["Oranges", "Mangoes"]
+```
+
+2. Add one or more elements to the beginning or first index of an Array (Array.prototype.unshift()) | JSFiddle
+
+```javascript
+// variable 'arr'
+var arr = ["Apples", "Oranges", "Mangoes"];
+
+// add two new elements to the first index of 'arr'
+arr.unshift("Pineapple", "Strawberry");
+
+console.log(arr); // ["Pineapple", "Strawberry", "Apples", "Oranges", "Mangoes"]
+```
+
+3. Add an element to the end or last index of an Array (Array.prototype.push()) | JSFiddle
+
+```javascript
+// variable 'arr'
+var arr = ["Apples", "Oranges", "Mangoes"];
+
+// add an element to the end of 'arr'
+arr.push("Pineapple");
+
+console.log(arr); // ["Apples", "Oranges", "Mangoes", "Pineapple"]
+```
+
+4. Remove an element from the end or last index of an Array (Array.prototype.pop()) | JSFiddle
+
+```javascript
+// variable 'arr'
+var arr = ["Apples", "Oranges", "Mangoes"];
+
+// remove an element from last index of 'arr'
+arr.pop();
+
+console.log(arr); // ["Apples", "Oranges"]
+```
+
+5. Add and/or remove elements from specified index of an Array (Array.prototype.splice()) | JSFiddle
+
+```javascript
+// variable ‘arr’
+var arr = [“Apples”, “Oranges”, “Mangoes”];
+
+// add an element to the 2nd index of ‘arr’ but don’t remove any elements. Note that the second argument to slice() specifies the number of elements to be removed from the index provided as first argument.
+arr.splice(1, 0, “Pineapple”);
+
+console.log(arr); // [“Apples”, “Pineapple”, “Oranges”, “Mangoes”];
+
+// remove an element from the 3rd index of ‘arr’ but don’t add any new elements
+arr.splice(2, 1);
+
+console.log(arr); // [“Apples”, “Pineapple”, “Mangoes”];
+
+// remove an element from the 1st index of ‘arr’ and add an element
+arr.splice(1, 1, “Strawberry”);
+
+console.log(arr); // [“Apples”, “Strawberry”, “Mangoes”];
+```
+
+# JavaScript Arrays Methods & Props — map, filter, find, reduce, concat, etc
+
+REF : https://engineering.headhonchos.com/all-about-javascript-arrays-44d2d36874b9
+
+## Array Methods
+
+## 1. Mutator Methods :
+
+Mutator methods, associated with arrays in javascript, some methods modify the existing array
+
+Array.prototype.push() — push adds one or more elements to the end of an array and returns the updated length of array.
+
+```javascript
+var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+days.push('Saturday'); //7
+console.log(days); //["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+```
+
+Array.prototype.pop()— pop method removes the last element from an array and returns that removed element.
+
+```javascript
+var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+days.pop(); //Friday
+console.log(days); //["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"]
+```
+
+Array.prototype.shift()— similar to pop method, shift removes the first element from an array and returns that element.
+
+```javascript
+var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+days.shift(); //Sunday
+console.log(days); //[ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+```
+
+Array.prototype.unshift() — similar to push method, unshift method add one or more elements to the front of an array and returns the updated length of the array.
+
+```javascript
+var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+days.unshift('Saturday'); //7
+console.log(days); //[ "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+```
+
+Array.prototype.sort() — this method sorts the elements of an array and returns the new sorted array.
+
+```javascript
+var numbers = [3,45,5,7,32,56,87,11];
+numbers.sort(); //[11, 3, 32, 45, 5, 56, 7, 87]
+console.log(numbers);  //[11, 3, 32, 45, 5, 56, 7, 87]
+```
+
+Array.prototype.reverse()— this method reverses the order of the elements of an existing array i.e. the first element of array becomes the last, and the last element becomes the first element.
+
+```javascript
+var numbers = [3,45,5,7,32,56,87,11];
+numbers.reverse(); //[11, 87, 56, 32, 7, 5, 45, 3]
+```
+
+Array.prototype.splice() — this method modify the existing array by adding new elements or removing elements from the array. Splice method can take any number of arguments, first is the start index and it is required, second is the delete count i.e. the number of element to delete from the start index, if given 0 then nothing is going to delete, it is optional and rest of the arguments are the elements to be added at given index.
+
+```javascript
+Syntax -
+array.splice(start, deleteCount, item1, item2, ...)
+
+var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+
+days.splice(2,1); //["Tuesday"]
+console.log(days); //["Sunday", "Monday", "Wednesday", "Thursday", "Friday"]
+
+days.splice(2,0,'Tuesday');
+console.log(days) //["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+```
+
+## 2. Accessor Methods : Not Modifies Array
+Accessor Methods, are used to access values or return some required representation and do not change the existing array(Accessor Methods)
+
+Array.prototype.slice() — slice method can takes two arguments, first is start index and second is end index and returns an array that has only the elements between those two indexes. The start index is required, the end index optional, if end index is not given then extract till end of the array.
+
+```javascript
+var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+days.slice(2,4); //["Tuesday", "Wednesday"]
+days.slice(3); //["Wednesday", "Thursday", "Friday"]
+```
+
+Array.prototype.concat() — this method is used to concatenate or glue arrays together and returns a new array concatenated array.
+
+```javascript
+var week_days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+var weekend_days = ['Saturday', 'Sunday'];
+
+week_days.concat(weekend_days); //["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+```
+
+Array.prototype.join()— this method flattened all the elements of the array to a single string. The argument passed to join is glued between array elements while joining to string.
+
+```javascript
+var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+days.join('-'); //Sunday-Monday-Tuesday-Wednesday-Thursday-Friday
+```
+
+Array.prototype.includes() — return true or false whether an array contains a certain element, which is passed as an argument in the includes function.
+
+```javascript
+var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+days.includes('Sunday'); //true
+days.includes('sunday'); //false
+```
+
+Array.prototype.indexOf()— Returns the index of first (least) occurrence of element within the array which is given, or -1 if none is found. It also take second argument which is optional and specify from where to start.
+
+```javascript
+var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+days.indexOf('Tuesday'); //2
+days.indexOf('Tuesday', 4); //-1
+days.indexOf('March'); //-1
+```
+
+Array.prototype.lastIndexOf()— Returns the index of last (greatest) occurrence of element within the array which is given, or -1 if none is found. It also take second argument which is optional and specify from where to start.
+
+```javascript
+var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+days.lastIndexOf('Tuesday'); //2
+days.lastIndexOf('Tuesday', 4); //2
+days.lastIndexOf('March'); //-1
+```
+
+## 3. Iteration methods
+
+Array.prototype.filter() — It iterate over the every element of the given array and return a new array having only those element which the provided filtering function returns true.
+
+```javascript
+var random_numbers = [2,4,5,6,7,9,34,26,45,39];
+
+random_numbers.filter(function(element){
+return element % 2;
+});
+
+//[5, 7, 9, 45, 39]
+```
+
+Array.prototype.find() — similar to filter method, it also iterate over array and return only the first element of array which return true with the provided conditions or functionality.
+
+```javascript
+var random_numbers = [2,4,5,6,7,9,34,26,45,39];
+
+random_numbers.find(function(element){
+    return element > 20;
+});
+//34
+```
+
+Array.prototype.forEach() —It iterate and calls a function for each element in the array. This callback function can be called with three parameters, first is element of array, second is index of that element and third is the array being traversed.
+
+```javascript
+var random_numbers = [1,2,4,5,6,7];
+
+function logArrayElements(element, index, array) {
+    console.log('a[' + index + '] = ' + element);
+}
+random_numbers.forEach(logArrayElements);
+//a[0] = 11
+//a[1] = 21
+//a[2] = 41
+//a[3] = 51
+//a[4] = 61
+//a[5] = 71
+```
+
+Array.prototype.map() — Creates a new array with the results of calling a provided function on every element in this array.
+
+```javascript
+var random_numbers = [1,2,4,5,6,7];
+
+var doubledArray = random_numbers.map(function(element){
+    return element * 2;
+});
+
+console.log(doubledArray); //[2, 4, 8, 10, 12, 14]
+```
+
+Array.prototype.reduce()— It traverses the array (from left-to-right) and invokes a callback function on each element. The value returned is the progressively passed from callback to callback, and at the end reduce() returns the cumulative value.
+
+```javascript
+Syntax -
+array.reduce(function(total, currentValue, currentIndex, arr), initialValue);
+
+var rockets = [
+    {country:'Russia', launches:32 },
+    { country:'US', launches:23 },
+    { country:'China', launches:16 },
+    { country:'Europe(ESA)', launches:7 },
+    { country:'India', launches:4 },
+    { country:'Japan', launches:3 }
+];
+
+var sum = rockets.reduce(function(total, elem) {
+return total + elem.launches; }, 0);
+
+sum // 85
+```
+
+Note : map(), reduce(), and filter() as powerful alternatives while transversing elements, finding cumulative values, or driving subsets on some conditions. These help method reduce complexity, work without side effects, and make code more readable and maintainable.
