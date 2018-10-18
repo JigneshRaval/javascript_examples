@@ -1,0 +1,57 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 62.5%;
+	font-family: Helvetica, sans-serif;
+	background: url(images/stripe.png) repeat;
+}
+
+#page-wrap {
+	width: 760px;
+	background: white;
+	margin: 0 auto;
+	padding: 30px 30px 100px 30px;
+	background: white url(images/gradient2-bg.gif) bottom repeat-x;
+}
+
+h1 { font-size: 2.0em; margin-bottom: 0.3em; }
+h2 { font-size: 1.5em; margin-bottom: 0.5em;}
+
+span.re {
+	background: #ffb7b7;
+	padding: 5px;
+}
+span.bl {
+	background: #a8d1ff;
+	padding: 5px;
+}
+span.ye {
+	background: #fff2a8;
+	padding: 5px;
+}
+
+p {
+	font-size: 1.5em;
+	margin-bottom: 2.2em;
+	}
+	p.red::selection {
+		background: #ffb7b7;
+	}
+	p.red::-moz-selection {
+		background: #ffb7b7;
+	}
+	p.blue::selection {
+		background: #a8d1ff;
+	}
+	p.blue::-moz-selection {
+		background: #a8d1ff;
+	}
+	p.yellow::selection {
+		background: #fff2a8;
+	}
+	p.yellow::-moz-selection {
+		background: #fff2a8;
+	}

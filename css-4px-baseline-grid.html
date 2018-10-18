@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CSS Baseline Grid : 4px Baseline Grid</title>
+
+    <!-- FAVICON -->
+    <link rel='shortcut icon' type='image/x-icon' href='images/favicon.png' />
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <!-- jQuery -->
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+    <script src="js/jquery-3.2.1.js"></script>
+
+    <!-- Bootstrap 4
+			<link rel="stylesheet" href="css/bootstrap.css">
+			<script src="js/bootstrap-4.js"></script>
+		-->
+
+    <style>
+        :root {
+            --base-font-size: 1rem;
+            --base-line-height: 1.5;
+            --base-vertical-space: 4px;
+            --base-vertical-space-1x: var(--base-vertical-space, 4px);
+            --base-vertical-space-2x: calc(var(--base-vertical-space, 4px) * 2);
+            --base-vertical-space-3x: calc(var(--base-vertical-space, 4px) * 3);
+            --base-vertical-space-4x: calc(var(--base-vertical-space, 4px) * 4);
+            --base-vertical-space-5x: calc(var(--base-vertical-space, 4px) * 5);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: var(--base-font-size);
+            line-height: var(--base-line-height);
+            background-image: linear-gradient(#eee 1px, transparent 1px);
+            background-size: 100% 8px;
+            background-position-y: -1px;
+        }
+
+        /* Aligns to 72px */
+        h1 {
+            font-size: 36px;
+            line-height: 1.16666666666;
+            margin-bottom: 30px;
+        }
+
+        /* Aligns to 72px */
+        h2 {
+            font-size: 30px;
+            line-height: 1.2;
+            padding-top: 24px;
+            margin-bottom: 16px;
+        }
+
+        /* Aligns to 48px */
+        h3 {
+            font-size: 24px;
+            line-height: 1.25;
+            padding-top: 16px;
+            margin-bottom: 6px;
+        }
+
+        /* Aligns to 36px */
+        h4 {
+            font-size: 21px;
+            line-height: 1.3333333;
+            padding-top: 16px;
+            margin-bottom: 8px;
+        }
+
+        /* Aligns to 36px */
+        h5 {
+            font-size: 18px;
+            line-height: 1.5;
+            padding-top: 16px;
+            margin-bottom: 9px;
+        }
+
+        /* Aligns to 36px */
+        h6 {
+            font-size: 16px;
+            line-height: 1.5;
+            padding-top: 9px;
+            margin-bottom: 3px;
+        }
+
+        p {
+            /* margin-bottom: 16px; */
+            margin-bottom: calc(var(--base-vertical-space) * 4);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p {
+            margin-top: 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: Helvetica Neue, sans-serif;
+        }
+
+        body {
+            font-family: Georgia, serif;
+        }
+
+        .content {
+            max-width: 27.5em;
+            /* 440/16 */
+            margin: auto;
+            padding: 3rem 0;
+        }
+
+        button {
+            background-color: bisque;
+            font-size: var(--base-font-size);
+            border: 0px solid;
+            padding: var(--base-vertical-space);
+            margin-bottom: calc(var(--base-vertical-space) * 2);
+            height: calc(var(--base-font-size) * 2);
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- START :: BODY -->
+    <article class='content'>
+        <h1>Vertical rhythm</h1>
+        <p><a href="https://iamsteve.me/blog/entry/a-guide-to-vertical-rhythm">Tutorial Link</a></p>
+        <p>Lorem ipsum isn't a great choice to use for demonstrating good typography. Ideally you would use real content.
+            However for the demonstration in the post, I think it's acceptable. I could use my content, it would be strange
+            and cause some duplication I imagine.</p>
+        <p><button name="">Save All</button></p>
+        <h2>A heading that is quite long to show the line height</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Restinguet citius, si ardentem acceperit. Sed tu istuc
+            dixti bene Latine, parum plane. Quid enim tanto opus est instrumento in optimis artibus.</p>
+        <h3>A heading related to the one above</h3>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Esse enim quam vellet iniquus iustus poterat inpune.</p>
+        <h4>A heading related to the one above</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Esse enim quam vellet iniquus iustus poterat inpune.</p>
+        <h5>A level 5 heading</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Esse enim quam vellet iniquus iustus poterat inpune.</p>
+        <h6>A level 6 heading</h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Esse enim quam vellet iniquus iustus poterat inpune.</p>
+    </article>
+    <!-- END :: BODY -->
+</body>
+
+</html>
