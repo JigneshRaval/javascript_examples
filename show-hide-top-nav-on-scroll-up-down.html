@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<style>
+			body {
+			margin: 0;
+			
+			}
+			
+			#bottommenu {
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			height: auto;
+			background: hotpink;  
+			-webkit-transition: bottom 2s;
+			transition: bottom 2s;
+			}
+			
+			#content {
+			background: honeydew;
+			height: 400px;
+			width: 300px;
+			border: 1px solid #555;
+			margin-left: auto;
+			margin-right: auto;
+			overflow-y: scroll;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="content">
+			<p>content</p><p>content</p><p>content</p><p>content</p><p>content</p><p>content</p><p>content</p><p>content</p><p>content</p><p>content</p><p>content</p><p>content</p><p>content</p><p>content</p><p>content</p><p>content</p><p>content</p><p>content</p><p>content</p><p>content</p>
+		</div>
+		
+		<div id="bottommenu">
+			<span>bottom </span><span>bottom </span><span>bottom </span><span>bottom </span><br><span>bottom </span><span>bottom </span><span>bottom </span><span>bottom </span>
+		</div>
+		
+		<script>
+			var lastScrollTop = 0;
+			var contentDiv = document.querySelector('#content');
+			
+			contentDiv.addEventListener("scroll", function(){  
+				// var st = window.pageYOffset || document.documentElement.scrollTop;
+				var st = window.pageYOffset || contentDiv.scrollTop;
+				
+				console.log('window.pageYOffset =', window.pageYOffset, document.documentElement.scrollTop);
+				console.log('contentDiv.scrollTop =', contentDiv.scrollTop, ' lastScrollTop =',  lastScrollTop);
+				
+				if (st > lastScrollTop){
+					document.getElementById("bottommenu").style.bottom = "-100%";
+					} else {
+					document.getElementById("bottommenu").style.bottom = "0";
+				}
+				lastScrollTop = st;
+			}, false);
+		</script>
+	</body>
+</html>
