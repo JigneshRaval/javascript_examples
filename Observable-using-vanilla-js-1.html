@@ -204,6 +204,22 @@
                 } */
             }
 
+            static create(functionThatThrowsValues) {
+                // functionThatThrowsValues is an Observer object shown below
+                /* observer => {
+                    // Yield a single value and complete
+                    observer.onNext(42);
+                    observer.onCompleted();
+
+                    // Any cleanup logic might go here
+                    return () => console.log('disposed')
+                } */
+
+                return new Observable(functionThatThrowsValues);
+                /* this._functionThatThrowsValues = functionThatThrowsValues;
+                return this._functionThatThrowsValues; */
+            }
+
             // function Observable() { }
             // Observable.prototype.subscribe =  observer => { ... }
             subscribe(next, error, complete) {
@@ -321,6 +337,32 @@
 
         // Usage
         // =====================
+
+        // usage of create method
+        const observable = Observable.create(observer => {
+            observer.next('hello')
+            observer.next('world')
+        })
+
+        observable.subscribe(val => console.log(val))
+
+        // usage of create method
+        let source1$ = Observable.create(observer => {
+            // Yield a single value and complete
+            observer.next(42);
+            observer.complete();
+
+            // Any cleanup logic might go here
+            return () => console.log('disposed')
+        });
+
+        source1$.subscribe(
+            x => console.log('onNext: %s', x),
+            e => console.log('onError: %s', e),
+            () => console.log('onCompleted'));
+
+
+        // usage of create method in constructor format or can use static .create method
         let fakeAsyncData$ = new Observable(observer => {
             console.log('observer ====', observer);
             setTimeout(() => {
@@ -340,11 +382,13 @@
                 console.log(`We're done here!`);
             });
 
+        // Using of method
         let myNumbers$ = Observable.of(1, 2, 3);
         myNumbers$.subscribe(data => {
             console.log('my numbers :', data);
         });
 
+        // Using interval method
         let intervalExample$ = Observable.interval(1000);
 
         const subscription = intervalExample$.subscribe(data => {
