@@ -1,0 +1,149 @@
+<html>
+
+<head>
+    <title>Observer Pattern</title>
+    <!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
+    <style>
+        body {
+            font-family: Arial;
+            font-size: 14px;
+        }
+
+        .pubsub-example {
+            background-color: #EEE;
+            border: 1px solid #CCC;
+            padding: 1em;
+            margin: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Javascript Observer Pattern</h1>
+    <h2>JavaScript Design Patterns: The Observer Pattern</h2>
+    <a href="https://www.sitepoint.com/javascript-design-patterns-observer-pattern/">JavaScript Design Patterns: The
+        Observer Pattern</a>
+    <p>Observer Pattern is also called Pub-Sub Pattern, Publish-Subscribe pattern or Event Emiter or Event Dispatcher
+        Pattern</p>
+    <p>In JavaScript, there is a problem that comes up often. You need a way to update parts of a page in response to
+        certain events, with the data these provide. Say, for example, user input that you then project into one or
+        many components. This leads into a lot of push-and-pull in the code to keep everything in sync.</p>
+    <p>This is where the observer design pattern can help — it enables one-to-many data binding between elements. This
+        one-way data binding can be event driven. With this pattern, you can build reusable code that solves for your
+        specific needs.</p>
+
+    <h3>The Event Observer</h3>
+    <p>A high-level view of the pattern looks like this:</p>
+    <pre>
+EventObserver
+│
+├── subscribe: adds new observable events
+│
+├── unsubscribe: removes observable events
+|
+└── broadcast: executes all events with bound data
+</pre>
+    <!--===============================================================
+			START :: Example 1 : Pub/Sub Event
+		===================================================================-->
+    <div id="pubsubExample1" class="pubsub-example">
+        <style>
+            .blogPost {
+                font-size: 100%;
+                font-family: 'Roboto', sans-serif;
+                color: #333;
+                height: 5em;
+                width: 100%;
+            }
+
+            .wordCount {
+                font-size: 100%;
+                font-family: 'Roboto', sans-serif;
+                color: #333;
+            }
+        </style>
+
+        <textarea id="blogPost" placeholder="Enter your blog post..." class="blogPost"></textarea>
+
+
+        <script>
+            'use strict';
+
+            // EXAMPLE 1
+            //====================================================
+            class EventObserver {
+                constructor() {
+                    this.observers = [];
+                }
+
+                subscribe(fn) {
+                    this.observers.push(fn);
+                }
+
+                // Filter out from the list whatever matches the callback function. If there is no match, the callback gets to stay on the list. The filter returns a new list and reassigns the list of observers.
+                // The callback must match the same function that’s on the list. If there is a match, the unsubscribe method removes it from the list. Note the test uses the function reference to add and remove it.
+                unsubscribe(fn) {
+                    this.observers = this.observers.filter((subscriber) => subscriber !== fn);
+                }
+
+                // This iterates through the list of observed events and executes all callbacks.
+                // With this, you get the necessary one-to-many relationship to the subscribed events.
+                // You pass in the data parameter which makes the callback data bound.
+                broadcast(data) {
+                    this.observers.forEach((subscriber) => subscriber(data));
+                }
+            }
+
+            const getWordCount = (text) => text ? text.trim().split(/\s+/).length : 0;
+
+            const wordCountElement = document.createElement('p');
+
+            wordCountElement.className = 'wordCount';
+            wordCountElement.innerHTML = 'Word Count: <strong id="blogWordCount">0</strong>';
+            document.body.appendChild(wordCountElement);
+
+            const blogObserver = new EventObserver();
+
+            blogObserver.subscribe((text) => {
+                const blogCount = document.getElementById('blogWordCount');
+
+                blogCount.textContent = getWordCount(text);
+            });
+
+            const blogPost = document.getElementById('blogPost');
+
+            blogPost.addEventListener('keyup', () => blogObserver.broadcast(blogPost.value));
+        </script>
+
+        <p>You can enhance the demo with:<br />
+
+            - Another component that counts the number of paragraphs<br />
+            - Another component that shows a preview of entered text<br />
+            - Enhance the preview with markdown support, for example</p>
+        <script>
+            // Unit test case using : "Node assertions" to test this component in Node.
+            // The exact same assertions exist as "Chai assertions" too.
+
+            // Arrange
+            const observer = new EventObserver();
+
+            let subscriberHasBeenCalled = false;
+            const fn = (data) => subscriberHasBeenCalled = data;
+
+            observer.subscribe(fn);
+
+            // Act
+            observer.broadcast(true);
+
+            // Assert
+            assert(subscriberHasBeenCalled);
+        </script>
+    </div>
+    <!--===============================================================
+			END :: Example 1 : Pub/Sub Event
+		===================================================================-->
+
+
+</body>
+
+</html>

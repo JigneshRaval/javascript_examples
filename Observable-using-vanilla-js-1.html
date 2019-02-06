@@ -1,0 +1,375 @@
+<html>
+
+<head>
+    <title>Observable using vanilla javascript</title>
+</head>
+
+<body>
+
+    <script>
+        // RxJS
+        // REF : https://gist.github.com/ltciro/e12a46bcfea0d4eb226bca5efbf7a85d
+        /* const next = (message) => console.log("First observer message: " + message);
+        const error = (error) => console.log("Second observer error: " + error);
+        const complete = () => console.log("complete");
+
+        const next1 = (message) => console.log("First observer message 1: " + message);
+        const error1 = (error) => console.log("Second observer error 1: " + error);
+        const complete1 = () => console.log("complete 1");
+
+        const stream$ = Rx.Observable.of(1, 2, 3, 4, 5)
+
+        stream$.subscribe(next, error, complete)
+        stream$.subscribe(next1, error1, complete1); */
+
+        // REF : https://gist.github.com/ltciro/e12a46bcfea0d4eb226bca5efbf7a85d
+        function ObservableOf(...data) {
+            this.subscribe = function (...observer) {
+                const [next, error, complete] = observer
+                observerD = { next, error, complete };
+
+                try {
+                    data.forEach((item) => {
+                        //simulated an error with the type
+                        if (typeof item === 'string') {
+                            throw {};
+                        }
+                        observerD.next(item)
+                    });
+                    observerD.complete();
+                } catch (e) {
+                    observerD.error("is a string");
+                }
+            };
+
+            return { subscribe: this.subscribe }
+        }
+
+        const source$ = new ObservableOf(1, 2, 3)
+
+        source$.subscribe(
+            (message) => console.log("First observer message:" + message),
+            (error) => console.log("First observer error:" + error),
+            () => console.log("complete First")
+        )
+
+        source$.subscribe(
+            (message) => console.log("Second observer message:" + message),
+            (error) => console.log("Second observer error:" + error),
+            () => console.log("complete Second")
+        )
+    </script>
+
+    <!-- Example 2 -->
+    <div class="example-2">
+        <p>
+            <a href="https://www.monterail.com/blog/2016/how-to-build-a-reactive-engine-in-javascript-part-1-observable-objects"
+                target="_blank">How to build a reactive engine in JavaScript. Part 1: Observable objects</a>
+        </p>
+        <h1 s-text="title"></h1>
+        <div class="form-inline">
+            <div class="form-group">
+                <label for="title">Title: </label>
+                <input type="text" class="form-control" id="title" placeholder="Enter title" oninput="updateText('title', event)">
+            </div>
+            <button class="btn btn-default" type="button" onclick="resetTitle()">Reset title</button>
+        </div>
+    </div>
+
+    <script>
+        // Example 2
+        // ==============================
+        // This code uses ES2015.
+        // Please use a compatible browser like: Chrome, Opera, Firefox
+
+        function Seer(dataObj) {
+            let signals = {}
+
+            observeData(dataObj)
+
+            return {
+                data: dataObj,
+                observe,
+                notify
+            }
+
+            function observe(property, signalHandler) {
+                if (!signals[property]) signals[property] = []
+
+                signals[property].push(signalHandler)
+            }
+
+            function notify(signal) {
+                if (!signals[signal] || signals[signal].length < 1) return
+
+                signals[signal].forEach((signalHandler) => signalHandler())
+            }
+
+            function makeReactive(obj, key) {
+                let val = obj[key]
+
+                Object.defineProperty(obj, key, {
+                    get() {
+                        return val
+                    },
+                    set(newVal) {
+                        val = newVal
+                        notify(key)
+                    }
+                })
+            }
+
+            function observeData(obj) {
+                for (let key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        makeReactive(obj, key)
+                    }
+                }
+                // We can safely parse the DOM looking for bindings after we converted the dataObject.
+                parseDOM(document.body, obj)
+            }
+
+            function syncNode(node, observable, property) {
+                node.textContent = observable[property]
+                // We remove the `Seer.` as it is now available for us in our scope.
+                observe(property, () => node.textContent = observable[property])
+            }
+
+            function parseDOM(node, observable) {
+                const nodes = document.querySelectorAll('[s-text]')
+
+                for (const node of nodes) {
+                    syncNode(node, observable, node.attributes['s-text'].value)
+                }
+            }
+        }
+
+        const App = Seer({
+            title: 'Game of Thrones',
+            firstName: 'Jon',
+            lastName: 'Snow',
+            age: 25
+        })
+
+        function updateText(property, e) {
+            App.data[property] = e.target.value
+        }
+
+        function resetTitle() {
+            App.data.title = "Game of Thrones"
+        }
+    </script>
+
+    <!-- Example 3 -->
+    <div class="example-3">
+        <p>An observable is just a function. This function takes in an observer as an argument, and returns a
+            subscription object.</p>
+        <p>An observer is just an object with three methods: next which takes in a value, error which takes in an error
+            message and complete with has no arguments. This is what a standard (logging) observer looks like:</p>
+        <pre><code>
+{
+  next(value) {
+    console.log(value);
+  },
+  error(err) {
+    console.error(err);
+  },
+  complete() {
+    console.info('done');
+  }
+}
+        </code></pre>
+        <p>A subscription object represents a disposable resource, such as the execution of an Observable. This
+            subscription has a bunch of methods such as add and remove, but the most important one is unsubscribe which
+            takes no argument and just disposes the resource held by the subscription. More on this later, when we get
+            to the asynchronous examples.</p>
+        <p>When an Observable produces a value, it lets the observer know by calling next on the produced value, or
+            error when a problem occurs.</p>
+    </div>
+
+    <div class="demo">
+        <button id="btnFromEvent">From Event</button>
+    </div>
+
+    <script>
+        // https://netbasal.com/javascript-observables-under-the-hood-2423f760584
+        class Observable {
+
+            constructor(functionThatThrowsValues) {
+                // console.log('functionThatThrowsValues :', functionThatThrowsValues);
+                this._functionThatThrowsValues = functionThatThrowsValues;
+                /* this._functionThatThrowsValues = observer => {
+                    observer.next('New data is coming');
+                    observer.complete();
+                } */
+            }
+
+            // function Observable() { }
+            // Observable.prototype.subscribe =  observer => { ... }
+            subscribe(next, error, complete) {
+                if (typeof next === "function") {
+                    return this._functionThatThrowsValues({
+                        next,
+                        error: error || function () { },
+                        complete: complete || function () { }
+                    });
+                }
+                else {
+                    return this._functionThatThrowsValues(next);
+                }
+
+            }
+
+            // REF: https://xgrommx.github.io/rx-book/content/getting_started_with_rxjs/exploring_major_concepts_in_rxjs.html
+            // Provides a mechanism for receiving push-based notifications.
+            // function Observer() { }
+            // Observer.prototype.onNext = value => { ... };
+            // Observer.prototype.onError = error => { ... };
+            // Observer.prototype.onCompleted = () => { ... };
+
+            // When we call map what is happening is the map method returns new Observable that subscribes to the source,
+            // in our case the fakeAsyncData$. When the source "throws" new value first it gets to the map method, and after applying the projection function on the value,
+            // the map Observable "throws" the value on us. ( remember we are subscribed to the map Observable )
+            map(projectionFunction) {
+                return new Observable(observer => {
+                    return this.subscribe({
+                        next(val) { observer.next(projectionFunction(val)) },
+                        error(e) { observer.error(e) },
+                        complete() { observer.complete() }
+                    });
+                });
+            }
+
+            mergeMap(anotherFunctionThatThrowsValues) {
+                return new Observable(observer => {
+                    return this.subscribe({
+                        next(val) {
+                            anotherFunctionThatThrowsValues(val).subscribe({
+                                next(val) { observer.next(val) },
+                                error(e) { observer.error(e) },
+                                complete() { observer.complete() }
+                            });
+                        },
+                        error(e) { observer.error(e) },
+                        complete() { observer.complete() }
+                    });
+                });
+            }
+
+            // converts an array represented by the variable myArray into an Observable. You can also use any an iterable data collection or a generator function as an argument of from().
+            static fromArray(array) {
+                return new Observable((observer) => {
+                    array.forEach(val => observer.next(val));
+
+                    observer.complete();
+
+                    return ({
+                        unsubscribe() {
+                            console.log('unsubscribed');
+                        }
+                    });
+                });
+            }
+
+            // turns the sequence of numbers into an Observable
+            static of(...array) {
+                return new Observable((observer) => {
+                    array.forEach(val => observer.next(val));
+                    observer.complete();
+                });
+            }
+
+            static interval(interval) {
+                return new Observable((observer) => {
+                    let i = 0;
+                    const id = setInterval(() => {
+                        observer.next(i++);
+                    }, interval);
+
+                    return {
+                        unsubscribe() {
+                            clearInterval(id);
+                            console.log('Observable.interval: unsubscribed');
+                        }
+                    };
+
+                });
+            }
+
+            // converts the keyup event from some HTML element represented by myInput into an Observable
+            static fromEvent(element, event) {
+                return new Observable(observer => {
+                    const handler = (e) => observer.next(e);
+                    element.addEventListener(event, handler);
+                    return () => {
+                        element.removeEventListener(event, handler);
+                    };
+                });
+            }
+
+            static fromPromise(promise) {
+                return new Observable(observer => {
+                    promise.then(val => {
+                        observer.next(val); observer.complete();
+                    })
+                        .catch(e => {
+                            observer.error(val); observer.complete();
+                        });
+                })
+            }
+        }
+
+        // Usage
+        // =====================
+        let fakeAsyncData$ = new Observable(observer => {
+            console.log('observer ====', observer);
+            setTimeout(() => {
+                observer.next('New data is coming');
+                observer.next('123');
+                observer.complete();
+            }, 2000);
+        });
+
+        fakeAsyncData$.subscribe(value => {
+            console.log('Subscribed value:', value);
+        },
+            err => {
+                console.error('Oops:', err.message);
+            },
+            () => {
+                console.log(`We're done here!`);
+            });
+
+        let myNumbers$ = Observable.of(1, 2, 3);
+        myNumbers$.subscribe(data => {
+            console.log('my numbers :', data);
+        });
+
+        let intervalExample$ = Observable.interval(1000);
+
+        const subscription = intervalExample$.subscribe(data => {
+            console.log('Interval value :', data);
+        });
+
+        setTimeout(subscription.unsubscribe, 5000);
+
+        // Using map method
+        fakeAsyncData$.map(val => `New value : ${val}`).subscribe({
+            next(val) { console.log(val) },
+            error(e) { console.log(e) },
+            complete() { console.log('complete') }
+        });
+
+        // using fromEvent method
+        var button = document.querySelector('#btnFromEvent');
+        let clicks$ = Observable.fromEvent(button, 'click')
+            .map(e => `${e.pageX}px`);
+        let unsubscribe = clicks$.subscribe({
+            next(val) { console.log(val) },
+            error(e) { console.log(e) },
+            complete() { console.log('complete') }
+        });
+    </script>
+</body>
+
+</html>
