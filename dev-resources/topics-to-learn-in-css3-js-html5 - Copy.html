@@ -1246,7 +1246,7 @@ function applyMixins(derivedCtor: any, baseCtors: any[]) {
 							</div>
 							<!-- END : ACCORDION CONTENT -->
 						</li>
-						
+
 
 						<li>
 							<!-- START : ACCORDION CONTENT -->
@@ -1290,7 +1290,7 @@ document.addEventListener( "click", function(e) {
 							</div>
 							<!-- END : ACCORDION CONTENT -->
 						</li>
-						
+
 						<li>
 							<!-- START : ACCORDION CONTENT -->
 							<h3 class="uk-accordion-title">Debounce function</h3>
@@ -1305,7 +1305,7 @@ document.addEventListener( "click", function(e) {
 <pre>
 // EXAMPLE 1
 //=======================
-	
+
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for
 // N milliseconds. If `immediate` is passed, trigger the function on the
@@ -1341,22 +1341,22 @@ var typingTimer; //timer identifier
 
 this.document.on('keyup', function(event) {
 	var self = this;
-	
+
 	//on keyup, start the countdown
 	clearTimeout(typingTimer);
-	
+
 	typingTimer = setTimeout(function() {
-		
-		// Your code to save document or Call function 
+
+		// Your code to save document or Call function
 		doneTyping();
-		
+
 	}, 500);
 });
 </pre>
 							</div>
 							<!-- END : ACCORDION CONTENT -->
 						</li>
-						
+
 					</ul>
 					<!-- END : TAB CONTENT -->
 				</li>
@@ -1959,7 +1959,7 @@ console.log(fury.legsNumber);   //4
     // this is where I defined my module implementation
 
     var Requester = { // ... };
-	
+
     return Requester;
 }));</pre>
 
@@ -2037,7 +2037,7 @@ var defaults = {
 	showCursor: true,
 	cursor: '|'
 };
-	
+
 // EXAMPLE 1
 //=========================================
 
@@ -2071,7 +2071,7 @@ var options = extendDefaults(defaults, options);
 
 <pre>
 // SYNTEX : Object.assign(target, ...sources)
-// The Object.assign() method is used to copy the values of all enumerable own properties from one or more source objects to a target object. 
+// The Object.assign() method is used to copy the values of all enumerable own properties from one or more source objects to a target object.
 //It will return the target object.
 /**
  * REF : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
@@ -2094,7 +2094,7 @@ const objectAssign = Object.assign || function(srcObj) {
 			}
 		}
 	}
-	
+
 	return srcObj;
 };
 
@@ -2142,7 +2142,7 @@ ChromeSamples.log(b);
 let obj = {person: 'Thor Odinson'};
 let clone = Object.assign({}, obj);
 ChromeSamples.log(clone);
-// {person: 'Thor Odinson'}	
+// {person: 'Thor Odinson'}
 </pre>
 
 						<section class="example__description">
@@ -2161,8 +2161,8 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 
 /**
- * The above code is a little hard to follow, so here is an expanded, documented version of it. 
- * Review the added source code comments to understand the purpose of each line of code. 
+ * The above code is a little hard to follow, so here is an expanded, documented version of it.
+ * Review the added source code comments to understand the purpose of each line of code.
  * The __extends function works with any pair of parent and child objects.
 */
 // declare a variable to reference the extends function
@@ -2258,15 +2258,15 @@ __extends = function (child, parent) {
 							</ul>
 						</li>
 						<li>
-							<h3>JavaScript - What’s the difference between Null & Undefined?</h3>
+							<h3>JavaScript - What's the difference between Null & Undefined?</h3>
 							<p>Null : Null means an empty or non-existent value. Null is assigned, and explicitly means nothing.</p>
 							<div><ul class="postList"><li name="b54d" id="b54d" class="graf graf--li graf-after--p"><code class="markup--code markup--li-code">null</code> is an assigned value. It means <em class="markup--em markup--li-em">nothing.</em></li><li name="ef9d" id="ef9d" class="graf graf--li graf-after--li"><code class="markup--code markup--li-code">undefined</code> means a variable has been declared but not defined yet.</li><li name="09b3" id="09b3" class="graf graf--li graf-after--li"><code class="markup--code markup--li-code">null</code> is an object. <code class="markup--code markup--li-code">undefined</code> is of type <code class="markup--code markup--li-code">undefined</code>.</li><li name="9376" id="9376" class="graf graf--li graf-after--li graf--trailing"><code class="markup--code markup--li-code">null&nbsp;!== undefined</code> but <code class="markup--code markup--li-code">null == undefined</code>.</li></ul></div>
 						</li>
 						<li>
 							<h4 name="bda8" id="bda8" class="graf graf--h4 graf--leading"><code class="markup--code markup--h4-code">3 + true ==&nbsp;4</code></h4>
 							<div class="section-inner sectionLayout--insetColumn">
-								
-								<p name="14c1" id="14c1" class="graf graf--p graf-after--h4">I’m not kidding either. In JavaScript, when the plus operator is placed between a <code class="markup--code markup--p-code">number</code> and a <code class="markup--code markup--p-code">boolean</code>, the <code class="markup--code markup--p-code">boolean</code> is converted to a <code class="markup--code markup--p-code">number</code>.</p>
+
+								<p name="14c1" id="14c1" class="graf graf--p graf-after--h4">I'm not kidding either. In JavaScript, when the plus operator is placed between a <code class="markup--code markup--p-code">number</code> and a <code class="markup--code markup--p-code">boolean</code>, the <code class="markup--code markup--p-code">boolean</code> is converted to a <code class="markup--code markup--p-code">number</code>.</p>
 								<p name="52ae" id="52ae" class="graf graf--p graf-after--p graf--trailing">If you remember back to my <a href="https://hackernoon.com/javascript-showdown-vs-7be792be15b5" data-href="https://hackernoon.com/javascript-showdown-vs-7be792be15b5" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">JavaScript Showdown</a> article, <code class="markup--code markup--p-code">false == 0</code> and <code class="markup--code markup--p-code">true == 1</code>. With this in mind, <code class="markup--code markup--p-code">3 + true</code> is converted to <code class="markup--code markup--p-code">3 + 1</code> and thus we get the answer of <code class="markup--code markup--p-code"><strong class="markup--strong markup--p-strong">4</strong></code>.</p>
 							</div>
 						</li>
@@ -2278,34 +2278,34 @@ __extends = function (child, parent) {
 </div>
 						</li>
 						<li>
-						<h4 name="7bf0" id="7bf0" class="graf graf--h4 graf--leading">1 + 1 +&nbsp;‘1’</h4>
+						<h4 name="7bf0" id="7bf0" class="graf graf--h4 graf--leading">1 + 1 +&nbsp;‘1'</h4>
 <div class="section-inner sectionLayout--insetColumn">
-    
+
     <p name="3d0e" id="3d0e" class="graf graf--p graf-after--h4">Order of operations is important. In this instance, JavaScript evaluates the first <code class="markup--code markup--p-code">+</code> before anything else: <code class="markup--code markup--p-code">1 + 1</code> equals <code class="markup--code markup--p-code">2</code>. Then we move on and add in the <code class="markup--code markup--p-code">string</code> value of <code class="markup--code markup--p-code">'1'</code>. Concatenation occurs and the result is <code class="markup--code markup--p-code">'21'</code>.</p>
-    <p name="348b" id="348b" class="graf graf--p graf-after--p">Here’s the chain of events:</p><pre name="7d7d" id="7d7d" class="graf graf--pre graf-after--p graf--trailing">1 + 1 + '1'<br>  2   + '1'<br>       '21'</pre>
+    <p name="348b" id="348b" class="graf graf--p graf-after--p">Here's the chain of events:</p><pre name="7d7d" id="7d7d" class="graf graf--pre graf-after--p graf--trailing">1 + 1 + '1'<br>  2   + '1'<br>       '21'</pre>
 </div>
 						</li>
 
 						<li>
-						<h4 name="f148" id="f148" class="graf graf--h4 graf--leading">-‘69’ +&nbsp;69</h4>
+						<h4 name="f148" id="f148" class="graf graf--h4 graf--leading">-‘69' +&nbsp;69</h4>
 <div class="section-inner sectionLayout--insetColumn"><p name="9109" id="9109" class="graf graf--p graf-after--h4">What if we attempt to negate a <code class="markup--code markup--p-code">string</code> and then add a <code class="markup--code markup--p-code">number</code>? As you should know by now, without the negation, our answer would be <code class="markup--code markup--p-code">'6969'</code>. However, the negation changes things.</p><p name="54c3" id="54c3" class="graf graf--p graf-after--p graf--trailing">The minus sign before <code class="markup--code markup--p-code">'69'</code> is a unary minus operator that will actually convert the <code class="markup--code markup--p-code">string</code> to a <code class="markup--code markup--p-code">number</code> and make it negative. Thus, our equation becomes <code class="markup--code markup--p-code">-69 + 69</code> which equals <code class="markup--code markup--p-code"><strong class="markup--strong markup--p-strong">0</strong></code>.</p></div>
 						</li>
 						<li>
-						 <h4 name="331c" id="331c" class="graf graf--h4 graf--startsWithSingleQuote graf--leading">‘1’ + 1 +&nbsp;1</h4>
+						 <h4 name="331c" id="331c" class="graf graf--h4 graf--startsWithSingleQuote graf--leading">‘1' + 1 +&nbsp;1</h4>
 						<div class="section-inner sectionLayout--insetColumn">
-   
+
     <p name="bbb1" id="bbb1" class="graf graf--p graf-after--h4">What changes when we have our string value first instead of last? Remember the order of operations and work from left to right:</p><pre name="3f77" id="3f77" class="graf graf--pre graf-after--p">'1' + 1 + 1<br>   '11' + 1<br>       '111'</pre>
-    <p name="5b1d" id="5b1d" class="graf graf--p graf-after--pre graf--trailing"><code class="markup--code markup--p-code">string + number = string</code>. So in this instance we’re left with one long string of <code class="markup--code markup--p-code">'111'</code>.</p>
-</div>	
+    <p name="5b1d" id="5b1d" class="graf graf--p graf-after--pre graf--trailing"><code class="markup--code markup--p-code">string + number = string</code>. So in this instance we're left with one long string of <code class="markup--code markup--p-code">'111'</code>.</p>
+</div>
 						</li>
 						<li>
-						<h4>String.prototype.startsWith()</h4>	
+						<h4>String.prototype.startsWith()</h4>
 						<p name="1aa8" id="1aa8" class="graf graf--p graf-after--h4">This method is used to verify if a string begins with the characters of a specified string or pre-defined regular expression <code class="markup--code markup--p-code">RegExp</code> which are defined patterns and can be used to search for characters in strings, and returns a Boolean of either <code class="markup--code markup--p-code">true</code> or <code class="markup--code markup--p-code">false</code>. Easy eh? it is also case sensitive and goes thus:</p>
-						<p name="8294" id="8294" class="graf graf--p graf-after--p"><code class="markup--code markup--p-code">str.startsWith(string|RegExp,position)</code>.<br><code class="markup--code markup--p-code">str</code> of course is the parent string.<br><code class="markup--code markup--p-code">string</code> the characters to be searched for.<br><code class="markup--code markup--p-code">RegExp</code> this is a predefined regular expression.<br><code class="markup--code markup--p-code">position</code> this is the position in which the verification starts, if it’s not specified it is assumed that the verification starts from the beginning (index zero).</p>
-<pre>var mix = “i absolutely love that this is medium!”
-console.log(mix.startsWith(‘i absolutely’)) // returns true
-console.log(mix.startsWith(‘welcome to raccoon city Alice’)) //returns false 
-console.log(mix.startsWith(‘love’,13))// returns true</pre>
+						<p name="8294" id="8294" class="graf graf--p graf-after--p"><code class="markup--code markup--p-code">str.startsWith(string|RegExp,position)</code>.<br><code class="markup--code markup--p-code">str</code> of course is the parent string.<br><code class="markup--code markup--p-code">string</code> the characters to be searched for.<br><code class="markup--code markup--p-code">RegExp</code> this is a predefined regular expression.<br><code class="markup--code markup--p-code">position</code> this is the position in which the verification starts, if it's not specified it is assumed that the verification starts from the beginning (index zero).</p>
+<pre>var mix = "i absolutely love that this is medium!"
+console.log(mix.startsWith(‘i absolutely')) // returns true
+console.log(mix.startsWith(‘welcome to raccoon city Alice')) //returns false
+console.log(mix.startsWith(‘love',13))// returns true</pre>
 						</li>
 						<li>
 							<h4>Creating Objects in JavaScript</h4>
@@ -2321,19 +2321,19 @@ console.log(mix.startsWith(‘love’,13))// returns true</pre>
 							</article>
 							<span class="arrow"></span>
 						</section>
-						<pre>var person = { 
+						<pre>var person = {
 	firstName:"John",
 	lastName:"Doe",
 	age:50,
 	eyeColor:"blue"
 };</pre>
-						
+
 					</div>
 					<div class="example" id="example1">
 						<h2 class="example__title grd_wg">Create Object Using the JavaScript Keyword <code>new</code></h2>
-						
+
 						<pre>var person = new Object();
-						
+
 person.firstName = "John";
 person.lastName = "Doe";
 person.age = 50;
@@ -2364,7 +2364,7 @@ var Donn = new Person('Donn'29);
 console.log(John.name);  //John
 console.log(John.age);  //25
 John.shoutYourName();   //alerts 'My name is John!'</pre>
-						
+
 					</div>
 						</li>
 						<li>
@@ -2493,7 +2493,7 @@ let moreThan20 = array.filter(num =&gt; num &gt; 20)
 						<div class="example" id="example1">
 							<h2 class="example__title grd_wg">Event Delegation</h2>
 <pre>
-// HTML 
+// HTML
 
 &lt;h2>Great Web resources&lt;/h2>
 &lt;ul id="resources">
@@ -2512,12 +2512,12 @@ let moreThan20 = array.filter(num =&gt; num &gt; 20)
 	var resources = document.getElementById('resources');
 	var links = resources.getElementsByTagName('a');
 	var all = links.length;
-	
+
 	for(var i=0; i&lt;all; i++){
 		// Attach a listener to each link
 		links[i].addEventListener('click',handler,false);
 	};
-	
+
 	function handler(e){
 		var x = e.target; // Get the link that was clicked
 		alert(x);
@@ -2531,7 +2531,7 @@ let moreThan20 = array.filter(num =&gt; num &gt; 20)
 (function(){
 	var resources = document.getElementById('resources');
 	resources.addEventListener('click',handler,false);
-	
+
 	function handler(e){
 		var x = e.target; // get the link tha
 		if(x.nodeName.toLowerCase() === 'a'){
@@ -2594,17 +2594,17 @@ var pickAFruit = function () {
 
 <h4>Get Biggest value from Array</h4>
 <pre>// traversing an array in search of big num
- 
+
 var myArray = [4, 5, 6, 99, 68, 7, 24];
 var biggestNum = 0;
- 
+
 for (var i = 0; i < myArray.length; i++) {
     if (myArray[i] > biggestNum) {
         biggestNum = myArray[i];
     }
 }
 console.log(biggestNum);
- 
+
 // displays 99</pre>
 
 <h4>Get longest string on an Array</h4>
@@ -2654,7 +2654,7 @@ console.log(a); //default value</pre>
 							</div>
 						</li>
 					</ul>
-					
+
 					<!-- END : TAB CONTENT -->
 				</li>
 				<li>
@@ -2774,11 +2774,11 @@ get_useful_data();</pre>
 		ukLogo.addEventListener('click', function(){
 			document.body.classList.toggle('show-grid');
 		});
-		
+
 		// Toggle Reading Mode
 		var readModeBtn = document.querySelector('.read-mode');
 		var bodyElem = document.getElementsByTagName('body')[0];
-		
+
 		readModeBtn.addEventListener('click', function() {
 			document.body.classList.toggle('isReadModeOn')
 		});

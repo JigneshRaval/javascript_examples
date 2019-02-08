@@ -1,0 +1,442 @@
+<html>
+
+<head>
+    <title>Observable using vanilla javascript 2</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <style>
+        body {
+            background-color: #eeeeee;
+        }
+
+        .example {
+            margin-bottom: 1em;
+        }
+
+        .observable-output {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .observable-output li {
+            padding: 1em;
+            margin-bottom: 1em;
+            border: 1px solid #CCC;
+            background-color: #ffffff;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .observable-output .bg-success {
+            box-shadow: 0 5px 5px rgba(40, 167, 69, 0.4);
+        }
+
+        .observable-output .bg-danger {
+            box-shadow: 0 5px 5px rgba(220, 53, 69, 0.4);
+        }
+    </style>
+    <script>
+        let dangerClass = 'border border-danger bg-danger text-white';
+        let successClass = 'border border-success bg-success text-white';
+        function addItem(val, outputContainer, cssClass) {
+            var node = document.createElement("li");
+            var textNode = document.createTextNode(val);
+            node.appendChild(textNode);
+            document.querySelector(outputContainer).appendChild(node);
+            if (cssClass) {
+                if (node) {
+                    node.className = cssClass;
+                }
+            }
+        }
+    </script>
+    <script src="./js/rx.all.js"></script>
+</head>
+
+<body>
+    <main class="container">
+        <ul>
+            <li><a href="./Observable-using-vanilla-js-1.html">Observable using vanilla javascript: 1</a></li>
+            <li><a href="./Observable-using-vanilla-js-2.html">Observable using vanilla javascript: 2</a></li>
+            <li><a href="./Observable-using-vanilla-js-3.html">Observable using vanilla javascript: 3</a></li>
+            <li><a href="./Observable-using-vanilla-js-4.html">Observable using vanilla javascript: 4</a></li>
+            <li><a href="./Observable-using-RXJs-1.html">Observable using RxJs: 1</a></li>
+        </ul>
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+                aria-controls="collapseExample">About Observables</a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <h1>RxJS: Observables, Observers and Operators Introduction</h1>
+                <h2>The Observable:</h2>
+                <p>I like to think of Observable as a function that "throws" values. It can "throw" values in synchrony
+                    or
+                    asynchrony way. If you have interest on this values, you can register observer.</p>
+                <p>An observable is just a function. This function takes in an observer as an argument, and returns a
+                    subscription object.</p>
+                <p>An observer is just an object with three methods: next which takes in a value, error which takes in
+                    an
+                    error
+                    message and complete with has no arguments. This is what a standard (logging) observer looks like:</p>
+                <pre><code>
+{
+    next(value) {
+    console.log(value);
+    },
+    error(err) {
+    console.error(err);
+    },
+    complete() {
+    console.info('done');
+    }
+}</code></pre>
+                <p>When the Observable ( i.e., function ) "throws" new value, error or completes, he will call the
+                    corresponding function on your observer.</p>
+                <p>A subscription object represents a disposable resource, such as the execution of an Observable. This
+                    subscription has a bunch of methods such as add and remove, but the most important one is
+                    unsubscribe
+                    which
+                    takes no argument and just disposes the resource held by the subscription. More on this later, when
+                    we
+                    get
+                    to the asynchronous examples.</p>
+                <p>When an Observable produces a value, it lets the observer know by calling next on the produced
+                    value, or
+                    error when a problem occurs.</p>
+                <h3>Push vs. Pull:</h3>
+                <p>If you are familiar with the Iterator pattern, you know that in this case, you are in charge. When
+                    you
+                    want
+                    new value, you just call the next method to pull the value.</p>
+                <p><strong>With Observable it's like, don't call us we call you.</strong></p>
+                <p>The Observable is the boss. When he has a new value, he will push the value to you. Your job is just
+                    to
+                    "listen."</p>
+                <p>How the newsletter appears in your email? You are subscribing to the newsletter; when there is a new
+                    newsletter the manager just pushes it to your email.</p>
+            </div>
+        </div>
+
+
+        <!-- Example 1 -->
+        <section class="examples">
+
+            <!-- START : Example card -->
+            <div class="card [ example example-1 ]">
+                <div class="card-header">
+                    <div class="nav nav-tabs card-header-tabs" id="nav-tab-1" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-output-tab-1" data-toggle="tab" href="#nav-output-1"
+                            role="tab" aria-controls="nav-output" aria-selected="true">Output</a>
+                        <a class="nav-item nav-link" id="nav-code-tab-1" data-toggle="tab" href="#nav-code-1" role="tab"
+                            aria-controls="nav-code" aria-selected="false">Code</a>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <!-- START : Demo -->
+                    <div class="demo demo-1">
+                        <div class="tab-content" id="nav-tabContent-1">
+                            <div class="tab-pane fade show active" id="nav-output-1" role="tabpanel" aria-labelledby="nav-output-tab-1">
+                                <h3>Create Observable</h3>
+                                <ul class="observable-output observable-output-1">
+
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="nav-code-1" role="tabpanel" aria-labelledby="nav-code-tab">
+                                <pre><code>
+// Example 1
+// ================================
+
+var source = Rx.Observable.create(observer => {
+    // Yield a single value and complete
+    observer.onNext(42);
+    observer.onCompleted();
+
+    // Any cleanup logic might go here
+    return () => console.log('disposed')
+});
+
+var subscription = source.subscribe(
+    x => addItem(`onNext: ${x}`, '.observable-output-1'),
+    e => console.log('onError: %s', e),
+    () => console.log('onCompleted'));
+
+// => onNext: 42
+// => onCompleted
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END : Demo -->
+                </div>
+                <script>
+                    // Example 1
+                    // ================================
+
+                    var source = Rx.Observable.create(observer => {
+                        // Yield a single value and complete
+                        observer.onNext(42);
+                        observer.onCompleted();
+                        observer.onError('Oops: Error in example 1.');
+
+                        // Any cleanup logic might go here
+                        return () => console.log('disposed')
+                    });
+
+                    var subscription = source.subscribe(
+                        x => addItem(`onNext: ${x}`, '.observable-output-1'),
+                        e => addItem(`${e}`, '.observable-output-1', 'border border-danger bg-danger text-white'),
+                        () => addItem(`onComplete of Example 1.`, '.observable-output-1', 'border border-success bg-success text-white'));
+
+                    // => onNext: 42
+                    // => onCompleted
+
+                    subscription.dispose();
+                    // => disposed
+
+                </script>
+            </div>
+            <!-- END : Example card -->
+
+            <!-- START : Example card -->
+            <div class="card [ example example-2 ]">
+                <div class="card-header">
+                    <div class="nav nav-tabs card-header-tabs" id="nav-tab-2" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-output-tab-2" data-toggle="tab" href="#nav-output-2"
+                            role="tab" aria-controls="nav-output" aria-selected="true">Output</a>
+                        <a class="nav-item nav-link" id="nav-code-tab-2" data-toggle="tab" href="#nav-code-2" role="tab"
+                            aria-controls="nav-code" aria-selected="false">Code</a>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <!-- START : Demo -->
+                    <div class="demo demo-2">
+                        <div class="tab-content" id="nav-tabContent-2">
+                            <div class="tab-pane fade show active" id="nav-output-2" role="tabpanel" aria-labelledby="nav-output-tab">
+                                <h3>Create Observable from Range</h3>
+                                <ul class="observable-output observable-output-2">
+
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="nav-code-2" role="tabpanel" aria-labelledby="nav-code-tab">
+                                <pre><code>
+// Example 2
+// ================================
+// Creates an observable sequence of 5 integers, starting from 1
+var source = Rx.Observable.range(1, 5);
+
+// Prints out each item
+var subscription = source.subscribe(
+    x => addItem(`onNext: ${x}`, '.observable-output-2'),
+    e => console.log('onError: %s', e),
+    () => console.log('onCompleted'));
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END : Demo -->
+
+                </div>
+                <script>
+                    // Example 2
+                    // ================================
+                    // Creates an observable sequence of 5 integers, starting from 1
+                    var source = Rx.Observable.range(1, 5);
+
+                    // Prints out each item
+                    var subscription = source.subscribe(
+                        x => addItem(`onNext: ${x}`, '.observable-output-2'),
+                        e => console.log('onError: %s', e),
+                        () => console.log('onCompleted'));
+
+                </script>
+            </div>
+            <!-- END : Example card -->
+
+            <!-- START : Example card -->
+            <div class="card [ example example-3 ]">
+                <div class="card-header">
+                    <div class="nav nav-tabs card-header-tabs" id="nav-tab-3" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-output-tab-3" data-toggle="tab" href="#nav-output-3"
+                            role="tab" aria-controls="nav-output" aria-selected="true">Output</a>
+                        <a class="nav-item nav-link" id="nav-code-tab-3" data-toggle="tab" href="#nav-code-3" role="tab"
+                            aria-controls="nav-code" aria-selected="false">Code</a>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <!-- START : Demo -->
+                    <div class="demo demo-3">
+                        <div class="tab-content" id="nav-tabContent-3">
+                            <div class="tab-pane fade show active" id="nav-output-3" role="tabpanel" aria-labelledby="nav-output-tab">
+                                <h3>User of map and interval</h3>
+                                <ul class="observable-output observable-output-3">
+
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="nav-code-3" role="tabpanel" aria-labelledby="nav-code-tab">
+                                <pre><code>
+// Example 3
+// ================================
+
+const obs$ = Rx.Observable
+    .interval(500)
+    .map(value => {
+        if (value > 3) {
+            throw new Error('too high!');
+        } else {
+            return value;
+        }
+    })
+    .catch(error => {
+        return Rx.Observable.of(3);
+    });
+
+// subscribe
+obs$.subscribe(
+    value => {
+        addItem(value, '.observable-output-3')
+    },
+    err => {
+        addItem(`Oops: ${err.message}`, '.observable-output-3', dangerClass)
+    },
+    () => {
+        addItem(`We're done here!`, '.observable-output-3', successClass)
+    }
+);
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END : Demo -->
+
+                </div>
+                <script>
+                    // Example 3
+                    // ================================
+
+                    const obs$ = Rx.Observable
+                        .interval(500)
+                        .map(value => {
+                            if (value > 3) {
+                                throw new Error('too high!');
+                            } else {
+                                return value;
+                            }
+                        })
+                        .catch(error => {
+                            return Rx.Observable.of(3);
+                        });
+
+                    obs$.subscribe(value => {
+                        addItem(value, '.observable-output-3')
+                    },
+                        err => {
+                            addItem(`Oops: ${err.message}`, '.observable-output-3', dangerClass)
+                        },
+                        () => {
+                            addItem(`We're done here!`, '.observable-output-3', successClass)
+                        });
+                </script>
+            </div>
+            <!-- END : Example card -->
+
+            <!-- START : Example card -->
+            <div class="card [ example example-4 ]">
+                <div class="card-header">
+                    <div class="nav nav-tabs card-header-tabs" id="nav-tab-4" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-output-tab-4" data-toggle="tab" href="#nav-output-4"
+                            role="tab" aria-controls="nav-output" aria-selected="true">Output</a>
+                        <a class="nav-item nav-link" id="nav-code-tab-4" data-toggle="tab" href="#nav-code-4" role="tab"
+                            aria-controls="nav-code" aria-selected="false">Code</a>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <!-- START : Demo -->
+                    <div class="demo demo-4">
+                        <div class="tab-content" id="nav-tabContent-4">
+                            <div class="tab-pane fade show active" id="nav-output-4" role="tabpanel" aria-labelledby="nav-output-tab">
+                                <h3>Cold Observables</h3>
+                                <ul class="observable-output observable-output-4">
+
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="nav-code-4" role="tabpanel" aria-labelledby="nav-code-tab">
+                                <pre><code>
+// Example 4
+// ================================
+
+var coldObservable = Rx.Observable.create((observer) => {
+    try {
+        observer.next('Hey guys!')
+        observer.next('How are you?')
+        setTimeout(() => {
+            observer.next('I am good')
+        }, 2000)
+    } catch (err) {
+        observer.error(err)
+    }
+})
+// .share();
+
+var subscription1 = coldObservable.subscribe(
+    (x) => addItem(x, '.observable-output-4'),
+    (error) => addItem(error, '.observable-output-4'),
+    () => addItem('Completed', '.observable-output-4')
+);
+
+setTimeout(() => {
+    var subscription2 = coldObservable.subscribe(
+        (x) => addItem('Subscriber 2: ' + x, '.observable-output-4')
+    );
+}, 1000);
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END : Demo -->
+
+                </div>
+                <script>
+                    // Example 4
+                    // ================================
+
+                    var coldObservable = Rx.Observable.create((observer) => {
+                        try {
+                            observer.next('Hey guys!')
+                            observer.next('How are you?')
+                            setTimeout(() => {
+                                observer.next('I am good')
+                            }, 2000)
+                        } catch (err) {
+                            observer.error(err)
+                        }
+                    })
+                    // .share();
+
+                    var subscription1 = coldObservable.subscribe(
+                        (x) => addItem(x, '.observable-output-4'),
+                        (error) => addItem(error, '.observable-output-4'),
+                        () => addItem('Completed', '.observable-output-4')
+                    );
+
+                    setTimeout(() => {
+                        var subscription2 = coldObservable.subscribe(
+                            (x) => addItem('Subscriber 2: ' + x, '.observable-output-4')
+                        );
+                    }, 1000);
+                </script>
+            </div>
+            <!-- END : Example card -->
+
+
+        </section>
+    </main>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

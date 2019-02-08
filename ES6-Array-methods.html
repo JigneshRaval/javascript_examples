@@ -95,7 +95,7 @@ console.log(arr[2]); //=> undefined</code></pre>
 				<p>SRC :
 					<a href="https://medium.freecodecamp.org/9-neat-javascript-tricks-e2742f2735c3">https://medium.freecodecamp.org/9-neat-javascript-tricks-e2742f2735c3</a>
 				</p>
-				<p>Chances are high that you’re already using configuration objects when you need to pass a variable set of options to some
+				<p>Chances are high that you're already using configuration objects when you need to pass a variable set of options to some
 					function, like this:</p>
 				<pre><code>doSomething({ foo: 'Hello', bar: 'Hey!', baz: 42 });
 function doSomething(config) {
@@ -110,7 +110,7 @@ function doSomething(config) {
 				<pre><code>function doSomething({ foo = 'Hi', bar = 'Yo!', baz = 13 }) {
   // ...
 }</code></pre>
-				<p>And if you need to make the config object optional, it’s very simple, too:</p>
+				<p>And if you need to make the config object optional, it's very simple, too:</p>
 				<pre><code>function doSomething({ foo = 'Hi', bar = 'Yo!', baz = 13 } = {}) {
   // ...
 }</code></pre>

@@ -770,7 +770,7 @@ uniqueColors // [ 'blue', 'red', 'green', 'black', 'orange']
 
 A pipeline is a term used for a list of functions that transform some initial value into a final value.
 
-You could write a function that takes an input, and returns (input + 1) * 2 — 1. The problem is that we know we are going to need to increment the amount three times, then double it, then decrement it, and then halve it at some point in the future. We don’t want to have to rewrite our function every time so we going to use reduce to create a pipeline.
+You could write a function that takes an input, and returns (input + 1) * 2 — 1. The problem is that we know we are going to need to increment the amount three times, then double it, then decrement it, and then halve it at some point in the future. We don't want to have to rewrite our function every time so we going to use reduce to create a pipeline.
 
 ```javascript
 function increment(input) { return input + 1;}
@@ -872,23 +872,23 @@ console.log(arr); // ["Apples", "Oranges"]
 5. Add and/or remove elements from specified index of an Array (Array.prototype.splice()) | JSFiddle
 
 ```javascript
-// variable ‘arr’
-var arr = [“Apples”, “Oranges”, “Mangoes”];
+// variable ‘arr'
+var arr = ["Apples", "Oranges", "Mangoes"];
 
-// add an element to the 2nd index of ‘arr’ but don’t remove any elements. Note that the second argument to slice() specifies the number of elements to be removed from the index provided as first argument.
-arr.splice(1, 0, “Pineapple”);
+// add an element to the 2nd index of ‘arr' but don't remove any elements. Note that the second argument to slice() specifies the number of elements to be removed from the index provided as first argument.
+arr.splice(1, 0, "Pineapple");
 
-console.log(arr); // [“Apples”, “Pineapple”, “Oranges”, “Mangoes”];
+console.log(arr); // ["Apples", "Pineapple", "Oranges", "Mangoes"];
 
-// remove an element from the 3rd index of ‘arr’ but don’t add any new elements
+// remove an element from the 3rd index of ‘arr' but don't add any new elements
 arr.splice(2, 1);
 
-console.log(arr); // [“Apples”, “Pineapple”, “Mangoes”];
+console.log(arr); // ["Apples", "Pineapple", "Mangoes"];
 
-// remove an element from the 1st index of ‘arr’ and add an element
-arr.splice(1, 1, “Strawberry”);
+// remove an element from the 1st index of ‘arr' and add an element
+arr.splice(1, 1, "Strawberry");
 
-console.log(arr); // [“Apples”, “Strawberry”, “Mangoes”];
+console.log(arr); // ["Apples", "Strawberry", "Mangoes"];
 ```
 
 # JavaScript Arrays Methods & Props — map, filter, find, reduce, concat, etc

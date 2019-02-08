@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Observable using vanilla javascript</title>
+    <title>Observable using vanilla javascript 1</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <style>
         body {
@@ -12,9 +12,15 @@
 
 <body>
     <div class="description">
+        <ul>
+            <li><a href="./Observable-using-vanilla-js-1.html">Observable using vanilla javascript: 1</a></li>
+            <li><a href="./Observable-using-vanilla-js-2.html">Observable using vanilla javascript: 2</a></li>
+            <li><a href="./Observable-using-vanilla-js-3.html">Observable using vanilla javascript: 3</a></li>
+            <li><a href="./Observable-using-vanilla-js-4.html">Observable using vanilla javascript: 4</a></li>
+        </ul>
         <h1>RxJS: Observables, Observers and Operators Introduction</h1>
         <h2>The Observable:</h2>
-        <p>I like to think of Observable as a function that “throws” values. It can “throw” values in synchrony or
+        <p>I like to think of Observable as a function that "throws" values. It can "throw" values in synchrony or
             asynchrony way. If you have interest on this values, you can register observer.</p>
         <p>An observable is just a function. This function takes in an observer as an argument, and returns a
             subscription object.</p>
@@ -32,7 +38,7 @@
     console.info('done');
     }
 }</code></pre>
-        <p>When the Observable ( i.e., function ) “throws” new value, error or completes, he will call the
+        <p>When the Observable ( i.e., function ) "throws" new value, error or completes, he will call the
             corresponding function on your observer.</p>
         <p>A subscription object represents a disposable resource, such as the execution of an Observable. This
             subscription has a bunch of methods such as add and remove, but the most important one is unsubscribe which
@@ -43,9 +49,9 @@
         <h3>Push vs. Pull:</h3>
         <p>If you are familiar with the Iterator pattern, you know that in this case, you are in charge. When you want
             new value, you just call the next method to pull the value.</p>
-        <p><strong>With Observable it’s like, don’t call us we call you.</strong></p>
+        <p><strong>With Observable it's like, don't call us we call you.</strong></p>
         <p>The Observable is the boss. When he has a new value, he will push the value to you. Your job is just to
-            “listen.”</p>
+            "listen."</p>
         <p>How the newsletter appears in your email? You are subscribing to the newsletter; when there is a new
             newsletter the manager just pushes it to your email.</p>
     </div>
@@ -213,8 +219,8 @@
 
     <script>
         // https://netbasal.com/javascript-observables-under-the-hood-2423f760584
-        // We start by setting up the Observable class and save a reference to the function that will “throws” values.
-        // Now you can understand why Observables are lazy; we don’t invoke the function yet just saving a reference.
+        // We start by setting up the Observable class and save a reference to the function that will "throws" values.
+        // Now you can understand why Observables are lazy; we don't invoke the function yet just saving a reference.
         class Observable {
 
             constructor(functionThatThrowsValues) {
@@ -250,7 +256,7 @@
 
             // function Observable() { }
             // Observable.prototype.subscribe =  observer => { ... }
-            // when you call the subscribe method, only then you are invoking the function that will “throw” values with the observer.
+            // when you call the subscribe method, only then you are invoking the function that will "throw" values with the observer.
             subscribe(next, error, complete) {
                 if (typeof next === "function") {
                     return this._functionThatThrowsValues({
@@ -276,7 +282,7 @@
             // in our case the fakeAsyncData$. When the source "throws" new value first it gets to the map method, and after applying the projection function on the value,
             // the map Observable "throws" the value on us. ( remember we are subscribed to the map Observable )
             map(projectionFunction) {
-                return new Observable(observer => {
+                return new Observable((observer) => {
                     return this.subscribe({
                         next(val) { observer.next(projectionFunction(val)) },
                         error(e) { observer.error(e) },
@@ -325,11 +331,14 @@
             }
 
             static interval(interval) {
+                console.log('calling interval method...')
                 return new Observable((observer) => {
                     let i = 0;
                     const id = setInterval(() => {
                         observer.next(i++);
                     }, interval);
+
+                    // observer.error(e);
 
                     return {
                         unsubscribe() {
@@ -431,9 +440,12 @@
             setTimeout(() => {
                 observer.next('New data is coming');
                 observer.next('123');
+                observer.error(new Error('Error in observable'));
                 observer.complete();
             }, 2000);
         });
+
+        console.log('fakeAsyncData$ ====', fakeAsyncData$);
 
         fakeAsyncData$.subscribe(value => {
             console.log('Subscribed value:', value);
@@ -444,6 +456,38 @@
             () => {
                 console.log(`We're done here!`);
             });
+
+        // Using map method
+        fakeAsyncData$.map(val => `New value : ${val}`).subscribe({
+            next(val) { console.log(val) },
+            error(e) { console.log(e) },
+            complete() { console.log('complete') }
+        });
+
+        // Using map method
+        const obs$ = Observable
+            .interval(500)
+            .map(value => {
+                if (value > 3) {
+                    return new Error('too high!');
+                } else {
+                    return value;
+                }
+            });
+
+        let obsSubscription$ = obs$.subscribe(value => {
+            console.log('obs$ =', value);
+        },
+            err => {
+                console.error('Oops:', err.message);
+            },
+            () => {
+                console.log(`We're done here!`);
+            });
+
+        console.log('obsSubscription$ ==', obsSubscription$);
+
+        setTimeout(obsSubscription$.unsubscribe, 5000);
 
         // Using of method
         let myNumbers$ = Observable.of(1, 2, 3);
@@ -460,12 +504,8 @@
 
         setTimeout(subscription.unsubscribe, 5000);
 
-        // Using map method
-        fakeAsyncData$.map(val => `New value : ${val}`).subscribe({
-            next(val) { console.log(val) },
-            error(e) { console.log(e) },
-            complete() { console.log('complete') }
-        });
+
+
 
         // using fromEvent method
         var button = document.querySelector('#btnFromEvent');
@@ -500,63 +540,6 @@
             complete() { console.log('mergeMap method completed.') }
         });
     </script>
-
-    <!-- Example 4 -->
-    <div class="example example-4">
-        <h2><a href="https://toddmotto.com/rxjs-observables-observers-operators">RxJS: Observables, Observers and
-                Operators Introduction</a></h2>
-        <div class="demo demo-4">
-            <input type="text">
-            <p></p>
-            <button type="button">
-                Unsubscribe
-            </button>
-        </div>
-
-        <script>
-            // Ref : https://toddmotto.com/rxjs-observables-observers-operators
-            const node = document.querySelector('.demo-4 input');
-            const p = document.querySelector('.demo-4 p');
-
-            function Observable4(subscribe) {
-                this.subscribe = subscribe;
-            }
-
-            Observable4.prototype.map = function (mapFn) {
-                const input = this;
-                return new Observable4((observer) => {
-                    return input.subscribe({
-                        next: (value) => observer.next(mapFn(value)),
-                        error: (err) => observer.error(err),
-                        complete: () => observer.complete()
-                    });
-                });
-            };
-
-            Observable4.fromEvent = (element, name) => {
-                return new Observable4((observer) => {
-                    const callback = (event) => observer.next(event);
-                    element.addEventListener(name, callback, false);
-                    return () => element.removeEventListener(name, callback, false);
-                });
-            };
-
-            const input$ = Observable4.fromEvent(node, 'input')
-                .map(event => event.target.value);
-
-            const unsubscribe4 = input$.subscribe({
-                next: (value) => {
-                    p.innerHTML = value;
-                }
-            });
-
-            // avert your eyes
-            document
-                .querySelector('.demo-4 button')
-                .addEventListener('click', unsubscribe4);
-
-        </script>
-    </div>
 
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.bundle.min.js"></script>

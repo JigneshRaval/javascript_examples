@@ -28,7 +28,7 @@ REF : http://ezcook.de/2017/06/05/Deep-in-Viewport/
 
 **Screen Size**
 
-`screen.width` and `screen.height` means the total width width and height of the user’s screen. These dimensions are measured in device px because they never change: they’re feature of the monitor and not of the browser.
+`screen.width` and `screen.height` means the total width width and height of the user's screen. These dimensions are measured in device px because they never change: they're feature of the monitor and not of the browser.
 
 ![image info](../flashcards/screen-width-height.jpg)
 

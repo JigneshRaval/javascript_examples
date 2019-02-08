@@ -1,0 +1,178 @@
+<html>
+
+<head>
+    <title>Observable using vanilla javascript 2</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <style>
+        .example {
+        margin-bottom: 1em;
+    }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <ul>
+            <li><a href="./Observable-using-vanilla-js-1.html">Observable using vanilla javascript: 1</a></li>
+            <li><a href="./Observable-using-vanilla-js-2.html">Observable using vanilla javascript: 2</a></li>
+            <li><a href="./Observable-using-vanilla-js-3.html">Observable using vanilla javascript: 3</a></li>
+            <li><a href="./Observable-using-vanilla-js-4.html">Observable using vanilla javascript: 4</a></li>
+        </ul>
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+                aria-controls="collapseExample">About Observables</a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <h1>RxJS: Observables, Observers and Operators Introduction</h1>
+                <h2>The Observable:</h2>
+                <p>I like to think of Observable as a function that "throws" values. It can "throw" values in synchrony
+                    or
+                    asynchrony way. If you have interest on this values, you can register observer.</p>
+                <p>An observable is just a function. This function takes in an observer as an argument, and returns a
+                    subscription object.</p>
+                <p>An observer is just an object with three methods: next which takes in a value, error which takes in
+                    an
+                    error
+                    message and complete with has no arguments. This is what a standard (logging) observer looks like:</p>
+                <pre><code>
+{
+    next(value) {
+    console.log(value);
+    },
+    error(err) {
+    console.error(err);
+    },
+    complete() {
+    console.info('done');
+    }
+}</code></pre>
+                <p>When the Observable ( i.e., function ) "throws" new value, error or completes, he will call the
+                    corresponding function on your observer.</p>
+                <p>A subscription object represents a disposable resource, such as the execution of an Observable. This
+                    subscription has a bunch of methods such as add and remove, but the most important one is
+                    unsubscribe
+                    which
+                    takes no argument and just disposes the resource held by the subscription. More on this later, when
+                    we
+                    get
+                    to the asynchronous examples.</p>
+                <p>When an Observable produces a value, it lets the observer know by calling next on the produced
+                    value, or
+                    error when a problem occurs.</p>
+                <h3>Push vs. Pull:</h3>
+                <p>If you are familiar with the Iterator pattern, you know that in this case, you are in charge. When
+                    you
+                    want
+                    new value, you just call the next method to pull the value.</p>
+                <p><strong>With Observable it's like, don't call us we call you.</strong></p>
+                <p>The Observable is the boss. When he has a new value, he will push the value to you. Your job is just
+                    to
+                    "listen."</p>
+                <p>How the newsletter appears in your email? You are subscribing to the newsletter; when there is a new
+                    newsletter the manager just pushes it to your email.</p>
+            </div>
+        </div>
+
+
+        <!-- Example 1 -->
+        <section class="examples">
+
+            <!-- START : Example card -->
+            <div class="card shadow-sm [ example example-4 ]">
+
+                <h4 class="card-header"><a href="https://toddmotto.com/rxjs-observables-observers-operators">RxJS:
+                        Observables, Observers and Operators Introduction</a></h4>
+
+                <div class="card-body">
+                    <!-- START : Demo -->
+                    <div class="demo demo-4">
+                        <div class="form-group">
+                            <label for="txtUserName">Username</label>
+                            <input type="text" class="form-control" id="txtUserName" placeholder="Enter Username" />
+                            <p></p>
+                            <button type="button" class="btn btn-primary">
+                                Unsubscribe
+                            </button>
+                        </div>
+                    </div>
+                    <!-- END : Demo -->
+                </div>
+                <script>
+                    // Ref : https://toddmotto.com/rxjs-observables-observers-operators
+                    const node = document.querySelector('.demo-4 input');
+                    const p = document.querySelector('.demo-4 p');
+
+                    function Observable(subscribe) {
+                        this.subscribe = subscribe;
+                    }
+
+                    Observable.prototype.map = function (mapFn) {
+                        const input = this;
+                        return new Observable((observer) => {
+                            return input.subscribe({
+                                next: (value) => observer.next(mapFn(value)),
+                                error: (err) => observer.error(err),
+                                complete: () => observer.complete()
+                            });
+                        });
+                    };
+
+                    Observable.fromEvent = (element, name) => {
+                        return new Observable((observer) => {
+                            const callback = (event) => observer.next(event);
+                            element.addEventListener(name, callback, false);
+                            return () => element.removeEventListener(name, callback, false);
+                        });
+                    };
+
+                    const input$ = Observable.fromEvent(node, 'input')
+                        .map(event => {
+                            if (event.target.value === "jignesh") {
+                                throw new Error('This username is not valid');
+                            } else {
+                                return event.target.value;
+                            }
+
+                        });
+
+                    console.log('Observable input$ ===', input$);
+
+                    const unsubscribe4 = input$.subscribe({
+                        next: (value) => {
+                            p.innerHTML = value;
+                        }
+                    });
+
+                    // avert your eyes
+                    document
+                        .querySelector('.demo-4 button')
+                        .addEventListener('click', unsubscribe4);
+
+                </script>
+            </div>
+            <!-- END : Example card -->
+
+            <!-- START : Example card -->
+            <div class="card mb-4 shadow-sm [ example example-4 ]">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Example</h4>
+                </div>
+                <div class="card-body">
+                    <!-- START : Demo -->
+                    <div class="demo demo-4">
+
+                    </div>
+                    <!-- END : Demo -->
+                </div>
+            </div>
+            <!-- END : Example card -->
+
+
+        </section>
+    </main>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

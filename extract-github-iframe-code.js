@@ -80,7 +80,7 @@ function createCopyButton(parentId) {
   // document.execCommand will work only inside event
   button.addEventListener('click', function() {
     var textVal = document.querySelector(parentId).innerHTML;
-    textVal = textVal.replace(/“|”/g, '"').replace(/’/g, "'");
+    textVal = textVal.replace(/"|"/g, '"').replace(/'/g, "'");
 		copytext(textVal);
   });
 }

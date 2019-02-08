@@ -1,0 +1,185 @@
+<html>
+
+<head>
+    <title>Observable using vanilla javascript 2</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <style>
+        .example {
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <ul>
+            <li><a href="./Observable-using-vanilla-js-1.html">Observable using vanilla javascript: 1</a></li>
+            <li><a href="./Observable-using-vanilla-js-2.html">Observable using vanilla javascript: 2</a></li>
+            <li><a href="./Observable-using-vanilla-js-3.html">Observable using vanilla javascript: 3</a></li>
+            <li><a href="./Observable-using-vanilla-js-4.html">Observable using vanilla javascript: 4</a></li>
+        </ul>
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+                aria-controls="collapseExample">About Observables</a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <h1>RxJS: Observables, Observers and Operators Introduction</h1>
+                <h2>The Observable:</h2>
+                <p>I like to think of Observable as a function that "throws" values. It can "throw" values in synchrony
+                    or
+                    asynchrony way. If you have interest on this values, you can register observer.</p>
+                <p>An observable is just a function. This function takes in an observer as an argument, and returns a
+                    subscription object.</p>
+                <p>An observer is just an object with three methods: next which takes in a value, error which takes in
+                    an
+                    error
+                    message and complete with has no arguments. This is what a standard (logging) observer looks like:</p>
+                <pre><code>
+{
+    next(value) {
+    console.log(value);
+    },
+    error(err) {
+    console.error(err);
+    },
+    complete() {
+    console.info('done');
+    }
+}</code></pre>
+                <p>When the Observable ( i.e., function ) "throws" new value, error or completes, he will call the
+                    corresponding function on your observer.</p>
+                <p>A subscription object represents a disposable resource, such as the execution of an Observable. This
+                    subscription has a bunch of methods such as add and remove, but the most important one is
+                    unsubscribe
+                    which
+                    takes no argument and just disposes the resource held by the subscription. More on this later, when
+                    we
+                    get
+                    to the asynchronous examples.</p>
+                <p>When an Observable produces a value, it lets the observer know by calling next on the produced
+                    value, or
+                    error when a problem occurs.</p>
+                <h3>Push vs. Pull:</h3>
+                <p>If you are familiar with the Iterator pattern, you know that in this case, you are in charge. When
+                    you
+                    want
+                    new value, you just call the next method to pull the value.</p>
+                <p><strong>With Observable it's like, don't call us we call you.</strong></p>
+                <p>The Observable is the boss. When he has a new value, he will push the value to you. Your job is just
+                    to
+                    "listen."</p>
+                <p>How the newsletter appears in your email? You are subscribing to the newsletter; when there is a new
+                    newsletter the manager just pushes it to your email.</p>
+            </div>
+        </div>
+
+
+        <!-- Example 1 -->
+        <section class="examples">
+
+            <!-- START : Example card -->
+            <div class="card shadow-sm [ example example-1 ]">
+
+                <h4 class="card-header"><a href="https://pawelgrzybek.com/the-observer-pattern-in-javascript-explained/">The
+                        Observer Pattern in JavaScript explained</a></h4>
+
+                <div class="card-body">
+                    <!-- START : Demo -->
+                    <div class="demo demo-1">
+                        <input type="text" class="form-control js-input" placeholder="type something here">
+                        <br/>
+
+                        <button class="[ btn btn-primary ] js-subscribe-p1">Subscrube</button>
+                        <button class="[ btn btn-primary ] js-unsubscribe-p1">Unsubscribe</button>
+                        <p class="js-p1"></p>
+
+                        <button class="[ btn btn-primary ] js-subscribe-p2">Subscrube</button>
+                        <button class="[ btn btn-primary ] js-unsubscribe-p2">Unsubscribe</button>
+                        <p class="js-p2"></p>
+
+                        <button class="[ btn btn-primary ] js-subscribe-p3">Subscrube</button>
+                        <button class="[ btn btn-primary ] js-unsubscribe-p3">Unsubscribe</button>
+                        <p class="js-p3"></p>
+                    </div>
+                    <!-- END : Demo -->
+                </div>
+                <script>
+                    class Observable {
+                        constructor() {
+                            this.observers = [];
+                        }
+
+                        subscribe(f) {
+                            this.observers.push(f);
+                        }
+
+                        unsubscribe(f) {
+                            this.observers = this.observers.filter(subscriber => subscriber !== f);
+                        }
+
+                        notify(data) {
+                            this.observers.forEach(observer => observer(data));
+                        }
+                    }
+
+                    const input = document.querySelector('.js-input');
+
+                    const p1 = document.querySelector('.js-p1');
+                    const p2 = document.querySelector('.js-p2');
+                    const p3 = document.querySelector('.js-p3');
+
+                    const subscribeP1 = document.querySelector('.js-subscribe-p1');
+                    const subscribeP2 = document.querySelector('.js-subscribe-p2');
+                    const subscribeP3 = document.querySelector('.js-subscribe-p3');
+
+                    const unsubscribeP1 = document.querySelector('.js-unsubscribe-p1');
+                    const unsubscribeP2 = document.querySelector('.js-unsubscribe-p2');
+                    const unsubscribeP3 = document.querySelector('.js-unsubscribe-p3');
+
+                    const updateP1 = text => p1.textContent = text;
+                    const updateP2 = text => p2.textContent = text;
+                    const updateP3 = text => p3.textContent = text;
+
+                    const headingsObserver = new Observable();
+                    headingsObserver.subscribe(updateP1);
+                    headingsObserver.subscribe(updateP2);
+                    headingsObserver.subscribe(updateP3);
+
+                    subscribeP1.addEventListener('click', () => headingsObserver.subscribe(updateP1));
+                    unsubscribeP1.addEventListener('click', () => headingsObserver.unsubscribe(updateP1));
+                    subscribeP2.addEventListener('click', () => headingsObserver.subscribe(updateP2));
+                    unsubscribeP2.addEventListener('click', () => headingsObserver.unsubscribe(updateP2));
+                    subscribeP3.addEventListener('click', () => headingsObserver.subscribe(updateP3));
+                    unsubscribeP3.addEventListener('click', () => headingsObserver.unsubscribe(updateP3));
+
+                    input.addEventListener('keyup', e => {
+                        headingsObserver.notify(e.target.value);
+                    });
+                </script>
+            </div>
+            <!-- END : Example card -->
+
+            <!-- START : Example card -->
+            <div class="card mb-4 shadow-sm [ example example-4 ]">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Example</h4>
+                </div>
+                <div class="card-body">
+                    <!-- START : Demo -->
+                    <div class="demo demo-4">
+
+                    </div>
+                    <!-- END : Demo -->
+                </div>
+            </div>
+            <!-- END : Example card -->
+
+
+        </section>
+    </main>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
