@@ -1,0 +1,197 @@
+<html>
+
+<head>
+    <title>Responsive Circle using CSS and SVG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
+
+</head>
+
+<body>
+    <h2>Responsive Circle using CSS and SVG</h2>
+    <!-- Example 1 -->
+    <style>
+        #circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            margin: 20px;
+        }
+    </style>
+    <div id="circles">
+        <svg id="go" viewBox="0 0 600 200" perserveAspectRatio="xMinYMid">
+            <circle r="100" cx="100" cy="90" fill="#ededed"></circle>
+        </svg>
+    </div>
+
+    <!-- Example 2 -->
+    <style>
+        .circle {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%;
+            vertical-align: middle;
+        }
+
+        .circle svg {
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .circle circle {
+            fill: #333;
+        }
+    </style>
+    <div class="circle">
+        <svg version="1.1" viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet">
+            <circle cx="250" cy="250" r="200" />
+        </svg>
+    </div>
+
+    <!-- Example 3 -->
+    <h1><a href="https://codepen.io/cbracco/pen/qnduh">CSS Responsive Circles with Vertically-Centered Text</a></h1>
+    <style>
+        /**
+ * Demo Styles
+ */
+
+        html {
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        html {
+            min-height: 100%;
+        }
+
+        body {
+            margin: 64px auto;
+            max-width: 640px;
+            width: 94%;
+            text-align: center;
+        }
+
+        /**
+ * Circle Styles
+ */
+
+        .circle {
+            position: relative;
+            display: block;
+            margin: 2em 0;
+            background-color: transparent;
+            color: #222;
+            text-align: center;
+        }
+
+        .circle:after {
+            display: block;
+            padding-bottom: 100%;
+            width: 100%;
+            height: 0;
+            border-radius: 50%;
+            background-color: #ddd;
+            content: "";
+        }
+
+        .circle__inner {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .circle__wrapper {
+            display: table;
+            width: 100%;
+            height: 100%;
+        }
+
+        .circle__content {
+            display: table-cell;
+            padding: 1em;
+            vertical-align: middle;
+        }
+
+        @media (min-width: 480px) {
+            .circle__content {
+                font-size: 2em;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .circle__content {
+                font-size: 4em;
+            }
+        }
+    </style>
+    <div class="circle">
+        <div class="circle__inner">
+            <div class="circle__wrapper">
+                <div class="circle__content">Circle text</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="circle">
+        <div class="circle__inner">
+            <div class="circle__wrapper">
+                <div class="circle__content">A circle with a lot more text inside</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Example 4 -->
+    https://muffinresearch.co.uk/displaying-a-circle-thats-responsive-in-all-directions/
+    <style>
+        .outer {
+            align-items: center;
+            border: 1px solid #ccc;
+            display: flex;
+            height: 500px;
+            justify-content: center;
+            max-width: 100%;
+            overflow: auto;
+            padding: 50px;
+            resize: both;
+        }
+
+        svg {
+            height: 100%;
+        }
+
+        circle {
+            fill: #3DB8A4;
+        }
+
+        text {
+            fill: #fff;
+            font-size: 4rem;
+            font-family: sans-serif;
+        }
+    </style>
+    <div class="outer">
+        <svg viewBox="0 0 140 140" preserveAspectRatio="xMinYMin meet">
+            <g>
+                <circle r="50%" cx="50%" cy="50%" class="circle-back" />
+                <text x="50%" y="50%" text-anchor="middle" dy="0.3em">42</text>
+            </g>
+        </svg>
+    </div>
+</body>
+
+</html>

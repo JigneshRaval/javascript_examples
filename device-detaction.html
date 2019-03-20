@@ -1,0 +1,174 @@
+<html>
+
+<head>
+    <title>Device Detection using JavaScript</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
+
+</head>
+
+<body>
+
+    <script>
+        var DevicesModule = /** @class */ (function () {
+            function DevicesModule() {
+                this.userAgentString = navigator.userAgent;
+                this.userVendor = navigator.vendor;
+                this.userPlatform = navigator.platform;
+                this.userAppVersion = navigator.appVersion;
+                this.deviceType = '';
+            }
+            DevicesModule.prototype._find = function (needle) {
+                var matchRegExp = new RegExp(needle, 'ig');
+                return this.userAgentString.indexOf(needle) !== -1 || matchRegExp.test(this.userAgentString);
+            };
+            DevicesModule.prototype._isiPad = function () {
+                return this._find('iPad');
+            };
+            DevicesModule.prototype._isKindle = function () {
+                return this._find('Kindle|Silk|KFAPW|KFARWI|KFASWI|KFFOWI|KFJW|KFMEWI|KFOT|KFSAW|KFSOWI|KFTBW|KFTHW|KFTT|WFFOWI|KFAPWI');
+            };
+            DevicesModule.prototype._isTablet = function () {
+                return this._find('iPad') || this._find('Android') || this._find('Touch');
+            };
+            DevicesModule.prototype._isMobile = function () {
+                return this._find('Mobile');
+            };
+            // Public functions
+            // ===================================
+            // Get device type ( Tablet, Mobile, Desktop)
+            DevicesModule.prototype.getDeviceType = function () {
+                if (this._isMobile()) {
+                    if (this._isiPad()) {
+                        this.deviceType = 'Tablet';
+                    }
+                    else {
+                        this.deviceType = 'Mobile';
+                    }
+                }
+                else if (this._isTablet()) {
+                    this.deviceType = 'Tablet';
+                }
+                else if (this._isKindle()) {
+                    this.deviceType = 'Kindle';
+                }
+                else {
+                    this.deviceType = 'Desktop';
+                }
+
+                alert('navigator.vendor :' + this.userVendor + ' \n navigator.platform= ' + this.userPlatform + '\n navigator.appVersion = ' + this.userAppVersion + ' \n window.opera= ' + window.opera + ' \n deviceType = ' + this.deviceType);
+
+                return this.deviceType;
+            };
+            ;
+            DevicesModule.prototype.getUserAgent = function () {
+                return this.userAgentString;
+            };
+            DevicesModule.prototype.getVendor = function () {
+                return this.userVendor;
+            };
+            DevicesModule.prototype.getPlatform = function () {
+                return this.userPlatform;
+            };
+            return DevicesModule;
+        }());
+
+        var devicesModule = new DevicesModule();
+
+        var deviceType = devicesModule.getDeviceType();
+
+        console.log('deviceType :', deviceType); // OUTPUT : Mobile, Tablet or Desktop
+
+
+    </script>
+
+    <!-- <script>
+        var DevicesModule = (function () {
+            'use strict';
+
+            let userAgentString = navigator.userAgent;
+            let userVendor = navigator.vendor;
+            let userPlatform = navigator.platform;
+            let userAppVersion = navigator.appVersion;
+
+            let deviceType;
+
+            // Private Utility Functions
+            // ===================================
+
+            // Simple UA string search
+            function _find(needle) {
+                var matchRegExp = new RegExp(needle, 'ig');
+                return userAgentString.indexOf(needle) !== -1 || matchRegExp.test(userAgentString);
+            }
+
+            function _isiPad() {
+                return _find('iPad');
+            }
+
+            function _isKindle() {
+                return _find('Kindle|Silk|KFAPW|KFARWI|KFASWI|KFFOWI|KFJW|KFMEWI|KFOT|KFSAW|KFSOWI|KFTBW|KFTHW|KFTT|WFFOWI|KFAPWI');
+            }
+
+            function _isTablet() {
+                return _find('iPad') || _find('Android') || _find('Touch');
+            }
+
+            function _isMobile() {
+                return _find('Mobile');
+            }
+
+            // Public functions
+            // ===================================
+
+            // Get device type ( Tablet, Mobile, Desktop)
+            let getDeviceType = function () {
+                if (_isMobile()) {
+                    if (_isiPad()) {
+                        deviceType = 'Tablet';
+                    } else {
+                        deviceType = 'Mobile';
+                    }
+                } else if (_isTablet()) {
+                    deviceType = 'Tablet';
+                } else if (_isKindle()) {
+                    deviceType = 'Kindle';
+                } else {
+                    deviceType = 'Desktop';
+                }
+
+                alert('navigator.vendor :' + userVendor + ' \n navigator.platform= ' + userPlatform + '\n navigator.appVersion = ' + userAppVersion + ' \n window.opera= ' + window.opera + ' \n deviceType = ' + deviceType);
+
+                return deviceType;
+            };
+
+            let getUserAgent = function () {
+                return userAgentString;
+            }
+
+            let getVendor = function () {
+                return userVendor;
+            }
+
+            let getPlatform = function () {
+                return userPlatform;
+            }
+
+            return {
+                getUserAgent: getUserAgent,
+                getVendor: getVendor,
+                getPlatform: getPlatform,
+                getDeviceType: getDeviceType,
+            };
+        })();
+
+        let deviceType = DevicesModule.getDeviceType();
+        let userAgent = DevicesModule.getUserAgent();
+
+        console.log('deviceType 123 :', deviceType);
+        console.log('userAgent :', userAgent);
+    </script> -->
+
+</body>
+
+</html>
