@@ -10,76 +10,83 @@
 <body>
 
     <script>
-        var DevicesModule = /** @class */ (function () {
-            function DevicesModule() {
-                this.userAgentString = navigator.userAgent;
-                this.userVendor = navigator.vendor;
-                this.userPlatform = navigator.platform;
-                this.userAppVersion = navigator.appVersion;
-                this.deviceType = '';
-            }
-            DevicesModule.prototype._find = function (needle) {
-                var matchRegExp = new RegExp(needle, 'ig');
-                return this.userAgentString.indexOf(needle) !== -1 || matchRegExp.test(this.userAgentString);
-            };
-            DevicesModule.prototype._isiPad = function () {
-                return this._find('iPad');
-            };
-            DevicesModule.prototype._isKindle = function () {
-                return this._find('Kindle|Silk|KFAPW|KFARWI|KFASWI|KFFOWI|KFJW|KFMEWI|KFOT|KFSAW|KFSOWI|KFTBW|KFTHW|KFTT|WFFOWI|KFAPWI');
-            };
-            DevicesModule.prototype._isTablet = function () {
-                return this._find('iPad') || this._find('Android') || this._find('Touch');
-            };
-            DevicesModule.prototype._isMobile = function () {
-                return this._find('Mobile');
-            };
-            // Public functions
-            // ===================================
-            // Get device type ( Tablet, Mobile, Desktop)
-            DevicesModule.prototype.getDeviceType = function () {
-                if (this._isMobile()) {
-                    if (this._isiPad()) {
+        try {
+            var DevicesModule = /** @class */ (function () {
+                function DevicesModule() {
+                    this.userAgentString = navigator.userAgent;
+                    this.userVendor = navigator.vendor;
+                    this.userPlatform = navigator.platform;
+                    this.userAppVersion = navigator.appVersion;
+                    this.deviceType = '';
+                }
+                DevicesModule.prototype._find = function (needle) {
+                    var matchRegExp = new RegExp(needle, 'ig');
+                    return this.userAgentString.indexOf(needle) !== -1 || matchRegExp.test(this.userAgentString);
+                };
+                DevicesModule.prototype._isiPad = function () {
+                    return this._find('iPad');
+                };
+                DevicesModule.prototype._isKindle = function () {
+                    return this._find('Kindle|Silk|KFAPW|KFARWI|KFASWI|KFFOWI|KFJW|KFMEWI|KFOT|KFSAW|KFSOWI|KFTBW|KFTHW|KFTT|WFFOWI|KFAPWI');
+                };
+                DevicesModule.prototype._isTablet = function () {
+                    return this._find('iPad') || this._find('Android') || this._find('Touch');
+                };
+                DevicesModule.prototype._isMobile = function () {
+                    return this._find('Mobile');
+                };
+                // Public functions
+                // ===================================
+                // Get device type ( Tablet, Mobile, Desktop)
+                DevicesModule.prototype.getDeviceType = function () {
+                    if (this._isMobile()) {
+                        if (this._isiPad()) {
+                            this.deviceType = 'Tablet';
+                        }
+                        else {
+                            this.deviceType = 'Mobile';
+                        }
+                    }
+                    else if (this._isTablet()) {
                         this.deviceType = 'Tablet';
                     }
-                    else {
-                        this.deviceType = 'Mobile';
+                    else if (this._isKindle()) {
+                        this.deviceType = 'Kindle';
                     }
-                }
-                else if (this._isTablet()) {
-                    this.deviceType = 'Tablet';
-                }
-                else if (this._isKindle()) {
-                    this.deviceType = 'Kindle';
-                }
-                else {
-                    this.deviceType = 'Desktop';
-                }
+                    else {
+                        this.deviceType = 'Desktop';
+                    }
 
-                alert('navigator.vendor :' + this.userVendor + ' \n navigator.platform= ' + this.userPlatform + '\n navigator.appVersion = ' + this.userAppVersion + ' \n window.opera= ' + window.opera + ' \n deviceType = ' + this.deviceType);
+                    alert('navigator.vendor :' + this.userVendor + ' \n navigator.platform= ' + this.userPlatform + '\n navigator.appVersion = ' + this.userAppVersion + ' \n window.opera= ' + window.opera + ' \n deviceType = ' + this.deviceType);
 
-                return this.deviceType;
-            };
-            ;
-            DevicesModule.prototype.getUserAgent = function () {
-                return this.userAgentString;
-            };
-            DevicesModule.prototype.getVendor = function () {
-                return this.userVendor;
-            };
-            DevicesModule.prototype.getPlatform = function () {
-                return this.userPlatform;
-            };
-            return DevicesModule;
-        }());
+                    return this.deviceType;
+                };
+                ;
+                DevicesModule.prototype.getUserAgent = function () {
+                    return this.userAgentString;
+                };
+                DevicesModule.prototype.getVendor = function () {
+                    return this.userVendor;
+                };
+                DevicesModule.prototype.getPlatform = function () {
+                    return this.userPlatform;
+                };
+                return DevicesModule;
+            }());
 
-        var devicesModule = new DevicesModule();
+            var devicesModule = new DevicesModule();
 
-        var deviceType = devicesModule.getDeviceType();
+            var deviceType = devicesModule.getDeviceType();
 
-        console.log('deviceType :', deviceType); // OUTPUT : Mobile, Tablet or Desktop
+            if (console) {
+                console.log('deviceType : ', deviceType);
+            }
 
-
+        } catch (error) {
+            if (console) {
+                console.log('Error in getting deviceType : ', error);
+            }
+        }
     </script>
 
     <!-- <script>
