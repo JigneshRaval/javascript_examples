@@ -4,35 +4,73 @@
 <head>
     <meta charset="UTF-8" />
     <title>Hello React!</title>
-    <script src="build/react.js"></script>
-    <script src="build/react-dom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script> -->
 </head>
 
 <body>
-    <div id="example"></div>
+    <div id="app"></div>
     <script type="text/babel">
-			var InterfaceComponent = React.createClass({
-  getInitialState : function() {
+        class Greeting extends React.Component {
+            render() {
+                return (
+                    <div>
+                    <p>Hello world</p>
+                    <UserInfo name={'Jignesh Raval'} />
+                    </div>
+                    );
+            }
+        }
+
+        ReactDOM.render(
+            <Greeting />,
+            document.getElementById('app')
+        );
+
+        function UserInfo(props) {
+  return (
+    <div className="UserInfo">
+      <div className="UserInfo-name">
+        {props.name}
+      </div>
+    </div>
+  );
+}
+        </script>
+    <script type="text/babel">
+			class InterfaceComponent extends React.Component {
+                constructor(props) {
+    super(props);
+    this.state = {name: 'Hiren'};
+
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
+  }
+  getInitialState() {
     return {
       name : "chris"
     };
-  },
-  handleClick : function() {
+  }
+
+  handleClick() {
     this.setState({
       name : "bob"
     });
-  },
-  render : function() {
-    return <div onClick={this.handleClick}>
-      hello {this.state.name}
-    </div>;
   }
-});
+
+  render() {
+    return (
+        <div onClick={this.handleClick}>
+      hello {this.state.name}
+    </div>);
+  }
+}
 
 ReactDOM.render(
   <InterfaceComponent />,
-  document.getElementById('example')
+  document.getElementById('app')
 );
 			</script>
 </body>

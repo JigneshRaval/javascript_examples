@@ -1,0 +1,131 @@
+<html>
+
+<head>
+    <title>Code Editor</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
+    <style>
+        body {
+            background-color: #eeeeee;
+        }
+
+        .code-editor {
+            height: 400px;
+            width: 100%;
+            padding: 1em;
+        }
+
+        .output {
+            height: 400px;
+            width: 100%;
+            border: 1px solid #CCC;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <button id="save">save</button>
+        <a href=""></a>
+
+        <form>
+
+            <textarea id="code" name="code" class="code-editor"></textarea>
+
+            <iframe id="preview" class="output"></iframe>
+        </form>
+
+        <p>Compiling Next Generation JavaScript (ES6, ES7, React) in Browser with Babel 6 and Above :
+            http://codetheory.in/babel-6-and-above-in-browser/</p>
+    </main>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let timer;
+
+        let textArea = document.getElementById('code');
+        var previewFrame = document.getElementById('preview');
+        var myFrame = $("#preview").contents().find('body');
+        var preview = previewFrame.contentDocument || previewFrame.contentWindow.document;
+        let editorData;
+        let flag = false;
+
+        function generateHTML(data) {
+            let htmlData = `<head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+</head>
+<body>${data}</body>`;
+            return htmlData;
+        }
+
+        function insertJs() {
+            [
+                'js/rxjs-6.5.2.umd.js',
+                'js/react.development.js',
+                'js/react-dom.development.js',
+                'js/babel-6.26.0.js',
+                'js/typescript.js',
+                // 'js/Rx-5.5.12.js',
+
+            ].forEach(function (src) {
+                var script = document.createElement('script');
+                script.src = src;
+                script.async = false;
+                // if (flag) {
+                //     preview.write(editorData);
+                // }
+                preview.head.appendChild(script);
+                // flag = false;
+            });
+        }
+
+        insertJs();
+
+        textArea.addEventListener('input', (event) => {
+            editorData = event.target.value;
+
+            clearInterval(timer);
+
+            timer = setInterval(() => {
+                editorData = generateHTML(editorData);
+                // 1. jQuery Way
+                myFrame.html(editorData);
+
+                // 2. Vanilla JavaScript way
+                // preview.open();
+                // preview.write(editorData);
+                // insertJs();
+                // preview.body.innerHTML = editorData;
+                // preview.close();
+                clearInterval(timer);
+            }, 1000);
+        });
+    </script>
+    <script>
+        // Get all the babel scripts
+        var babel_scripts = document.querySelectorAll('script[type="text/babel"]');
+        // Loop over them
+        Array.prototype.forEach.call(babel_scripts, function (script, index, arr) {
+            // Get their contents
+            var input = script.textContent;
+            // Transform/Transpile/Compile
+            var output = Babel.transform(input, { presets: ['es2015', 'react'] }).code;
+
+            // Create a new script tag of `javascript` type
+            var new_script = document.createElement('script');
+            new_script.setAttribute('type', 'text/javascript');
+            // Set the contents of the script to the transpiled code
+            new_script.textContent = output;
+
+            // Remove the babel script
+            script.remove();
+            // Inject the new transpiled JS
+            document.querySelector('body').appendChild(new_script);
+        });
+    </script>
+</body>
+
+</html>
