@@ -13,6 +13,8 @@
             height: 400px;
             width: 100%;
             padding: 1em;
+            background-color: #FFF;
+            tab-size: 4;
         }
 
         .output {
@@ -30,10 +32,13 @@
 
         <form>
 
-            <textarea id="code" name="code" class="code-editor"></textarea>
+            <!-- <textarea id="code" name="code" class="code-editor"></textarea> -->
+            <pre id="code" name="code" class="code-editor" contenteditable="true"></pre>
 
             <iframe id="preview" class="output"></iframe>
         </form>
+
+
 
         <p>Compiling Next Generation JavaScript (ES6, ES7, React) in Browser with Babel 6 and Above :
             http://codetheory.in/babel-6-and-above-in-browser/</p>
@@ -63,11 +68,11 @@
 
         function insertJs() {
             [
-                'js/rxjs-6.5.2.umd.js',
+                'js/Rx-5.5.12.js',
                 'js/react.development.js',
                 'js/react-dom.development.js',
                 'js/babel-6.26.0.js',
-                'js/typescript.js',
+                'js/typescript/typescript.js',
                 // 'js/Rx-5.5.12.js',
 
             ].forEach(function (src) {
@@ -85,7 +90,7 @@
         insertJs();
 
         textArea.addEventListener('input', (event) => {
-            editorData = event.target.value;
+            editorData = event.target.innerText || event.target.value;
 
             clearInterval(timer);
 
