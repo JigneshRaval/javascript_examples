@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <title>System.js + Typescript</title>
+    <!-- <script src="./js/shim.min.js"></script>-->
+    <script src="./js/system.src.js"></script>
+
+    <!-- Using System.js and Babel -->
+    <!-- <script src="./node_modules/systemjs/dist/system.js"></script>
+    <script src="./node_modules/systemjs/dist/extras/transform.js"></script>
+    <script src="./js/babel-transform.js"></script>
+    <script>
+        System.import('./app/main.js');
+    </script> -->
+
+
+    <!-- <script src="node_modules/systemjs/dist/system.js"></script>
+    <script src="node_modules/systemjs/dist/extras/transform.js"></script>
+    <script src="node_modules/typescript/lib/typescript.js"></script>
+    -->
+
+    <!-- <script>
+        System.config({
+            transpiler: 'ts',
+            packages: {
+                'app': {
+                    defaultExtension: 'ts'
+                }
+            }
+        });
+        System.import('./app/main')
+    </script> -->
+</head>
+
+<body>
+
+    <script>
+        System.import('./js/systemjs.config.js')
+            .then(
+                function () { System.import('main') },
+                function handleResolve() {
+
+                    console.info("System.js successfully bootstrapped app.");
+
+                },
+                function handleReject(error) {
+
+                    console.warn("System.js could not bootstrap the app.");
+                    console.error(error);
+
+                    return (Promise.reject(error));
+
+                }
+
+            )
+            .catch(console.error.bind(console));
+    </script>
+</body>
+
+</html>

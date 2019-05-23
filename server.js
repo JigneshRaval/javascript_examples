@@ -11,7 +11,7 @@ http.createServer(function (request, response) {
 
     var filePath = '.' + request.url;
     if (filePath == './')
-        filePath = './index.html';
+        filePath = './systemjs-typescript.html';
 
 var extname = path.extname(filePath);
     var contentType = 'text/html';
@@ -22,6 +22,9 @@ var extname = path.extname(filePath);
 		case '.ts':
             contentType = 'text/javascript';
             break;
+		case 'typescript':
+            contentType = 'text/javascript';
+            break;
         case '.css':
             contentType = 'text/css';
             break;
@@ -30,7 +33,7 @@ var extname = path.extname(filePath);
             break;
         case '.png':
             contentType = 'image/png';
-            break;      
+            break;
         case '.jpg':
             contentType = 'image/jpg';
             break;
@@ -38,9 +41,9 @@ var extname = path.extname(filePath);
             contentType = 'audio/wav';
             break;
     }
-    
+
     console.log(" Type : ", contentType);
-    
+
     fs.readFile(filePath, function(error, content) {
         if (error) {
             if(error.code == 'ENOENT'){
@@ -52,7 +55,7 @@ var extname = path.extname(filePath);
             else {
                 response.writeHead(500);
                 response.end('Sorry, check with the site admin for error: '+error.code+' ..\n');
-                response.end(); 
+                response.end();
             }
         }
         else {
