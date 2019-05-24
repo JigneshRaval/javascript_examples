@@ -1,0 +1,336 @@
+<html>
+
+<head>
+	<title>Observer Pattern</title>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<style>
+		body {
+			font-family: Arial;
+			font-size: 14px;
+		}
+
+		.pubsub-example {
+			background-color: #EEE;
+			border: 1px solid #CCC;
+			padding: 1em;
+			margin: 1em;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Javascript Observer Pattern</h1>
+	<p>Observer Pattern is also called Pub-Sub Pattern, Publish-Subscribe pattern or Event Emiter or Event Dispatcher
+		Pattern</p>
+
+
+	<!--===============================================================
+			START :: Example 1 : Pub/Sub Event
+		===================================================================-->
+	<div id="pubsubExample1" class="pubsub-example">
+		<h2>Pub/Sub Example 1</h2>
+
+		<div class="output"></div>
+
+		<p><strong>Total Value : </strong><span class="total-value">0</span> <em>(Incrementing counter value by 10)</em>
+		</p>
+
+		<p><strong>Cart Value : </strong><span class="cart-value">0</span> <em>(Incrementing counter value by 10)</em>
+		</p>
+
+		<button value="">Increment Count</button>
+
+
+		<script>
+			'use strict';
+
+
+			// EXAMPLE 1
+			//====================================================
+			var output = document.querySelector('.output');
+			var totalValue = document.querySelector('.total-value');
+			var updateCartValue = document.querySelector('.cart-value');
+			var button = document.querySelector('button');
+
+			// Observe
+			function Count() {
+				this.count = 0;
+				this.observers = [];
+			}
+
+			Count.prototype.increment = function (amount) {
+				console.log("Increment Count");
+				this.count += amount || 1;
+				this.notify({ count: this.count });
+
+				output.innerHTML += `Incrementing counter value to ${this.count} <br/>`;
+			}
+
+			Count.prototype.incrementByTwenty = function () {
+				this.count += 20;
+				this.notify({ count: this.count });
+
+				output.innerHTML += `Incrementing counter value to ${this.count} <br/>`;
+			}
+
+			// Adding the observer
+			Count.prototype.addObserver = function (observer) {
+				this.observers.push(observer);
+
+				console.log("Add Observer :", observer, this.observers);
+			}
+
+			// Notify the observer
+			Count.prototype.notify = function (data) {
+				this.observers.forEach(function (observer) {
+					observer.call(null, data);
+				});
+			}
+
+			// Create new instance of Count() function
+			var counter = new Count();
+
+			// Now you can add multiple observers
+			// Add observer to Update Total Value
+			counter.addObserver(function () {
+				console.log("counting count :", counter.count);
+				totalValue.innerHTML = counter.count;
+			});
+
+			// Add observer to Update Cart Value
+			counter.addObserver(function () {
+				console.log("counting observers :", counter.observers);
+				updateCartValue.innerHTML = counter.count + 1;
+			});
+
+			// whenever you will fire countet.increment() method it will notify observers to execute using notify() method
+
+			button.addEventListener('click', function () {
+				// Increment counter by 10
+				counter.increment(10);
+			});
+
+			// EXAMPLE 2
+			//====================================================
+
+			var ObservablePattern2 = function () {
+				this.subscribers = [];
+			}
+
+			ObservablePattern2.prototype = {
+				subscribe: function (callback) {
+					this.subscribers.push(callback);
+				},
+				unsubscribe: function (callback) {
+
+					for (var i = 0; i < this.subscribers.length; i++) {
+						if (this.subscribers[i] === callback) {
+							this.subscribers.splice(i, 1);
+							return;
+						}
+					}
+
+				},
+				publish: function (data) {
+					for (var i = 0; i < this.subscribers.length; i++) {
+						this.subscribers[i](data);
+					}
+				}
+			}
+
+			var observer1 = function (data) {
+				console.log(data);
+			}
+
+			var observer2 = function (data) {
+				console.log(data);
+			}
+
+			var observable = new ObservablePattern2();
+			observable.subscribe(observer1);
+			observable.publish("We Published!");
+
+			console.log(observable.subscribers);
+
+		</script>
+	</div>
+	<!--===============================================================
+			END :: Example 1 : Pub/Sub Event
+		===================================================================-->
+
+	<!--===============================================================
+			START :: Example 3 : Pub/Sub Event
+			https://nuunoo.wordpress.com/2014/06/11/understanding-javascript-publish-subscription/
+		===================================================================-->
+	<style>
+		#pubsubExample3 {}
+	</style>
+	<div id="pubsubExample3" class="pubsub-example">
+		<h2>Pub/Sub Example 3</h2>
+		<h3>Online Shopping</h3>
+
+		<div>Cart: <span id="total-items">0</span> items</div>
+
+		<ul id="shopping-list">
+			<li>
+				<div class="item">Pizza</div>
+				<input type="button" class="add-to-cart" value="+">
+			</li>
+			<li>
+				<div class="item">Beer</div>
+				<input type="button" class="add-to-cart" value="+">
+			</li>
+			<li>
+				<div class="item">Coffe</div>
+				<input type="button" class="add-to-cart" value="+">
+			</li>
+		</ul>
+
+		<p>My Trolley</p>
+
+		<ul id="trolley"></ul>
+
+		<script>
+			// EXAMPLE 3
+			//====================================================
+			/*
+				* Pub/Sub implementation
+			*/
+
+			var pubsub = (function () {
+
+				// store events subscribed
+				// events = { eventName : [callback1, callback2, ...] }
+				var events = {};
+
+				// publish the event with the specified data
+				function publish(eventID, data) {
+
+					if (!events[eventID]) {
+						return;
+					}
+
+					var len = events[eventID].length;
+
+					while (len--) {
+						events[eventID][len](data);
+					}
+
+				}
+
+				// subscribe to an event
+				// passing the event name and the callback function
+				function subscribe(eventID, callback) {
+
+					if (!events[eventID]) {
+						events[eventID] = [callback];
+					} else {
+						events[eventID].push(callback);
+					}
+
+					// returns eventID and the position index on the array
+					// so that can be unsubscribed if needed
+					return {
+						eventID: eventID,
+						index: events[eventID].length - 1
+					}
+				}
+
+				// unsubscribe from an event passing the returned data got upon subscription
+				function unsubscribe(subscription) {
+
+					if (!events[subscription.eventID]) {
+						return;
+					}
+
+					events[subscription.eventID].splice(subscription.index, 1);
+				}
+
+				return {
+					publish: publish,
+					subscribe: subscribe,
+					unsubscribe: unsubscribe
+				};
+
+			}());
+
+			var completeTrolley = (function () {
+
+				var items = {},
+					$trolley = $('#trolley');
+
+				// notification when an item is added to the cart
+				pubsub.subscribe('addToCart', function (product) {
+
+					// save info
+
+					if (!items[product]) {
+						items[product] = 1;
+					} else {
+						items[product]++;
+					}
+
+					// update view
+					updateItems(product);
+				})
+
+				// update items on the view
+				function updateItems(product) {
+
+					// append to the view if item is not in the list
+					// otherwise only update quantity
+
+					var li = $trolley.find('li[data-product="' + product + '"]');
+
+					if (li.length === 0) {
+						$trolley.append('<li data-product="' + product + '">' + product + ': <span class="quantity">1</span></li>');
+					} else {
+						li.find('.quantity').html(items[product]);
+					}
+				}
+
+			}());
+
+			var simpleTrolley = (function ($) {
+
+				var total = 0,
+					$display = $('#total-items');
+
+				// notification when an item is added to the cart
+				pubsub.subscribe('addToCart', function () {
+
+					total++;
+
+					// update total
+					updateTotal();
+				})
+
+				// update total items on the view
+				function updateTotal() {
+					$display.html(total);
+				}
+
+			}(jQuery));
+
+			$(function () {
+
+				// Add an item to the cart
+				$('.add-to-cart').on('click', function () {
+
+					//get product
+					var product = $(this).prev('div').text();
+
+					// publish event
+					pubsub.publish('addToCart', product)
+				})
+
+
+			})
+		</script>
+	</div>
+	<!--===============================================================
+			END :: Example 3 : Pub/Sub Event
+		===================================================================-->
+</body>
+
+</html>

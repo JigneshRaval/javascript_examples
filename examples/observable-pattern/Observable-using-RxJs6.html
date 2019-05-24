@@ -1,0 +1,125 @@
+<html>
+
+<head>
+    <title>Observable using RxJs: 1</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <style>
+        body {
+            background-color: #eeeeee;
+        }
+
+        .example {
+            margin-bottom: 1em;
+        }
+
+        .observable-output {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .observable-output li {
+            padding: 1em;
+            margin-bottom: 1em;
+            border: 1px solid #CCC;
+            background-color: #ffffff;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .observable-output .bg-success {
+            box-shadow: 0 5px 5px rgba(40, 167, 69, 0.4);
+        }
+
+        .observable-output .bg-danger {
+            box-shadow: 0 5px 5px rgba(220, 53, 69, 0.4);
+        }
+    </style>
+    <script>
+        let dangerClass = 'border border-danger bg-danger text-white';
+        let successClass = 'border border-success bg-success text-white';
+        function addItem(val, outputContainer, cssClass) {
+            var node = document.createElement("li");
+            var textNode = document.createTextNode(val);
+            node.appendChild(textNode);
+            document.querySelector(outputContainer).appendChild(node);
+            if (cssClass) {
+                if (node) {
+                    node.className = cssClass;
+                }
+            }
+        }
+    </script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script> -->
+    <script src="../../js/rxjs/rxjs.umd.js"></script>
+</head>
+
+<body>
+    <main class="container">
+
+
+        <!-- Example 1 -->
+        <section class="examples">
+
+            <!-- START : Example card -->
+            <div class="card [ example example-1 ]">
+                <div class="card-header">
+                    <div class="nav nav-tabs card-header-tabs" id="nav-tab-1" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-output-tab-1" data-toggle="tab" href="#nav-output-1"
+                            role="tab" aria-controls="nav-output" aria-selected="true">Output</a>
+                        <a class="nav-item nav-link" id="nav-code-tab-1" data-toggle="tab" href="#nav-code-1" role="tab"
+                            aria-controls="nav-code" aria-selected="false">Code</a>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <!-- START : Demo -->
+                    <div class="demo demo-1">
+                        <div class="tab-content" id="nav-tabContent-1">
+                            <div class="tab-pane fade show active" id="nav-output-1" role="tabpanel"
+                                aria-labelledby="nav-output-tab-1">
+                                <h3>RxJS 6 Autocomplete</h3>
+                                <ul class="observable-output observable-output-1">
+
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="nav-code-1" role="tabpanel" aria-labelledby="nav-code-tab">
+                                <pre><code>
+// Example 1
+// ================================
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js">&lt;/script>
+
+let Rx = window.Rx = window['rxjs'];
+
+let { tap, map, filter, debounceTime, distinctUntilChanged, switchMap } = Rx.operators;
+let { of } = Rx;
+
+map(x => x * x)(of(1, 2, 3, 4)).subscribe((v) => console.log(`value: ${v}`));
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END : Demo -->
+                </div>
+                <script>
+                    // Example 1
+                    // ================================
+
+                    let Rx = window.Rx = window['rxjs'];
+
+                    let { tap, map, filter, debounceTime, distinctUntilChanged, switchMap } = Rx.operators;
+                    let { of } = Rx;
+
+                    map(x => x * x)(of(1, 2, 3, 4)).subscribe((v) => addItem(`onNext value: ${v}`, '.observable-output-1'));
+
+
+                </script>
+            </div>
+            <!-- END : Example card -->
+        </section>
+    </main>
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

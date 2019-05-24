@@ -13,14 +13,15 @@
 
 	<!-- Fonts -->
 	<link rel="stylesheet" type='text/css' href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' />
-	<link rel="stylesheet" type='text/css' href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin-ext">
+	<link rel="stylesheet" type='text/css'
+		href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin-ext">
 
 	<!-- jQuery -->
 	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
 	<!--<script src="js/jquery-3.2.1.js"></script>-->
 
 	<!-- Bootstrap 4 -->
-	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="../../css/bootstrap.css" />
 
 	<!-- UIKit Version 3.0.0-Beta.22 ( https://getuikit.com/ ) -->
 	<!--
@@ -30,7 +31,7 @@
 		-->
 
 	<!-- Your Custom Styles -->
-	<link href="css/main.css" rel="stylesheet" />
+	<link href="../../css/main.css" rel="stylesheet" />
 
 </head>
 
@@ -56,9 +57,11 @@
 			<h2>Clearing or truncating an array</h2>
 			<div class="example__content">
 				<p>SRC :
-					<a href="https://medium.freecodecamp.org/9-neat-javascript-tricks-e2742f2735c3">https://medium.freecodecamp.org/9-neat-javascript-tricks-e2742f2735c3</a>
+					<a
+						href="https://medium.freecodecamp.org/9-neat-javascript-tricks-e2742f2735c3">https://medium.freecodecamp.org/9-neat-javascript-tricks-e2742f2735c3</a>
 				</p>
-				<p>An easy way of clearing or truncating an array without reassigning it is by changing its length property value:</p>
+				<p>An easy way of clearing or truncating an array without reassigning it is by changing its length
+					property value:</p>
 				<pre><code>const arr = [11, 22, 33, 44, 55, 66];
 
 // truncanting
@@ -93,9 +96,11 @@ console.log(arr[2]); //=> undefined</code></pre>
 			<h2>Simulating named parameters with object destructuring</h2>
 			<div class="example__content">
 				<p>SRC :
-					<a href="https://medium.freecodecamp.org/9-neat-javascript-tricks-e2742f2735c3">https://medium.freecodecamp.org/9-neat-javascript-tricks-e2742f2735c3</a>
+					<a
+						href="https://medium.freecodecamp.org/9-neat-javascript-tricks-e2742f2735c3">https://medium.freecodecamp.org/9-neat-javascript-tricks-e2742f2735c3</a>
 				</p>
-				<p>Chances are high that you're already using configuration objects when you need to pass a variable set of options to some
+				<p>Chances are high that you're already using configuration objects when you need to pass a variable set
+					of options to some
 					function, like this:</p>
 				<pre><code>doSomething({ foo: 'Hello', bar: 'Hey!', baz: 42 });
 function doSomething(config) {
@@ -104,8 +109,10 @@ function doSomething(config) {
   const baz = config.baz !== undefined ? config.baz : 13;
   // ...
 }</code></pre>
-				<p>This is an old but effective pattern, which tries to simulate named parameters in JavaScript. The function calling looks
-					fine. On the other hand, the config object handling logic is unnecessarily verbose. With ES2015 object destructuring,
+				<p>This is an old but effective pattern, which tries to simulate named parameters in JavaScript. The
+					function calling looks
+					fine. On the other hand, the config object handling logic is unnecessarily verbose. With ES2015
+					object destructuring,
 					you can circumvent this downside:</p>
 				<pre><code>function doSomething({ foo = 'Hi', bar = 'Yo!', baz = 13 }) {
   // ...
