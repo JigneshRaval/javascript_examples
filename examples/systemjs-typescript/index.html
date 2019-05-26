@@ -1,0 +1,39 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>System.js + Typescript</title>
+
+  <script src="../../js/jquery-3.2.1.js"></script>
+  <!-- <script src="https://unpkg.com/rxjs/bundles/rxjs.umd.min.js"></script> -->
+  <script src="./shim.min.js"></script>
+  <script src="./system.src.js"></script>
+  <script src="./typescript.js"></script>
+
+</head>
+
+<body>
+
+  <script>
+    System.import('systemjs.config.js')
+      .then(
+        function () { System.import('main') },
+        function handleResolve() {
+
+          console.info("System.js successfully bootstrapped app.");
+
+        },
+        function handleReject(error) {
+
+          console.warn("System.js could not bootstrap the app.");
+          console.error(error);
+
+          return (Promise.reject(error));
+
+        }
+      )
+      .catch(console.error.bind(console));
+  </script>
+</body>
+
+</html>

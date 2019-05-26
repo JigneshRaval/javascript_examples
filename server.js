@@ -2,7 +2,7 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3002;
 
 console.log("PORTS --> ", process.env.PORT);
 
