@@ -1,5 +1,5 @@
 /**
- * System configuration for Angular v7.2.15
+ * System configuration for Typescript and RxJs
  */
 (function (global) {
     System.config({
@@ -36,8 +36,8 @@
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js', */
 
             // "crypto": "@empty",
-            'rxjs': 'npm:rxjs',
-            // 'rxjs': 'app/rxjs-5.5.12', // Load RxJs from local file system
+            // 'rxjs': 'npm:rxjs',
+            'rxjs': 'rxjs', // Load RxJs from local file system
             // 'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
 
             // typescript for compilation in the browser with latest version of system.src.js

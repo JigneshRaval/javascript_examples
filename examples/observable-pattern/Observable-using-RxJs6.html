@@ -88,12 +88,25 @@
 // ================================
 &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js">&lt;/script>
 
-let Rx = window.Rx = window['rxjs'];
+// USAGE:
 
-let { tap, map, filter, debounceTime, distinctUntilChanged, switchMap } = Rx.operators;
-let { of } = Rx;
+// Method 1
+// ==================
+// let Rx = window.Rx = window['rxjs'];
+// let { tap, map, filter, debounceTime, distinctUntilChanged, switchMap } = Rx.operators;
+// let { of } = Rx;
 
-map(x => x * x)(of(1, 2, 3, 4)).subscribe((v) => console.log(`value: ${v}`));
+// Method 2
+// ==================
+const { range, of } = rxjs;
+const { tap, map, filter, debounceTime, distinctUntilChanged, switchMap } = rxjs.operators;
+
+range(1, 200).pipe(
+    filter(x => x % 2 === 1),
+    map(x => x + x)
+).subscribe(x => console.log('Range :', x));
+
+map(x => x * x)(of(1, 2, 3, 4)).subscribe((v) => addItem(`onNext value: ${v}`, '.observable-output-1'));
 </code></pre>
                             </div>
                         </div>
@@ -104,10 +117,23 @@ map(x => x * x)(of(1, 2, 3, 4)).subscribe((v) => console.log(`value: ${v}`));
                     // Example 1
                     // ================================
 
-                    let Rx = window.Rx = window['rxjs'];
+                    // USAGE:
 
-                    let { tap, map, filter, debounceTime, distinctUntilChanged, switchMap } = Rx.operators;
-                    let { of } = Rx;
+                    // Method 1
+                    // ==================
+                    // let Rx = window.Rx = window['rxjs'];
+                    // let { tap, map, filter, debounceTime, distinctUntilChanged, switchMap } = Rx.operators;
+                    // let { of } = Rx;
+
+                    // Method 2
+                    // ==================
+                    const { range, of } = rxjs;
+                    const { tap, map, filter, debounceTime, distinctUntilChanged, switchMap } = rxjs.operators;
+
+                    range(1, 200).pipe(
+                        filter(x => x % 2 === 1),
+                        map(x => x + x)
+                    ).subscribe(x => console.log('Range :', x));
 
                     map(x => x * x)(of(1, 2, 3, 4)).subscribe((v) => addItem(`onNext value: ${v}`, '.observable-output-1'));
 

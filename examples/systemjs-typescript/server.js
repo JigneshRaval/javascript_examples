@@ -13,16 +13,18 @@ http.createServer(function (request, response) {
     if (filePath == './')
         filePath = './index.html';
 
-var extname = path.extname(filePath);
+    var extname = path.extname(filePath);
+
     var contentType = 'text/html';
+
     switch (extname) {
         case '.js':
             contentType = 'text/javascript';
             break;
-		case '.ts':
+        case '.ts':
             contentType = 'text/javascript';
             break;
-		case 'typescript':
+        case 'typescript':
             contentType = 'text/javascript';
             break;
         case '.css':
@@ -44,22 +46,24 @@ var extname = path.extname(filePath);
 
     console.log(" Type : ", contentType);
 
-    fs.readFile(filePath, function(error, content) {
+    fs.readFile(filePath, function (error, content) {
         if (error) {
-            if(error.code == 'ENOENT'){
-                fs.readFile('./404.html', function(error, content) {
-                    response.writeHead(200, { 'Content-Type': contentType });
+            if (error.code == 'ENOENT') {
+                fs.readFile('./404.html', function (error, content) {
+                    response.writeHead(200, {
+                        'Content-Type': contentType
+                    });
                     response.end(content, 'utf-8');
                 });
-            }
-            else {
+            } else {
                 response.writeHead(500);
-                response.end('Sorry, check with the site admin for error: '+error.code+' ..\n');
+                response.end('Sorry, check with the site admin for error: ' + error.code + ' ..\n');
                 response.end();
             }
-        }
-        else {
-            response.writeHead(200, { 'Content-Type': contentType });
+        } else {
+            response.writeHead(200, {
+                'Content-Type': contentType
+            });
             response.end(content, 'utf-8');
         }
     });
