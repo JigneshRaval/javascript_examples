@@ -4,37 +4,16 @@
 <head>
     <meta charset="utf-8">
     <title>React.js + SystemJS + Typescript</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.12/system.js"></script>
-    <!-- <script src="./shim.min.js"></script> -->
-    <!-- <script src="./system.src.js"></script> -->
+    <!-- Loading from CDN -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.12/system.js"></script> -->
+
+    <!-- Loading from local file directory -->
+    <script src="./system.js"></script>
     <script src="./typescript.js"></script>
 
     <script>
-        /* SystemJS.config({
-            // baseURL: 'https://unpkg.com/',
-            defaultExtension: true,
-            meta: {
-                '*.jsx': {
-                    'babelOptions': {
-                        react: true
-                    }
-                }
-            },
-            map: {
-                'app': 'app',
-                // 'plugin-babel': 'https://unpkg.com/systemjs-plugin-babel@latest/plugin-babel.js',
-                // 'systemjs-babel-build': 'https://unpkg.com/systemjs-plugin-babel@latest/systemjs-babel-browser.js',
-                // 'react': 'react@16.8.6/umd/react.development.js',
-                // 'react-dom': 'react-dom@16.8.6/umd/react-dom.development.js',
-                'plugin-babel': 'plugin-babel.js',
-                'systemjs-babel-build': 'systemjs-babel-browser.js',
-                'react': 'react.development.js',
-                'react-dom': 'react-dom.development.js',
-                // 'cjs': 'cjs@0.0.11/cjs.js'
-            },
-            transpiler: 'plugin-babel'
-        }); */
 
         /* IMP : IF you get below woarning in browser console :
         "TypeScript [Warning] transpiling to CommonJS, consider setting module: "system" in typescriptOptions to transpile directly to System.register format"
@@ -59,10 +38,6 @@
                 }
             )
             .catch(console.error.bind(console));
-
-        /* SystemJS.import('./Counter.jsx').then(function (m) {
-            console.log(m);
-        }); */
     </script>
 </head>
 
