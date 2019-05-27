@@ -39,10 +39,12 @@
             // 'rxjs': 'npm:rxjs',
             // 'rxjs': 'rxjs', // Load RxJs from local file system
             // 'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-            // 'react': 'react.development.js',
-            // 'react-dom': 'react-dom.development.js',
-            'react': 'npm:react@16.8.6/umd/react.development.js',
-            'react-dom': 'npm:react-dom@16.8.6/umd/react-dom.development.js',
+            'react': 'react.development.js',
+            'react-dom': 'react-dom.development.js',
+            /* 'react': 'npm:react@16.8.6/umd/react.development.js',
+            'react-dom': 'npm:react-dom@16.8.6/umd/react-dom.development.js', */
+            // 'react': 'npm:react@15.3.2/dist/react.min.js',
+            // 'react-dom': 'npm:react-dom@15.3.2/dist/react-dom.min.js',
             // typescript for compilation in the browser with latest version of system.src.js
             'ts': 'plugin-typescript.js',
 

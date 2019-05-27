@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <title>React.js + SystemJS + Typescript</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.12/system.js"></script>
     <!-- <script src="./shim.min.js"></script> -->
@@ -34,6 +35,12 @@
             },
             transpiler: 'plugin-babel'
         }); */
+
+        /* IMP : IF you get below woarning in browser console :
+        "TypeScript [Warning] transpiling to CommonJS, consider setting module: "system" in typescriptOptions to transpile directly to System.register format"
+        Then change "module": "commonjs" -> TO -> "module": "system" in tsconfig.json file
+        */
+
         System.import('systemjs.config.js')
             .then(
                 function () { System.import('main') },
@@ -60,6 +67,7 @@
 </head>
 
 <body>
+    <h3>React.js + SystemJS + Typescript</h3>
     <div id="app"></div>
 </body>
 
