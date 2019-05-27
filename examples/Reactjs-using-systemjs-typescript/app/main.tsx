@@ -1,19 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom'
+import React, { useState, Component } from 'react';
+import ReactDOM from 'react-dom';
 
-setTimeout(() => {
-    console.log(React, ReactDOM);
-}, 1500);
+import Button from './Button-Hook';
 
+console.log(React, useState, Component);
 
-export default class Counter extends React.Component {
+export default class Counter extends React.Component<any, any> {
+    public state: any;
 
-    constructor(props) {
+    constructor(props: any) {
         super(props);
 
         this.state = {
             count: 0
         };
+
     }
 
 
@@ -35,6 +36,7 @@ export default class Counter extends React.Component {
                 <h1>{this.state.count}</h1>
                 <button onClick={this.increment}>Increment</button>
                 <button onClick={this.decrement}>Decrement</button>
+<Button/>
             </div>
         );
     }
