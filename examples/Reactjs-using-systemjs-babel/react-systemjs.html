@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.12/system.js"></script>
+    <!-- <script src="https://unpkg.com/systemjs@0.19.31/dist/system.js"></script> -->
+
+    <script>
+        /* System.config({
+            transpiler: 'babel',
+            meta: {
+                '*': {
+                    globals: {
+                        process: 'process.js'
+                    }
+                }
+            },
+            paths: {
+                'npm:': 'https://unpkg.com/'
+            },
+            map: {
+                'babel': 'npm:babel-core@5.8.38',
+                'react': 'npm:react@15.5.4',
+                'react-dom': 'npm:react-dom@15.5.4',
+                'fbjs': 'npm:fbjs@0.8.12',
+                'prop-types': 'npm:prop-types@15.5.4',
+                'object-assign': 'npm:object-assign@4.1.1'
+            },
+            packages: {
+                'babel': {
+                    main: 'browser.min.js'
+                },
+                'react': {
+                    main: 'react.js'
+                },
+                'react-dom': {
+                    main: 'index.js'
+                }
+            }
+        }) */
+
+
+        SystemJS.config({
+            // baseURL: 'https://unpkg.com/',
+            defaultExtension: true,
+            meta: {
+                '*.jsx': {
+                    'babelOptions': {
+                        react: true
+                    }
+                }
+            },
+            map: {
+                'app': 'app',
+                // 'plugin-babel': 'https://unpkg.com/systemjs-plugin-babel@latest/plugin-babel.js',
+                // 'systemjs-babel-build': 'https://unpkg.com/systemjs-plugin-babel@latest/systemjs-babel-browser.js',
+                // 'react': 'react@16.8.6/umd/react.development.js',
+                // 'react-dom': 'react-dom@16.8.6/umd/react-dom.development.js',
+                'plugin-babel': 'plugin-babel.js',
+                'systemjs-babel-build': 'systemjs-babel-browser.js',
+                'react': 'react.development.js',
+                'react-dom': 'react-dom.development.js',
+                // 'cjs': 'cjs@0.0.11/cjs.js'
+            },
+            transpiler: 'plugin-babel'
+        });
+
+
+        SystemJS.import('./Counter.jsx').then(function (m) {
+            console.log(m);
+        });
+    </script>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+
+</html>

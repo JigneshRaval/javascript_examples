@@ -2,17 +2,18 @@
 <html>
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Hello React!</title>
-    <script src="js/react.development.js"></script>
-    <script src="js/react-dom.development.js"></script>
-    <script src="js/babel.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script> -->
+  <meta charset="UTF-8" />
+  <title>Hello React!</title>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+  <script src="js/babel.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script> -->
 </head>
 
 <body>
-    <div id="app"></div>
-    <script type="text/babel">
+  <div id="app"></div>
+  <script type="text/babel">
+  import { Main } from './app/main.js';
         class Greeting extends React.Component {
             render() {
                 return (
@@ -39,7 +40,7 @@
   );
 }
         </script>
-    <script type="text/babel">
+  <script type="text/babel">
 			class InterfaceComponent extends React.Component {
                 constructor(props) {
     super(props);
