@@ -20,7 +20,7 @@
 			
 			window.onbeforeunload = function (e) {
 				console.log('window.onbeforeunload :: Are you sure you want leave?');
-				message = "Are you sure you want leave?";
+				message = "onbeforeunload: Are you sure you want leave?";
 				e.returnValue = message;
 				return message;
 			};
