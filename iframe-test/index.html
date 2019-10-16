@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<al-dialog style="display: block">
+	<div class="al-dialog-content">
+		<h2>iFrame 1 : Third party + INSIDE al-dialog</h2>
+		<iframe id="myIframeThirdParty" src="https://getbootstrap.com/docs/4.3/components/navbar/">
+		  <p>Your browser does not support iframes.</p>
+		</iframe>
+	</div>
+</al-dialog>
+
+
+
+<al-dialog style="display: block">
+	<div class="al-dialog-content">
+		<h2>iFrame 2 : Same Host + INSIDE al-dialog</h2>
+		<iframe id="myIframeSameHost" src="./iframe-test-content.html">
+		  <p>Your browser does not support iframes.</p>
+		</iframe>
+	</div>
+</al-dialog>
+<!---->
+
+<!--
+<h2>iFrame 3 : Same Host but NOT - INSIDE al-dialog</h2>
+<iframe id="myIframeSameHost" src="./iframe-test-content.html">
+	<p>Your browser does not support iframes.</p>
+</iframe>
+-->
+
+<script>
+function test() {
+
+	// Fix for maestro RT50821
+	// moved from index.ts
+	document.getElementsByTagName('body')[0].style.display = 'none';
+	var parentObject = window.frameElement;
+	
+	console.log('Index page :', window.self === window.top);
+	if (window.self === window.top) {
+		// if (LoggingService.uConsole) {
+			console.log('HeaderUtil >> verifywindowstate() Header widget >> self === top : true');
+		// }
+		document.getElementsByTagName('body')[0].style.display = 'block';
+	} else {
+		
+			console.log('HeaderUtil >> verifywindowstate() Header widget >> self !== top');
+			// tslint:disable-next-line:max-line-length
+			console.log('HeaderUtil window.self :', window.self);
+			console.log('window.top :', window.top);
+			console.log('window.self.location.href :', window.self.location.href);
+			console.log('window.top.location.href :', window.top.location.href);
+		
+		let selfUrl = window.self.location;
+		let topUrl = window.top.location;
+		/* istanbul ignore next */
+		// tslint:disable-next-line:max-line-length
+		console.log('Parent : selfUrl.host:', selfUrl.host, '==== topUrl.host :', topUrl.host);
+		if (selfUrl.host !== topUrl.host) {
+			console.log('IF ============== selfUrl.host !== topUrl.host');
+			console.log('Header widget >> page redirected to new location selfURL: ', selfUrl);
+			console.log('top location Url: ', topUrl);
+			window.top.location = window.self.location;
+		} else {
+			console.log('ELSE ============== selfUrl.host === topUrl.host');
+			
+			
+			if (parentObject !== null) {
+				console.log(' Parent Node 2 ======', parentObject.parentNode);
+				if(parentObject.parentNode && parentObject.parentNode.classList.contains('al-dialog-content')) {
+					console.log('Not Redirecting.');
+					document.getElementsByTagName('body')[0].style.display = 'block';
+				} else {
+					console.log('Redirecting .......');
+					window.top.location = window.self.location;
+				}
+			}
+			
+			// document.getElementsByTagName('body')[0].style.display = 'block';
+			// tslint:disable-next-line:max-line-length
+			console.log('Header widget >> self !== top, document.getElementsByTagName("body")[0].style.display', document.getElementsByTagName('body')[0].style.display);
+		}
+	}
+	
+	// console.log('TEST :',parent.parent, parent.parent.document.querySelector('iframe'));
+	
+	// console.log('Parent node ======== ', parent.document.querySelector('iframe').parentNode);
+		
+}
+
+test();
+</script>
+</body>
+</html>

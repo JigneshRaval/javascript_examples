@@ -1,0 +1,61 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+	<input type="text" id="searchBox" />
+	<button onClick="filter()">Filter</button>
+	<script>
+		function filter() {
+			let searchTerm = document.querySelector('#searchBox').value;
+			let keywords = searchTerm.split(' ');
+			let articleBySearch = [];
+
+			console.log('keywords : ', keywords);
+
+			var articles = [
+				{ "title": "ES6 — set, map, weak", "category": "ES6", "tags": ["ES6", "Set", "Map", "Weak"] },
+				{ "title": "JavaScript Modules: From IIFEs to CommonJS to ES6 Modules", "category": "JavaScript", "tags": ["JavaScript", "Modules", "IIFE", "ES6 Modules"] },
+				{ "title": "A guide to JavaScript Regular Expressions", "category": "JavaScript", "tags": ["JavaScript", "RegExp", "Regular Expressions"] },
+			];
+
+
+			// article.title.toLowerCase().indexOf(keyword.toLowerCase()) === -1 || article.category.toLowerCase().indexOf(keyword.toLowerCase()) === -1 || article.tags.some((tag: any) => tag.toLowerCase().indexOf(keyword.toLowerCase())) === -1
+
+
+			articles.map((article) => {
+				let allKeywordsMatch = true;
+
+				keywords.map((keyword) => {
+					console.log('1 === ', article.tags.some((tag) => tag.toLowerCase().indexOf(keyword.toLowerCase()) !== -1))
+					if (article.tags.some((tag) => tag.toLowerCase().indexOf(keyword.toLowerCase()) !== -1)) {
+						allKeywordsMatch = true;
+					} else {
+						// allKeywordsMatch = false;
+						if (article.title.toLowerCase().indexOf(keyword.toLowerCase()) === -1 && article.category.toLowerCase().indexOf(keyword.toLowerCase()) === -1) {
+							allKeywordsMatch = false;
+						}
+					}
+					console.log('Tags === ', keyword, allKeywordsMatch, article.title, article.tags.some((tag) => tag.toLowerCase().indexOf(keyword.toLowerCase()) === -1));
+				});
+
+				if (allKeywordsMatch) articleBySearch.push(article);
+			});
+
+			let htmlContent = '';
+			articleBySearch.map(article => {
+				htmlContent += `<li>${article.title}, <b>Category : </b> ${article.category}, <b>Tags : </b> ${article.tags} </li>`;
+			});
+
+			let ul = document.createElement('ul');
+			ul.innerHTML = htmlContent;
+			document.body.appendChild(ul);
+
+			console.log('articleBySearch =', articleBySearch);
+		}
+	</script>
+</body>
+
+</html>
