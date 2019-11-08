@@ -1,9 +1,18 @@
+<!doctype html>
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title>Code Editor</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
+    <link rel="stylesheet" href="./css/solarized-dark.css">
+
+    <script src="./js/highlight.pack.js"></script>
+    <script>function require(module) { if (module === "react") return React; if (module === "react-dom") return ReactDOM; }</script>
+    <script src="./js/babel.min.js"></script>
     <style>
         body {
             background-color: #eeeeee;
@@ -15,123 +24,232 @@
             padding: 1em;
             background-color: #FFF;
             tab-size: 4;
+            font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;
         }
 
         .output {
             height: 400px;
             width: 100%;
             border: 1px solid #CCC;
+            background: #FFF;
         }
     </style>
 </head>
 
 <body>
     <main class="container">
-        <button id="save">save</button>
-        <a href=""></a>
+        <button id="save" onClick="save()">save</button>
+
+        <div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" aria-label="Basic example"
+            onClick="codeEditor.setTemplate(event)">
+            <label class="btn btn-primary active">
+                <input type="radio" name="template" id="templateJS" autocomplete="off" value="JavaScript" checked>
+                JavaScript
+            </label>
+            <label class="btn btn-primary">
+                <input type="radio" name="template" id="templateReact" autocomplete="off" value="React"> React
+            </label>
+            <label class="btn btn-primary">
+                <input type="radio" name="template" id="templateVue" autocomplete="off" value="Vue.js"> Vue.js
+            </label>
+            <label class="btn btn-primary">
+                <input type="radio" name="template" id="templateRxJs" autocomplete="off" value="RxJs"> RxJs
+            </label>
+        </div>
 
         <form>
-
+            <h2>Editor</h2>
             <!-- <textarea id="code" name="code" class="code-editor"></textarea> -->
-            <pre id="code" name="code" class="code-editor" contenteditable="true"></pre>
-
+            <!-- <pre id="code" name="code" class="code-editor" contenteditable="true"></pre> -->
+            <textarea id="code" name="code" class="code-editor"></textarea>
+            <h2>Output</h2>
             <iframe id="preview" class="output"></iframe>
         </form>
 
+        <!-- Create a simple CodeMirror instance -->
+        <link rel="stylesheet" href="./css/codemirror.css">
+        <script src="./js/codemirror.js"></script>
+        <script src="./js/mode/javascript/javascript.js"></script>
+        <script src="./js/mode/xml/xml.js"></script>
+        <script src="./js/mode/css/css.js"></script>
+        <script>
+            let myTextarea = document.getElementById('code');
+            var editor1 = CodeMirror.fromTextArea(myTextarea, {
+                lineNumbers: true,
+                lineWrapping: true,
+                mode: "text/html"
+            });
+            function save() {
+                // get the value of the data
+                var value = editor1.getValue()
+                console.log('Value :', value);
+                // saveValueSomewhere(value);
+            }
+        </script>
 
+        <!-- <link rel="stylesheet" data-name="vs/editor/editor.main" href="./js/vs/editor/editor.main.css">
+        <h2>Monaco Editor Sync Loading Sample</h2>
+        <div id="container" style="width:800px;height:600px;border:1px solid grey"></div>
 
-        <p>Compiling Next Generation JavaScript (ES6, ES7, React) in Browser with Babel 6 and Above :
-            http://codetheory.in/babel-6-and-above-in-browser/</p>
+        <script>var require = { paths: { 'vs': './js/vs' } };</script>
+        <script src="./js/vs/loader.js"></script>
+        <script src="./js/vs/editor/editor.main.nls.js"></script>
+        <script src="./js/vs/editor/editor.main.js"></script>
+
+        <script>
+            var editor = monaco.editor.create(document.getElementById('container'), {
+                language: 'javascript'
+            });
+            function save() {
+                // get the value of the data
+                var value = window.editor.getValue()
+                console.log('Value :', value);
+                // saveValueSomewhere(value);
+            }
+        </script> -->
+
     </main>
 
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.bundle.min.js"></script>
-
     <script>
-        let timer;
-
-        let textArea = document.getElementById('code');
-        var previewFrame = document.getElementById('preview');
-        var myFrame = $("#preview").contents().find('body');
-        var preview = previewFrame.contentDocument || previewFrame.contentWindow.document;
-        let editorData;
-        let flag = false;
-
-        function generateHTML(data) {
-            let htmlData = `<head>
-    <meta charset="UTF-8" />
-    <title>Hello React!</title>
-</head>
-<body>${data}</body>`;
-            return htmlData;
-        }
-
-        function insertJs() {
-            [
-                'js/Rx-5.5.12.js',
-                'js/react.development.js',
-                'js/react-dom.development.js',
-                'js/babel-6.26.0.js',
-                'js/typescript/typescript.js',
-                'https://unpkg.com/rxjs@6.5.2/bundles/rxjs.umd.min.js',
-                'https://unpkg.com/rxjs@6.5.2/bundles/rxjs.umd.js'
-                // 'js/Rx-5.5.12.js',
-
-            ].forEach(function (src) {
-                var script = document.createElement('script');
-                script.src = src;
-                script.async = false;
-                // if (flag) {
-                //     preview.write(editorData);
-                // }
-                preview.head.appendChild(script);
-                // flag = false;
-            });
-        }
-
-        insertJs();
-
-        textArea.addEventListener('input', (event) => {
-            editorData = event.target.innerText || event.target.value;
-
-            clearInterval(timer);
-
-            timer = setInterval(() => {
-                editorData = generateHTML(editorData);
-                // 1. jQuery Way
-                myFrame.html(editorData);
-
-                // 2. Vanilla JavaScript way
-                // preview.open();
-                // preview.write(editorData);
-                // insertJs();
-                // preview.body.innerHTML = editorData;
-                // preview.close();
-                clearInterval(timer);
-            }, 1000);
+        document.addEventListener('DOMContentLoaded', (event) => {
+            /* document.querySelectorAll('pre').forEach((block) => {
+                console.log('block :', block, hljs);
+                hljs.highlightBlock(block);
+            }); */
         });
     </script>
+
+
+    <script type="text/javascript">
+        class Editor {
+
+            constructor() {
+                this.timer;
+                this.editorData = '';
+                this._template = 'JavaScript';
+                this.previewFrame = document.getElementById('preview');
+                this.preview = this.previewFrame.contentDocument || this.previewFrame.contentWindow.document;
+            }
+
+            init() {
+                let textArea = document.getElementById('code');
+
+                // Bind event listener with text area
+                editor1.on("change", (event) => {
+                    this.editorData = editor1.getValue() || event.target.value || event.target.innerText;
+                    console.log('this.editorData :', this.editorData);
+                    clearInterval(this.timer);
+
+                    this.timer = setInterval(() => {
+                        this.createApp(this.editorData);
+                        // let block = document.querySelector('textarea') || document.querySelector('pre');
+                        // hljs.highlightBlock(block);
+                    }, 1000);
+                });
+
+                // Bind event listener with text area
+                /* textArea.addEventListener('input', (event) => {
+                    this.editorData = editor1.getValue() || event.target.value || event.target.innerText;
+                    console.log('this.editorData :', this.editorData);
+                    clearInterval(this.timer);
+
+                    this.timer = setInterval(() => {
+                        this.createApp(this.editorData);
+                        // let block = document.querySelector('textarea') || document.querySelector('pre');
+                        // hljs.highlightBlock(block);
+                    }, 1000);
+                }); */
+            }
+
+            setTemplate(event) {
+                this._template = event.target.children[0].value;
+            }
+
+            createApp(editorData) {
+                let myFrame = $("#preview").contents().find('body');
+                let appRoot = '<div id="root"></div>';
+                let bootstrap = '<link rel="stylesheet" href="./css/bootstrap.min.css" />';
+                let babel = '<script src="./js/babel.min.js"><\/script>';
+
+                switch (this._template) {
+                    case 'React':
+                        editorData = appRoot + bootstrap + `
+                        <script>function require(module) {if (module === "react") return React;if (module === "react-dom") return ReactDOM;}<\/script>
+                            <script src="./js/react.development.js"><\/script>
+                            <script src="./js/react-dom.development.js"><\/script>
+                            ${babel}
+                            <script type="text/babel">${editorData}<\/script>`;
+                        break;
+                    case 'RxJs':
+                        editorData = bootstrap + '<script src="https://unpkg.com/@reactivex/rxjs@5.5.6/dist/global/Rx.js"><\/script><script type="text/javascript">' + editorData + '<\/script>';
+                        break;
+                    case 'Vue.js':
+                        editorData = bootstrap + '<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"><\/script>' + babel + editorData;
+                        break;
+                    default:
+                        editorData = bootstrap + babel + editorData;
+                }
+
+                // 1. jQuery Way
+                // myFrame.html(editorData);
+
+                // 2. Vanilla JavaScript way
+                this.preview.open();
+                this.preview.write(editorData);
+                // insertJs();
+                // preview.body.innerHTML = editorData;
+                this.preview.close();
+                clearInterval(this.timer);
+            }
+
+            insertJs() {
+                [
+                    'js/Rx-5.5.12.js',
+                    'js/react.development.js',
+                    'js/react-dom.development.js',
+                    'js/babel-6.26.0.js',
+                    'js/typescript/typescript.js',
+                    'https://unpkg.com/rxjs@6.5.2/bundles/rxjs.umd.min.js',
+                    'https://unpkg.com/rxjs@6.5.2/bundles/rxjs.umd.js'
+                ].forEach(function (src) {
+                    var script = document.createElement('script');
+                    script.src = src;
+                    // script.async = false;
+                    preview.head.appendChild(script);
+                });
+            }
+
+        }
+
+        let codeEditor = new Editor();
+        codeEditor.init();
+    </script>
+
     <script>
-        // Get all the babel scripts
-        var babel_scripts = document.querySelectorAll('script[type="text/babel"]');
-        // Loop over them
-        Array.prototype.forEach.call(babel_scripts, function (script, index, arr) {
-            // Get their contents
-            var input = script.textContent;
-            // Transform/Transpile/Compile
-            var output = Babel.transform(input, { presets: ['es2015', 'react'] }).code;
+        function babelTranspile() {
+            // Get all the babel scripts
+            var babel_scripts = document.querySelectorAll('script[type="text/babel"]');
+            // Loop over them
+            Array.prototype.forEach.call(babel_scripts, function (script, index, arr) {
+                // Get their contents
+                var input = script.textContent;
+                // Transform/Transpile/Compile
+                var output = Babel.transform(input, { presets: ['es2015', 'react'] }).code;
 
-            // Create a new script tag of `javascript` type
-            var new_script = document.createElement('script');
-            new_script.setAttribute('type', 'text/javascript');
-            // Set the contents of the script to the transpiled code
-            new_script.textContent = output;
+                // Create a new script tag of `javascript` type
+                var new_script = document.createElement('script');
+                new_script.setAttribute('type', 'text/javascript');
+                // Set the contents of the script to the transpiled code
+                new_script.textContent = output;
 
-            // Remove the babel script
-            script.remove();
-            // Inject the new transpiled JS
-            document.querySelector('body').appendChild(new_script);
-        });
+                // Remove the babel script
+                script.remove();
+                // Inject the new transpiled JS
+                document.querySelector('body').appendChild(new_script);
+            });
+        }
     </script>
 </body>
 

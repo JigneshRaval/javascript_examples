@@ -1,59 +1,109 @@
 <html>
 
 <head>
+	<style>
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 16px;
+		}
 
+		.example {
+			border: 1px solid rgb(245, 28, 118);
+			width: 400px;
+			margin: 0 auto;
+			padding: 1em;
+		}
+
+		.example #searchBox {
+			padding: 10px;
+			border: 1px solid #cccccc;
+		}
+
+		.example #searchBox:focus {
+			padding: 10px;
+			border: 1px solid #0059ff;
+		}
+
+		.example button {
+			padding: 10px;
+			color: #FFF;
+			background-color: #0059ff;
+			border: 1px solid #0059ff;
+		}
+
+		.example ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		.example li {
+			border: 1px solid #cccccc;
+			padding: 1em;
+			margin: 1em 0;
+		}
+	</style>
 </head>
 
 <body>
-	<input type="text" id="searchBox" />
-	<button onClick="filter()">Filter</button>
+
+	<div class="example">
+		<input type="text" id="searchBox" placeholder="Type your words to search" />
+		<button onClick="filter()">Click to Filter</button>
+		<ul id="output"></ul>
+	</div>
+
 	<script>
+		let output = document.querySelector('#output');
+		let articles = [
+			{ "title": "ES6 — set, map, weak", "category": "ES6", "tags": ["ES6", "Set", "Map", "Weak"] },
+			{ "title": "JavaScript Modules: From IIFEs to CommonJS to ES6 Modules", "category": "JavaScript", "tags": ["JavaScript", "Modules", "IIFE", "ES6 Modules"] },
+			{ "title": "A guide to JavaScript Regular Expressions", "category": "JavaScript", "tags": ["JavaScript", "RegExp", "Regular Expressions"] },
+		];
+
+		let initialContent = '';
+		articles.map(article => {
+			initialContent += `<li>
+		<p><b>Title : </b> ${article.title}</p>
+		<p><b>Category : </b> ${article.category}</p>
+		<p><b>Tags : </b> ${article.tags}</p>
+		</li>`;
+		});
+
+		output.innerHTML = initialContent;
+
 		function filter() {
 			let searchTerm = document.querySelector('#searchBox').value;
 			let keywords = searchTerm.split(' ');
 			let articleBySearch = [];
 
-			console.log('keywords : ', keywords);
-
-			var articles = [
-				{ "title": "ES6 — set, map, weak", "category": "ES6", "tags": ["ES6", "Set", "Map", "Weak"] },
-				{ "title": "JavaScript Modules: From IIFEs to CommonJS to ES6 Modules", "category": "JavaScript", "tags": ["JavaScript", "Modules", "IIFE", "ES6 Modules"] },
-				{ "title": "A guide to JavaScript Regular Expressions", "category": "JavaScript", "tags": ["JavaScript", "RegExp", "Regular Expressions"] },
-			];
-
-
-			// article.title.toLowerCase().indexOf(keyword.toLowerCase()) === -1 || article.category.toLowerCase().indexOf(keyword.toLowerCase()) === -1 || article.tags.some((tag: any) => tag.toLowerCase().indexOf(keyword.toLowerCase())) === -1
-
-
 			articles.map((article) => {
 				let allKeywordsMatch = true;
 
 				keywords.map((keyword) => {
-					console.log('1 === ', article.tags.some((tag) => tag.toLowerCase().indexOf(keyword.toLowerCase()) !== -1))
 					if (article.tags.some((tag) => tag.toLowerCase().indexOf(keyword.toLowerCase()) !== -1)) {
 						allKeywordsMatch = true;
 					} else {
-						// allKeywordsMatch = false;
 						if (article.title.toLowerCase().indexOf(keyword.toLowerCase()) === -1 && article.category.toLowerCase().indexOf(keyword.toLowerCase()) === -1) {
 							allKeywordsMatch = false;
 						}
 					}
-					console.log('Tags === ', keyword, allKeywordsMatch, article.title, article.tags.some((tag) => tag.toLowerCase().indexOf(keyword.toLowerCase()) === -1));
 				});
 
 				if (allKeywordsMatch) articleBySearch.push(article);
 			});
 
+			// Display Output in the browser
 			let htmlContent = '';
 			articleBySearch.map(article => {
-				htmlContent += `<li>${article.title}, <b>Category : </b> ${article.category}, <b>Tags : </b> ${article.tags} </li>`;
+				htmlContent += `<li>
+		<p><b>Title : </b> ${article.title}</p>
+		<p><b>Category : </b> ${article.category}</p>
+		<p><b>Tags : </b> ${article.tags}</p>
+		</li>`;
 			});
 
-			let ul = document.createElement('ul');
-			ul.innerHTML = htmlContent;
-			document.body.appendChild(ul);
-
-			console.log('articleBySearch =', articleBySearch);
+			output.innerHTML = htmlContent;
 		}
 	</script>
 </body>
