@@ -69,16 +69,26 @@
         <!-- Create a simple CodeMirror instance -->
         <link rel="stylesheet" href="./css/codemirror.css">
         <script src="./js/codemirror.js"></script>
+
+        <!-- CodeMirror Addons -->
+        <script src="./js/addon/edit/closetag.js"></script>
+        <script src="./js/addon/edit/closebrackets.js"></script>
+
+        <!-- Code Highlighters -->
         <script src="./js/mode/javascript/javascript.js"></script>
         <script src="./js/mode/xml/xml.js"></script>
         <script src="./js/mode/css/css.js"></script>
+        <script src="./js/mode/htmlmixed/htmlmixed.js"></script>
         <script>
             let myTextarea = document.getElementById('code');
             var editor1 = CodeMirror.fromTextArea(myTextarea, {
                 lineNumbers: true,
                 lineWrapping: true,
+                autoCloseTags: true,
+                autoCloseBrackets: true,
                 mode: "text/html"
             });
+
             function save() {
                 // get the value of the data
                 var value = editor1.getValue()
