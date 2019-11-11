@@ -4,10 +4,10 @@ var path = require('path');
 
 const port = process.env.PORT || 3002;
 
-console.log("PORTS --> ", process.env.PORT);
+console.log("PORTS --> ", port);
 
 http.createServer(function (request, response) {
-    console.log('Request ...: ', __dirname + request.url);
+    // console.log('Request ...: ', __dirname + request.url);
 
     var filePath = '.' + request.url;
     if (filePath == './')
@@ -44,7 +44,7 @@ http.createServer(function (request, response) {
             break;
     }
 
-    console.log(" Type : ", contentType);
+    // console.log(" Type : ", contentType);
 
     fs.readFile(filePath, function (error, content) {
         if (error) {

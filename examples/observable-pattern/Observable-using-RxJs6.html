@@ -38,10 +38,15 @@
         let dangerClass = 'border border-danger bg-danger text-white';
         let successClass = 'border border-success bg-success text-white';
         function addItem(val, outputContainer, cssClass) {
+            let listWrapper = document.createElement('ul');
+            listWrapper.className = 'observable-output';
+            listWrapper.id = Math.random();
             var node = document.createElement("li");
             var textNode = document.createTextNode(val);
             node.appendChild(textNode);
-            document.querySelector(outputContainer).appendChild(node);
+            // document.querySelector(outputContainer).appendChild(node);
+            listWrapper.appendChild(node);
+            document.body.appendChild(listWrapper);
             if (cssClass) {
                 if (node) {
                     node.className = cssClass;
@@ -107,6 +112,14 @@ range(1, 200).pipe(
 ).subscribe(x => console.log('Range :', x));
 
 map(x => x * x)(of(1, 2, 3, 4)).subscribe((v) => addItem(`onNext value: ${v}`, '.observable-output-1'));
+
+
+// Method 3 ( using type="module" in script tag )
+// ==================
+&lt;script type="module">
+import { Observable, range, of } from 'https://dev.jspm.io/rxjs@6/_esm2015/index.js';
+import { map, filter } from 'https://dev.jspm.io/rxjs@6/_esm2015/operators/index.js';
+&lt;/script>
 </code></pre>
                             </div>
                         </div>
@@ -136,6 +149,37 @@ map(x => x * x)(of(1, 2, 3, 4)).subscribe((v) => addItem(`onNext value: ${v}`, '
                     ).subscribe(x => console.log('Range :', x));
 
                     map(x => x * x)(of(1, 2, 3, 4)).subscribe((v) => addItem(`onNext value: ${v}`, '.observable-output-1'));
+
+
+                </script>
+                <script type="module">
+                    // Method 3
+                    // ==================
+                    import { Observable, range, of } from 'https://dev.jspm.io/rxjs@6/_esm2015/index.js';
+                    import { map, filter } from 'https://dev.jspm.io/rxjs@6/_esm2015/operators/index.js';
+
+                    range(1, 200).pipe(
+                        filter(x => x % 2 === 1),
+                        map(x => x + x)
+                    ).subscribe(x => console.log('Range :', x));
+
+                    map(x => x * x)(of(1, 2, 3, 4)).subscribe((v) => addItem(`onNext value: ${v}`, '.observable-output-1'));
+                    of(1, 2, 3)
+                        .subscribe(x => {
+                            const element = document.createElement('div');
+                            element.innerText = 'Data: ' + x;
+                            document.body.appendChild(element)
+                        },
+                            err => { },
+                            () => {
+                                const element = document.createElement('div');
+                                element.innerText = 'All done 111';
+                                document.body.appendChild(element)
+                            });
+
+
+
+                    map(x => x * x)(of(1, 2, 3)).subscribe((v) => console.log(`value: ${v}`));
 
 
                 </script>

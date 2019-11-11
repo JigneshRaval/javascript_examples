@@ -7,12 +7,47 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title>Code Editor</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
-    <link rel="stylesheet" href="./css/solarized-dark.css">
 
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="./css/solarized-dark.css" />
     <script src="./js/highlight.pack.js"></script>
+
     <script>function require(module) { if (module === "react") return React; if (module === "react-dom") return ReactDOM; }</script>
     <script src="./js/babel.min.js"></script>
+
+    <!-- SASS/SCSS Compilation -->
+    <script src="./js/dist/sass.js"></script>
+    <script>
+        // https://github.com/medialize/sass.js/blob/master/docs/api.md
+        var sass = new Sass('./js/dist/sass.worker.js');
+        sass.options({
+            // Format output: nested, expanded, compact, compressed
+            style: Sass.style.expanded,
+            // Decimal point precision for outputting fractional numbers
+            // (-1 will use the libsass default, which currently is 5)
+            precision: -1,
+            indentedSyntax: false,
+            // If you want inline source comments
+            comments: false,
+            // String to be used for indentation
+            indent: '  ',
+            // String to be used to for line feeds
+            linefeed: '\n',
+        }, function callback() {
+            // invoked without arguments when operation completed
+        });
+        /*
+        var scss = `$someVar: 123px; .some-selector { width: $someVar; }
+        body {
+            p {
+                color: red;
+            }
+        }
+        `;
+        sass.compile(scss, function (result) {
+            console.log(result);
+        }); */
+    </script>
     <style>
         body {
             background-color: #eeeeee;
@@ -38,7 +73,7 @@
 
 <body>
     <main class="container">
-        <button id="save" onClick="save()">save</button>
+        <button id="save" class="btn btn-primary" onClick="save()">save</button>
 
         <div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" aria-label="Basic example"
             onClick="codeEditor.setTemplate(event)">
@@ -53,7 +88,13 @@
                 <input type="radio" name="template" id="templateVue" autocomplete="off" value="Vue.js"> Vue.js
             </label>
             <label class="btn btn-primary">
-                <input type="radio" name="template" id="templateRxJs" autocomplete="off" value="RxJs"> RxJs
+                <input type="radio" name="template" id="templateRxJs5" autocomplete="off" value="RxJs5"> RxJs 5
+            </label>
+            <label class="btn btn-primary">
+                <input type="radio" name="template" id="templateRxJs6" autocomplete="off" value="RxJs6"> RxJs 6
+            </label>
+            <label class="btn btn-primary">
+                <input type="radio" name="template" id="templateSCSS" autocomplete="off" value="SCSS"> SCSS
             </label>
         </div>
 
@@ -62,12 +103,18 @@
             <!-- <textarea id="code" name="code" class="code-editor"></textarea> -->
             <!-- <pre id="code" name="code" class="code-editor" contenteditable="true"></pre> -->
             <textarea id="code" name="code" class="code-editor"></textarea>
+
             <h2>Output</h2>
             <iframe id="preview" class="output"></iframe>
+            <div id="output1"></div>
         </form>
 
         <!-- Create a simple CodeMirror instance -->
         <link rel="stylesheet" href="./css/codemirror.css">
+        <!-- CodeMirror Theme CSS -->
+        <link rel="stylesheet" href="./css/theme/cobalt.css" />
+        <link rel="stylesheet" href="./css/theme/seti.css" />
+
         <script src="./js/codemirror.js"></script>
 
         <!-- CodeMirror Addons -->
@@ -77,6 +124,8 @@
         <!-- Code Highlighters -->
         <script src="./js/mode/javascript/javascript.js"></script>
         <script src="./js/mode/xml/xml.js"></script>
+        <script src="./js/mode/jsx/jsx.js"></script>
+        <script src="./js/mode/vue/vue.js"></script>
         <script src="./js/mode/css/css.js"></script>
         <script src="./js/mode/htmlmixed/htmlmixed.js"></script>
         <script>
@@ -86,8 +135,11 @@
                 lineWrapping: true,
                 autoCloseTags: true,
                 autoCloseBrackets: true,
-                mode: "text/html"
+                styleActiveLine: true,
+                // mode: "text/html",
+                theme: 'seti'
             });
+            // editor.setOption("theme", choice);
 
             function save() {
                 // get the value of the data
@@ -124,10 +176,7 @@
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-            /* document.querySelectorAll('pre').forEach((block) => {
-                console.log('block :', block, hljs);
-                hljs.highlightBlock(block);
-            }); */
+
         });
     </script>
 
@@ -141,15 +190,13 @@
                 this._template = 'JavaScript';
                 this.previewFrame = document.getElementById('preview');
                 this.preview = this.previewFrame.contentDocument || this.previewFrame.contentWindow.document;
+                this.textArea = document.getElementById('code');
             }
 
             init() {
-                let textArea = document.getElementById('code');
-
                 // Bind event listener with text area
                 editor1.on("change", (event) => {
-                    this.editorData = editor1.getValue() || event.target.value || event.target.innerText;
-                    console.log('this.editorData :', this.editorData);
+                    this.editorData = editor1 && editor1.getValue() || event.target && event.target.value || event.target && event.target.innerText;
                     clearInterval(this.timer);
 
                     this.timer = setInterval(() => {
@@ -160,7 +207,7 @@
                 });
 
                 // Bind event listener with text area
-                /* textArea.addEventListener('input', (event) => {
+                /* this.textArea.addEventListener('input', (event) => {
                     this.editorData = editor1.getValue() || event.target.value || event.target.innerText;
                     console.log('this.editorData :', this.editorData);
                     clearInterval(this.timer);
@@ -174,35 +221,84 @@
             }
 
             setTemplate(event) {
+                this.resetEditor();
                 this._template = event.target.children[0].value;
             }
 
             createApp(editorData) {
-                let myFrame = $("#preview").contents().find('body');
                 let appRoot = '<div id="root"></div>';
                 let bootstrap = '<link rel="stylesheet" href="./css/bootstrap.min.css" />';
                 let babel = '<script src="./js/babel.min.js"><\/script>';
+                let scss = '<script src="./js/sass.js"><\/script>';
+                let requireMethod = '<script>function require(module) {if (module === "react") return React;if (module === "react-dom") return ReactDOM;if (module === "rxjs") return rxjs;if (module === "RxJs") return Rx;}<\/script>';
+                let reactScripts = '<script src="./js/react.development.js"><\/script><script src="./js/react-dom.development.js"><\/script>';
+                let rxjsOutputStyle = `<style> body { background-color: #eeeeee; } .example { margin-bottom: 1em; } .observable-output { list-style-type: none; margin: 0; padding: 0; } .observable-output li { padding: 1em; margin-bottom: 1em; border: 1px solid #CCC; background-color: #ffffff; box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1); } .observable-output .bg-success { box-shadow: 0 5px 5px rgba(40, 167, 69, 0.4); } .observable-output .bg-danger { box-shadow: 0 5px 5px rgba(220, 53, 69, 0.4); } </style>`;
+                let rxjsOutputScript = `
+                    <script>
+                        var dangerClass = 'border border-danger bg-danger text-white';
+                        var successClass = 'border border-success bg-success text-white';
+                        function addItem(val, outputContainer, cssClass) {
+                            let listWrapper = document.createElement('ul');
+                            listWrapper.className = 'observable-output';
+                            listWrapper.id = Math.random();
+                            var node = document.createElement("li");
+                            var textNode = document.createTextNode(val);
+                            node.appendChild(textNode);
+                            // document.querySelector(outputContainer).appendChild(node);
+                            listWrapper.appendChild(node);
+                            document.body.appendChild(listWrapper);
+                            if (cssClass) {
+                                if (node) {
+                                    node.className = cssClass;
+                                }
+                            }
+                        }
+                    <\/script>`;
 
                 switch (this._template) {
                     case 'React':
-                        editorData = appRoot + bootstrap + `
-                        <script>function require(module) {if (module === "react") return React;if (module === "react-dom") return ReactDOM;}<\/script>
-                            <script src="./js/react.development.js"><\/script>
-                            <script src="./js/react-dom.development.js"><\/script>
-                            ${babel}
-                            <script type="text/babel">${editorData}<\/script>`;
+                        // editor1.setOption("mode", "text/jsx");
+                        editorData = appRoot + bootstrap + requireMethod + reactScripts + babel + editorData;
                         break;
-                    case 'RxJs':
-                        editorData = bootstrap + '<script src="https://unpkg.com/@reactivex/rxjs@5.5.6/dist/global/Rx.js"><\/script><script type="text/javascript">' + editorData + '<\/script>';
+                    case 'RxJs5':
+                        // editor1.setOption("mode", "text/html");
+                        editorData = bootstrap + requireMethod + rxjsOutputStyle + rxjsOutputScript + babel + '<script src="https://unpkg.com/@reactivex/rxjs@5.5.6/dist/global/Rx.js"><\/script>' + editorData;
+                        break;
+                    case 'RxJs6':
+                        // editor1.setOption("mode", "text/html");
+                        editorData = bootstrap + rxjsOutputStyle + rxjsOutputScript + '<script src="https://unpkg.com/rxjs@6.5.3/bundles/rxjs.umd.js"><\/script>' + editorData;
                         break;
                     case 'Vue.js':
+                        // editor1.setOption("mode", "text/jsx");
                         editorData = bootstrap + '<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"><\/script>' + babel + editorData;
                         break;
-                    default:
+                    case 'SCSS':
+                        // editor1.setOption("mode", 'text/css');
+                        sass.compile(editorData, (result) => {
+                            editorData = '<pre>' + result.text + '</pre>';
+                            console.log(result.text, editorData);
+                            this.preview.open();
+                            this.preview.write(editorData);
+                            // insertJs();
+                            // preview.body.innerHTML = editorData;
+                            this.preview.close();
+                            clearInterval(this.timer);
+                        });
+                        break;
+                    default: // JavaScript + HTML + CSS
+                        // editor1.setOption("mode", "text/html");
                         editorData = bootstrap + babel + editorData;
+
                 }
 
+                this.renderOutput(editorData);
+            }
+
+            renderOutput(editorData) {
+                // var output = Babel.transform(editorData, { presets: ['es2015'] }).code;
+
                 // 1. jQuery Way
+                // let myFrame = $("#preview").contents().find('body');
                 // myFrame.html(editorData);
 
                 // 2. Vanilla JavaScript way
@@ -210,6 +306,15 @@
                 this.preview.write(editorData);
                 // insertJs();
                 // preview.body.innerHTML = editorData;
+                this.preview.close();
+                clearInterval(this.timer);
+            }
+
+            resetEditor() {
+                this.textArea.value = '';
+                editor1.setValue("");
+                this.preview.open();
+                this.preview.write('');
                 this.preview.close();
                 clearInterval(this.timer);
             }
@@ -237,7 +342,15 @@
         codeEditor.init();
     </script>
 
+    <script type="text/javascript">
+        var input = 'const getMessage = () => "Hello World";document.getElementById("output1").innerHTML = getMessage();';
+        var output = Babel.transform(input, { presets: ['es2015'] }).code;
+        console.log('Babel Output : ', output);
+        eval(output);
+    </script>
+
     <script>
+        // https://codetheory.in/babel-6-and-above-in-browser/
         function babelTranspile() {
             // Get all the babel scripts
             var babel_scripts = document.querySelectorAll('script[type="text/babel"]');
