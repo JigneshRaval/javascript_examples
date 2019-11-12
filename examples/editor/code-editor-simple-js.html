@@ -103,6 +103,11 @@
                     <img src="./images/sass.svg" />
                     <input type="radio" name="template" id="templateSCSS" autocomplete="off" value="SCSS"> SCSS
                 </label>
+                <label class="btn btn-primary">
+                    <img src="./images/handlebars.png" />
+                    <input type="radio" name="template" id="templateHandlebars" autocomplete="off" value="Handlebars">
+                    Handlebars
+                </label>
             </div>
         </section>
 
@@ -546,6 +551,119 @@ var app2 = new Vue({
                         </div>
                         <!-- END : Example 1 -->
 
+                        <!-- START : Example 1 -->
+                        <h3 data-toggle="collapse" data-target="#handlebarsCodeExample" aria-expanded="false"
+                            aria-controls="handlebarsCodeExample">
+                            Handlebars Example
+                        </h3>
+                        <div class="collapse" id="handlebarsCodeExample">
+                            <div class="card card-body">
+                                <pre><code>
+// EXAMPLE 1
+// =============================
+
+&lt;!-- CSS Code -->
+&lt;style>
+/* Your CSS code */
+&lt;/style>
+
+&lt;!-- HTML Code -->
+&lt;h1>Handlebars Example&lt;/h1>
+
+&lt;!--This is our template. -->
+&lt;!--Data will be inserted in its according place, replacing the brackets.-->
+&lt;script id="address-template" type="text/x-handlebars-template">
+  &lt;p>You can find me in {{city}}. My address is {{number}} {{street}}.&lt;/p>
+&lt;/script>
+
+&lt;!--Your new content will be displayed in here-->
+&lt;div class="content-placeholder">&lt;/div>
+
+&lt;!-- JavaScript Code -->
+&lt;script type="text/babel">
+// your JavaScript logic
+$(function () {
+	// Grab the template script
+	var theTemplateScript = $("#address-template").html();
+
+	// Compile the template
+	var theTemplate = Handlebars.compile(theTemplateScript);
+
+	// Define our data object
+	var context={
+		"city": "London",
+		"street": "Baker Street",
+		"number": "221B"
+	};
+
+	// Pass our data to the template
+	var theCompiledHtml = theTemplate(context);
+
+	// Add the compiled html to the page
+	$('.content-placeholder').html(theCompiledHtml);
+});
+&lt;/script>
+
+
+// EXAMPLE 2
+// =============================
+
+&lt;!-- CSS Code -->
+&lt;style>
+/* Your CSS code */
+&lt;/style>
+
+&lt;!-- HTML Code -->
+&lt;h1>Handlebars Example 2&lt;/h1>
+
+&lt;!--This is our template. -->
+&lt;!--Data will be inserted in its according place, replacing the brackets.-->
+&lt;!-- The #each helper iterates over an array of items. -->
+&lt;script id="example-template" type="text/x-handlebars-template">
+	&lt;!-- people is looked up on the global context, the one we pass to the compiled template -->
+
+	{{#each people}}
+
+	&lt;!-- Here the context is each individual person. So we can access its properties directly: -->
+	&lt;p>{{firstName}} {{lastName}}&lt;/p>
+
+	{{/each}}
+&lt;/script>
+
+&lt;!--Your new content will be displayed in here-->
+&lt;div class="content-placeholder">&lt;/div>
+
+&lt;!-- JavaScript Code -->
+&lt;script type="text/babel">
+$(function () {
+	// Grab the template script
+	var theTemplateScript = $("#example-template").html();
+
+	// Compile the template
+	var theTemplate = Handlebars.compile(theTemplateScript);
+
+	// This is the default context, which is passed to the template
+	var context = {
+		people: [
+			{ firstName: 'Homer', lastName: 'Simpson' },
+			{ firstName: 'Peter', lastName: 'Griffin' },
+			{ firstName: 'Eric', lastName: 'Cartman' },
+			{ firstName: 'Kenny', lastName: 'McCormick' },
+			{ firstName: 'Bart', lastName: 'Simpson' }
+		]
+	};
+
+	// Pass our data to the template
+	var theCompiledHtml = theTemplate(context);
+
+	// Add the compiled html to the page
+	$(document.body).append(theCompiledHtml);
+});
+&lt;/script>
+</code></pre>
+                            </div>
+                        </div>
+                        <!-- END : Example 1 -->
 
                     </div>
                 </div>

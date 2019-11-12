@@ -10,6 +10,8 @@ const BOOTSTRAP_CSS = '<link rel="stylesheet" href="./css/bootstrap.min.css" />'
 // <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 const BOOTSTRAP_JS = '<script src="./js/bootstrap.bundle.min.js"><\/script>';
 
+const HANDLEBARS = '<script src="./js/handlebars-v4.4.3.js"><\/script>';
+
 const REQUIRE_METHOD = `
 <script id="require_method" type="text/javascript">
     function require(module) {
@@ -212,6 +214,7 @@ class Editor {
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <title>Document</title>
             ${scriptBlocks}
+            ${this._template === 'Handlebars' ? HANDLEBARS : ''}
             ${this._template === 'React' ? REACT : ''}
             ${this._template === 'Vue.js' ? VUEJS : ''}
             ${this._template === 'RxJs5' ? (rxjsOutputStyle + rxjsOutputScript + RXJS_5) : ''}
