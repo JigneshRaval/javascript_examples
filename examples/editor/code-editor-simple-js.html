@@ -1,0 +1,560 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Code Editor</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+
+    <!-- ===========================================
+        CSS
+    ============================================ -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./editor.main.css" />
+
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="./css/codemirror.css">
+    <!-- CodeMirror Theme CSS -->
+    <link rel="stylesheet" href="./css/theme/cobalt.css" />
+    <link rel="stylesheet" href="./css/theme/seti.css" />
+
+    <script>function require(module) { if (module === "react") return React; if (module === "react-dom") return ReactDOM; }</script>
+    <script src="./js/babel.min.js"></script>
+
+    <!-- SASS/SCSS Compilation -->
+    <script src="./js/dist/sass.js"></script>
+    <script>
+        // https://github.com/medialize/sass.js/blob/master/docs/api.md
+        var sass = new Sass('./js/dist/sass.worker.js');
+        sass.options({
+            // Format output: nested, expanded, compact, compressed
+            style: Sass.style.expanded,
+            // Decimal point precision for outputting fractional numbers
+            // (-1 will use the libsass default, which currently is 5)
+            precision: -1,
+            indentedSyntax: false,
+            // If you want inline source comments
+            comments: false,
+            // String to be used for indentation
+            indent: '  ',
+            // String to be used to for line feeds
+            linefeed: '\n',
+        }, function callback() {
+            // invoked without arguments when operation completed
+        });
+        /*
+        var scss = `$someVar: 123px; .some-selector { width: $someVar; }
+        body {
+            p {
+                color: red;
+            }
+        }
+        `;
+        sass.compile(scss, function (result) {
+            console.log(result);
+        }); */
+    </script>
+
+</head>
+
+<body>
+    <main class="editor-app">
+        <header>
+            <div
+                class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+                <h5 class="my-0 mr-md-auto font-weight-normal">Code Playground</h5>
+                <nav class="my-2 my-md-0 mr-md-3">
+                    <a class="p-2 text-dark" href="#" data-toggle="modal" data-target="#exampleModalLong">Code
+                        Examples</a>
+                    <a class="p-2 text-dark" href="/">Support</a>
+                </nav>
+                <button id="save" class="btn btn-primary" onClick="save()">Save</button>
+            </div>
+        </header>
+
+        <section class="template-group-wrapper">
+            <div class="btn-group btn-group-toggle template-group" data-toggle="buttons" role="group"
+                aria-label="Basic example" onClick="codeEditor.setTemplate(event)">
+                <label class="btn btn-primary active">
+                    <img src="./images/js.png" />
+                    <input type="radio" name="template" id="templateJS" autocomplete="off" value="JavaScript" checked>
+                    JavaScript
+                </label>
+                <label class="btn btn-primary">
+                    <img src="./images/react.svg" />
+                    <input type="radio" name="template" id="templateReact" autocomplete="off" value="React"> React
+                </label>
+                <label class="btn btn-primary">
+                    <img src="./images/vue.svg" />
+                    <input type="radio" name="template" id="templateVue" autocomplete="off" value="Vue.js"> Vue.js
+                </label>
+                <label class="btn btn-primary">
+                    <img src="./images/rxjs.svg" />
+                    <input type="radio" name="template" id="templateRxJs5" autocomplete="off" value="RxJs5"> RxJs 5
+                </label>
+                <label class="btn btn-primary">
+                    <img src="./images/rxjs.svg" />
+                    <input type="radio" name="template" id="templateRxJs6" autocomplete="off" value="RxJs6"> RxJs 6
+                </label>
+                <label class="btn btn-primary">
+                    <img src="./images/sass.svg" />
+                    <input type="radio" name="template" id="templateSCSS" autocomplete="off" value="SCSS"> SCSS
+                </label>
+            </div>
+        </section>
+
+        <section class="[ d-flex flex-row ] editor-wrapper">
+            <article>
+                <h2>Editor</h2>
+                <!-- <textarea id="code" name="code" class="code-editor"></textarea> -->
+                <!-- <pre id="code" name="code" class="code-editor" contenteditable="true"></pre> -->
+                <textarea id="code" name="code" class="code-editor"></textarea>
+            </article>
+
+            <article>
+                <h2>Output</h2>
+                <iframe id="preview" class="output"></iframe>
+                <div id="output1"></div>
+            </article>
+        </section>
+
+        <footer>
+            <div class="copyright text-center">
+                Copyright @ 2019, Jignesh Raval
+            </div>
+        </footer>
+        <!-- ===========================================
+            CodeMirror Editor
+        ============================================ -->
+        <!-- Create a simple CodeMirror instance -->
+        <script src="./js/codemirror.js"></script>
+
+        <!-- CodeMirror Addons -->
+        <script src="./js/addon/edit/closetag.js"></script>
+        <script src="./js/addon/edit/closebrackets.js"></script>
+
+        <!-- Code Highlighters -->
+        <script src="./js/mode/javascript/javascript.js"></script>
+        <script src="./js/mode/xml/xml.js"></script>
+        <script src="./js/mode/jsx/jsx.js"></script>
+        <script src="./js/mode/vue/vue.js"></script>
+        <script src="./js/mode/css/css.js"></script>
+        <script src="./js/mode/htmlmixed/htmlmixed.js"></script>
+
+        <!-- ===========================================
+            Monaco Editor
+        ============================================ -->
+        <!-- Monaco Editor : Enable below given code block if you want to use Monaco Editor-->
+        <!-- <link rel="stylesheet" data-name="vs/editor/editor.main" href="./js/vs/editor/editor.main.css">
+        <h2>Monaco Editor Sync Loading Sample</h2>
+        <div id="container" style="width:800px;height:600px;border:1px solid grey"></div>
+
+        <script>var require = { paths: { 'vs': './js/vs' } };</script>
+        <script src="./js/vs/loader.js"></script>
+        <script src="./js/vs/editor/editor.main.nls.js"></script>
+        <script src="./js/vs/editor/editor.main.js"></script>
+
+        <script>
+            var editor = monaco.editor.create(document.getElementById('container'), {
+                language: 'javascript'
+            });
+            function save() {
+                // get the value of the data
+                var value = window.editor.getValue()
+                console.log('Value :', value);
+                // saveValueSomewhere(value);
+            }
+        </script> -->
+
+    </main>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./editor.main.js"></script>
+
+    <!-- <script type="text/javascript">
+        var input = 'const getMessage = () => "Hello World";document.getElementById("output1").innerHTML = getMessage();';
+        var output = Babel.transform(input, { presets: ['es2015'] }).code;
+        console.log('Babel Output : ', output);
+        eval(output);
+    </script> -->
+
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal : Code Examples to try in editor by copying code -->
+    <div class="modal fade bd-example-modal-xl" id="exampleModalLong" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Code Examples to try in editor by copying code
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Note:</strong> always use script <code>type="text/babel"</code> to transpile ES6+ code
+                        into ES5</p>
+                    <div class="code-example-wrapper">
+                        <!-- START : Example 1 -->
+                        <h3 data-toggle="collapse" data-target="#jsCodeExample" aria-expanded="false"
+                            aria-controls="jsCodeExample">
+                            JavaScript + HTML + CSS
+                        </h3>
+                        <div class="collapse" id="jsCodeExample">
+                            <div class="card card-body">
+                                <pre><code>
+&lt;h1>JavaScript + HTML + CSS&lt;/h1>
+&lt;p>
+	Select a radio button and click on Submit.
+&lt;/p>
+
+Gender:
+&lt;input type="radio" name="gender" value="Male">Male
+&lt;input type="radio" name="gender" value="Female">Female
+&lt;input type="radio" name="gender" value="Others">Others
+
+&lt;br>
+
+&lt;button type="button" class="btn btn-primary" onclick="displayRadioValue()">
+	Submit
+&lt;/button>
+
+&lt;br>
+
+&lt;div id="result">&lt;/div>
+
+&lt;script>
+	function displayRadioValue() {
+		var ele = document.getElementsByName('gender');
+
+		for(i = 0; i &lt; ele.length; i++) {
+			if(ele[i].checked)
+			document.getElementById("result").innerHTML
+					= "Gender: "+ele[i].value;
+		}
+	}
+&lt;/script>
+</code></pre>
+                            </div>
+                        </div>
+                        <!-- END : Example 1 -->
+
+                        <!-- START : Example 1 -->
+                        <h3 data-toggle="collapse" data-target="#jQueryCodeExample" aria-expanded="false"
+                            aria-controls="jQueryCodeExample">
+                            jQuery + ES6
+                        </h3>
+                        <div class="collapse" id="jQueryCodeExample">
+                            <div class="card card-body">
+                                <pre><code>
+&lt;h1>jQuery + ES6 example&lt;/h1>
+&lt;div id="msg">
+
+&lt;/div>
+
+&lt;script type="text/babel">
+// Try edit message
+const data = {
+    message: 'jQuery Example',
+}
+
+$('#msg').html(data.message)
+
+console.log(data)
+&lt;/script>
+</code></pre>
+                            </div>
+                        </div>
+                        <!-- END : Example 1 -->
+
+                        <!-- START : Example 1 -->
+                        <h3 data-toggle="collapse" data-target="#reactCodeExample" aria-expanded="false"
+                            aria-controls="reactCodeExample">
+                            React
+                        </h3>
+                        <div class="collapse" id="reactCodeExample">
+                            <div class="card card-body">
+                                <pre><code>&lt;script type="text/babel">
+import React, { useState } from 'react';
+
+class Greeting extends React.Component {
+    state = {
+        name: 'Jignesh'
+    }
+    render() {
+        return (
+		&lt;div className="container">
+			&lt;p>Hello world {this.state.name} &lt;Button/>&lt;/p>
+		&lt;/div>
+		);
+    }
+}
+
+const Button =() => {
+    const [count, setCount] = useState(0);
+    const increment = () => {
+        setCount(count+1);
+    }
+    return &lt;button className="btn btn-primary" onClick={increment}>My Button {count}&lt;/button>
+}
+
+ReactDOM.render(&lt;Greeting />, document.getElementById('root'));
+&lt;/script></code></pre>
+                            </div>
+                        </div>
+                        <!-- END : Example 1 -->
+
+                        <!-- START : Example 1 -->
+                        <h3 data-toggle="collapse" data-target="#reactRouterCodeExample" aria-expanded="false"
+                            aria-controls="reactRouterCodeExample">
+                            React with Router example
+                        </h3>
+                        <div class="collapse" id="reactRouterCodeExample">
+                            <div class="card card-body">
+                                <pre><code>
+&lt;!-- CSS Code -->
+&lt;style>
+    /* Your CSS code */
+&lt;/style>
+
+&lt;!-- JavaScript Code -->
+&lt;script type="text/babel">
+// SRC : https://tylermcginnis.com/react-router-protected-routes-authentication/
+
+import React from 'react';
+import * as ReactDOM from "react-dom";
+import { BrowserRouter as Router,  Route,  Link,   Redirect,   withRouter } from 'react-router-dom'
+
+const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true
+    setTimeout(cb, 100)
+  },
+  signout(cb) {
+    this.isAuthenticated = false
+    setTimeout(cb, 100)
+  }
+}
+
+const Public = () => &lt;h3>Public&lt;/h3>
+const Protected = () => &lt;h3>Protected&lt;/h3>
+
+class Login extends React.Component {
+  state = {
+    redirectToReferrer: false
+  }
+  login = () => {
+    fakeAuth.authenticate(() => {
+      this.setState(() => ({
+        redirectToReferrer: true
+      }))
+    })
+  }
+  render() {
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { redirectToReferrer } = this.state
+
+    if (redirectToReferrer === true) {
+      return &lt;Redirect to={from} />
+    }
+
+    return (
+      &lt;div>
+        &lt;p>You must log in to view the page&lt;/p>
+        &lt;button className="btn btn-primary" onClick={this.login}>Log in&lt;/button>
+      &lt;/div>
+    )
+  }
+}
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  &lt;Route {...rest} render={(props) => (
+    fakeAuth.isAuthenticated === true
+      ? &lt;Component {...props} />
+      : &lt;Redirect to={{
+          pathname: '/login',
+          state: { from: props.location }
+        }} />
+  )} />
+)
+
+const AuthButton = withRouter(({ history }) => (
+  fakeAuth.isAuthenticated ? (
+    &lt;p>
+      Welcome! &lt;button onClick={() => {
+        fakeAuth.signout(() => history.push('/'))
+      }}>Sign out&lt;/button>
+    &lt;/p>
+  ) : (
+    &lt;p>You are not logged in.&lt;/p>
+  )
+))
+
+function AuthExample () {
+  return (
+    &lt;Router>
+      &lt;div>
+        &lt;h1>React with Router Example&lt;/h1>
+        &lt;AuthButton/>
+        &lt;ul>
+          &lt;li>&lt;Link to="/public">Public Page&lt;/Link>&lt;/li>
+          &lt;li>&lt;Link to="/protected">Protected Page&lt;/Link>&lt;/li>
+        &lt;/ul>
+        &lt;Route path="/public" component={Public}/>
+        &lt;Route path="/login" component={Login}/>
+        &lt;PrivateRoute path='/protected' component={Protected} />
+      &lt;/div>
+    &lt;/Router>
+  )
+}
+
+// RENDER APP
+// ==========================
+ReactDOM.render(
+    &lt;AuthExample />,
+    document.getElementById("root")
+);
+&lt;/script></code></pre>
+                            </div>
+                        </div>
+                        <!-- END : Example 1 -->
+
+                        <!-- START : Example 1 -->
+                        <h3 data-toggle="collapse" data-target="#rxjs5CodeExample" aria-expanded="false"
+                            aria-controls="rxjs5CodeExample">
+                            RxJs 5
+                        </h3>
+                        <div class="collapse" id="rxjs5CodeExample">
+                            <div class="card card-body">
+                                <pre><code>&lt;script type="text/babel">
+// Simulate HTTP requests
+const getPostOne$ = Rx.Observable.timer(3000).mapTo({ id: 1 });
+const getPostTwo$ = Rx.Observable.timer(1000).mapTo({ id: 2 });
+
+Rx.Observable.concat(getPostOne$, getPostTwo$).subscribe(res => console.log(res));
+
+const albumsApiUrl = `https://jsonplaceholder.typicode.com/albums`;
+
+Rx.Observable
+  .ajax(albumsApiUrl)
+  .subscribe(
+    res => console.log(res),
+    err => console.error(err)
+  );
+&lt;/script></code></pre>
+                            </div>
+                        </div>
+                        <!-- END : Example 1 -->
+
+                        <!-- START : Example 1 -->
+                        <h3 data-toggle="collapse" data-target="#rxjs6CodeExample" aria-expanded="false"
+                            aria-controls="rxjs6CodeExample">
+                            RxJs 6
+                        </h3>
+                        <div class="collapse" id="rxjs6CodeExample">
+                            <div class="card card-body">
+                                <pre><code>
+&lt;h3>RxJS 6 Examples&lt;/h3>
+&lt;ul class="observable-output observable-output-1">
+
+&lt;/ul>
+&lt;script type="module">
+// import { Observable, range, of } from 'https://dev.jspm.io/rxjs@6/_esm2015/index.js';
+// import { map, filter } from 'https://dev.jspm.io/rxjs@6/_esm2015/operators/index.js';
+
+const { range, of } = rxjs;
+const { tap, map, filter, debounceTime, distinctUntilChanged, switchMap } = rxjs.operators;
+
+// Use of range operator
+// =============================
+range(1, 200).pipe(
+	filter(x => x % 2 === 1),
+	map(x => x + x)
+).subscribe(x => console.log('Range :', x));
+
+
+// Use of map operator
+// =============================
+map(x => x * x)(of(1, 2, 3, 4))
+.subscribe((v) => addItem(`onNext value: ${v}`, '.observable-output-1'));
+
+
+// Subscribing observable
+// =============================
+of(1, 2, 3)
+  .subscribe(x => {
+    const element = document.createElement('div');
+    element.innerText = 'Data: ' + x;
+
+    document.body.appendChild(element)
+  },
+  err => { },
+  () => {
+    const element = document.createElement('div');
+    element.innerText = 'All done 111';
+    document.body.appendChild(element)
+  });
+&lt;/script>
+</code></pre>
+                            </div>
+                        </div>
+                        <!-- END : Example 1 -->
+
+                        <!-- START : Example 1 -->
+                        <h3 data-toggle="collapse" data-target="#vueCodeExample" aria-expanded="false"
+                            aria-controls="vueCodeExample">
+                            Vue.js
+                        </h3>
+                        <div class="collapse" id="vueCodeExample">
+                            <div class="card card-body">
+                                <pre><code>
+&lt;div id="app-2">
+  &lt;span v-bind:title="message">
+    Hello Vue.js
+    Hover your mouse over me for a few seconds
+    to see my dynamically bound title!
+  &lt;/span>
+  &lt;ol>
+    &lt;li v-for="todo in todos">
+      {{ todo.text }}
+    &lt;/li>
+  &lt;/ol>
+&lt;/div>
+
+&lt;script>
+var app2 = new Vue({
+  el: '#app-2',
+  data: {
+    message: 'You loaded this page on ' + new Date().toLocaleString(),
+	todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
+    ]
+  }
+})
+&lt;/script>
+</code></pre>
+                            </div>
+                        </div>
+                        <!-- END : Example 1 -->
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

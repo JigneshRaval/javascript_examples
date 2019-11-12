@@ -1,0 +1,139 @@
+<html>
+
+<head>
+    <title>Code Editor</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
+    <style>
+        body {
+            background-color: #eeeeee;
+        }
+
+        .example {
+            margin-bottom: 1em;
+        }
+
+        .observable-output {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .observable-output li {
+            padding: 1em;
+            margin-bottom: 1em;
+            border: 1px solid #CCC;
+            background-color: #ffffff;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .observable-output .bg-success {
+            box-shadow: 0 5px 5px rgba(40, 167, 69, 0.4);
+        }
+
+        .observable-output .bg-danger {
+            box-shadow: 0 5px 5px rgba(220, 53, 69, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <button id="save">save</button>
+        <a href=""></a>
+
+        <form>
+
+            <textarea id="code" name="code">
+
+
+            </textarea>
+
+
+            <iframe id="preview"></iframe>
+        </form>
+    </main>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://codemirror.net/lib/codemirror.js"></script>
+    <script src="https://codemirror.net/mode/xml/xml.js"></script>
+    <script src="https://codemirror.net/mode/javascript/javascript.js"></script>
+    <script src="https://codemirror.net/mode/css/css.js"></script>
+    <script src="https://codemirror.net/mode/vbscript/vbscript.js"></script>
+    <script src="https://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+
+    <script>
+
+
+        //based on finddle on jsfinddle
+
+        ///////////////////////////////////
+        //Codemirror code
+        var delay;
+        // Initialize CodeMirror editor with a nice html5 canvas demo.
+        var editorHtml = CodeMirror.fromTextArea(document.getElementById('code'), {
+            lineNumbers: true,
+            lineWrapping: true,
+            mode: 'text/html'
+        });
+        editorHtml.on("change", function () {
+            clearTimeout(delay);
+            delay = setTimeout(updatePreview, 300);
+        });
+
+
+        function updatePreview() {
+            var previewFrame = document.getElementById('preview');
+            var preview = previewFrame.contentDocument || previewFrame.contentWindow.document;
+            preview.open();
+            preview.write(editorHtml.getValue());
+            preview.close();
+        }
+        setTimeout(updatePreview, 300);
+        ///////////////////////////////////
+        $("button").click(function () {
+
+            var value = $("#code").text("ola");
+
+            alert(value);
+
+            var data = {
+                //description of the gist
+                "description": "Um Gist do Rocket Code",
+                //is public or private?is public
+                "public": true,
+                //in this gist have a html file, named index.html
+                "files": {
+                    "index.html": {
+                        "content": editorHtml.getValue()
+                    }
+                }
+            }
+            //post on github via jquery ajax
+            $.ajax({
+                url: 'https://api.github.com/gists',
+                //the tipe post is the standard of github
+                type: 'POST',
+                //send on json
+                dataType: 'json',
+                data: JSON.stringify(data)
+            })
+                .success(function (e) {
+                    //if sucess
+
+                    $("a").text(e.html_url);
+                    $("a").href(e.html_url);
+                })
+                .error(function (e) {
+                    //if a error
+                    console.warn("gist save error", e);
+                    $("a").text("gist save error", e)
+                });
+        });
+
+    </script>
+</body>
+
+</html>
