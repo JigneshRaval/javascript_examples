@@ -11,7 +11,7 @@ http.createServer(function (request, response) {
 
     var filePath = '.' + request.url;
     if (filePath == './')
-        filePath = './code-editor-simple-js.html';
+        filePath = './code-editor.html';
 
     var extname = path.extname(filePath);
 
@@ -19,6 +19,7 @@ http.createServer(function (request, response) {
 
     switch (extname) {
         case '.js':
+        case '.mjs':
             contentType = 'text/javascript';
             break;
         case '.ts':

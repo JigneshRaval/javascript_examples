@@ -1,3 +1,5 @@
+const LOCAL_JS_PATH = '';
+
 const APP_ROOT = '<div id="root"></div>';
 
 // CDN path : <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
@@ -10,7 +12,7 @@ const BOOTSTRAP_CSS = '<link rel="stylesheet" href="./css/bootstrap.min.css" />'
 // <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 const BOOTSTRAP_JS = '<script src="./js/bootstrap.bundle.min.js"><\/script>';
 
-const HANDLEBARS = '<script src="./js/handlebars-v4.4.3.js"><\/script>';
+const HANDLEBARS = '<script src="./js/handlebars/handlebars-v4.4.3.js"><\/script>';
 
 const REQUIRE_METHOD = `
 <script id="require_method" type="text/javascript">
@@ -24,18 +26,26 @@ const REQUIRE_METHOD = `
 </script>
 `;
 
-const BABEL = '<script src="./js/babel.min.js"><\/script>';
+const BABEL = `
+<script src="./js/babel/babel.min.js" type="text/javascript"></script>
+`;
+
+// CDN path : https://unpkg.com/@babel/preset-env-standalone@7.7.3/babel-preset-env.min.js
+const BABEL_PRESET_ENV = '<script src="./js/babel/babel-preset-env.js"><\/script>';
 
 // CDN path : https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.1.2/react-router-dom.js
 const REACT = `
-<script src="./js/react.development.js" type="text/javascript"></script>
-<script src="./js/react-dom.development.js" type="text/javascript"></script>
-<script src="./js/react-router-dom.js" type="text/javascript"></script>
+<script src="./js/react/react.development.js" type="text/javascript"></script>
+<script src="./js/react/react-dom.development.js" type="text/javascript"></script>
+<script src="./js/react/react-router-dom.js" type="text/javascript"></script>
 `;
 
-const VUEJS = '<script src="https://unpkg.com/browse/vue@2.6.10/dist/vue.js"><\/script><script src="https://unpkg.com/vue-router@3.1.3/dist/vue-router.js"><\/script>';
+const VUEJS = `
+<script src="https://unpkg.com/vue@2.6.10/dist/vue.js"><\/script>
+<script src="https://unpkg.com/vue-router@3.1.3/dist/vue-router.js"><\/script>
+`;
 
-const SCSS = '<script src="./js/sass.js"><\/script>';
+const SCSS = '<script src="./js/sass/sass.js"><\/script>';
 
 const RXJS_5 = '<script src="https://unpkg.com/@reactivex/rxjs@5.5.6/dist/global/Rx.js"><\/script>';
 
@@ -95,9 +105,9 @@ class Editor {
     }
 
     init() {
-
+        // Babel.registerPlugin('babelPresetEnv', babelPresetEnv);
         this.initCodeMirror();
-
+        this.getCodeExamples();
         // this.renderOutput(documentContents);
 
         // Bind event listener with text area
@@ -126,7 +136,7 @@ class Editor {
             autoCloseBrackets: true,
             styleActiveLine: true,
             mode: "text/html",
-            theme: 'seti',
+            theme: 'tomorrow-night-bright',
             value: "function myScript(){return 100;}\n",
         });
 
@@ -163,7 +173,7 @@ class Editor {
     }
 
     createApp(editorData) {
-        let scriptBlocks = JQUERY + BOOTSTRAP_CSS + BOOTSTRAP_JS + REQUIRE_METHOD + BABEL;
+        let scriptBlocks = JQUERY + BOOTSTRAP_CSS + BOOTSTRAP_JS + REQUIRE_METHOD + BABEL + BABEL_PRESET_ENV;
 
         switch (this._template) {
             case 'React':
@@ -219,6 +229,7 @@ class Editor {
             ${this._template === 'Vue.js' ? VUEJS : ''}
             ${this._template === 'RxJs5' ? (rxjsOutputStyle + rxjsOutputScript + RXJS_5) : ''}
             ${this._template === 'RxJs6' ? (rxjsOutputStyle + rxjsOutputScript + RXJS_6) : ''}
+            <!-- <script type="text/babel" src="./MyExport.js"></script> -->
         </head>
 
         <body>
@@ -264,6 +275,64 @@ class Editor {
         this.preview.write('');
         this.preview.close();
         clearInterval(this.timer);
+    }
+
+    getCodeExamples() {
+
+        // Method 1 : Using JavaScript fetch API
+        // REF : https://css-tricks.com/the-simplest-ways-to-handle-html-includes/
+        fetch("./examples.html")
+            .then(response => {
+                return response.text()
+            })
+            .then(data => {
+                document.querySelector(".code-example-wrapper").innerHTML = data;
+                document.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightBlock(block);
+                });
+            });
+
+        // Method 2 : Using HTML Imports
+        // REF : https://www.html5rocks.com/en/tutorials/webcomponents/imports/
+        // <link rel="import" href="examples.html" />
+        /* if ('import' in document.createElement('link')) {
+            var htmlImport = document.querySelector('link[rel="import"]');
+            var htmlDoc = htmlImport.import;
+            var htmlMessage = htmlDoc.querySelector('#example-content');
+            document.querySelector('.code-example-wrapper').appendChild(htmlMessage.cloneNode(true));
+        } */
+    }
+
+    initSass() {
+        // https://github.com/medialize/sass.js/blob/master/docs/api.md
+        var sass = new Sass('./js/dist/sass.worker.js');
+        sass.options({
+            // Format output: nested, expanded, compact, compressed
+            style: Sass.style.expanded,
+            // Decimal point precision for outputting fractional numbers
+            // (-1 will use the libsass default, which currently is 5)
+            precision: -1,
+            indentedSyntax: false,
+            // If you want inline source comments
+            comments: false,
+            // String to be used for indentation
+            indent: '  ',
+            // String to be used to for line feeds
+            linefeed: '\n',
+        }, function callback() {
+            // invoked without arguments when operation completed
+        });
+        /*
+        var scss = `$someVar: 123px; .some-selector { width: $someVar; }
+        body {
+            p {
+                color: red;
+            }
+        }
+        `;
+        sass.compile(scss, function (result) {
+            console.log(result);
+        }); */
     }
 
     // TODO : Currently not in use, remove if not required

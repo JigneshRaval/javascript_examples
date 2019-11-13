@@ -71,3 +71,7 @@ body {
 .code-example-wrapper h3:hover {
     background-color: #eeeeee;
 }
+pre code, .hljs {
+    tab-size: 4;
+    padding: 1.5em !important;
+}
