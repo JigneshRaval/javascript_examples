@@ -60,8 +60,12 @@ body {
     background: #FFF;
 }
 
-.code-example-wrapper {
-
+.code-example-wrapper summary {
+    border: 1px solid #CCC;
+    padding: 1rem;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 1em;
 }
 .code-example-wrapper h3 {
     cursor: pointer;

@@ -162,9 +162,10 @@ class Editor {
         this.resetEditor();
         this._template = event.target.parentNode.children[1].value || event.target.children[1].value;
         localStorage.setItem('editorTemplateName', this._template);
-
+        console.log(document.querySelector(`.code-example-wrapper #${this._template} pre code`).innerText);
+        let codeMirrorContent = document.querySelector(`.code-example-wrapper #${this._template} pre code`).innerText;
         // Set default content in CodeMirror editor
-        this.codeMirror.getDoc().setValue(CODEMIRROR_CONTENT);
+        this.codeMirror.getDoc().setValue(codeMirrorContent || CODEMIRROR_CONTENT);
     }
 
     getTemplate() {

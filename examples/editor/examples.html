@@ -1,11 +1,20 @@
 <section id="example-content">
-    <!-- START : Example 1 -->
-    <h3 data-toggle="collapse" data-target="#jsCodeExample" aria-expanded="false" aria-controls="jsCodeExample">
-        JavaScript + HTML + CSS
-    </h3>
-    <div class="collapse" id="jsCodeExample">
-        <div class="card card-body">
-            <pre><code>
+
+    <!-- START : Code Example -->
+    <details class="details-example">
+        <summary>Title</summary>
+        <ul>
+            <li>Option 1</li>
+            <li>Option 2</li>
+            <li>Option 3</li>
+        </ul>
+    </details>
+    <!-- END : Code Example -->
+
+    <!-- START : Code Example -->
+    <details class="details-example" id="JavaScript">
+        <summary>JavaScript + HTML + CSS</summary>
+        <pre><code>
 &lt;h1>JavaScript + HTML + CSS&lt;/h1>
 &lt;p>
 	Select a radio button and click on Submit.
@@ -38,18 +47,13 @@ Gender:
 	}
 &lt;/script>
 </code></pre>
-        </div>
-    </div>
-    <!-- END : Example 1 -->
+    </details>
+    <!-- END : Code Example -->
 
-    <!-- START : Example 1 -->
-    <h3 data-toggle="collapse" data-target="#jsModuleCodeExample" aria-expanded="false"
-        aria-controls="jsModuleCodeExample">
-        JavaScript + HTML + CSS using ES6 Modules import/export
-    </h3>
-    <div class="collapse" id="jsModuleCodeExample">
-        <div class="card card-body">
-            <pre><code>
+    <!-- START : Code Example -->
+    <details class="details-example">
+        <summary>JavaScript + HTML + CSS using ES6 Modules import/export</summary>
+        <pre><code>
 // Using EX6 Modules
 // 1. First create your module file like "MyExport.js" in your directory
 // 2. import it like "import { tag } from './MyExport.js'"
@@ -71,17 +75,78 @@ export function tag(tag, text) {
 	document.body.appendChild(h1)
 &lt;/script>
 </code></pre>
-        </div>
-    </div>
-    <!-- END : Example 1 -->
+    </details>
+    <!-- END : Code Example -->
 
-    <!-- START : Example 1 -->
-    <h3 data-toggle="collapse" data-target="#jQueryCodeExample" aria-expanded="false" aria-controls="jQueryCodeExample">
-        jQuery + ES6
-    </h3>
-    <div class="collapse" id="jQueryCodeExample">
-        <div class="card card-body">
-            <pre><code>
+    <!-- START : Code Example -->
+    <details class="details-example">
+        <summary>ES6 Dynamic import using <code>import()</code></summary>
+        <pre><code>
+// ./utils.mjs
+// https://v8.dev/features/dynamic-import
+// Default export
+export default () => {
+    console.log('Hi from the default export!');
+};
+
+// Named export `doStuff`
+export const doStuff = () => {
+    console.log('Doing stuff…');
+};
+
+// Named export `doStuff`
+export const loadPageInto = (node) => {
+    console.log('Doing stuff...', node);
+    node.innerHTML ="Hi From Module Method"
+};
+
+
+
+&lt;nav>
+    &lt;a href="books.html" data-entry-module="books">Books&lt;/a>
+    &lt;a href="movies.html" data-entry-module="movies">Movies&lt;/a>
+    &lt;a href="video-games.html" data-entry-module="video-games">Video Games&lt;/a>
+&lt;/nav>
+
+&lt;main>This is a placeholder for the content that will be loaded on-demand.&lt;/main>
+
+&lt;script type="module">
+    const main = document.querySelector('main');
+
+    const links = document.querySelectorAll('nav > a');
+    for (const link of links) {
+        link.addEventListener('click', async (event) => {
+            event.preventDefault();
+            try {
+                const module = await import(`/utils.mjs`);
+                // The module exports a function named `loadPageInto`.
+                module.default();
+                module.loadPageInto(main);
+            } catch (error) {
+                main.textContent = error.message;
+            }
+        });
+    }
+&lt;/script>
+
+&lt;script type="module">
+    // Here’s how to statically import and use the ./utils.mjs module:
+    import * as module from './utils.mjs';
+
+    module.default();
+    // → logs 'Hi from the default export!'
+
+    module.doStuff();
+  // → logs 'Doing stuff…'
+&lt;/script>
+</code></pre>
+    </details>
+    <!-- END : Code Example -->
+
+    <!-- START : Code Example -->
+    <details class="details-example">
+        <summary>jQuery + ES6</summary>
+        <pre><code>
 &lt;h1>jQuery + ES6 example&lt;/h1>
 &lt;div id="msg">
 
@@ -98,17 +163,13 @@ $('#msg').html(data.message)
 console.log(data)
 &lt;/script>
 </code></pre>
-        </div>
-    </div>
-    <!-- END : Example 1 -->
+    </details>
+    <!-- END : Code Example -->
 
-    <!-- START : Example 1 -->
-    <h3 data-toggle="collapse" data-target="#reactCodeExample" aria-expanded="false" aria-controls="reactCodeExample">
-        React
-    </h3>
-    <div class="collapse" id="reactCodeExample">
-        <div class="card card-body">
-            <pre><code>&lt;script type="text/babel">
+    <!-- START : Code Example -->
+    <details class="details-example" id="React">
+        <summary>React</summary>
+        <pre><code>&lt;script type="text/babel">
 import React, { useState } from 'react';
 
 class Greeting extends React.Component {
@@ -134,18 +195,13 @@ const Button =() => {
 
 ReactDOM.render(&lt;Greeting />, document.getElementById('root'));
 &lt;/script></code></pre>
-        </div>
-    </div>
-    <!-- END : Example 1 -->
+    </details>
+    <!-- END : Code Example -->
 
-    <!-- START : Example 1 -->
-    <h3 data-toggle="collapse" data-target="#reactRouterCodeExample" aria-expanded="false"
-        aria-controls="reactRouterCodeExample">
-        React with Router example
-    </h3>
-    <div class="collapse" id="reactRouterCodeExample">
-        <div class="card card-body">
-            <pre><code>
+    <!-- START : Code Example -->
+    <details class="details-example">
+        <summary>React with Router example</summary>
+        <pre><code>
 &lt;!-- CSS Code -->
 &lt;style>
     /* Your CSS code */
@@ -250,17 +306,13 @@ ReactDOM.render(
     document.getElementById("root")
 );
 &lt;/script></code></pre>
-        </div>
-    </div>
-    <!-- END : Example 1 -->
+    </details>
+    <!-- END : Code Example -->
 
-    <!-- START : Example 1 -->
-    <h3 data-toggle="collapse" data-target="#rxjs5CodeExample" aria-expanded="false" aria-controls="rxjs5CodeExample">
-        RxJs 5
-    </h3>
-    <div class="collapse" id="rxjs5CodeExample">
-        <div class="card card-body">
-            <pre><code>&lt;script type="text/babel">
+    <!-- START : Code Example -->
+    <details class="details-example" id="RxJs5">
+        <summary>RxJs 5</summary>
+        <pre><code>&lt;script type="text/babel">
 // Simulate HTTP requests
 const getPostOne$ = Rx.Observable.timer(3000).mapTo({ id: 1 });
 const getPostTwo$ = Rx.Observable.timer(1000).mapTo({ id: 2 });
@@ -276,17 +328,13 @@ Rx.Observable
     err => console.error(err)
   );
 &lt;/script></code></pre>
-        </div>
-    </div>
-    <!-- END : Example 1 -->
+    </details>
+    <!-- END : Code Example -->
 
-    <!-- START : Example 1 -->
-    <h3 data-toggle="collapse" data-target="#rxjs6CodeExample" aria-expanded="false" aria-controls="rxjs6CodeExample">
-        RxJs 6
-    </h3>
-    <div class="collapse" id="rxjs6CodeExample">
-        <div class="card card-body">
-            <pre><code>
+    <!-- START : Code Example -->
+    <details class="details-example" id="RxJs6">
+        <summary>RxJs 6</summary>
+        <pre><code>
 &lt;h3>RxJS 6 Examples&lt;/h3>
 &lt;ul class="observable-output observable-output-1">
 
@@ -329,17 +377,13 @@ of(1, 2, 3)
   });
 &lt;/script>
 </code></pre>
-        </div>
-    </div>
-    <!-- END : Example 1 -->
+    </details>
+    <!-- END : Code Example -->
 
-    <!-- START : Example 1 -->
-    <h3 data-toggle="collapse" data-target="#vueCodeExample" aria-expanded="false" aria-controls="vueCodeExample">
-        Vue.js
-    </h3>
-    <div class="collapse" id="vueCodeExample">
-        <div class="card card-body">
-            <pre><code>
+    <!-- START : Code Example -->
+    <details class="details-example" id="Vue.js">
+        <summary>Vue.js</summary>
+        <pre><code>
 &lt;div id="app-2">
   &lt;span v-bind:title="message">
     Hello Vue.js
@@ -367,7 +411,7 @@ var app2 = new Vue({
 })
 &lt;/script>
 </code></pre>
-            <pre><code>
+        <pre><code>
 // Example 2
 // =============================
 // REF : https://medium.com/js-dojo/7-ways-to-define-a-component-template-in-vuejs-c04e0c72900d
@@ -584,7 +628,7 @@ new Vue({
 // Now the app has started!
 &lt;/script>
 </code></pre>
-            <pre><code>
+        <pre><code>
 // Example 3
 // =========================
 // REF : https://tutorialzine.com/2016/03/5-practical-examples-for-learning-vue-js
@@ -728,9 +772,11 @@ var demo = new Vue({
 // Now the app has started!
 &lt;/script>
 </code></pre>
-        </div>
-    </div>
-    <!-- END : Example 1 -->
+    </details>
+    <!-- END : Code Example -->
+
+
+
 
     <!-- START : Example 1 -->
     <h3 data-toggle="collapse" data-target="#vueRouterCodeExample" aria-expanded="false"
@@ -1733,26 +1779,31 @@ $(function () {
     </div>
     <!-- END : Example 1 -->
 
-    <!-- START : Example 1 -->
-    <h3 data-toggle="collapse" data-target="#handlebarsHelperCodeExample" aria-expanded="false"
-        aria-controls="handlebarsHelperCodeExample">
-        Handlebars Example : Helpers
-        <a href="https://tutorialzine.com/2015/01/learn-handlebars-in-10-minutes" target="_blank">Learn Handlebars in 10
-            Minutes or Less</a>
-    </h3>
-    <div class="collapse" id="handlebarsHelperCodeExample">
-        <p>Handlebars doesn't allow you to write JavaScript directly within templates. Instead, it gives you helpers.
-            These are JavaScript functions that you can call from your templates, and help you reuse code and create
-            complex templates. To call a helper, just use it as an expression - <code>{{helpername}}</code>. You can
-            pass parameters as well - <code>{{helpername 12345}}</code>, which are passed as parameters to your helper
-            function.</p>
-        <p>To create a helper, use the <a href="http://handlebarsjs.com/reference.html#base-registerHelper"
-                target="_blank" rel="noreferrer noopener">registerHelper function</a>. See the example below, which
-            demonstrates a creating a helper, and a number of Handlebars' <a
-                href="http://handlebarsjs.com/builtin_helpers.html" target="_blank" rel="noreferrer noopener">built-in
-                ones</a>:</p>
-        <div class="card card-body">
-            <pre><code>
+    <!-- START : Code Example -->
+    <details class="details-example">
+        <summary>Handlebars Example : Helpers</summary>
+        <div>
+            <a href="https://tutorialzine.com/2015/01/learn-handlebars-in-10-minutes" target="_blank">Learn
+                Handlebars in 10
+                Minutes or Less</a>
+            <p>Handlebars doesn't allow you to write JavaScript directly within templates. Instead, it gives you
+                helpers.
+                These are JavaScript functions that you can call from your templates, and help you reuse code
+                and create
+                complex templates. To call a helper, just use it as an expression - <code>{{helpername}}</code>.
+                You can
+                pass parameters as well - <code>{{helpername 12345}}</code>, which are passed as parameters to
+                your helper
+                function.</p>
+            <p>To create a helper, use the <a href="http://handlebarsjs.com/reference.html#base-registerHelper"
+                    target="_blank" rel="noreferrer noopener">registerHelper function</a>. See the example
+                below, which
+                demonstrates a creating a helper, and a number of Handlebars' <a
+                    href="http://handlebarsjs.com/builtin_helpers.html" target="_blank"
+                    rel="noreferrer noopener">built-in
+                    ones</a>:</p>
+        </div>
+        <pre><code>
 // Example : Handlebars Helper
 // =============================
 &lt;script id="built-in-helpers-template" type="text/x-handlebars-template">
@@ -1818,21 +1869,16 @@ $(function () {
 
 &lt;/script>
 </code></pre>
-        </div>
-    </div>
-    <!-- END : Example 1 -->
+    </details>
+    <!-- END : Code Example -->
 
-    <!-- START : Example 1 -->
-    <h3 data-toggle="collapse" data-target="#handlebarsBlockHelperCodeExample" aria-expanded="false"
-        aria-controls="handlebarsBlockHelperCodeExample">
-        Handlebars Example : Block helpers
-
-    </h3>
-    <div class="collapse" id="handlebarsBlockHelperCodeExample">
-        <a href="https://tutorialzine.com/2015/01/learn-handlebars-in-10-minutes" target="_blank">Learn Handlebars in 10
+    <!-- START : Code Example -->
+    <details class="details-example">
+        <summary>Handlebars Example : Block helpers</summary>
+        <a href="https://tutorialzine.com/2015/01/learn-handlebars-in-10-minutes" target="_blank">Learn
+            Handlebars in 10
             Minutes or Less</a>
-        <div class="card card-body">
-            <pre><code>
+        <pre><code>
 // Example : Handlebars Block Helpers
 // =============================
 &lt;script id="block-expressions-template" type="text/x-handlebars-template">
@@ -1885,7 +1931,7 @@ $(function () {
 
 &lt;/script>
 </code></pre>
-        </div>
-    </div>
-    <!-- END : Example 1 -->
+    </details>
+    <!-- END : Code Example -->
+
 </section>
