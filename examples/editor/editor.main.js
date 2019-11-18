@@ -162,7 +162,7 @@ class Editor {
         this.resetEditor();
         this._template = event.target.parentNode.children[1].value || event.target.children[1].value;
         localStorage.setItem('editorTemplateName', this._template);
-        console.log(document.querySelector(`.code-example-wrapper #${this._template} pre code`).innerText);
+
         let codeMirrorContent = document.querySelector(`.code-example-wrapper #${this._template} pre code`).innerText;
         // Set default content in CodeMirror editor
         this.codeMirror.getDoc().setValue(codeMirrorContent || CODEMIRROR_CONTENT);
@@ -176,43 +176,17 @@ class Editor {
     createApp(editorData) {
         let scriptBlocks = JQUERY + BOOTSTRAP_CSS + BOOTSTRAP_JS + REQUIRE_METHOD + BABEL + BABEL_PRESET_ENV;
 
-        switch (this._template) {
-            case 'React':
-                // this.codeMirror.setOption("mode", "text/jsx");
-                // scriptBlocks += REACT;
-                // editorData = APP_ROOT + editorData;
-                break;
-            case 'RxJs5':
-                // this.codeMirror.setOption("mode", "text/html");
-                // scriptBlocks += rxjsOutputStyle + rxjsOutputScript + RXJS_5;
-                // editorData = editorData;
-                break;
-            case 'RxJs6':
-                // this.codeMirror.setOption("mode", "text/html");
-                // scriptBlocks += rxjsOutputStyle + rxjsOutputScript + RXJS_6;
-                // editorData = editorData;
-                break;
-            case 'Vue.js':
-                // this.codeMirror.setOption("mode", "text/jsx");
-                // scriptBlocks += VUEJS;
-                // editorData = editorData;
-                break;
-            case 'SCSS':
-                // this.codeMirror.setOption("mode", "text/css");
-                sass.compile(editorData, (result) => {
-                    editorData = '<pre>' + result.text + '</pre>';
-                    console.log(result.text, editorData);
-                    this.preview.open();
-                    this.preview.write(editorData);
-                    // insertJs();
-                    // preview.body.innerHTML = editorData;
-                    this.preview.close();
-                    clearInterval(this.timer);
-                });
-                break;
-            default: // JavaScript + HTML + CSS
-            // this.codeMirror.setOption("mode", "text/html");
-            // editorData = editorData;
+        if (this._template === 'SCSS') {
+            sass.compile(editorData, (result) => {
+                editorData = '<pre>' + result.text + '</pre>';
+                console.log(result.text, editorData);
+                this.preview.open();
+                this.preview.write(editorData);
+                // insertJs();
+                // preview.body.innerHTML = editorData;
+                this.preview.close();
+                clearInterval(this.timer);
+            });
         }
 
         const documentContents = `
@@ -227,7 +201,7 @@ class Editor {
             ${scriptBlocks}
             ${this._template === 'Handlebars' ? HANDLEBARS : ''}
             ${this._template === 'React' ? REACT : ''}
-            ${this._template === 'Vue.js' ? VUEJS : ''}
+            ${this._template === 'Vue' ? VUEJS : ''}
             ${this._template === 'RxJs5' ? (rxjsOutputStyle + rxjsOutputScript + RXJS_5) : ''}
             ${this._template === 'RxJs6' ? (rxjsOutputStyle + rxjsOutputScript + RXJS_6) : ''}
             <!-- <script type="text/babel" src="./MyExport.js"></script> -->
@@ -243,6 +217,7 @@ class Editor {
         this.renderOutput(documentContents);
     }
 
+    // Compile and Render code into iFrame
     renderOutput(editorData) {
 
         // var output = Babel.transform(editorData, { presets: ['es2015'] }).code;
@@ -266,6 +241,7 @@ class Editor {
         console.log('Value :', value);
     }
 
+    // Reset/Clear Editor value and output from iFrame
     resetEditor() {
         // Reset code editor
         this.textArea.value = '';

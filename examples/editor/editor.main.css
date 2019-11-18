@@ -51,6 +51,7 @@ body {
 }
 .CodeMirror {
     height: 100% !important;
+    font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
 }
 .output {
     position: relative;
@@ -78,4 +79,5 @@ body {
 pre code, .hljs {
     tab-size: 4;
     padding: 1.5em !important;
+    white-space: pre-wrap;
 }
