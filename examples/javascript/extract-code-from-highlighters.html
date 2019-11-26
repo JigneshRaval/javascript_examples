@@ -1,110 +1,243 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Extract Code from code highlighters</title>
-		<style>
-			#proritizeLightBox { height: 150px; overflow-y: scroll; border: 1px solid #EEE; margin-top: 100px; }
-			ul li { border: 1px solid #CCC; padding: 5px; }
-		</style>
-	</head>
-	<body>
-		<h2>Extract Code from code highlighters</h2>		
-		
-		<script>
-			function extractCodeFromHighlightTable() {
-    var tables = document.querySelectorAll('.highlighttable');
 
-    if(tables && tables.length > 0) {
-        for(var i = 0; i < tables.length; i++) {
-            var preEle = document.createElement('pre');
-            preEle.innerHTML = tables[i].querySelector('.code pre').innerText;
-
-            tables[i].parentNode.insertBefore(preEle, tables[i]);
-            
-            tables[i].parentNode.removeChild(tables[i]);
-
-            console.log(preEle);
+<head>
+    <title>Extract Code from code highlighters</title>
+    <style>
+        #proritizeLightBox {
+            height: 150px;
+            overflow-y: scroll;
+            border: 1px solid #EEE;
+            margin-top: 100px;
         }
-    }
-};
 
-//extractCodeFromHighlightTable();
-
-// Method 2 for Crayons highlighter
-//============================================
-function extractCodeFromCrayonTable() {
-    var crayonDivs = document.querySelectorAll('.crayon-syntax');
-
-    if(crayonDivs && crayonDivs.length > 0) {
-        for(var i = 0; i < crayonDivs.length; i++) {
-            var preEle = document.createElement('pre');
-            preEle.innerHTML = crayonDivs[i].querySelector('.crayon-code').innerText;
-
-            crayonDivs[i].parentNode.insertBefore(preEle, crayonDivs[i]);
-            
-            crayonDivs[i].parentNode.removeChild(crayonDivs[i]);
-
-            console.log(preEle);
+        ul li {
+            border: 1px solid #CCC;
+            padding: 5px;
         }
-    }
-};
+    </style>
+</head>
 
-//extractCodeFromCrayonTable();
+<body>
+    <h2>Extract Code from code highlighters</h2>
 
-// Method 3 :: for Crayons highlighter
-//============================================
-function extractCodeFromHighlight() {
-    //var crayonDivs = document.querySelectorAll('pre.highlighter-rouge');
-    var crayonDivs = document.querySelectorAll('pre');
+    <script>
+        function extractCodeFromHighlightTable() {
+            var tables = document.querySelectorAll('.highlighttable');
 
-    if(crayonDivs && crayonDivs.length > 0) {
-        for(var i = 0; i < crayonDivs.length; i++) {
-            var preEle = document.createElement('pre');
-            var codeEle = document.createElement('code');
+            if (tables && tables.length > 0) {
+                for (var i = 0; i < tables.length; i++) {
+                    var preEle = document.createElement('pre');
+                    preEle.innerHTML = tables[i].querySelector('.code pre').innerText;
 
-            preEle.appendChild(codeEle);
-            
-            if(crayonDivs[i].querySelector('code')) {
-                codeEle.innerHTML = crayonDivs[i].querySelector('code').innerText;
-            } else {
-                codeEle.innerHTML = crayonDivs[i].innerText;
+                    tables[i].parentNode.insertBefore(preEle, tables[i]);
+
+                    tables[i].parentNode.removeChild(tables[i]);
+
+                    console.log(preEle);
+                }
+            }
+        };
+
+        //extractCodeFromHighlightTable();
+
+        // Method 2 for Crayons highlighter
+        //============================================
+        function extractCodeFromCrayonTable() {
+            var crayonDivs = document.querySelectorAll('.crayon-syntax');
+
+            if (crayonDivs && crayonDivs.length > 0) {
+                for (var i = 0; i < crayonDivs.length; i++) {
+                    var preEle = document.createElement('pre');
+                    preEle.innerHTML = crayonDivs[i].querySelector('.crayon-code').innerText;
+
+                    crayonDivs[i].parentNode.insertBefore(preEle, crayonDivs[i]);
+
+                    crayonDivs[i].parentNode.removeChild(crayonDivs[i]);
+
+                    console.log(preEle);
+                }
+            }
+        };
+
+        //extractCodeFromCrayonTable();
+
+        // Method 3 :: for Crayons highlighter
+        //============================================
+        function extractCodeFromHighlight() {
+            //var crayonDivs = document.querySelectorAll('pre.highlighter-rouge');
+            var crayonDivs = document.querySelectorAll('pre');
+
+            if (crayonDivs && crayonDivs.length > 0) {
+                for (var i = 0; i < crayonDivs.length; i++) {
+                    var preEle = document.createElement('pre');
+                    var codeEle = document.createElement('code');
+
+                    preEle.appendChild(codeEle);
+
+                    if (crayonDivs[i].querySelector('code')) {
+                        codeEle.innerHTML = crayonDivs[i].querySelector('code').innerText;
+                    } else {
+                        codeEle.innerHTML = crayonDivs[i].innerText;
+                    }
+
+                    crayonDivs[i].parentNode.insertBefore(preEle, crayonDivs[i]);
+
+                    crayonDivs[i].parentNode.removeChild(crayonDivs[i]);
+
+                    console.log(preEle);
+                }
+            }
+        };
+
+        extractCodeFromHighlight();
+
+        // Method 4 :: for highlighter_816200
+        //============================================
+        function extractCodeFromHighlighter() {
+            var crayonDivs = document.querySelectorAll('[id*="highlighter_"]');
+
+            if (crayonDivs && crayonDivs.length > 0) {
+                for (var i = 0; i < crayonDivs.length; i++) {
+                    var preEle = document.createElement('pre');
+                    var codeEle = document.createElement('code');
+
+                    preEle.appendChild(codeEle);
+
+                    codeEle.innerHTML = crayonDivs[i].querySelector('.code').innerText;
+
+                    crayonDivs[i].parentNode.insertBefore(preEle, crayonDivs[i]);
+
+                    crayonDivs[i].parentNode.removeChild(crayonDivs[i]);
+
+                    console.log(preEle);
+                }
+            }
+        };
+
+        //extractCodeFromHighlighter();
+
+        // Extract code from Github
+        // =========================================
+        function getIframecontent(token) {
+            //var content = document.getElementById('test1'); // Give any Id to the parent container
+            var content = document.querySelector('#main'); // Give any Id to the parent container
+            var iframes = document.querySelectorAll(token); // Select all iFrame elements
+            var figures = document.querySelectorAll('figure.graf--iframe') || document.querySelectorAll('figure'); // Select all iFrame parent Elements
+
+            // if(content) {
+            if (iframes && iframes.length > 0) {
+                // Loop through all the iFrames
+                for (var i = 0, len = iframes.length; i < len; i++) {
+                    var contDoc = iframes[i].contentDocument || iframes[i].contentWindow && iframes[i].contentWindow.document || iframes[i];
+                    var iframeContent = contDoc.querySelector('table') && contDoc.querySelector('table').innerText || contDoc.innerText;
+
+                    var preNode = document.createElement('pre');
+                    var codeNode = document.createElement('code');
+
+                    codeNode.innerText = iframeContent;
+                    preNode.appendChild(codeNode);
+                    // replace all iFrame parent nodes with the new <pre> tags
+                    if (iframes[i].closest('figure')) {
+                        iframes[i].closest('figure').parentElement.replaceChild(preNode, iframes[i].closest('figure'));
+                    } else {
+                        iframes[i].parentElement.parentElement.replaceChild(preNode, iframes[i].closest('.codecolorer-container'));
+                    }
+
+                }
+
+                console.log(content);
+                // copytext(content.innerHTML);
+                // createCopyButton('main .section-content > div:last-child');
+            }
+            // } else {
+            // alert("Please assign id to content wrapper.")
+            // }
+        }
+
+        // getIframecontent('.codecolorer-container .codecolorer');
+        // getIframecontent(''figure iframe'');
+
+
+        // Get content from embeded gists
+        // Extract code from Github Gists
+        // =========================================
+        function getGistContent() {
+            var parent = document.querySelector('.post-content') || document;
+            var gists = document.querySelectorAll('.gist') && document.querySelectorAll('.gist').length > 0 ? document.querySelectorAll('.gist') : null ||
+                document.querySelectorAll('figure iframe') && document.querySelectorAll('figure iframe').length > 0 ? document.querySelectorAll('figure iframe') : null;
+
+            var scripts = parent.querySelectorAll('script');
+            var styles = parent.querySelectorAll('link');
+
+
+            if (gists && gists.length > 0) {
+                // Loop through all the iFrames
+                for (var i = 0, len = gists.length; i < len; i++) {
+                    var iframeDocs = gists[i].contentDocument || gists[i].contentWindow && gists[i].contentWindow.document;
+                    var gistContent = iframeDocs.querySelector('table') && iframeDocs.querySelector('table').innerText || iframeDocs.querySelector('div.gist-data')
+                        && iframeDocs.querySelector('div.gist-data').innerText;
+
+                    // iframes[i].contentDocument || iframes[i].contentWindow && iframes[i].contentWindow.document || iframes[i]
+
+                    var preNode = document.createElement('pre');
+                    var codeNode = document.createElement('code');
+
+                    codeNode.innerText = gistContent;
+                    preNode.appendChild(codeNode);
+                    // replace all iFrame parent nodes with the new <pre> tags
+                    // parent.replaceChild(preNode, gists[i]);
+                    if (gists[i].closest('figure')) {
+                        gists[i].closest('figure').parentElement.replaceChild(preNode, gists[i].closest('figure'));
+                    } else {
+                        gists[i].parentElement.parentElement.replaceChild(preNode, gists[i].closest('.codecolorer-container'));
+                    }
+                    /*
+                    if(scripts[i].src.indexOf('github.com') > -1) {
+                        parent.removeChild(scripts[i]);
+                    }
+                    if(styles[i].href.indexOf('github.com') > -1) {
+                        parent.removeChild(styles[i]);
+                    }*/
+                }
+
+                console.log(parent);
+                // copytext(content.innerHTML);
+                // createCopyButton('.entry-content');
             }
 
-            crayonDivs[i].parentNode.insertBefore(preEle, crayonDivs[i]);
-            
-            crayonDivs[i].parentNode.removeChild(crayonDivs[i]);
-
-            console.log(preEle);
         }
-    }
-};
 
-extractCodeFromHighlight();
+        getGistContent();
 
-// Method 4 :: for highlighter_816200
-//============================================
-function extractCodeFromHighlighter() {
-    var crayonDivs = document.querySelectorAll('[id*="highlighter_"]');
-
-    if(crayonDivs && crayonDivs.length > 0) {
-        for(var i = 0; i < crayonDivs.length; i++) {
-            var preEle = document.createElement('pre');
-            var codeEle = document.createElement('code');
-
-            preEle.appendChild(codeEle);
-            
-            codeEle.innerHTML = crayonDivs[i].querySelector('.code').innerText;
-
-            crayonDivs[i].parentNode.insertBefore(preEle, crayonDivs[i]);
-            
-            crayonDivs[i].parentNode.removeChild(crayonDivs[i]);
-
-            console.log(preEle);
+        // Append button to copy data to Clipboard
+        function createCopyButton(parentId) {
+            var button = document.createElement('button');
+            button.innerText = "Copy Code";
+            button.style.position = "relative";
+            document.body.appendChild(button);
+            // document.execCommand will work only inside event
+            button.addEventListener('click', function () {
+                var textVal = document.querySelector(parentId).innerHTML;
+                textVal = textVal.replace(/“|”/g, '"').replace(/’/g, "'");
+                copytext(textVal);
+            });
         }
-    }
-};
 
-//extractCodeFromHighlighter();
-		</script>
-	</body>
+        // Copy To Clipboard : Method 1
+        function copytext(text) {
+            var textField = document.createElement('textarea');
+            textField.style.position = "relative";
+            textField.innerText = text;
+            document.body.appendChild(textField);
+            textField.focus();
+            textField.select();
+            var pp = document.execCommand('copy');
+            console.log(pp);
+            textField.remove();
+        }
+
+    </script>
+</body>
+
 </html>
