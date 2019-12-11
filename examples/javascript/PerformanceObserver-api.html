@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Timeline : PerformanceObserver API</title>
+</head>
+
+<body>
+    <img id="image0" src="https://www.w3.org/Icons/w3c_main.png" />
+    <button onClick="addNewImage()">Add new image</button>
+    <script>
+        // Example 1
+        // ==========================
+        // Know when the entry types we would like to use are not supported.
+        function detectSupport(entryTypes) {
+            for (const entryType of entryTypes) {
+                if (!PerformanceObserver.supportedEntryTypes.includes(entryType)) {
+                    // Indicate to client-side analytics that |entryType| is not supported.
+                }
+            }
+        }
+
+        detectSupport(["resource", "mark", "measure"]);
+
+        const userTimingObserver = new PerformanceObserver(list => {
+            list
+                .getEntries()
+                // Get the values we are interested in
+                .map(({ name, entryType, startTime, duration }) => {
+                    const obj = {
+                        "Duration": duration,
+                        "Entry Type": entryType,
+                        "Name": name,
+                        "Start Time": startTime,
+                    };
+                    return JSON.stringify(obj, null, 2);
+                })
+                // Display them to the console.
+                .forEach(console.log);
+
+            // Disconnect after processing the events.
+            userTimingObserver.disconnect();
+        });
+
+        // Subscribe to new events for User-Timing.
+        userTimingObserver.observe({ entryTypes: ["mark", "measure"] });
+
+        const resourceObserver = new PerformanceObserver(list => {
+            list
+                .getEntries()
+                // Get the values we are interested in
+                .map(({ name, startTime, fetchStart, responseStart, responseEnd }) => {
+                    const obj = {
+                        "Name": name,
+                        "Start Time": startTime,
+                        "Fetch Start": fetchStart,
+                        "Response Start": responseStart,
+                        "Response End": responseEnd,
+                    };
+                    return JSON.stringify(obj, null, 2);
+                })
+                // Display them to the console.
+                .forEach(console.log);
+            // Disconnect after processing the events.
+            // resourceObserver.disconnect();
+        });
+
+        // Subscribe to new events for Resource Timing.
+        resourceObserver.observe({ type: "resource" });
+        resourceObserver.observe({ type: "measure" });
+
+        function addNewImage() {
+            let imageElem = document.createElement('img');
+            imageElem.src = 'https://www.w3.org/Icons/w3c_main.png';
+            document.body.appendChild(imageElem);
+
+            let divElem = document.createElement('div');
+            divElem.style = 'border: 1px solid red; height: 400px;';
+            document.body.appendChild(divElem);
+        }
+
+        var observer = new PerformanceObserver(function (list) {
+            var perfEntries = list.getEntries();
+            for (var i = 0; i < perfEntries.length; i++) {
+                console.log('perfEntries Paint : ', perfEntries);
+                // Process entries
+                // report back for analytics and monitoring
+                // ...
+            }
+        });
+
+        // register observer for long task notifications
+        observer.observe({ type: "paint" });
+    </script>
+
+    <img id="image1" src="https://www.w3.org/Icons/w3c_main.png" />
+    <script>
+        // Example 2
+        // ========================
+        function init() {
+            // see [[USER-TIMING-2]]
+            performance.mark("startWork");
+            doWork(); // Some developer code
+            performance.mark("endWork");
+            measurePerf();
+        }
+        function measurePerf() {
+            performance
+                .getEntries()
+                .map(entry => JSON.stringify(entry, null, 2))
+                .forEach(json => console.log(json));
+        }
+    </script>
+
+    <button onclick="clicked(this)">Measure</button>
+    <script>
+        var observer = new PerformanceObserver(list => {
+            list.getEntries().forEach(entry => {
+                // Display each reported measurement on console
+                if (console) {
+                    console.log("Name: " + entry.name +
+                        ", Type: " + entry.entryType +
+                        ", Start: " + entry.startTime +
+                        ", Duration: " + entry.duration + "\n");
+                }
+            })
+        });
+        observer.observe({ entryTypes: ['resource', 'mark', 'measure'] });
+        performance.mark('registered-observer');
+
+        function clicked(elem) {
+            performance.measure('button clicked');
+        }
+    </script>
+</body>
+
+</html>

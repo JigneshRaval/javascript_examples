@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>relatedTarget in JavaScript</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="./css/solarized-dark.css" />
+    <script src="./js/highlight.pack.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100%;
+            font-family: sans-serif;
+            display: grid;
+            place-items: center;
+            color: #333;
+        }
+
+        select {
+            margin: 1em 0;
+            width: 100%;
+        }
+
+        button {
+            border: none;
+            padding: 1em;
+            border-radius: .25em;
+            font-size: inherit;
+            box-shadow: 0 .125em .5em #ddd;
+            color: white;
+        }
+
+        button:focus {
+            outline: 5px solid #444;
+        }
+
+        button+button {
+            margin-left: 1em;
+        }
+
+        #red {
+            background: #BF4A3F;
+        }
+
+        .red {
+            color: #BF4A3F;
+        }
+
+        #blue {
+            background: #203959;
+        }
+
+        .blue {
+            color: #203959;
+        }
+
+        #yellow {
+            background: #D9BB62;
+            color: #444;
+        }
+
+        .yellow {
+            color: #D9BB62;
+        }
+
+        #eventDisplay {
+            margin: 2em 0 0;
+            padding: 1em;
+            background: #eee;
+        }
+
+        .container {
+            border-radius: .5em;
+            border: 1px solid #e1e1e1;
+            text-align: center;
+            padding: 1em;
+            max-width: 30em;
+            box-shadow: 0 .5em 4em #ddd;
+        }
+
+        .instructions {
+            padding: .5em;
+            margin-bottom: 1em;
+        }
+
+        dl {
+            text-align: left;
+            margin: 1em 0 2em;
+        }
+
+        dl div {
+            display: flex;
+        }
+
+        dl dt,
+        dl dd {
+            margin: 0.5em 0;
+            padding: 0.5em;
+        }
+
+        dl dt {
+            display: inline-block;
+            font-family: monospace;
+            border-radius: .25em;
+            background: #fff;
+            display: grid;
+            place-items: center;
+        }
+
+        dl dd {
+            margin-left: auto;
+        }
+
+        .message {
+            border-top: 1px solid #ccc;
+            padding-top: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <div class="container">
+            <label>
+                Select the event you want to log
+                <select id="eventSwitch">
+                    <option value="focus" selected>focus</option>
+                    <option value="blur">blur</option>
+                </select>
+            </label>
+            <div>
+                <div class="instructions">
+                    "Tab around" and focus the buttons to see their <code>focus</code> / <code>blur</code> events being
+                    logged.
+                </div>
+                <button id="red" type="button">red</button>
+                <button id="blue" type="button">blue</button>
+                <button id="yellow" type="button">yellow</button>
+            </div>
+            <div id="eventDisplay">No event triggered yet...</div>
+        </div>
+    </main>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            console.clear();
+
+            const $buttons = document.querySelectorAll('button');
+            const $eventDisplay = document.getElementById('eventDisplay');
+            let currentEventDisplay = 'focus';
+
+            document.getElementById('eventSwitch')
+                .addEventListener('change', (event) => {
+                    const { target } = event;
+                    currentEventDisplay = target.options[target.selectedIndex].value;
+                    $buttons[0].focus();
+                });
+
+            function showEventData(event) {
+                $eventDisplay.innerHTML = `
+                <dl>
+                <div>
+                    <dt>event.type</dt>
+                    <dd>${event.type}</dd>
+                </div>
+                <div>
+                    <dt>event.target</dt>
+                    <dd class="${event.target.id}">${event.target.id}</dd>
+                </div>
+                <div>
+                    <dt>event.relatedTarget</dt>
+                    <dd class="${event.relatedTarget ? event.relatedTarget.id : event.relatedTarget}">${event.relatedTarget ? event.relatedTarget.id : event.relatedTarget}</dd>
+                </div>
+                </dl>
+                <span class="message"><code>relatedTarget</code> shows ${ event.type === 'blur' ? 'the element <strong>receiving</strong> focus' : 'the element <strong>losing</strong> focus'}.
+            `;
+            }
+
+            [...document.querySelectorAll('button')].forEach(button => {
+                button.addEventListener('blur', (event) =>
+                    event.type === currentEventDisplay && showEventData(event));
+                button.addEventListener('focus', (event) =>
+                    event.type === currentEventDisplay && showEventData(event));
+            });
+
+            $buttons[0].focus();
+        });
+    </script>
+
+
+</body>
+
+</html>

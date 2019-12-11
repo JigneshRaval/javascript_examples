@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Canvi - JavaScript only Off-Canvas Navigation</title>
+    <style>
+        .canvi-content {
+            height: 100vh;
+        }
+
+        @-webkit-keyframes canvi-animate-in {
+            0% {
+                opacity: 0
+            }
+
+            100% {
+                opacity: 1
+            }
+        }
+
+        @keyframes canvi-animate-in {
+            0% {
+                opacity: 0
+            }
+
+            100% {
+                opacity: 1
+            }
+        }
+
+        @-webkit-keyframes canvi-animate-out {
+            0% {
+                opacity: 1
+            }
+
+            100% {
+                opacity: 0
+            }
+        }
+
+        @keyframes canvi-animate-out {
+            0% {
+                opacity: 1
+            }
+
+            100% {
+                opacity: 0
+            }
+        }
+
+        .canvi-user-info {
+            padding: 25px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            background: #010101;
+            margin-bottom: 20px;
+            position: relative
+        }
+
+        .canvi-user-info img {
+            max-width: 100%;
+            height: auto
+        }
+
+        .canvi-user-info__image {
+            margin-right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden
+        }
+
+        .canvi-user-info__data {
+            width: calc(100% - 70px)
+        }
+
+        .canvi-user-info__title {
+            font-weight: 700;
+            color: #fff;
+            font-size: 18px;
+            margin: 0 0 3px;
+            line-height: 1.3em;
+            display: block
+        }
+
+        .canvi-user-info__meta {
+            display: inline-block;
+            color: rgba(255, 255, 255, .7);
+            text-decoration: none;
+            font-size: 14px
+        }
+
+        .canvi-user-info__meta:active,
+        .canvi-user-info__meta:focus,
+        .canvi-user-info__meta:hover {
+            color: rgba(255, 255, 255, .9)
+        }
+
+        .canvi-user-info__close {
+            position: absolute;
+            top: calc(50% - 20px);
+            right: 30px;
+            background: rgba(255, 255, 255, .1);
+            width: 40px;
+            height: 40px;
+            border-radius: 2px;
+            transition: .3s;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none
+        }
+
+        .canvi-user-info__close:hover {
+            background: rgba(255, 255, 255, .3)
+        }
+
+        .canvi-user-info__close::after,
+        .canvi-user-info__close::before {
+            content: '';
+            width: 20px;
+            height: 3px;
+            background: #fff;
+            position: absolute;
+            top: 18px
+        }
+
+        .canvi-user-info__close::before {
+            left: 10px;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg)
+        }
+
+        .canvi-user-info__close::after {
+            right: 10px;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg)
+        }
+
+        .canvi-navigation {
+            margin: 0;
+            padding: 0
+        }
+
+        .canvi-navigation li {
+            list-style: none
+        }
+
+        .canvi-navigation li:not(:last-child) {
+            border-bottom: 1px solid rgba(0, 0, 0, .03)
+        }
+
+        .canvi-navigation__item {
+            padding: 14px 30px;
+            display: flex;
+            align-items: center;
+            opacity: .7;
+            text-decoration: none
+        }
+
+        .canvi-navigation__item.is-active,
+        .canvi-navigation__item:hover {
+            opacity: 1
+        }
+
+        .canvi-navigation__icon-wrapper {
+            margin-right: 20px;
+            width: 30px;
+            height: 30px;
+            border-radius: 3px;
+            background: #aaa;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .canvi-navigation__icon {
+            font-size: 17px;
+            line-height: 1em
+        }
+
+        .canvi-navigation__text {
+            font-weight: 700;
+            color: #94a0a8;
+            font-size: 14px;
+            margin: 0;
+            line-height: 1.3em;
+            display: block;
+            text-transform: uppercase
+        }
+
+        .canvi-header {
+            background: linear-gradient(45deg, #00a1ff, #f400ff);
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .canvi-header__image {
+            margin: 30px;
+            max-width: 100px;
+            height: auto
+        }
+
+        body.is-canvi-ready {
+            overflow-x: hidden
+        }
+
+        body.is-canvi-ready .canvi-navbar {
+            display: block;
+            visibility: visible
+        }
+
+        .canvi-navbar,
+        .canvi-overlay {
+            top: 0;
+            bottom: 0;
+            visibility: hidden
+        }
+
+        .canvi-navbar {
+            position: fixed;
+            height: 100%;
+            background: #fff;
+            width: 280px;
+            display: none;
+            transition: -webkit-transform .3s cubic-bezier(.42, 0, .58, 1);
+            transition: transform .3s cubic-bezier(.42, 0, .58, 1);
+            transition: transform .3s cubic-bezier(.42, 0, .58, 1), -webkit-transform .3s cubic-bezier(.42, 0, .58, 1);
+            will-change: transform;
+            -webkit-overflow-scrolling: touch;
+            overflow: auto
+        }
+
+        .canvi-content,
+        .canvi-navbar.is-canvi-open {
+            transition: -webkit-transform .3s cubic-bezier(.42, 0, .58, 1)
+        }
+
+        .canvi-navbar::-webkit-scrollbar {
+            width: 0
+        }
+
+        .canvi-navbar::-webkit-scrollbar-track {
+            background: #efefef
+        }
+
+        .canvi-navbar::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 2px
+        }
+
+        .canvi-navbar.is-canvi-open {
+            transition: transform .3s cubic-bezier(.42, 0, .58, 1);
+            transition: transform .3s cubic-bezier(.42, 0, .58, 1), -webkit-transform .3s cubic-bezier(.42, 0, .58, 1);
+            will-change: transform
+        }
+
+        .canvi-navbar[data-position=right].is-canvi-open,
+        .canvi-navbar[data-position=right][data-push-content=true] {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0)
+        }
+
+        .canvi-navbar[data-position=right] {
+            right: 0;
+            -webkit-transform: translate3d(100%, 0, 0);
+            transform: translate3d(100%, 0, 0)
+        }
+
+        .canvi-navbar[data-position=left].is-canvi-open,
+        .canvi-navbar[data-position=left][data-push-content=true] {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0)
+        }
+
+        .canvi-navbar[data-position=left] {
+            left: 0;
+            -webkit-transform: translate3d(-100%, 0, 0);
+            transform: translate3d(-100%, 0, 0)
+        }
+
+        .canvi-navbar[data-push-content=false] {
+            z-index: 10
+        }
+
+        .canvi-navbar[data-push-content=true] {
+            z-index: 1
+        }
+
+        .canvi-content {
+            position: relative;
+            z-index: 5;
+            transition: transform .3s cubic-bezier(.42, 0, .58, 1);
+            transition: transform .3s cubic-bezier(.42, 0, .58, 1), -webkit-transform .3s cubic-bezier(.42, 0, .58, 1);
+            overflow: hidden;
+            background: #fff
+        }
+
+        .canvi-content.is-canvi-open {
+            transition: -webkit-transform .3s cubic-bezier(.42, 0, .58, 1);
+            transition: transform .3s cubic-bezier(.42, 0, .58, 1);
+            transition: transform .3s cubic-bezier(.42, 0, .58, 1), -webkit-transform .3s cubic-bezier(.42, 0, .58, 1)
+        }
+
+        .canvi-overlay {
+            position: absolute;
+            right: 0;
+            left: 0;
+            background: rgba(0, 0, 0, .4);
+            opacity: 0;
+            z-index: 1031
+        }
+
+        .canvi-content.is-canvi-open .canvi-overlay {
+            visibility: visible;
+            -webkit-animation-name: canvi-animate-in;
+            animation-name: canvi-animate-in;
+            -webkit-animation-duration: .3s;
+            animation-duration: .3s;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+            -webkit-animation-timing-function: cubic-bezier(.42, 0, .58, 1);
+            animation-timing-function: cubic-bezier(.42, 0, .58, 1);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden
+        }
+
+        .canvi-content.is-canvi-open .canvi-overlay.canvi-animate-out {
+            -webkit-animation-name: canvi-animate-out;
+            animation-name: canvi-animate-out;
+            -webkit-animation-duration: .3s;
+            animation-duration: .3s;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+            -webkit-animation-timing-function: cubic-bezier(.42, 0, .58, 1);
+            animation-timing-function: cubic-bezier(.42, 0, .58, 1);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden
+        }
+
+        .canvi-navbar[data-position=left] {
+            left: 0;
+            -webkit-transform: translate3d(-100%, 0, 0);
+            transform: translate3d(-100%, 0, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="js-canvi-navbar--left canvi-navbar canvi-navbar--left">
+        <div class="canvi-user-info">
+            <div class="canvi-user-info__image">
+                <img src="assets/images/pine-logo.jpg">
+            </div>
+            <div class="canvi-user-info__data">
+                <span class="canvi-user-info__title">Pine</span>
+                <a href="https://pineco.de" target="_blank" class="canvi-user-info__meta">View site</a>
+                <div class="canvi-user-info__close"></div>
+            </div>
+        </div>
+
+        <ul class="canvi-navigation">
+            <li>
+                <a href="https://pineco.de/category/laravel/" target="_blank" class="canvi-navigation__item">
+                    <span class="canvi-navigation__icon-wrapper" style="background: #00adff;">
+                        <span class="canvi-navigation__icon icon-iconmonstr-code-2"></span>
+                    </span>
+                    <span class="canvi-navigation__text">Laravel</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://pineco.de/category/css/" target="_blank" class="canvi-navigation__item">
+                    <span class="canvi-navigation__icon-wrapper" style="background: #0082BF;">
+                        <span class="canvi-navigation__icon icon-iconmonstr-code-5"></span>
+                    </span>
+                    <span class="canvi-navigation__text">CSS</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://pineco.de/category/html/" target="_blank" class="canvi-navigation__item">
+                    <span class="canvi-navigation__icon-wrapper" style="background: #00567F;">
+                        <span class="canvi-navigation__icon icon-iconmonstr-code-9"></span>
+                    </span>
+                    <span class="canvi-navigation__text">HTML</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://pineco.de/category/javascript/" target="_blank" class="canvi-navigation__item">
+                    <span class="canvi-navigation__icon-wrapper" style="background: #002B40;">
+                        <span class="canvi-navigation__icon icon-iconmonstr-code-11"></span>
+                    </span>
+                    <span class="canvi-navigation__text">JavaScript</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://pineco.de/category/vue-js/" target="_blank" class="canvi-navigation__item">
+                    <span class="canvi-navigation__icon-wrapper" style="background: #009CE5;">
+                        <span class="canvi-navigation__icon icon-iconmonstr-code-13"></span>
+                    </span>
+                    <span class="canvi-navigation__text">Vue.js</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <aside class="js-canvi-navbar--right canvi-navbar">
+        <div class="canvi-header">
+            <img class="canvi-header__image" src="assets/images/canvi.svg">
+        </div>
+        <ul class="canvi-navigation">
+            <li>
+                <a href="#introduction" class="js-close-on-click-right-menu canvi-navigation__item">
+                    <span class="canvi-navigation__text">Introduction</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#options" class="js-close-on-click-right-menu canvi-navigation__item">
+                    <span class="canvi-navigation__text">Options</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#methods" class="js-close-on-click-right-menu canvi-navigation__item">
+                    <span class="canvi-navigation__text">Methods</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#events" class="js-close-on-click-right-menu canvi-navigation__item">
+                    <span class="canvi-navigation__text">Events</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <div class="js-canvi-content canvi-content">
+        <span class="js-canvi-open-button--left btn btn-primary">Open Left Navbar</span>
+        <span class="js-canvi-open-button--right btn btn-secondary">Open Right Navbar</span>
+    </div>
+
+    <script src="./js/jquery.min.js"></script>
+    <script>
+        class Canvi {
+            constructor(options = {}) {
+                this.options = Object.assign({
+                    speed: '0.3s',
+                    width: '300px',
+                    isDebug: false,
+                    position: 'left',
+                    pushContent: true,
+                    navbar: '.canvi-navbar',
+                    content: '.canvi-content',
+                    openButton: '.canvi-open-button',
+                }, options);
+
+                this.isOpen = false;
+                this.body = document.querySelector('body');
+                this.transitionEvent = this._whichTransitionEvent();
+                this.navbar = document.querySelector(this.options.navbar);
+                this.content = document.querySelector(this.options.content);
+                this.openButton = document.querySelector(this.options.openButton);
+
+                this.init();
+            }
+
+            init() {
+                if (this.options.isDebug) {
+                    console.log('%c %s', 'color: #e01a51; font-style: italic;', 'CANVI: Init is running...');
+                    this._objectLog();
+                }
+
+                this._buildMarkup();
+                this._initializeMainEvents();
+                this._triggerCanviEvent('canvi.init');
+
+                this.navbar.setAttribute('inert', '');
+                this.navbar.setAttribute('aria-hidden', 'true');
+            }
+
+            open() {
+                if (this.isOpen) {
+                    return;
+                }
+
+                if (this.options.isDebug) {
+                    console.log('%c %s', 'color: #e01a51; font-style: italic;', 'CANVI: Open is running...');
+                }
+
+                this._triggerCanviEvent('canvi.before-open');
+                this._buildOverlay();
+                this._setZindex();
+
+                this.content.classList.add('is-canvi-open');
+                this.body.classList.add('is-canvi-open');
+                this.navbar.classList.add('is-canvi-open');
+
+                this._responsiveWidth();
+
+                (this.options.pushContent ? this.content : this.navbar)
+                    .addEventListener(this.transitionEvent, event => this._transtionOpenEnd(event));
+
+                this.navbar.removeAttribute('inert');
+                this.navbar.removeAttribute('aria-hidden');
+
+                this.isOpen = true;
+            }
+
+            close() {
+                if (!this.isOpen) {
+                    return;
+                }
+
+                if (this.options.isDebug) {
+                    console.log('%c %s', 'color: #e01a51; font-style: italic;', 'CANVI: Close is running...');
+                }
+
+                this._triggerCanviEvent('canvi.before-close');
+
+                this.overlay.classList.add('canvi-animate-out');
+                this.content.style.transform = 'translateX(0)';
+                this.body.classList.remove('is-canvi-open');
+                this.navbar.classList.remove('is-canvi-open');
+
+                (this.options.pushContent ? this.content : this.navbar)
+                    .addEventListener(this.transitionEvent, event => this._transitionCloseEnd(event));
+
+                this.navbar.setAttribute('inert', '');
+                this.navbar.setAttribute('aria-hidden', 'true');
+
+                this.isOpen = false;
+            }
+
+            toggle() {
+                if (this.options.isDebug) {
+                    console.log('%c %s', 'color: #e01a51; font-style: italic;', 'CANVI: Toggle is running...');
+                }
+
+                this.isOpen ? this.close() : this.open();
+            }
+
+            _buildMarkup() {
+                if (this.options.isDebug) {
+                    console.log('%c %s', 'color: #ccc; font-style: italic;', 'CANVI: Build markup...');
+                }
+
+                if (this.options.position) {
+                    this.navbar.setAttribute('data-position', this.options.position);
+                    this.navbar.setAttribute('data-push-content', this.options.pushContent);
+                }
+
+                this.navbar.style.width = this.options.width;
+                this.body.classList.add('is-canvi-ready');
+            }
+
+            _responsiveWidth() {
+                if (this.navbar.classList.contains('is-canvi-open') && window.matchMedia('(min-width: 0px)').matches) {
+                    this.navbar.style.width = this.options.width;
+                    this._responsiveWidthHelper(this.options.width);
+                }
+
+                if (this.navbar.classList.contains('is-canvi-open') && Array.isArray(this.options.responsiveWidths) && this.options.responsiveWidths.length > -1) {
+                    this.options.responsiveWidths.forEach(element => {
+                        if (window.matchMedia(`(min-width: ${element.breakpoint})`).matches) {
+                            this.navbar.style.width = element.width;
+                            this._responsiveWidthHelper(element.width);
+                        }
+                    });
+                }
+            }
+
+            _responsiveWidthHelper(width) {
+                if (this.options.pushContent) {
+                    this.content.style.transform = this.options.position === 'left'
+                        ? `translateX(${width})`
+                        : `translateX(-${width})`;
+                }
+            }
+
+            _buildOverlay() {
+                if (this.options.isDebug) {
+                    console.log('%c %s', 'color: #32da94; font-style: italic;', 'CANVI: Build overlay...');
+                }
+
+                if (!this.content.querySelector('.canvi-overlay')) {
+                    console.log('create canvi overlay');
+                    this.overlay = document.createElement('div');
+                    this.overlay.className = 'canvi-overlay';
+                    this.content.appendChild(this.overlay);
+                }
+
+                this.overlay.addEventListener('click', () => this.close());
+
+                this._setTransitionSpeed();
+            }
+
+            _removeOverlay() {
+                if (this.options.isDebug) {
+                    console.log('%c %s', 'color: #32da94; font-style: italic;', 'CANVI: Remove overlay...');
+                }
+
+                if (this.overlay) {
+                    this.content.removeChild(this.overlay);
+                    this.overlay.removeEventListener('click', () => this.open());
+                }
+            }
+
+            _initializeMainEvents() {
+                if (this.options.isDebug) {
+                    console.log('%c %s', 'color: #ccc; font-style: italic;', 'CANVI: Init main events...');
+                    console.log('%c %s', 'color: #999; font-style: italic;', '---------');
+                }
+
+                this.body.addEventListener('keyup', e => {
+                    if (this.isOpen && e.keyCode == 27) {
+                        this.close();
+                    }
+                });
+
+                if (this.openButton) {
+                    this.openButton.addEventListener('click', () => this.open());
+                }
+
+                window.addEventListener('resize', () => this._responsiveWidth());
+            }
+
+            _transtionOpenEnd(event) {
+                if (!this.isOpen || event.propertyName !== 'transform') {
+                    return;
+                }
+
+                if (this.options.isDebug) {
+                    console.log('%c %s', 'color: #ff7600; font-style: italic;', 'CANVI: Open transition end...');
+                    console.log('%c %s', 'color: #999; font-style: italic;', '---------');
+                }
+
+                this._triggerCanviEvent('canvi.after-open');
+
+                (this.options.pushContent ? this.content : this.navbar)
+                    .removeEventListener(this.transitionEvent, event => this._transtionOpenEnd(event));
+            }
+
+            _transitionCloseEnd(event) {
+                if (this.isOpen || event.propertyName !== 'transform') {
+                    return;
+                }
+
+                if (this.options.isDebug) {
+                    console.log('%c %s', 'color: #ff7600; font-style: italic;', 'CANVI: Close transition end...');
+                }
+
+                this._triggerCanviEvent('canvi.after-close');
+                this._removeOverlay();
+                this._resetZindex();
+
+                (this.options.pushContent ? this.content : this.navbar)
+                    .removeEventListener(this.transitionEvent, event => this._transitionCloseEnd(event));
+
+                this.content.classList.remove('is-canvi-open');
+            }
+
+            _setTransitionSpeed() {
+                this.navbar.style.transitionDuration = this.options.speed;
+                this.content.style.transitionDuration = this.options.speed;
+                this.overlay.style.animationDuration = this.options.speed;
+            }
+
+            _setZindex() {
+                this.navbar.style.zIndex = this.options.pushContent ? 20 : 10;
+                this.content.style.zIndex = this.options.pushContent ? 40 : 5;
+            }
+
+            _resetZindex() {
+                this.navbar.style.zIndex = 1;
+                this.content.style.zIndex = 5;
+            }
+
+            _whichTransitionEvent() {
+                let el = document.createElement('fakeelement'),
+                    transitions = {
+                        'transition': 'transitionend',
+                        'OTransition': 'oTransitionEnd',
+                        'MozTransition': 'transitionend',
+                        'WebkitTransition': 'webkitTransitionEnd'
+                    };
+
+                for (let t in transitions) {
+                    if (el.style[t] !== undefined) {
+                        return transitions[t];
+                    }
+                }
+            }
+
+            _triggerCanviEvent(name) {
+                this.body.dispatchEvent(new CustomEvent(name, {
+                    details: {
+                        navbar: this.navbar,
+                        openButton: this.openButton,
+                        content: this.content
+                    }
+                }));
+            }
+
+            _objectLog() {
+                console.groupCollapsed('Canvi Object');
+                console.log('Open Button: ', this.openButton);
+                console.log('Navbar: ', this.navbar);
+                console.log('Content: ', this.content);
+                console.groupEnd();
+            }
+        }
+    </script>
+
+    <script>
+        var canviLeft = new Canvi({
+            content: ".js-canvi-content",
+            isDebug: !0,
+            navbar: ".js-canvi-navbar--left",
+            openButton: ".js-canvi-open-button--left",
+            position: "left",
+            pushContent: !1,
+            speed: "0.2s",
+            width: "100vw",
+            responsiveWidths: [{
+                breakpoint: "600px",
+                width: "280px"
+            }, {
+                breakpoint: "1280px",
+                width: "320px"
+            }, {
+                breakpoint: "1600px",
+                width: "400px"
+            }]
+        });
+
+        let canviRight = new Canvi({
+            content: ".js-canvi-content",
+            navbar: ".js-canvi-navbar--right",
+            openButton: ".js-canvi-open-button--right",
+            position: "right",
+            pushContent: !0,
+            width: "300px",
+            isDebug: !0
+        });
+
+        $(document).ready(() => {
+            $(".header__menu-button").on("click", function () {
+                canviRight.open();
+            })
+            $(".canvi-user-info__close").on("click", function () {
+                canviLeft.close();
+            })
+            $(".js-close-on-click-right-menu").on("click", function () {
+                setTimeout(function () {
+                    canviRight.close();
+                }, 1200);
+            })
+        });
+    </script>
+</body>
+
+</html>

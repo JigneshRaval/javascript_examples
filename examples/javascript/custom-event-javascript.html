@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Custom Event</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+
+    <style>
+        body {
+            background-color: #eeeeee;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <button id="save" class="btn btn-primary" onClick="save()">save</button>
+
+    </main>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+
+        });
+    </script>
+
+    <div class="example">
+        <div class="top">
+            <div class="middle">
+                <h1>
+                    Click me
+                </h1>
+                <h1>
+                    Or click me
+                </h1>
+            </div>
+        </div>
+    </div>
+    <style>
+        .top {
+            width: 100px;
+            background-color: purple;
+            padding: 10px;
+        }
+
+        .middle {
+            padding: 20px;
+            background-color: aliceblue;
+        }
+
+        h1 {
+            background-color: white;
+        }
+    </style>
+
+    <script type="text/javascript">
+        // https://stackoverflow.com/questions/14677019/emulate-jquery-on-with-selector-in-pure-javascript
+        var log = console.log.bind(console)
+
+        function onEvt(type, callback) {
+            if (document.attachEvent) {
+                document.attachEvent("on" + type, function (e) {
+                    callback(e.target);
+                });
+            } else {
+                document.addEventListener(type, function (e) {
+                    callback(e.target);
+                }, false);
+            }
+        }
+
+
+        /* onEvt('click', function (elem) { // click, mouseover etc...
+            // for class
+            if (elem.classList.contains('middle')) {
+                log('You clicked od the .middle element')
+            } else {
+                log('You might have clicked on the .middle element, but the click event was triggered on a child of .middle')
+            }
+        }); */
+    </script>
+    <div class="example">
+        <button id="customEvent">Dispatch event</button>
+    </div>
+    <script type="text/javascript">
+        var buttonElem = document.getElementById('customEvent');
+        var event = document.createEvent('Event');
+        event.initEvent('my-custom-event', true, true); //can bubble, and is cancellable
+        buttonElem.dispatchEvent(event);
+
+        // OR
+        var event = new CustomEvent('my-custom-event', { bubbles: true, cancelable: true });
+        buttonElem.dispatchEvent(event);
+    </script>
+
+    <div class="example">
+        <button class="not-blue">Dispatch event</button>
+    </div>
+    <script type="text/javascript">
+        var makeBlue = function (elem) {
+
+            elem.classList.add('blue');
+
+            // Create a new event
+            var event = new CustomEvent('madeBlue');
+
+            // Dispatch the event
+            elem.dispatchEvent(event);
+
+        };
+
+        var elem = document.querySelector('.not-blue');
+        // makeBlue(elem);
+
+        // Run function on `madeBlue` event
+        elem.addEventListener('madeBlue', function (elem) {
+            elem.classList.add('color-changed');
+        }, false);
+    </script>
+
+</body>
+
+</html>
