@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React Template</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../javascript/css/bootstrap.min.css" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+
+    <script src="../javascript/js/jquery.min.js"></script>
+    <script src="../javascript/js/bootstrap.bundle.min.js"></script>
+
+    <script id="require_method" type="text/javascript">
+        function require(module) {
+            if (module === "react") return React;
+            if (module === "react-dom") return ReactDOM;
+            if (module === "react-router-dom") return ReactRouterDOM;
+            if (module === "rxjs") return rxjs; // RxJS 5.x
+            if (module === "RxJs") return Rx;   // RxJS 6.x
+        }
+    </script>
+
+    <!-- Babel Standalone -->
+    <script src="../javascript/js/babel.min.js"></script>
+
+    <!-- React.js -->
+    <script src="../javascript/js/react.development.js" type="text/javascript"></script>
+    <script src="../javascript/js/react-dom.development.js" type="text/javascript"></script>
+    <script src="../javascript/js/react-router-dom.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4"><img src="../editor/images/react.svg" height="50" /> React.js Template</h1>
+            <p class="lead">Quickly build an React Example.</p>
+        </div>
+
+        <div id="root"></div>
+    </div>
+
+    <script type="text/babel">
+        import React, { useState } from 'react';
+
+        const App = () => {
+            const books = [
+                {
+                    id: 1,
+                    name: "In Search of Lost Time ",
+                    author: { name: "Marcel Proust", id: 1 }
+                },
+                { id: 2, name: "Ulysses", author: { name: "James Joyce", id: 2 } },
+                {
+                    id: 3,
+                    name: "Don Quixote",
+                    author: { name: "Miguel de Cervantes", id: 3 }
+                },
+                { id: 4, name: "Hamlet", author: { name: "William Shakespeare", id: 4 } },
+                {
+                    id: 5,
+                    name: "Romeo and Juliet",
+                    author: { name: "William Shakespeare", id: 4 }
+                },
+                { id: 6, name: "Dubliners", author: { name: "James Joyce", id: 2 } }
+            ];
+            const [selectedAuthorId, setSelectedAuthorId] = useState(null);
+
+            const authorOptions = new Map([
+                ...books.map(book => [book.author.id, book.author.name])
+            ]);
+
+            const filteredBooks = () => {
+                if (!selectedAuthorId) {
+                    return books;
+                }
+                return books.filter(book => String(book.author.id) === selectedAuthorId);
+            };
+
+            return (
+
+                <div className="books">
+                    <select
+                        className="books__select"
+                        onChange={({ target }) => setSelectedAuthorId(target.value)}
+                    >
+                        <option value=''>--Select author--</option>
+                        {[...authorOptions].map(([id, name]) => (
+                            <option key={id} value={id}>{name}</option>
+                        ))}
+                    </select>
+                    {console.log('authorOptions :', authorOptions)}
+                    <ul className="books__list">
+                        {filteredBooks().map(book => (
+                            <li key={book.id} className="books__item">
+                                {book.name} by {book.author.name}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>

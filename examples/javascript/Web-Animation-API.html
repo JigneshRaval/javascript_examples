@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Editor</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- START : Example -->
+        <section class="example">
+            <style>
+                #square,
+                #circle {
+                    width: 100px;
+                    height: 100px;
+                    margin: 10px 10px 30px;
+                    background-color: #2196F3;
+                }
+
+                #circle {
+                    border-radius: 50%;
+                }
+
+                .animate {
+                    animation-name: move-and-change-color;
+                    animation-duration: 0.4s;
+                    animation-fill-mode: forwards;
+                }
+
+                @keyframes move-and-change-color {
+                    0% {
+                        transform: translateX(0);
+                    }
+
+                    80% {
+                        transform: translateX(100px);
+                        background-color: #2196F3;
+                    }
+
+                    100% {
+                        transform: translateX(100px);
+                        background-color: #EF5350;
+                    }
+                }
+            </style>
+            <h4>Click on the shapes to animate them.</h4>
+
+            <p>CSS keyframes</p>
+            <div id="square"></div>
+
+            <p>JS Web Animation API</p>
+            <div id="circle"></div>
+            <script>
+                var square = document.getElementById('square');
+
+                square.addEventListener('click', function () {
+                    square.className += " animate";
+                });
+
+                var moveAndChangeColor = [
+                    {
+                        transform: 'translateX(0)',
+                        background: '#2196F3'    // blue
+                    },
+                    {
+                        offset: 0.8,
+                        transform: 'translateX(100px)',
+                        background: '#2196F3'    // blue
+                    },
+                    {
+                        transform: 'translateX(100px)',
+                        background: '#EF5350'    // red
+                    }
+                ];
+
+                var circle = document.getElementById('circle');
+
+                circle.addEventListener('click', function () {
+                    circle.animate(moveAndChangeColor, {
+                        duration: 400,
+                        fill: 'forwards'
+                    });
+                });
+            </script>
+        </section>
+        <!-- END : Example -->
+
+        <!-- START : Example -->
+        <section class="example">
+            <style>
+                #spinner {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    border: 3px solid #e2e2e2;
+                    border-top-color: #186aab;
+                    margin: 50px;
+                }
+            </style>
+
+            <div id="spinner"></div>
+
+            <p>Try controlling the animation:</p>
+            <button id="pause" class="btn btn-primary">Pause</button>
+            <button id="play" class="btn btn-primary">Play</button>
+            <button id="reverse" class="btn btn-primary">Reverse</button>
+            <button id="cancel" class="btn btn-primary">Cancel</button>
+
+            <script>
+                var spinner = document.getElementById('spinner');
+                var spinnerAnimation = spinner.animate([
+                    {
+                        transform: 'rotate(0)'
+                    },
+                    {
+                        transform: 'rotate(359deg)'
+                    }
+                ], {
+                    duration: 1000,
+                    iterations: Infinity
+                });
+
+                document.getElementById('pause').addEventListener('click', function () {
+                    spinnerAnimation.pause();
+                });
+                document.getElementById('play').addEventListener('click', function () {
+                    spinnerAnimation.play();
+                });
+                document.getElementById('reverse').addEventListener('click', function () {
+                    spinnerAnimation.reverse();
+                });
+                document.getElementById('cancel').addEventListener('click', function () {
+                    spinnerAnimation.cancel();
+                });
+            </script>
+        </section>
+        <!-- END : Example -->
+
+        <!-- START : Example -->
+        <section class="example">
+            <style>
+                #spinner2 {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    border: 3px solid #e2e2e2;
+                    border-top-color: #186aab;
+                    margin: 50px;
+                }
+            </style>
+
+            <div id="spinner2"></div>
+
+            <p>Set Playback Speed:</p>
+            <button id="half" class="btn btn-primary">0.5</button>
+            <button id="normal" class="btn btn-primary">Normal</button>
+            <button id="double" class="btn btn-primary">2</button>
+            <button id="triple" class="btn btn-primary">3</button>
+
+            <script>
+                var spinner2 = document.getElementById('spinner2');
+                var spinnerAnimation = spinner2.animate([
+                    {
+                        transform: 'rotate(0)'
+                    },
+                    {
+                        transform: 'rotate(359deg)'
+                    }
+                ], {
+                    duration: 1000,
+                    iterations: Infinity
+                });
+
+                document.getElementById('half').addEventListener('click', function () {
+                    spinnerAnimation.playbackRate = 0.5;
+                });
+                document.getElementById('normal').addEventListener('click', function () {
+                    spinnerAnimation.playbackRate = 1;
+                });
+                document.getElementById('double').addEventListener('click', function () {
+                    spinnerAnimation.playbackRate = 2;
+                });
+                document.getElementById('triple').addEventListener('click', function () {
+                    spinnerAnimation.playbackRate = 3;
+                });
+            </script>
+        </section>
+        <!-- END : Example -->
+
+    </div>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+
+        });
+    </script>
+</body>
+
+</html>

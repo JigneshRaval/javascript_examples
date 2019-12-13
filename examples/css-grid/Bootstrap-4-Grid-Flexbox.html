@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Bootstrap 4 Grid Demos</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+</head>
+
+<body>
+    <section>
+
+        <!-- START : Example -->
+        <article class="example">
+            <h2>Simple Grid</h2>
+
+            <div class="container">
+
+                <div class="card card-block">
+                    <p class="card-text">In Bootstrap 4, the lowest breakpoint class is simply <b>.col-*</b>.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">.col-4</div>
+                    <div class="col-4">.col-4</div>
+                    <div class="col-4">.col-4</div>
+                </div>
+                <div class="row">
+                    <div class="col-12">.col-12</div>
+                </div>
+                <div class="row">
+                    <div class="col-6">.col-6</div>
+                    <div class="col-6">.col-6</div>
+                </div>
+                <div class="row">
+                    <div class="col-8">.col-8</div>
+                    <div class="col-2">.col-2</div>
+                    <div class="col-2">.col-2</div>
+                </div>
+
+            </div>
+        </article>
+        <!-- END : Example -->
+
+        <!-- START : Example -->
+        <article class="example">
+            <h2>Automatic Layout</h2>
+
+            <div class="container">
+
+                <div class="card card-block">
+                    <p class="card-text">Thanks to flexbox the Bootstrap 4 grid has the option of auto layout - columns
+                        share equally the available space in a row unless a specific size is assigned.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col">.col <br> 1 of 3 (33%)</div>
+                    <div class="col">.col <br> 1 of 3 (33%)</div>
+                    <div class="col">.col <br> 1 of 3 (33%)</div>
+                </div>
+                <div class="row">
+                    <div class="col">.col <br> 1 of 1 (100%)</div>
+                </div>
+                <div class="row">
+                    <div class="col">.col <br> 1 of 2 (50%)</div>
+                    <div class="col">.col <br> 1 of 2 (50%)</div>
+                </div>
+                <div class="row">
+                    <div class="col-8">.col-8 <br> Fixed 8 of 12 (66%), the other columns in the row will split the
+                        remaining 4 (33%) </div>
+                    <div class="col">.col</div>
+                    <div class="col">.col</div>
+                </div>
+
+            </div>
+        </article>
+        <!-- END : Example -->
+
+        <!-- START : Example -->
+        <article class="example">
+            <h2>Column Wrapping</h2>
+
+            <div class="container">
+
+                <div class="card card-block">
+                    <p class="card-text">A size-free flex column can take up anywhere between 1 and 12 spaces depending
+                        on the context. Keep that in mind.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">col-3</div>
+                    <div class="col-3">col-3</div>
+                    <div class="col">col <br> In this scenraio .col equals .col-6</div>
+                </div>
+                <div class="row">
+                    <div class="col-6">col-6</div>
+                    <div class="col-6">col-6</div>
+                    <div class="col">col <br> Here the column wraps and the same .col class equals .col-12</div>
+                </div>
+
+            </div>
+        </article>
+        <!-- END : Example -->
+
+        <!-- START : Example -->
+        <article class="example">
+            <h2>Responsive Grid</h2>
+
+            <div class="container">
+
+                <div class="card card-block">
+                    <p class="card-text">Responsiveness works the same way as in Bootstrap 3. The only difference is in
+                        the breakpoints and the additon of the <b>XL</b> tier.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 col-sm">col-6 <br> col-sm</div>
+                    <div class="col-6 col-sm">col-6 <br> col-sm</div>
+                    <div class="col-6 col-sm">col-6 <br> col-sm</div>
+                    <div class="col-6 col-sm">col-6 <br> col-sm</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">col-sm</div>
+                    <div class="col-sm">col-sm</div>
+                    <div class="col-sm">col-sm</div>
+                </div>
+
+            </div>
+        </article>
+        <!-- END : Example -->
+
+        <!-- START : Example -->
+        <article class="example">
+            <h2>Column Height</h2>
+
+            <div class="container">
+
+                <div class="card card-block">
+                    <p class="card-text">Due ot flexbox's nature, columns in Bootstrap 4 are always the same height -
+                        that of the column with most content.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">col-4 <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                        eiusmod tempor incididunt</div>
+                    <div class="col-4">col-4 <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</div>
+                    <div class="col-4">col-4 <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                </div>
+
+            </div>
+        </article>
+        <!-- END : Example -->
+
+        <!-- START : Example -->
+        <article class="example">
+            <h2>Horizontal Alignment</h2>
+
+            <div class="container">
+
+                <div class="card card-block">
+                    <p class="card-text">Flexbox is great for aligning things. By adding one of the classes below to any
+                        <b>row</b> we can define the position of columns inside it. Regular offsets work as well.</p>
+                </div>
+
+                <div class="row justify-content-start">
+                    <div class="col-6 ">justify-content-start</div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-6">justify-content-center</div>
+                </div>
+                <div class="row justify-content-end">
+                    <div class="col-6">justify-content-end</div>
+                </div>
+                <div class="row justify-content-around">
+                    <div class="col-4">justify-content-around</div>
+                    <div class="col-4">justify-content-around</div>
+                </div>
+                <div class="row justify-content-between">
+                    <div class="col-4">justify-content-between</div>
+                    <div class="col-4">justify-content-between</div>
+                </div>
+                <div class="row justify-content-end justify-content-sm-start">
+                    <div class="col-8">Responsive alignment: <br> justify-content-end <br> justify-content-sm-start
+                    </div>
+                </div>
+
+            </div>
+        </article>
+        <!-- END : Example -->
+
+        <!-- START : Example -->
+        <article class="example">
+            <h2>Vertical Alignment</h2>
+
+            <div class="container">
+
+                <div class="card card-block">
+                    <p class="card-text">We can adjust where flex columns are positioned top-to-bottom by adding classes
+                        to rows or columns.</p>
+                </div>
+
+                <div class="row align-items-center">
+                    <div class="col">Row: align-items-center</div>
+                </div>
+                <div class="row align-items-end">
+                    <div class="col">Row: align-items-end</div>
+                </div>
+                <div class="row align-items-start">
+                    <div class="col">Row: align-items-start</div>
+                </div>
+                <div class="row">
+                    <div class="col align-self-start">align-self-start</div>
+                    <div class="col align-self-center">align-self-center</div>
+                    <div class="col align-self-end">align-self-end</div>
+                </div>
+            </div>
+        </article>
+        <!-- END : Example -->
+
+        <!-- START : Example -->
+        <article class="example">
+            <h2>Reordering Columns</h2>
+
+            <div class="container">
+
+                <div class="card card-block">
+                    <p class="card-text">With Bootstrap 4 reordering elements is pretty straightforward. There are no
+                        pushes and pulls involved and the markup is very easy to read.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col flex-last">1st in markup <br> Last in layout <br> flex-last </div>
+                    <div class="col flex-first">2nd in markup <br> First in layout <br> flex-first </div>
+                    <div class="col flex-unordered">3rd in markup <br> Unordered in layout <br> flex-unordered </div>
+                </div>
+
+            </div>
+
+        </article>
+        <!-- END : Example -->
+
+    </section>
+</body>
+
+</html>
