@@ -28,6 +28,23 @@ const REQUIRE_METHOD = `
 
 const BABEL = `
 <script src="./js/babel/babel.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/plugin-proposal-decorators@7.7.4/lib/index.min.js" type="text/javascript"></script>
+<script src="https://unpkg.com/@babel/plugin-proposal-decorators@7.7.4/lib/index.js" type="text/javascript"></script>
+<script>
+// https://jsfiddle.net/0n8w6zh9/
+Babel.registerPreset("my-preset", {
+    presets: [
+        [Babel.availablePresets["es2015"], { "modules": false }]
+    ],
+    plugins: [
+        [
+            Babel.availablePlugins["transform-modules-amd"],
+            Babel.availablePlugins["babel-preset-env"]
+        ]
+    ],
+    moduleId: "main"
+});
+</script>
 `;
 
 // CDN path : https://unpkg.com/@babel/preset-env-standalone@7.7.3/babel-preset-env.min.js

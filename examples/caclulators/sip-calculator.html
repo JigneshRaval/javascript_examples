@@ -1,0 +1,268 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Stock Average Price Calculator</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+
+    <!-- ===========================================
+        CSS
+    ============================================ -->
+    <link rel="stylesheet" href="../javascript/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/tax-calculator.css" />
+    <style>
+        #frmMain {
+            margin: 1em auto;
+        }
+
+        .stock-output {
+            border: 1px solid #b3b3b3;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 0.3em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <section class="sip-calculator">
+
+            <div class="calculator-box order-2 sipCalculator">
+                <div class="calculator-inner-wrap animated3">
+                    <h1 class="calculator-box-title">SIP Calculator</h1>
+                    <div class="calculator-form">
+                        <div class="from-elem-wrapper mb25">
+                            <div class="form-group-elem">
+                                <label class="radio-btn type2">
+                                    <input type="radio" class="radio-btn-input circle" name="Purpose" id="wantInvest"
+                                        value="investment-details" checked=""><span></span>I want to invest
+                                </label>
+                                <label class="radio-btn type2">
+                                    <input type="radio" class="radio-btn-input circle" name="Purpose" id="myGoal"
+                                        value="goal-details"><span></span> I know my Goal
+                                </label>
+                            </div>
+                        </div>
+                        <div class="description-sec">
+                            <div class="investment-details showContent">
+                                <form>
+                                    <div class="from-elem-wrapper">
+                                        <div class="form-group-elem">
+                                            <div class="label-content">
+                                                <label class="label-name">I want to invest</label>
+                                                <span class="badge autowidth"><span class="rupee">₹</span><input
+                                                        type="tel" value="25,000" class="mainvalue semibold input-elmn"
+                                                        id="sipAmount" data-min="1000" data-max="50000"
+                                                        data-text-prev="Amount" data-text-last=""><span
+                                                        class="error-text commen-error"
+                                                        style="visibility: hidden;"></span></span>
+
+                                            </div>
+                                            <div class="rangebox">
+                                                <span class="range-lable"></span>
+                                                <input class="slider-rating" type="range" min="1000" max="50000"
+                                                    value="25000" data-text="₹">
+                                            </div>
+                                            <div class="limitbar">
+                                                <span class="min">1000</span>
+                                                <span class="max">50k</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="from-elem-wrapper">
+                                        <div class="form-group-elem">
+                                            <div class="label-content">
+                                                <label class="label-name">per month for</label>
+                                                <span class="badge"><input type="tel" value="15"
+                                                        class="mainvalue semibold input-elmn" id="sipMonth" data-min="1"
+                                                        data-max="30" data-text-prev="Years" data-text-last="">
+                                                    years<span class="error-text commen-error"
+                                                        style="visibility: hidden;"></span></span>
+                                            </div>
+                                            <div class="rangebox">
+                                                <span class="range-lable"></span>
+                                                <input type="range" min="1" max="30" value="15" data-text=" years">
+                                            </div>
+                                            <div class="limitbar">
+                                                <span class="min">1 Yrs</span>
+                                                <span class="max">30 Yrs</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="from-elem-wrapper">
+                                        <div class="form-group-elem">
+                                            <div class="label-content">
+                                                <label class="label-name">at an expected return of </label>
+                                                <span class="badge"><input type="tel" value="12"
+                                                        class="mainvalue semibold input-elmn" id="sipInterest"
+                                                        data-min="5" data-max="20" data-text-prev="Rate of Interest"
+                                                        data-text-last="%"><span class="error-text commen-error"
+                                                        style="visibility: hidden;"></span> <small>%</small></span>
+                                            </div>
+                                            <div class="rangebox">
+                                                <span class="range-lable"></span>
+                                                <input type="range" min="5" max="20" value="12" data-text="%">
+                                            </div>
+                                            <div class="limitbar">
+                                                <span class="min">5%</span>
+                                                <span class="max">20%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calc-btn-box">
+                                        <button type="button" class="bold commen-btn">Calculate Now</button>
+                                        <!-- <i class="arrow"></i> -->
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="goal-details">
+                                <form>
+                                    <div class="from-elem-wrapper">
+                                        <div class="form-group-elem">
+                                            <div class="label-content">
+                                                <label class="label-name">I want to save</label>
+                                                <span class="badge autowidth"><span class="rupee">₹</span><input
+                                                        type="tel" value="2,50,00,000"
+                                                        class="mainvalue semibold input-elmn" id="targetAmount"
+                                                        data-min="500000" data-max="50000000" data-text-prev="Amount"
+                                                        data-text-last=""><span
+                                                        class="error-text commen-error"></span></span>
+                                            </div>
+                                            <div class="rangebox">
+                                                <span class="range-lable"></span>
+                                                <input type="range" min="500000" max="50000000" value="25000000"
+                                                    data-text="₹">
+                                            </div>
+                                            <div class="limitbar">
+                                                <span class="min">5L</span>
+                                                <span class="max">5Cr</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="from-elem-wrapper">
+                                        <div class="form-group-elem">
+                                            <div class="label-content">
+                                                <label class="label-name">in</label>
+                                                <span class="badge"><input type="tel" value="15"
+                                                        class="mainvalue semibold input-elmn" id="tenure" data-min="1"
+                                                        data-max="30" data-text-prev="Years" data-text-last="">
+                                                    years<span class="error-text commen-error"></span></span>
+                                            </div>
+                                            <div class="rangebox">
+                                                <span class="range-lable"></span>
+                                                <input type="range" min="1" max="30" value="15" data-text=" years">
+                                            </div>
+                                            <div class="limitbar">
+                                                <span class="min">1 Yrs</span>
+                                                <span class="max">30 Yrs</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="from-elem-wrapper">
+                                        <div class="form-group-elem">
+                                            <div class="label-content">
+                                                <label class="label-name">at an expected return of </label>
+                                                <span class="badge"><input type="tel" value="12"
+                                                        class="mainvalue semibold input-elmn" id="roi" data-min="5"
+                                                        data-max="20" data-text-prev="Rate of Interest"
+                                                        data-text-last="%"> %<span
+                                                        class="error-text commen-error"></span></span>
+                                            </div>
+                                            <div class="rangebox">
+                                                <span class="range-lable"></span>
+                                                <input type="range" min="5" max="20" value="12" data-text="%">
+                                            </div>
+                                            <div class="limitbar">
+                                                <span class="min">5%</span>
+                                                <span class="max">20%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calc-btn-box">
+                                        <button type="button" class="bold commen-btn">Calculate Now</button>
+                                        <!-- <i class="arrow"></i> -->
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="calculate-result-screen investResult animated3">
+                    <div class="result-values">
+                        <div class="single-result big">
+                            <label>Monthly Installment</label>
+                            <span class="result">₹<span class="mainvalue semibold" id="sipInvestAmmount"></span></span>
+                        </div>
+                        <div class="single-result">
+                            <label>Period</label>
+                            <span class="result"><span class="mainvalue semibold" id="sipInvestYear"></span></span>
+                        </div>
+                        <div class="single-result">
+                            <label>Retun</label>
+                            <span class="result"><span class="mainvalue semibold" id="sipInvestRoi"></span></span>
+                        </div>
+                    </div>
+                    <div class="result-description">
+                        <p class="smallfont"> At the end of the investment period, you will receive </p>
+                        <span class="amount small">₹ <span class="semibold" id="ammountRecived"></span>
+                            <div class="two-column">
+                                <div class="sub-details">
+                                    <p>Total wealth gain</p>
+                                    <span class="amt">₹ <span class="semibold" id="totalWealthGain"></span></span>
+                                </div>
+                                <div class="sub-details">
+                                    <p>Against the invested amount of</p>
+                                    <span class="amt">₹<span class="semibold" id="totalInvestAmount"></span></span>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="calc-btn-box cta-bar">
+                        <input type="reset" value="Recalulate">
+                        <a href="/mutual-funds/featured/best-sip-funds/18" target="_blank"
+                            class="bold explore-btn">Explore Best SIP plans</a>
+                    </div>
+                </div>
+                <div class="calculate-result-screen goalResult animated3">
+                    <div class="result-values">
+                        <div class="single-result big">
+                            <label>Your Goal</label>
+                            <span class="result">₹<span class="mainvalue semibold" id="goalInvestAmmount"></span></span>
+                        </div>
+                        <div class="single-result">
+                            <label>Period</label>
+                            <span class="result"><span class="mainvalue semibold" id="goalInvestYear"></span></span>
+                        </div>
+                        <div class="single-result">
+                            <label>Retun</label>
+                            <span class="result"><span class="mainvalue semibold" id="goalInvestRoi"></span></span>
+                        </div>
+                    </div>
+                    <div class="result-description">
+                        <p> To meet this goal, you should start a monthly SIP of </p>
+                        <span class="amount">₹ <span class="semibold" id="toInvestMontlySip"></span></span>
+                    </div>
+                    <div class="calc-btn-box cta-bar">
+                        <input type="reset" value="Recalulate">
+                        <a href="/mutual-funds/featured/best-sip-funds/18" target="_blank"
+                            class="bold explore-btn">Explore Best SIP plans</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="../javascript/js/jquery.min.js"></script>
+    <script src="js/sip-calculator.js"></script>
+</body>
+
+</html>

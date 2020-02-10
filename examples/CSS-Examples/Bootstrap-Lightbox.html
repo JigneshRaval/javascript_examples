@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bootstrap Modal</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            text-align: left;
+            background-color: #fff;
+        }
+
+        .modal-open .modal {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1050;
+            display: none;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            outline: 0;
+            z-index: 1072;
+        }
+
+        .modal-dialog {
+            max-width: 500px;
+            margin: 1.75rem auto;
+        }
+
+        .modal-content {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            width: 100%;
+            pointer-events: auto;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, .2);
+            border-radius: .3rem;
+            outline: 0;
+        }
+
+        /* .modal-dialog-scrollable {
+            display: flex; // IE10/11
+            max-height: calc(100% - 3.5rem);
+
+            .ui-dialog {
+                max-height: calc(100vh - #{$modal-dialog-margin * 2}); // IE10/11
+                overflow: hidden;
+            }
+
+            .ui-widget-content {
+                overflow-y: auto;
+            }
+        } */
+
+        .modal-dialog-scrollable {
+            max-height: calc(100% - 3.5rem);
+        }
+
+        .modal-dialog-scrollable .modal-content {
+            max-height: calc(100vh - 3.5rem);
+            overflow: hidden;
+        }
+
+        .modal-dialog-scrollable .modal-body {
+            overflow-y: auto;
+        }
+
+        /* CENTER */
+        .modal-dialog-centered {
+            min-height: calc(100% - 3.5rem);
+            display: flex;
+            align-items: center;
+        }
+
+        .modal-dialog-scrollable.modal-dialog-centered {
+            height: 100%;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .modal-body {
+            position: relative;
+            /* -ms-flex: 1 1 auto;
+            flex: 1 1 auto; */
+            padding: 1rem;
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1040;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            z-index: 1071;
+            opacity: .5;
+        }
+
+
+
+        /*.modal-dialog-centered {
+            min-height: calc(100% - 3.5rem);
+            max-height: calc(100% - 3.5rem);
+            display: flex;
+            align-items: center;
+            width: 50%;
+            margin: auto;
+        }*/
+    </style>
+</head>
+
+<body>
+    <div id="exampleModalScrollable" class="modal fade show" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalScrollableTitle" aria-modal="true" style="padding-right: 17px; display: block;">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>To do this with an iframe with source content on the same domain, you can do this. Same-domain
+                        iframes aren't subject to the same restrictions so it's far easier.</p>
+
+                    <p>Adam Fortuna explored some options using kind of a man-in-the-middle idea. This may have been
+                        inspired by a technique by John McKerrell.</p>
+
+                    <p>The following technique doesn't require the middle man thing though, which is why it's closer to
+                        ideal.</p>
+                    <p>The work-around is using hash tags in the URL to relay information back and forth. This
+                        circumvents the security restrictions. It is unlikely that this will ever break, so it's not
+                        really a "hack". You can't really do anything malicious with just a hash tag. In our case we're
+                        just reading in that information and using it to do the resizing.</p>
+                    <p>I think the reason I'm so obsessed with this because Wufoo forms seem to handle this so
+                        perfectly. Wufoo forms used to only be embeddable with iframes. I always had to set the height
+                        of them literally almost 50% taller than the content itself to accommodate for the innards
+                        growing when the form was submitted with errors (the error messaging expanded the height). If I
+                        didn't, the submit button would get cut off making the form un-submittable.</p>
+                    <p>Wufoo now has a JavaScript embed option, but ultimately the form still comes in via iframe.
+                        However they do it, the iframe can magically resize itself as needed. I have no idea how it's
+                        done, but I imagine it something somewhat similar to what we are doing here. Because Wufoo has
+                        access to both the host page and the source page. My best guess is that the JavaScript on the
+                        host page can send requests back to the source page which can somehow accurately tell the host
+                        page what height it should be.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-backdrop fade show"></div>
+</body>
+
+</html>

@@ -1,0 +1,667 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Stock Average Price Calculator</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+
+    <!-- ===========================================
+        CSS
+    ============================================ -->
+    <link rel="stylesheet" href="../javascript/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/tax-calculator.css" />
+    <style>
+        #frmMain {
+            margin: 1em auto;
+        }
+
+        .stock-output {
+            border: 1px solid #b3b3b3;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 0.3em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+        <div class="calculator-box order-2">
+            <div class="step-1 calculator-inner-wrap animated3" data-step="step-1">
+                <h2>Calculate income tax on your earnings in a few simple steps</h2>
+                <div class="calculator-form">
+                    <h4>Enter Basic Details</h4>
+                    <div class="from-elem-wrapper mb25">
+                        <div class="form-group-elem">
+                            <label class="commen-label">Age</label>
+                            <div>
+                                <!-- <select id="user_age">
+                        <option value="1">18-59</option>
+                        <option value="2">60-79</option>
+                        <option value="3">80 & above</option>
+                      </select> -->
+                                <div class="dropdown-wrap">
+                                    <input type="text" class="input-elmn-age placeholder commen-input-age"
+                                        data-value="1" value="18-59" readonly="" id="user_age">
+                                    <ul class="dropdown-elem-age" id="age_list" style="display: none;">
+                                        <li class="item item-1">18-59</li>
+                                        <li class="item item-2">60-79</li>
+                                        <li class="item item-3">80 &amp; above</li>
+                                    </ul>
+                                    <span class="dropdown-arrow"></span>
+                                </div>
+                            </div>
+                            <span class="error-text" style="visibility: hidden;"></span>
+                        </div>
+                    </div>
+                    <div class="from-elem-wrapper mb25">
+                        <div class="form-group-elem">
+                            <label class="commen-label">Residence city type</label>
+                            <div>
+                                <label class="radio-btn type2 mrgn19">
+                                    <input type="radio" class="radio-btn-input circle" checked="" name="city_type"
+                                        value="1" id="metro">
+                                    <span></span>
+                                    Metro
+                                </label>
+                                <label class="radio-btn type2">
+                                    <input type="radio" class="radio-btn-input circle" name="city_type" value="2"
+                                        id="nonMetro">
+                                    <span></span>
+                                    Non Metro
+                                </label>
+                            </div>
+                            <span class="error-text" style="visibility: hidden;"></span>
+                        </div>
+                    </div>
+                    <div class="from-elem-wrapper mb25">
+                        <div class="form-group-elem">
+                            <label class="commen-label">Residence type</label>
+                            <div>
+                                <label class="radio-btn type2 mrgn19">
+                                    <input type="radio" class="radio-btn-input circle" name="residence_type" value="1"
+                                        id="self">
+                                    <span></span>
+                                    Self Owned
+                                </label>
+                                <label class="radio-btn type2">
+                                    <input type="radio" class="radio-btn-input circle" checked="" name="residence_type"
+                                        value="2" id="rented">
+                                    <span></span>
+                                    Rented
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="from-elem-wrapper" id="annualRentBox">
+                        <div class="form-group-elem">
+                            <input type="tel" class="input-elmn placeholder commen-input"
+                                placeholder="Total Rent Paid during financial year" id="annualRent">
+                            <span class="error-text commen-error" style="visibility: hidden;"></span>
+                            <label class="floating-label">Total Rent Paid during financial year*</label>
+                            <div class="notes-wrap">
+                                <p class="notes">Enter total rent paid in the financial year you are calculating income
+                                    tax for. This is equal to the sum of monthly rent paid during the entire financial
+                                    year.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="from-elem-wrapper mb25">
+                        <div class="form-group-elem">
+                            <label class="commen-label">Occupation</label>
+                            <div>
+                                <label class="radio-btn type2 mrgn19">
+                                    <input type="radio" class="radio-btn-input circle" checked="" name="occupation"
+                                        value="1" id="salaried">
+                                    <span></span>
+                                    Salaried
+                                </label>
+                                <label class="radio-btn type2">
+                                    <input type="radio" class="radio-btn-input circle" name="occupation" value="2"
+                                        id="selfEmployed">
+                                    <span></span>
+                                    Self Employed
+                                </label>
+                            </div>
+                            <span class="error-text" style="visibility: hidden;"></span>
+                        </div>
+                    </div>
+                    <div class="calc-btn-box rquired">
+                        <p class="required-notes align-right">*Required</p>
+                        <button type="submit" class="bold commen-btn" id="inCometaxcalcBtn">Continue</button>
+                        <i class="arrow"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculator-inner-wrap animated3 type2" id="taxForm">
+                <div class="tab-list-wrap">
+                    <ul class="tab-list occupation-1">
+                        <li class="active-list" id="step-1" form-step="1">1 <span>Basic Details</span></li>
+                        <li id="step-2" form-step="2" class="active active-list">2 <span>Salary Details</span></li>
+                        <li id="step-3" form-step="3" class="">3 <span>Other Income Details</span></li>
+                        <li id="step-4" form-step="4" class="">4 <span>Capital gains</span></li>
+                        <li id="step-5" form-step="5" class="">5 <span>Deductions</span></li>
+                        <li id="step-6" form-step="6" class="">Result</li>
+                    </ul>
+                    <ul class="tab-list occupation-2 display-none">
+                        <li class="active-list" id="step-1" form-step="1">1 <span>Basic Details</span></li>
+                        <li id="step-2" form-step="3">2 <span>Income Detail</span></li>
+                        <li id="step-3" form-step="4">3 <span>Capital gains</span></li>
+                        <li id="step-4" form-step="5">4 <span>Deductions</span></li>
+                        <li id="step-5" form-step="6">Result</li>
+                    </ul>
+                </div>
+                <div class="step-2 step-inner-box animated3 show-section fadeInRight" data-step="step-2">
+                    <div class="d-flex-desktop mbl">
+                        <h4>Salary Details </h4>
+                        <div class="form-group-elem-radio">
+                            <div>
+                                <label class="radio-btn type2 mrgn19">
+                                    <input type="radio" class="radio-btn-input circle" checked="" name="salary_type"
+                                        value="1" id="salaried">
+                                    <span></span>
+                                    Monthly
+                                </label>
+                                <label class="radio-btn type2">
+                                    <input type="radio" class="radio-btn-input circle" name="salary_type" value="2"
+                                        id="selfEmployed">
+                                    <span></span>
+                                    Annually
+                                </label>
+                            </div>
+                            <span class="error-text" style="visibility: hidden;"></span>
+                        </div>
+                    </div>
+                    <div class="calculator-form">
+                        <div class="from-elem-wrapper">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder commen-input"
+                                    oninput="updateGrossSalary()" placeholder="Basic salary" id="basicSalary">
+                                <span class="error-text commen-error" style="visibility: hidden;"></span>
+                                <label class="floating-label" id="basic">Monthly Basic salary*</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Enter values as mentioned in your monthly salary slips. Annual
+                                        values can be either found on offer letter or salary incremenet letter.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="from-elem-wrapper">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder commen-input"
+                                    oninput="updateGrossSalary()" placeholder="HRA received" id="hraReceived">
+                                <span class="error-text commen-error" style="visibility: hidden;"></span>
+                                <label class="floating-label" id="hra">Monthly HRA received*</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Enter values as mentioned in your monthly salary slips. Annual
+                                        values can be either found on offer letter or salary incremenet letter.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="from-elem-wrapper">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder" oninput="updateGrossSalary()"
+                                    placeholder="Dearness Allowance" id="dearnessAllowance">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label" id="dearness">Monthly Dearness allowance</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Enter values as mentioned in your monthly salary slips. Annual
+                                        values can be either found on offer letter or salary incremenet letter.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="from-elem-wrapper">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder" oninput="updateGrossSalary()"
+                                    placeholder="Special Allowance" id="specialAllowance">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label" id="special">Monthly Special allowance</label>
+                                <div class="notes-wrap">
+                                    <p class="notes"> Enter values as mentioned in your monthly salary slips. Annual
+                                        values can be either found on offer letter or salary incremenet letter.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="from-elem-wrapper">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder" oninput="updateGrossSalary()"
+                                    placeholder="Employee EPF Contribution" id="employeeEpfContribution">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label" id="epf">Monthly Employee EPF Contribution by self</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Enter values as mentioned in your monthly salary slips. Annual
+                                        values can be either found on offer letter or salary incremenet letter.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="from-elem-wrapper gross-salary-parent">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder commen-input" readonly=""
+                                    placeholder="Gross salary" id="grossSalary">
+                                <span class="error-text commen-error" style="visibility: hidden;"></span>
+                                <label class="floating-label" id="changeSalaryType">Monthly Gross salary*</label>
+                                <div class="notes-wrap">
+                                    <p class="notes"> Update your annual gross salary, as mentioned in your salary slip.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calc-btn-box rquired">
+                            <p class="required-notes align-right">*Required</p>
+                            <button type="submit" class="bold commen-btn" id="calcBtnStep1">Continue</button>
+                            <i class="arrow"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-3 step-inner-box animated3" data-step="step-3">
+                    <h4>Details of Other Income</h4>
+
+                    <div class="calculator-form">
+                        <div class="from-elem-wrapper">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder"
+                                    placeholder="Income from Interest on savings" id="incomeOnInterestSaving">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label">Annual Income from Interest on savings</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Annual Income from interest from bank deposits &amp; savings.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="from-elem-wrapper">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder" placeholder="Interest from Deposits"
+                                    id="interestFromDeposit">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label">Annual Interest from Deposits</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Amount of Interest income from Fixed / Recurring Deposit.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="from-elem-wrapper">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder" placeholder="Income from rentals"
+                                    id="incomFromRental">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label">Annual Income from rentals</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Income, if any, from a rented property.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="from-elem-wrapper">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder" placeholder="Income from other source"
+                                    id="otherIncome">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label">Annual Income from other source</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Income from any other source not covered above.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calc-btn-box">
+                            <button type="submit" class="bold commen-btn" id="calcBtnStep2">Continue</button>
+                            <i class="arrow"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-4 step-inner-box animated3" data-step="step-4">
+                    <h4>Details of Captial gains</h4>
+                    <div class="calculator-form">
+                        <div class="from-elem-wrapper">
+                            <label class="commen-label mb20">Equity Instruments</label>
+                            <div class="d-flex-desktop">
+                                <div class="form-group-elem">
+                                    <input type="tel" class="input-elmn placeholder" placeholder="Short term"
+                                        id="shortEquityGain">
+                                    <span class="error-text" style="visibility: hidden;"></span>
+                                    <label class="floating-label">Short term <span>( &lt; 1 year )</span></label>
+                                    <div class="notes-wrap">
+                                        <p class="notes">Capital gains arising from short term investments in Equity.
+                                            Holding period for short term captial gains in equity is less than 1 year.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group-elem">
+                                    <input type="tel" class="input-elmn placeholder" placeholder="Long term"
+                                        id="longEquityGain">
+                                    <span class="error-text" style="visibility: hidden;"></span>
+                                    <label class="floating-label">Long term <span>( &gt;= 1 year
+                                            )<span></span></span></label>
+                                    <div class="notes-wrap">
+                                        <p class="notes">Capital gains arising from long term investments in Equity.
+                                            Holding period for long term captial gains in equity is more than or equal
+                                            to 1 year.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="from-elem-wrapper">
+                            <label class="commen-label mb20">Debt Investments</label>
+                            <div class="d-flex-desktop">
+                                <div class="form-group-elem">
+                                    <input type="tel" class="input-elmn placeholder" placeholder="Short term"
+                                        id="shortDebtGain">
+                                    <span class="error-text" style="visibility: hidden;"></span>
+                                    <label class="floating-label">Short term <span>( &lt; 3 year )</span></label>
+                                    <div class="notes-wrap">
+                                        <p class="notes">Capital gains arising from short term investments in Debt
+                                            instruments. Holding period for Short Term Captial gains in Debt Instruments
+                                            is less than 3 year.</p>
+                                    </div>
+                                </div>
+                                <div class="form-group-elem">
+                                    <input type="tel" class="input-elmn placeholder" placeholder="Long term"
+                                        id="longDebtGain">
+                                    <span class="error-text" style="visibility: hidden;"></span>
+                                    <label class="floating-label">Long term <span>( &gt;= 3 year
+                                            )<span></span></span></label>
+                                    <div class="notes-wrap">
+                                        <p class="notes">Capital gains arising from long term investments in Debt
+                                            Instruments. Holding period for long term captial gains in Debt Instruments
+                                            is more than or equal to 3 years.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="from-elem-wrapper display-none forList" id="unlistedShare">
+                            <label class="commen-label mb20">Unlisted shares</label>
+                            <div class="d-flex-desktop">
+                                <div class="form-group-elem">
+                                    <input type="tel" class="input-elmn placeholder" placeholder="Short term"
+                                        id="shortUnlistedGain">
+                                    <span class="error-text" style="visibility: hidden;"></span>
+                                    <label class="floating-label">Short term <span>( &lt; 2 year )</span></label>
+                                    <div class="notes-wrap">
+                                        <p class="notes">Capital gains arising from short term investments in Unlisted
+                                            shares. Holding period for short term captial gains in unlisted shares is
+                                            less than 2 year.</p>
+                                    </div>
+                                </div>
+                                <div class="form-group-elem">
+                                    <input type="tel" class="input-elmn placeholder" placeholder="Long term"
+                                        id="longUnlistedGain">
+                                    <span class="error-text" style="visibility: hidden;"></span>
+                                    <label class="floating-label">Long term <span>( &gt;= 2 year
+                                            )<span></span></span></label>
+                                    <div class="notes-wrap">
+                                        <p class="notes">Capital gains arising from long term investments in Unlisted
+                                            shares. Holding period for long term captial gains in unlisted shares is
+                                            more than or equal to 2 years.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="from-elem-wrapper display-none forList" id="realEstate">
+                            <label class="commen-label mb20">Real estate or Land</label>
+                            <div class="d-flex-desktop">
+                                <div class="form-group-elem">
+                                    <input type="tel" class="input-elmn placeholder" placeholder="Short term"
+                                        id="shortRealEstateGain">
+                                    <span class="error-text" style="visibility: hidden;"></span>
+                                    <label class="floating-label">Short term <span>( &lt; 2 year )</span></label>
+                                    <div class="notes-wrap">
+                                        <p class="notes">Capital gains arising from short term investments in Real
+                                            Estate or Land. Holding period for Short Term Captial gains from real estate
+                                            or land is less than 1 year.</p>
+                                    </div>
+                                </div>
+                                <div class="form-group-elem">
+                                    <input type="tel" class="input-elmn placeholder" placeholder="Long term"
+                                        id="longRealEstateGain">
+                                    <span class="error-text" style="visibility: hidden;"></span>
+                                    <label class="floating-label">Long term <span>( &gt;= 2 year
+                                            )<span></span></span></label>
+                                    <div class="notes-wrap">
+                                        <p class="notes">Capital gains arising from long term investments in Real Estate
+                                            or Land. Holding period for long term captial gains from real estate or land
+                                            is more than or equal to 2 years.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <input class="add-onther-text addOnther dropdownFrom" value="Add another"  readonly="readonly" for="addonther"></input> -->
+                        <label class="add-onther-text addOnther" id="dropdownFrom" data-dropdown-id="dropdownFrom">Add
+                            another</label>
+                        <div class="form-group-elem" id="dropdownFrom">
+                            <ul class="dropdown-elem add-drop-dwon" style="display: none;">
+                                <li select-option="unlistedShare">Unlisted shares</li>
+                                <li select-option="realEstate">Real estate or Land</li>
+                            </ul>
+                        </div>
+                        <div class="calc-btn-box rquired ">
+                            <p class="required-notes align-right">*Non equity short term gains to be entered post
+                                indexation.</p>
+                            <button type="submit" class="bold commen-btn" id="calcBtnStep3">Continue</button>
+                            <i class="arrow"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-5 step-inner-box animated3" data-step="step-5">
+                    <h4>Details of eligible Tax Deductions</h4>
+                    <div class="calculator-form">
+                        <div class="from-elem-wrapper">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder"
+                                    placeholder="Deduction under section 80C" id="deduction80C">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label">Section 80C deductions excluding EPF</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Deductions eligible for tax savings under section 80C include PPF,
+                                        VPF, Fixed Deposits, ELSS Mutual Funds, National Pension Scheme (NPS)Term
+                                        Insurance Premium etc.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="from-elem-wrapper">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder"
+                                    placeholder="Deduction under section 80D" id="deduction80D">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label">Health insurance premium for self / family</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Total annual premium paid towards medical or health insurance
+                                        policy for Self or Family.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="from-elem-wrapper">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder"
+                                    placeholder="Deduction under section 80CCD(1B)" id="deduction80CCD1B">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label">NPS investment under section 80CCD(1B)</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Contributions made to National Pension Scheme (NPS) under section
+                                        80CCD(1B). This investment is over and above the specified investment limit of
+                                        1.5 lacs unders section 80C.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="from-elem-wrapper display-none forList" id="expensesRelated">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder" placeholder="Expenses related to work"
+                                    id="expensesRelatedToWork">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label">Expenses related to work</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Total expenses incurred in running the business like office rent,
+                                        client meeting expenses, contracting expenses, etc.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="from-elem-wrapper display-none forList" id="healthInsParent">
+                            <div class="form-group-elem">
+                                <div class="d-flex-align-center">
+                                    <label class="commen-class mrgn10">Is any of the parent a senior citizen?</label>
+                                    <label class="radio-btn type2">
+                                        <input type="radio" class="radio-btn-input circle" checked="" name="parents_age"
+                                            value="1">
+                                        <span></span>
+                                        No
+                                    </label>
+                                    <label class="radio-btn type2">
+                                        <input type="radio" class="radio-btn-input circle" name="parents_age" value="2">
+                                        <span></span>
+                                        Yes
+                                    </label>
+                                </div>
+                                <span class="error-text" style="visibility: hidden;"></span>
+                            </div>
+                            <div class="form-group-elem" style="margin-top: 20px;">
+                                <input type="tel" class="input-elmn placeholder"
+                                    placeholder="Health Insurance for parents" id="healthInsParentInput">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label">Health Insurance premium for parents</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Health Insurance premium for parents</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="from-elem-wrapper display-none forList" id="donationCharityList">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder"
+                                    placeholder="Deduction under section 80G" id="donationCharity">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label">Donations made to charity</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Amount paid as donations to charitable organisations, eligible for
+                                        tax deduction under section 80G.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="from-elem-wrapper  display-none forList" id="educationLoanList">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder"
+                                    placeholder="Deduction under section 80E" id="educationLoanInterest">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label">Interest on Education Loan</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Total Interest paid during the entire financial year towards a loan
+                                        for higher education.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="from-elem-wrapper display-none forList" id="selfOccupiedList">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder"
+                                    placeholder="Home loan interest for self occupied property"
+                                    id="homeLoanInterestForSelfOccupied">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label">Home loan interest for self occupied property</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Total interest paid towards an ongoing home loan for a self
+                                        occupied property, during the financial year.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="from-elem-wrapper  display-none forList" id="homeLoanList">
+                            <div class="form-group-elem">
+                                <input type="tel" class="input-elmn placeholder"
+                                    placeholder="Home loan interest for rented property" id="homeLoanInterestForRented">
+                                <span class="error-text" style="visibility: hidden;"></span>
+                                <label class="floating-label">Home loan interest for rented property</label>
+                                <div class="notes-wrap">
+                                    <p class="notes">Total interest paid towards an ongoing home loan for a rented out
+                                        property, during the financial year.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <label class="add-onther-text addOnther" id="dropdownFrom1" data-dropdown-id="dropdownFrom1">Add
+                            another</label>
+                        <div class="form-group-elem" id="dropdownFrom1">
+                            <ul class="dropdown-elem add-drop-dwon" style="display: none;">
+                                <li select-option="healthInsParent">Health Insurance premium for parents</li>
+                                <li select-option="donationCharityList">Donation to charity</li>
+                                <li select-option="educationLoanList">Interest on Education Loan</li>
+                                <li select-option="selfOccupiedList">Home loan interest for self occupied property</li>
+                                <li select-option="homeLoanList">Home loan interest for rented property</li>
+                            </ul>
+                        </div>
+                        <div class="calc-btn-box">
+                            <button type="submit" class="bold commen-btn" id="calcBtnStep3">Calculate Now</button>
+                            <i class="arrow"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-6 step-inner-box animated3" data-step="step-6">
+                    <div class="tax-result-footer">
+                        <a href="/tax-saving"><img
+                                src="https://static.smartspends.com/static/images/etmoneyweb/tools/tax-result.png"
+                                alt="tax result"></a>
+                    </div>
+                    <div class="tax-saving-result">
+                        <h4 class="align-center"><span>Total Tax Payable</span></h4>
+                        <div class="calculator-form">
+                            <!-- <p class="tax-result-sub-txt">In the financial year 2019-20 you,ll pay</p> -->
+                            <p class="tax-result-txt bold"><span class="totalTaxtoPay">₹</span><span
+                                    id="netTotalTaxToPay">79,479</span></p>
+                            <div class="tax-summary">
+                                <!-- <div class="budget-year d-flex-desktop income-details">
+                          <p>Post budget FY (2019-20)</p>
+                        </div> -->
+                                <div class="d-flex-desktop income-details">
+                                    <p>Gross income</p>
+                                    <p class="bold" id="grossIncome-p"><span>₹</span><span
+                                            id="grossIncome">12,36,124</span></p>
+                                </div>
+                                <div class="d-flex-desktop income-details">
+                                    <p>Capital Gains</p>
+                                    <p class="bold" id="annualGains-p"><span>₹</span><span id="annualGains">0</span></p>
+                                </div>
+                                <div class="d-flex-desktop income-details">
+                                    <p>Tax Deductions</p>
+                                    <p class="bold" id="annualDeduction-p"><span>₹</span><span
+                                            id="annualDeduction">1,65,000</span></p>
+                                </div>
+                                <div class="d-flex-desktop income-details">
+                                    <p>Tax Exemptions</p>
+                                    <p class="bold" id="annualExemptions-p"><span>₹</span><span
+                                            id="annualExemptions">2,51,515</span></p>
+                                </div>
+                                <!--  <div class="d-flex-desktop payable-tax">
+                          <p class="bold">Total tax payable </p>
+                          <p class="bold totalTaxtoPay"><span>&#x20B9;</span><span id="totalTaxToPay"></span></p>
+                        </div> -->
+                            </div>
+                            <div class="align-center">
+                                <p class="recalculator" id="recalculator">Recalculate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="../javascript/js/jquery.min.js"></script>
+    <script src="js/income-tax-calculator.js"></script>
+</body>
+
+</html>
