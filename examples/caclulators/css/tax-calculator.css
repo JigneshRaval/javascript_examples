@@ -1,102 +1,3 @@
-@font-face {
-    font-family: proxima-nova;
-    src: url(https://static.smartspends.com/static/fonts/proximanovaRegular.eot);
-    src: url(https://static.smartspends.com/static/fonts/proximanovaRegular.eot) format("embedded-opentype"),url(https://static.smartspends.com/static/fonts/proxima-nova/ProximaNovaRegular.woff2) format("woff2"),url(https://static.smartspends.com/static/fonts/proximanovaRegular.woff) format("woff"),url(https://static.smartspends.com/static/fonts/proximanovaRegular.ttf) format("truetype"),url(https://static.smartspends.com/static/fonts/proximanovaRegular.svg) format("svg");
-    font-weight: 400;
-    font-style: normal;
-    font-display:swap}
-
-@font-face {
-    font-family: proxima-novasemi;
-    src: url(https://static.smartspends.com/static/fonts/proximanovaSemiBold.eot);
-    src: url(https://static.smartspends.com/static/fonts/proximanovaSemiBold.eot) format("embedded-opentype"),url(https://static.smartspends.com/static/fonts/proxima-nova/proxima-semibold-webfont.woff2) format("woff2"),url(https://static.smartspends.com/static/fonts/proximanovaSemiBold.woff) format("woff"),url(https://static.smartspends.com/static/fonts/proximanovaSemiBold.ttf) format("truetype"),url(https://static.smartspends.com/static/fonts/proximanovaSemiBold.svg) format("svg");
-    font-style: normal;
-    font-display:swap}
-
-@font-face {
-    font-family: proxima-novabold;
-    src: url(https://static.smartspends.com/static/fonts/proximanovaBold.eot);
-    src: url(https://static.smartspends.com/static/fonts/proximanovaBold.eot) format("embedded-opentype"),url(https://static.smartspends.com/static/fonts/proxima-nova/proxima-novabold.woff2) format("woff2"),url(https://static.smartspends.com/static/fonts/proximanovaBold.woff) format("woff"),url(https://static.smartspends.com/static/fonts/proximanovaBold.ttf) format("truetype"),url(https://static.smartspends.com/static/fonts/proximanovaBold.svg) format("svg");
-    font-style: normal;
-    font-display:swap}
-
-body {
-    font-family: proxima-nova,sans-serif;
-    margin: 0;
-    padding: 0
-}
-
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box
-}
-
-h1,h2,h3,h4,h5,h6 {
-    color: #25282a;
-    line-height: 1.2;
-    margin: 0 0 15px 0
-}
-
-h1 {
-    font-size: 36px
-}
-
-h2 {
-    font-size: 28px
-}
-
-h3 {
-    font-size: 24px
-}
-
-h4 {
-    font-size: 22px
-}
-
-h5 {
-    font-size: 15px
-}
-
-p {
-    margin: 0;
-    font-size: 16px;
-    line-height: 21px;
-    color: #454545;
-    font-family: proxima-nova,sans-serif
-}
-
-p:last-child {
-    margin-bottom: 0
-}
-
-ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none
-}
-
-a {
-    text-decoration: none
-}
-
-.bold {
-    font-family: proxima-novabold,sans-serif
-}
-
-.semibold {
-    font-family: proxima-novasemi,sans-serif
-}
-
-a,a:focus,a:hover {
-    text-decoration: none;
-    cursor: pointer
-}
-
-img {
-    max-width: 100%
-}
-
 .commen-box {
     padding: 50px 0
 }
@@ -935,7 +836,7 @@ p.notes:after {
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both
 }
-
+/*
 .commen-container {
     padding: 80px 15px 19px 15px;
     max-width: 1024px;
@@ -944,7 +845,7 @@ p.notes:after {
 
 .sub-commen-container {
     padding: 0 15px 30px 15px
-}
+} */
 
 .d-flex-desktop {
     display: flex;
@@ -1035,7 +936,7 @@ p.notes:after {
         display: block
     }
 
-    .banner-section .commen-container {
+    /* .banner-section .commen-container {
         padding: 60px 15px 20px
     }
 
@@ -1045,7 +946,7 @@ p.notes:after {
 
     .sub-commen-container {
         padding: 0 15px 10px 15px
-    }
+    } */
 
     .d-mflex {
         display: flex
@@ -2288,7 +2189,8 @@ p.recalculator {
     -moz-apperance: none;
     border-radius: 6px;
     height: 2px;
-    background-image: -webkit-gradient(linear,left top,right top,color-stop(.489796,#00b98f),color-stop(.489796,#c5c5c5))
+    background-image: -webkit-gradient(linear,left top,right top,color-stop(.489796,#00b98f),color-stop(.489796,#c5c5c5));
+    width: 100%;
 }
 
 .rangebox input[type=range]::-webkit-slider-thumb {
