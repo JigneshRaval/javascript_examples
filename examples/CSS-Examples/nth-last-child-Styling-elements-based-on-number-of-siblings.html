@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" id="ah-viewport"
+        content="user-scalable=yes, width=device-width, minimum-scale=1, maximum-scale=5.0, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>nth-last-child : Styling elements based on number of siblings</title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.css" />
+
+    <style>
+        * {
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        li {
+            float: left;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            background-color: mediumaquamarine;
+            list-style: none;
+            border: 2px solid #fff;
+            padding: 8px;
+        }
+
+        /* one item */
+        li:first-child:nth-last-child(1) {
+            /* -or- li:only-child { */
+            width: 100%;
+            background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+        }
+
+        /* two items */
+        li:first-child:nth-last-child(2),
+        li:first-child:nth-last-child(2)~li {
+            width: 50%;
+            background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+        }
+
+        /* three items */
+        li:first-child:nth-last-child(3),
+        li:first-child:nth-last-child(3)~li {
+            width: 33.3333%;
+            background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%);
+        }
+
+        /* four items */
+        li:first-child:nth-last-child(4),
+        li:first-child:nth-last-child(4)~li {
+            width: 25%;
+            background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
+        }
+
+        /* five items */
+        li:first-child:nth-last-child(5),
+        li:first-child:nth-last-child(5)~li {
+            width: 20%;
+            background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!--
+            DEMO : https://codepen.io/matthemattics/pen/ExaQZQR
+            https://stackoverflow.com/questions/8720931/can-css-detect-the-number-of-children-an-element-has
+        -->
+        <ul>
+            <li>A</li>
+        </ul>
+        <ul>
+            <li>A</li>
+            <li>B</li>
+        </ul>
+        <ul>
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+        </ul>
+        <ul>
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+            <li>D</li>
+        </ul>
+        <ul>
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+            <li>D</li>
+            <li>E</li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

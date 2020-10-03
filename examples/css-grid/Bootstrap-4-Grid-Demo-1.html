@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Bootstrap 4 Grid Demos</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/bootstrap.css" />
+    <style>
+        .container {
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .container .row>.col,
+        .container .row>[class^=col-] {
+            padding-top: .75rem;
+            padding-bottom: .75rem;
+            background-color: rgba(86, 61, 124, .15);
+            border: 1px solid rgba(86, 61, 124, .2);
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+
+        <!-- START : Example -->
+        <article class="example">
+            <h2>Simple Grid</h2>
+
+            <pre><code>
+// Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+</code></pre>
+
+            <pre><code>
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) { ... }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+</code></pre>
+
+            <div class="container">
+                <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-8">.col-12 .col-md-8</div>
+                    <div class="col-6 col-sm-12 col-md-4">.col-6 .col-md-4</div>
+                </div>
+
+                <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+                <div class="row">
+                    <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+                    <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+                    <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+                </div>
+
+                <!-- Columns are always 50% wide, on mobile and desktop -->
+                <div class="row">
+                    <div class="col-6">.col-6</div>
+                    <div class="col-6">.col-6</div>
+                </div>
+            </div>
+
+            <div class="container">
+                <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-4">.col-sm-12 .col-md-8 .col-lg-4</div>
+                    <div class="col-sm-12 col-md-4 col-lg-8">.col-sm-12 .col-md-4 .col-lg-8</div>
+                </div>
+
+                <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+                <div class="row">
+                    <div class="col-md-4">.col-6 .col-md-4</div>
+                    <div class="col-md-4">.col-6 .col-md-4</div>
+                    <div class="col-md-4">.col-6 .col-md-4</div>
+                </div>
+
+                <!-- Columns are always 50% wide, on mobile and desktop -->
+                <div class="row">
+                    <div class="col">.col-6</div>
+                    <div class="col">.col-6</div>
+                </div>
+            </div>
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        One of three columns
+                    </div>
+                    <div class="col-sm">
+                        One of three columns
+                    </div>
+                    <div class="col-sm">
+                        One of three columns
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        1 of 2
+                    </div>
+                    <div class="col">
+                        2 of 2
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        1 of 3
+                    </div>
+                    <div class="col">
+                        2 of 3
+                    </div>
+                    <div class="col">
+                        3 of 3
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- END : Example -->
+
+
+    </section>
+</body>
+
+</html>

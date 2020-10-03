@@ -1,0 +1,40 @@
+<div id="images_container"></div>
+<script>
+    var data = [
+    'http://farm4.static.flickr.com/3594/3498411074_f10d546f42_t.jpg',
+    'http://farm4.static.flickr.com/3364/3498396436_44bcdcc06f_t.jpg',
+    'http://farm4.static.flickr.com/3436/3356022463_cd53a9b57d_t.jpg',
+    'http://farm4.static.flickr.com/3422/3356840596_57f5da7842_t.jpg',
+    'http://farm4.static.flickr.com/3180/2776515140_b7cd27cf7e_t.jpg',
+    'http://farm4.static.flickr.com/3273/2758309734_48cfe16860_t.jpg',
+    'http://farm4.static.flickr.com/3156/2758267414_6320ce7bdd_t.jpg'];
+
+var images = document.createElement("div");
+images.setAttribute("id", "images");
+
+var img;
+
+for(var index = 0; index < data.length; index++) {
+    // If three images have been placed on a row,
+    // create a new row.
+    if (index % 3 === 0) {
+        row = document.createElement("div");
+        row.setAttribute("class", "images-row");
+        images.appendChild(row);
+    }
+    // replace 'data[index]' with the url of the image in each member of the array.
+    img = createImageElement(data[index]);
+    row.appendChild(img);
+}
+
+images.appendChild(row);
+document.getElementById("images_container").appendChild(images);
+
+// Creates an image element with the given url.
+function createImageElement(url) {
+    img = document.createElement("img");
+    img.setAttribute("src", url);
+    img.setAttribute("alt", "image");
+    return img;
+}
+    </script>

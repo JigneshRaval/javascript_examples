@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="robots" content="noindex, follow">
+    <title>Calculator : Home</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+
+    <!-- ===========================================
+        CSS
+    ============================================ -->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script src="./js/bootstrap.bundle.js"></script>
+
+    <style>
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <div class="frame-root">
+        <div class="frame-content">
+            <style>
+                .bg-linkedin {
+                    background-color: #0077b5 !important;
+                }
+
+                .hover-bg-gray-200:hover {
+                    background-color: #edf2f7 !important;
+                }
+
+                .hover-bg-gray-900:hover {
+                    background-color: #1a202c !important;
+                }
+
+                .hover-bg-red-700:hover {
+                    background-color: #c53030 !important;
+                }
+
+                .hover-bg-blue-700:hover {
+                    background-color: #2b6cb0 !important;
+                }
+
+                .hover-bg-blue-800:hover {
+                    background-color: #2c5282 !important;
+                }
+
+                .hover-bg-indigo-700:hover {
+                    background-color: #4c51bf !important;
+                }
+
+                .hover-opacity-100:hover {
+                    opacity: 1 !important;
+                }
+
+                .hover-text-white:hover {
+                    color: #ffffff !important;
+                }
+
+                .hover-text-blue-400:hover {
+                    color: #63b3ed !important;
+                }
+
+                .hover-no-underline:hover {
+                    text-decoration: none !important;
+                }
+
+                @media screen {
+                    img {
+                        max-width: 100%;
+                    }
+
+                    td,
+                    th {
+                        box-sizing: border-box;
+                    }
+
+                    a[x-apple-data-detectors] {
+                        color: inherit;
+                        text-decoration: none;
+                    }
+
+                    .all-font-montserrat {
+                        font-family: Montserrat, -apple-system, "Segoe UI", Helvetica, sans-serif !important;
+                    }
+
+                    .all-font-sans {
+                        font-family: -apple-system, "Segoe UI", sans-serif !important;
+                    }
+                }
+
+                @media (max-width: 600px) {
+                    u~div .wrapper {
+                        min-width: 100vw;
+                    }
+
+                    .sm-rounded-none {
+                        border-radius: 0 !important;
+                    }
+
+                    .sm-block {
+                        display: block !important;
+                    }
+
+                    .sm-inline-block {
+                        display: inline-block !important;
+                    }
+
+                    .sm-hidden {
+                        display: none !important;
+                    }
+
+                    .sm-h-20 {
+                        height: 20px !important;
+                    }
+
+                    .sm-h-24 {
+                        height: 24px !important;
+                    }
+
+                    .sm-h-32 {
+                        height: 32px !important;
+                    }
+
+                    .sm-leading-40 {
+                        line-height: 40px !important;
+                    }
+
+                    .sm-mb-0 {
+                        margin-bottom: 0 !important;
+                    }
+
+                    .sm-mb-16 {
+                        margin-bottom: 16px !important;
+                    }
+
+                    .sm-opacity-100 {
+                        opacity: 1 !important;
+                    }
+
+                    .sm-px-0 {
+                        padding-left: 0 !important;
+                        padding-right: 0 !important;
+                    }
+
+                    .sm-py-10 {
+                        padding-top: 10px !important;
+                        padding-bottom: 10px !important;
+                    }
+
+                    .sm-px-14 {
+                        padding-left: 14px !important;
+                        padding-right: 14px !important;
+                    }
+
+                    .sm-py-24 {
+                        padding-top: 24px !important;
+                        padding-bottom: 24px !important;
+                    }
+
+                    .sm-px-24 {
+                        padding-left: 24px !important;
+                        padding-right: 24px !important;
+                    }
+
+                    .sm-px-10 {
+                        padding-left: 10px !important;
+                        padding-right: 10px !important;
+                    }
+
+                    .sm-px-30 {
+                        padding-left: 30px !important;
+                        padding-right: 30px !important;
+                    }
+
+                    .sm-pt-0 {
+                        padding-top: 0 !important;
+                    }
+
+                    .sm-pr-0 {
+                        padding-right: 0 !important;
+                    }
+
+                    .sm-pb-0 {
+                        padding-bottom: 0 !important;
+                    }
+
+                    .sm-pl-0 {
+                        padding-left: 0 !important;
+                    }
+
+                    .sm-pt-4 {
+                        padding-top: 4px !important;
+                    }
+
+                    .sm-pt-8 {
+                        padding-top: 8px !important;
+                    }
+
+                    .sm-pb-8 {
+                        padding-bottom: 8px !important;
+                    }
+
+                    .sm-pt-10 {
+                        padding-top: 10px !important;
+                    }
+
+                    .sm-pb-10 {
+                        padding-bottom: 10px !important;
+                    }
+
+                    .sm-pb-16 {
+                        padding-bottom: 16px !important;
+                    }
+
+                    .sm-pl-10 {
+                        padding-left: 10px !important;
+                    }
+
+                    .sm-pr-10 {
+                        padding-left: 10px !important;
+                    }
+
+                    .sm-pl-16 {
+                        padding-left: 16px !important;
+                    }
+
+                    .sm-pr-16 {
+                        padding-left: 16px !important;
+                    }
+
+                    .sm-pt-20 {
+                        padding-top: 20px !important;
+                    }
+
+                    .sm-pb-20 {
+                        padding-bottom: 20px !important;
+                    }
+
+                    .sm-pl-20 {
+                        padding-left: 20px !important;
+                    }
+
+                    .sm-pr-20 {
+                        padding-left: 20px !important;
+                    }
+
+                    .sm-pt-24 {
+                        padding-top: 24px !important;
+                    }
+
+                    .sm-pb-24 {
+                        padding-bottom: 24px !important;
+                    }
+
+                    .sm-pb-32 {
+                        padding-bottom: 32px !important;
+                    }
+
+                    .sm-pl-34 {
+                        padding-left: 34px !important;
+                    }
+
+                    .sm-pl-40 {
+                        padding-left: 40px !important;
+                    }
+
+                    .sm-pr-40 {
+                        padding-right: 40px !important;
+                    }
+
+                    .sm-pb-40 {
+                        padding-bottom: 40px !important;
+                    }
+
+                    .sm-text-left {
+                        text-align: left !important;
+                    }
+
+                    .sm-text-center {
+                        text-align: center !important;
+                    }
+
+                    .sm-w-1-2 {
+                        width: 50% !important;
+                    }
+
+                    .sm-w-1-3 {
+                        width: 33.33333% !important;
+                    }
+
+                    .sm-w-2-3 {
+                        width: 66.66667% !important;
+                    }
+
+                    .sm-w-3-5 {
+                        width: 60% !important;
+                    }
+
+                    .sm-w-full {
+                        width: 100% !important;
+                        max-width: 100% !important;
+                    }
+                }
+
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6 {
+                    font-weight: bold;
+                }
+
+                h3,
+                h4 {
+                    font-size: 16px;
+                }
+
+                p,
+                li {
+                    color: #2d3748;
+                }
+
+                img {
+                    border: 0 !important;
+                    outline: none !important;
+                }
+            </style>
+            <div>
+                <meta charset="utf8">
+                <meta http-equiv="x-ua-compatible" content="ie=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta name="x-apple-disable-message-reformatting">
+                <!--[if gte mso 9]>
+  <xml>
+      <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+  </xml>
+<![endif]-->
+                <title>Letter</title>
+                <style type="text/css">
+                    .bg-linkedin {
+                        background-color: #0077b5 !important;
+                    }
+
+                    .hover-bg-gray-200:hover {
+                        background-color: #edf2f7 !important;
+                    }
+
+                    .hover-bg-gray-900:hover {
+                        background-color: #1a202c !important;
+                    }
+
+                    .hover-bg-red-700:hover {
+                        background-color: #c53030 !important;
+                    }
+
+                    .hover-bg-blue-700:hover {
+                        background-color: #2b6cb0 !important;
+                    }
+
+                    .hover-bg-blue-800:hover {
+                        background-color: #2c5282 !important;
+                    }
+
+                    .hover-bg-indigo-700:hover {
+                        background-color: #4c51bf !important;
+                    }
+
+                    .hover-opacity-100:hover {
+                        opacity: 1 !important;
+                    }
+
+                    .hover-text-white:hover {
+                        color: #ffffff !important;
+                    }
+
+                    .hover-text-blue-400:hover {
+                        color: #63b3ed !important;
+                    }
+
+                    .hover-no-underline:hover {
+                        text-decoration: none !important;
+                    }
+
+                    @media screen {
+                        img {
+                            max-width: 100%;
+                        }
+
+                        td,
+                        th {
+                            box-sizing: border-box;
+                        }
+
+                        a[x-apple-data-detectors] {
+                            color: inherit;
+                            text-decoration: none;
+                        }
+
+                        .all-font-montserrat {
+                            font-family: Montserrat, -apple-system, "Segoe UI", Helvetica, sans-serif !important;
+                        }
+
+                        .all-font-sans {
+                            font-family: -apple-system, "Segoe UI", sans-serif !important;
+                        }
+                    }
+
+                    @media (max-width: 600px) {
+                        u~div .wrapper {
+                            min-width: 100vw;
+                        }
+
+                        .sm-rounded-none {
+                            border-radius: 0 !important;
+                        }
+
+                        .sm-block {
+                            display: block !important;
+                        }
+
+                        .sm-inline-block {
+                            display: inline-block !important;
+                        }
+
+                        .sm-hidden {
+                            display: none !important;
+                        }
+
+                        .sm-h-20 {
+                            height: 20px !important;
+                        }
+
+                        .sm-h-24 {
+                            height: 24px !important;
+                        }
+
+                        .sm-h-32 {
+                            height: 32px !important;
+                        }
+
+                        .sm-leading-40 {
+                            line-height: 40px !important;
+                        }
+
+                        .sm-mb-0 {
+                            margin-bottom: 0 !important;
+                        }
+
+                        .sm-mb-16 {
+                            margin-bottom: 16px !important;
+                        }
+
+                        .sm-opacity-100 {
+                            opacity: 1 !important;
+                        }
+
+                        .sm-px-0 {
+                            padding-left: 0 !important;
+                            padding-right: 0 !important;
+                        }
+
+                        .sm-py-10 {
+                            padding-top: 10px !important;
+                            padding-bottom: 10px !important;
+                        }
+
+                        .sm-px-14 {
+                            padding-left: 14px !important;
+                            padding-right: 14px !important;
+                        }
+
+                        .sm-py-24 {
+                            padding-top: 24px !important;
+                            padding-bottom: 24px !important;
+                        }
+
+                        .sm-px-24 {
+                            padding-left: 24px !important;
+                            padding-right: 24px !important;
+                        }
+
+                        .sm-px-10 {
+                            padding-left: 10px !important;
+                            padding-right: 10px !important;
+                        }
+
+                        .sm-px-30 {
+                            padding-left: 30px !important;
+                            padding-right: 30px !important;
+                        }
+
+                        .sm-pt-0 {
+                            padding-top: 0 !important;
+                        }
+
+                        .sm-pr-0 {
+                            padding-right: 0 !important;
+                        }
+
+                        .sm-pb-0 {
+                            padding-bottom: 0 !important;
+                        }
+
+                        .sm-pl-0 {
+                            padding-left: 0 !important;
+                        }
+
+                        .sm-pt-4 {
+                            padding-top: 4px !important;
+                        }
+
+                        .sm-pt-8 {
+                            padding-top: 8px !important;
+                        }
+
+                        .sm-pb-8 {
+                            padding-bottom: 8px !important;
+                        }
+
+                        .sm-pt-10 {
+                            padding-top: 10px !important;
+                        }
+
+                        .sm-pb-10 {
+                            padding-bottom: 10px !important;
+                        }
+
+                        .sm-pb-16 {
+                            padding-bottom: 16px !important;
+                        }
+
+                        .sm-pl-10 {
+                            padding-left: 10px !important;
+                        }
+
+                        .sm-pr-10 {
+                            padding-left: 10px !important;
+                        }
+
+                        .sm-pl-16 {
+                            padding-left: 16px !important;
+                        }
+
+                        .sm-pr-16 {
+                            padding-left: 16px !important;
+                        }
+
+                        .sm-pt-20 {
+                            padding-top: 20px !important;
+                        }
+
+                        .sm-pb-20 {
+                            padding-bottom: 20px !important;
+                        }
+
+                        .sm-pl-20 {
+                            padding-left: 20px !important;
+                        }
+
+                        .sm-pr-20 {
+                            padding-left: 20px !important;
+                        }
+
+                        .sm-pt-24 {
+                            padding-top: 24px !important;
+                        }
+
+                        .sm-pb-24 {
+                            padding-bottom: 24px !important;
+                        }
+
+                        .sm-pb-32 {
+                            padding-bottom: 32px !important;
+                        }
+
+                        .sm-pl-34 {
+                            padding-left: 34px !important;
+                        }
+
+                        .sm-pl-40 {
+                            padding-left: 40px !important;
+                        }
+
+                        .sm-pr-40 {
+                            padding-right: 40px !important;
+                        }
+
+                        .sm-pb-40 {
+                            padding-bottom: 40px !important;
+                        }
+
+                        .sm-text-left {
+                            text-align: left !important;
+                        }
+
+                        .sm-text-center {
+                            text-align: center !important;
+                        }
+
+                        .sm-w-1-2 {
+                            width: 50% !important;
+                        }
+
+                        .sm-w-1-3 {
+                            width: 33.33333% !important;
+                        }
+
+                        .sm-w-2-3 {
+                            width: 66.66667% !important;
+                        }
+
+                        .sm-w-3-5 {
+                            width: 60% !important;
+                        }
+
+                        .sm-w-full {
+                            width: 100% !important;
+                            max-width: 100% !important;
+                        }
+                    }
+
+                    h1,
+                    h2,
+                    h3,
+                    h4,
+                    h5,
+                    h6 {
+                        font-weight: bold;
+                    }
+
+                    h3,
+                    h4 {
+                        font-size: 16px;
+                    }
+
+                    p,
+                    li {
+                        color: #2d3748;
+                    }
+
+                    img {
+                        border: 0 !important;
+                        outline: none !important;
+                    }
+                </style>
+                <table class="wrapper all-font-sans" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                    <tbody>
+                        <tr>
+                            <td align="center" width="100%">
+                                <div style="background-color: rgb(247, 247, 247);"> </div>
+                                <table class="sm-w-full" width="600" cellpadding="0" cellspacing="0"
+                                    role="presentation">
+                                </table>
+                                <table class="all-font-sans sm-w-full"
+                                    style="border-radius: 4px; margin-left: auto; margin-right: auto; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px; width: 600px; margin-top: 15px;"
+                                    width="600" bgcolor="#ffffff" cellpadding="0" cellspacing="0" role="presentation">
+                                    <tbody>
+                                        <tr>
+                                            <td align="center" width="100%">
+                                                <table class="sm-w-full" style="width:600px;" width="600"
+                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="padding-left: 24px; padding-right: 24px; padding-top: 40px; padding-bottom: 18px; text-align: center;"
+                                                                align="center">
+                                                                <a href="#" style="text-decoration: none;"
+                                                                    target="_blank">
+                                                                    <img src="https://s3-us-west-1.amazonaws.com/tinify-bucket/%2Fprototypr%2Ftemp%2F1580577924294-Group+74.png"
+                                                                        alt="Logo" width="130"
+                                                                        style="border: 0; line-height: 100%; vertical-align: middle;width:130px;">
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="center">
+                                                                <a href="http://example.com"
+                                                                    style="text-decoration: none;" target="_blank"><img
+                                                                        width="16"
+                                                                        src="https://tinify-bucket.s3-us-west-1.amazonaws.com/social/twitter+(1)+1.png"
+                                                                        style="width:16px;border: 0; line-height: 100%; vertical-align: middle;"></a>
+                                                                <span class="sm-px-0"
+                                                                    style="padding-left: 0; padding-right: 0;">&nbsp;&nbsp;</span>
+                                                                <a href="http://example.com"
+                                                                    style="text-decoration: none;" target="_blank"><img
+                                                                        width="16"
+                                                                        src="https://tinify-bucket.s3-us-west-1.amazonaws.com/social/instagram+1.png"
+                                                                        style="width:16px;border: 0; line-height: 100%; vertical-align: middle;"></a>
+                                                                <span class="sm-px-0"
+                                                                    style="padding-left: 0; padding-right: 0;">&nbsp;&nbsp;</span>
+                                                                <a href="http://example.com"
+                                                                    style="text-decoration: none;" target="_blank"><img
+                                                                        width="16"
+                                                                        src="https://tinify-bucket.s3-us-west-1.amazonaws.com/social/facebook+(1)+1.png"
+                                                                        style="width:16px;border: 0; line-height: 100%; vertical-align: middle;"></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="line-height: 30px;height:30px;" height="30">‌
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table bgcolor="#ffffff" cellpadding="0" cellspacing="0" class="sm-w-full all-font-sans"
+                                    style="border-radius: 4px; margin-left: auto; margin-right: auto; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px; width: 600px; margin-top: 15px;"
+                                    width="600">
+                                    <tbody>
+                                        <tr>
+                                            <td class="sm-px-30"
+                                                style="padding-top: 40px; padding-bottom: 24px;padding-left: 48px; padding-right: 48px;">
+                                                <h1 style="line-height: 40px; margin: 0; font-size: 36px;">What's new
+                                                    this week?</h1>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="sm-px-30"
+                                                style="padding-bottom: 24px;padding-left: 48px; padding-right: 48px;"><a
+                                                    href="https://letter.casa" target="_blank"><img
+                                                        src="https://s3-us-west-1.amazonaws.com/tinify-bucket/%2Fprototypr%2Ftemp%2F1580579385905-1580579385905.png"
+                                                        alt="Photo frame" width="504"
+                                                        style="border: 0px; line-height: 100%; width: 504px;"
+                                                        class="fr-fic fr-dii"></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="sm-px-30"
+                                                style="padding-bottom: 24px;padding-left: 48px; padding-right: 48px;">
+                                                <p style="margin: 0; margin-bottom: 24px; font-size: 18px;">Hey Ann,</p>
+                                                <p style="margin: 0; font-size: 18px;">This week we've been busy
+                                                    updating the components that come with Letter. Here's what you might
+                                                    have missed:</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="padding-bottom: 40px;">
+                                                <table align="center" cellpadding="0" cellspacing="0"
+                                                    style="margin-left: auto; margin-right: auto;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th bgcolor="#000000" class="hover-bg-gray-900"
+                                                                style="mso-padding-alt: 12px 48px; border-radius: 4px; padding-left: 20px; padding-right: 20px;background:#000;">
+                                                                <a href="https://letter.so"
+                                                                    style="font-size: 16px; padding-top: 16px; padding-bottom: 16px;color: #ffffff; text-decoration: none; display: inline-block;"
+                                                                    target="_blank">Check it out</a></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="all-font-sans sm-w-full"
+                                    style="border-radius: 4px; margin-left: auto; margin-right: auto; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px; width: 600px; margin-top: 15px;"
+                                    width="600" bgcolor="#ffffff" cellpadding="0" cellspacing="0" role="presentation">
+                                    <tbody>
+                                        <tr>
+                                            <td class="sm-px-24"
+                                                style="padding: 40px; padding-bottom: 0; padding-top: 30px;">
+                                                <table align="left" class="sm-pb-8" cellpadding="0" cellspacing="0"
+                                                    role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <table align="left" cellpadding="0" cellspacing="0"
+                                                                    role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left">
+                                                                                <h2 class="sm-mb-0"
+                                                                                    style="margin: 0; margin-bottom: 12px; padding-top: 6px; padding-bottom: 6px; padding-right: 16px; color: #000000; font-size: 24px;">
+                                                                                    Top Stories</h2>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <table align="left" cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <table align="left" style="padding-top: 6px;"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td
+                                                                                style="mso-padding-alt: 8px 12px; border-color: #a0aec0; border-radius: 4px; border-style: solid; border-width: 1px;">
+                                                                                <a href="https://example.com"
+                                                                                    style="display: block; line-height: 100%; padding-top: 6px; padding-bottom: 6px; padding-left: 10px; padding-right: 10px; color: #718096; font-size: 14px; text-decoration: none;"
+                                                                                    target="_blank">See all →</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" width="600" class="sm-px-24 sm-w-full"
+                                                style="padding-left: 40px; padding-right: 40px;width:600px;">
+                                                <p
+                                                    style="line-height: 20px; margin: 0; margin-bottom: 0; color: #a0aec0; font-size: 20px;">
+                                                    What we loved reading this week:
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="sm-px-24"
+                                                style="border-radius: 8px; padding-top: 40px;padding-left:48px; padding-right:40px; padding-bottom: 0;"
+                                                bgcolor="#ffffff">
+
+                                                <!--[if (gte mso 9)|(IE)]> <table border="0" cellspacing="0" cellpadding="0"><tr><td valign="top"><![endif]-->
+
+
+                                                <table align="left" class="sm-w-full sm-py-10" style="width:256px;"
+                                                    width="256" cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="center" width="56"
+                                                                style="width:56px;vertical-align: top;" valign="top">
+                                                                <a href="http://example.com/#1"
+                                                                    style="color: #2d3748; text-decoration: none;"
+                                                                    data-letter-url-086ul3ntlskrkf10k93xa="url1"
+                                                                    target="_blank">
+                                                                    <img width="56"
+                                                                        src="https://ph-files.imgix.net/5fed7188-aa37-441e-8a51-db7a1f0a232d?auto=format&amp;auto=compress&amp;codec=mozjpeg&amp;cs=strip&amp;w=80&amp;h=80&amp;fit=crop&amp;dpr=2"
+                                                                        data-placeholder-image="https://ph-files.imgix.net/5fed7188-aa37-441e-8a51-db7a1f0a232d?auto=format&amp;auto=compress&amp;codec=mozjpeg&amp;cs=strip&amp;w=80&amp;h=80&amp;fit=crop&amp;dpr=2"
+                                                                        style="width:56px;border: 0; line-height: 100%; vertical-align: middle; border-radius: 4px;"
+                                                                        alt=""
+                                                                        data-letter-image-086ul3ntlskrkf10k93xa="image1">
+                                                                </a>
+                                                            </td>
+                                                            <td align="left" width="200"
+                                                                style="width:200px;padding-left: 15px; padding-right:20px; vertical-align: top;"
+                                                                valign="top">
+                                                                <h4
+                                                                    style="margin: 0; margin-bottom: 4px; color: #2d3748;">
+                                                                    <a href="http://example.com/#1"
+                                                                        style="color: #2d3748; text-decoration: none;"
+                                                                        data-placeholder-title="Women Make"
+                                                                        data-letter-url-086ul3ntlskrkf10k93xa="url1"
+                                                                        data-letter-title-086ul3ntlskrkf10k93xa="title1"
+                                                                        target="_blank">Women Make</a></h4>
+                                                                <p
+                                                                    style="line-height: 18px; margin: 0; margin-bottom: 10px; color: #718096; font-size: 14px;">
+                                                                    <a href="http://example.com/#1"
+                                                                        style="color: #718096; text-decoration: none;"
+                                                                        data-placeholder-description="Connect with other women makers 👱🏻‍♀️👩🏾‍🦱👩🏻"
+                                                                        data-letter-url-086ul3ntlskrkf10k93xa="url1"
+                                                                        data-letter-description-086ul3ntlskrkf10k93xa="description1"
+                                                                        target="_blank">Connect with other women makers
+                                                                        👱🏻‍♀️👩🏾‍🦱👩🏻</a></p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!--[if (gte mso 9)|(IE)]> </td><td  valign="top"><![endif]-->
+
+                                                <table align="left" class="sm-w-full sm-py-10" style="width:256px;"
+                                                    width="256" cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="center" width="56"
+                                                                style="width:56px;vertical-align: top;" valign="top">
+                                                                <a href="http://example.com/#2"
+                                                                    style="color: #2d3748; text-decoration: none;"
+                                                                    data-letter-url-1nsgust7mrllkf10k93xb="url2"
+                                                                    target="_blank">
+                                                                    <img width="56"
+                                                                        src="https://ph-files.imgix.net/dc15a092-2944-460a-b650-295ac7fb6e46?auto=format&amp;auto=compress&amp;codec=mozjpeg&amp;cs=strip&amp;w=80&amp;h=80&amp;fit=crop&amp;dpr=2"
+                                                                        data-placeholder-image="https://ph-files.imgix.net/dc15a092-2944-460a-b650-295ac7fb6e46?auto=format&amp;auto=compress&amp;codec=mozjpeg&amp;cs=strip&amp;w=80&amp;h=80&amp;fit=crop&amp;dpr=2"
+                                                                        style="width:56px;border: 0; line-height: 100%; vertical-align: middle; border-radius: 4px;"
+                                                                        alt=""
+                                                                        data-letter-image-1nsgust7mrllkf10k93xb="image2">
+                                                                </a>
+                                                            </td>
+                                                            <td align="left" width="200"
+                                                                style="width:200px;padding-left: 15px; padding-right:20px; vertical-align: top;"
+                                                                valign="top">
+                                                                <h4
+                                                                    style="margin: 0; margin-bottom: 4px; color: #2d3748;">
+                                                                    <a href="http://example.com/#2"
+                                                                        style="color: #2d3748; text-decoration: none;"
+                                                                        data-placeholder-title="Unicorn Platform"
+                                                                        data-letter-url-1nsgust7mrllkf10k93xb="url2"
+                                                                        data-letter-title-1nsgust7mrllkf10k93xb="title2"
+                                                                        target="_blank">Unicorn Platform</a></h4>
+                                                                <p
+                                                                    style="line-height: 18px; margin: 0; margin-bottom: 10px; color: #718096; font-size: 14px;">
+                                                                    <a href="http://example.com/#2"
+                                                                        style="color: #718096; text-decoration: none;"
+                                                                        data-placeholder-description="Simple landing page builder for startups 🦄"
+                                                                        data-letter-url-1nsgust7mrllkf10k93xb="url2"
+                                                                        data-letter-description-1nsgust7mrllkf10k93xb="description2"
+                                                                        target="_blank">Simple landing page builder for
+                                                                        startups 🦄</a></p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!--[if (gte mso 9)|(IE)]> </td></tr></table><![endif]-->
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="sm-pt-10 sm-px-24"
+                                                style="border-radius: 8px; padding:40px;padding-left:48px;"
+                                                bgcolor="#ffffff">
+                                                <!--[if (gte mso 9)|(IE)]> <table  border="0" cellspacing="0" cellpadding="0"><tr><td  align="left" valign="top"><![endif]-->
+
+                                                <table align="left" class="sm-w-full sm-py-10" style="width:256px;"
+                                                    width="256" cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="center" width="56"
+                                                                style="width:56px;vertical-align: top;" valign="top">
+                                                                <a href="http://example.com/#3"
+                                                                    style="color: #2d3748; text-decoration: none;"
+                                                                    data-letter-url-2j0co5ho19gqkf10k93xc="url3"
+                                                                    target="_blank">
+                                                                    <img width="55"
+                                                                        src="https://ph-files.imgix.net/163360ec-c019-4465-af27-ab0d54fd5d9d?auto=format&amp;auto=compress&amp;codec=mozjpeg&amp;cs=strip&amp;w=80&amp;h=80&amp;fit=crop&amp;dpr=2"
+                                                                        data-placeholder-image="https://ph-files.imgix.net/163360ec-c019-4465-af27-ab0d54fd5d9d?auto=format&amp;auto=compress&amp;codec=mozjpeg&amp;cs=strip&amp;w=80&amp;h=80&amp;fit=crop&amp;dpr=2"
+                                                                        style="width:55px;border: 0; line-height: 100%; vertical-align: middle; border-radius: 4px;"
+                                                                        alt=""
+                                                                        data-letter-image-2j0co5ho19gqkf10k93xc="image3">
+                                                                </a>
+                                                            </td>
+                                                            <td align="left" width="200"
+                                                                style="width:200px;padding-left: 15px; padding-right: 15px; vertical-align: top;"
+                                                                valign="top">
+                                                                <h4
+                                                                    style="margin: 0; margin-bottom: 4px; color: #2d3748;">
+                                                                    <a href="http://example.com/#3"
+                                                                        style="color: #2d3748; text-decoration: none;"
+                                                                        data-placeholder-title="The Design Thinking Workshop Kit"
+                                                                        data-letter-url-2j0co5ho19gqkf10k93xc="url3"
+                                                                        data-letter-title-2j0co5ho19gqkf10k93xc="title3"
+                                                                        target="_blank">The Design Thinking Workshop
+                                                                        Kit</a></h4>
+                                                                <p
+                                                                    style="line-height: 18px; margin: 0; margin-bottom: 10px; color: #718096; font-size: 14px;">
+                                                                    <a href="http://example.com/#3"
+                                                                        style="color: #718096; text-decoration: none;"
+                                                                        data-placeholder-description="A free digital and print kit to help run your own workshop"
+                                                                        data-letter-url-2j0co5ho19gqkf10k93xc="url3"
+                                                                        data-letter-description-2j0co5ho19gqkf10k93xc="description3"
+                                                                        target="_blank">A free digital and print kit to
+                                                                        help run your own workshop</a></p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!--[if (gte mso 9)|(IE)]> </td><td align="left" valign="top"><![endif]-->
+
+                                                <table align="left" class="sm-w-full sm-py-10" style="width:256px;"
+                                                    width="256" cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="center" width="56"
+                                                                style="width:56px;vertical-align: top;" valign="top">
+                                                                <a href="http://example.com/#4"
+                                                                    style="color: #2d3748; text-decoration: none;"
+                                                                    data-letter-url-3f5i8mxnomznkf10k93xd="url4"
+                                                                    target="_blank">
+                                                                    <img width="55"
+                                                                        src="https://ph-files.imgix.net/dbbb93ec-eb38-4ff3-b41a-bedce7ea6246?auto=format&amp;auto=compress&amp;codec=mozjpeg&amp;cs=strip&amp;w=80&amp;h=80&amp;fit=crop&amp;dpr=2"
+                                                                        data-placeholder-image="https://ph-files.imgix.net/dbbb93ec-eb38-4ff3-b41a-bedce7ea6246?auto=format&amp;auto=compress&amp;codec=mozjpeg&amp;cs=strip&amp;w=80&amp;h=80&amp;fit=crop&amp;dpr=2"
+                                                                        style="width:55px;border: 0; line-height: 100%; vertical-align: middle; border-radius: 4px;"
+                                                                        alt=""
+                                                                        data-letter-image-3f5i8mxnomznkf10k93xd="image4">
+                                                                </a>
+                                                            </td>
+                                                            <td align="left" width="200"
+                                                                style="width:200px;padding-left: 15px;padding-right: 15px; vertical-align: top;"
+                                                                valign="top">
+                                                                <h4
+                                                                    style="margin: 0; margin-bottom: 4px; color: #2d3748;">
+                                                                    <a href="http://example.com/#4"
+                                                                        style="color: #2d3748; text-decoration: none;"
+                                                                        data-placeholder-title="Prototypr.io"
+                                                                        data-letter-url-3f5i8mxnomznkf10k93xd="url4"
+                                                                        data-letter-title-3f5i8mxnomznkf10k93xd="title4"
+                                                                        target="_blank">Prototypr.io</a></h4>
+                                                                <p
+                                                                    style="line-height: 18px; margin: 0; margin-bottom: 10px; color: #718096; font-size: 14px;">
+                                                                    <a href="http://example.com/#4"
+                                                                        style="color: #718096; text-decoration: none;"
+                                                                        data-placeholder-description="A free digital and print kit to help run your own workshop"
+                                                                        data-letter-url-3f5i8mxnomznkf10k93xd="url4"
+                                                                        data-letter-description-3f5i8mxnomznkf10k93xd="description4"
+                                                                        target="_blank">A free digital and print kit to
+                                                                        help run your own workshop</a></p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!--[if (gte mso 9)|(IE)] > </td></tr></table><![endif]-->
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="all-font-sans sm-w-full"
+                                    style="border-radius: 4px; margin-left: auto; margin-right: auto; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px; width: 600px; margin-top: 15px;"
+                                    width="600" bgcolor="#ffffff" cellpadding="0" cellspacing="0" role="presentation">
+                                    <tbody>
+                                        <tr>
+                                            <td class="sm-pb-0"
+                                                style="border-radius: 8px; padding-top: 40px; padding-bottom: 0px;padding-left: 26px;padding-right:26px;"
+                                                bgcolor="#ffffff">
+                                                <!--[if (gte mso 9)|(IE)]> <table border="0" cellspacing="0" cellpadding="0"><tr><td valign="top"><![endif]-->
+                                                <table align="left" class="sm-w-full sm-pb-16 sm-px-16"
+                                                    style="width:182px; padding-left:8px;padding-right:8px;" width="182"
+                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="left" width="100%">
+                                                                <table align="left" class="sm-w-1-3"
+                                                                    style="margin-bottom: 10px;" width="100%"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <a href="http://example.com/#1"
+                                                                                    style="color: #2d3748; text-decoration: none;"
+                                                                                    data-letter-url-0vb5mfofbefkf10ksl5a="url1"
+                                                                                    target="_blank">
+                                                                                    <img width="166"
+                                                                                        src="https://images.unsplash.com/photo-1562157646-4303261af91e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+                                                                                        data-placeholder-image="https://images.unsplash.com/photo-1562157646-4303261af91e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+                                                                                        style="width:166px;border: 0; line-height: 100%; vertical-align: middle; border-radius: 4px;"
+                                                                                        alt=""
+                                                                                        data-letter-image-0vb5mfofbefkf10ksl5a="image1">
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <table align="top" valign="top"
+                                                                    class="sm-w-2-3 sm-pl-16" width="100%"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left"
+                                                                                style="padding-right:2px;padding-left:2px;">
+                                                                                <h4
+                                                                                    style="margin: 0; margin-bottom: 2px; color: #2d3748;">
+                                                                                    <a href="http://example.com/#1"
+                                                                                        style="color: #2d3748; text-decoration: none;"
+                                                                                        data-placeholder-title="Sport Watch"
+                                                                                        data-letter-url-0vb5mfofbefkf10ksl5a="url1"
+                                                                                        data-letter-title-0vb5mfofbefkf10ksl5a="title1"
+                                                                                        target="_blank">Sport Watch</a>
+                                                                                </h4>
+                                                                                <p
+                                                                                    style="line-height: 18px; margin: 0; margin-bottom: 10px; color: #718096; font-size: 14px;">
+                                                                                    <a href="http://example.com/#1"
+                                                                                        style="color: #718096; text-decoration: none;"
+                                                                                        data-placeholder-description="Stylish and waterproof with black strap and green leaves."
+                                                                                        data-letter-url-0vb5mfofbefkf10ksl5a="url1"
+                                                                                        data-letter-description-0vb5mfofbefkf10ksl5a="description1"
+                                                                                        target="_blank">Stylish and
+                                                                                        waterproof with black strap and
+                                                                                        green leaves.</a></p>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!--[if mso]></td><td align="left"><![endif]-->
+                                                <table align="left" class="sm-w-full sm-pb-16 sm-px-16"
+                                                    style="padding-right: 8px;padding-left:8px;width:182px;" width="182"
+                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="left" width="100%">
+                                                                <table align="left" class="sm-w-1-3"
+                                                                    style="margin-bottom: 10px;" width="100%"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <a href="http://example.com/#2"
+                                                                                    style="color: #2d3748; text-decoration: none;"
+                                                                                    data-letter-url-1xcwd220trvtkf10ksl5b="url2"
+                                                                                    target="_blank">
+                                                                                    <img width="166"
+                                                                                        src="https://images.unsplash.com/photo-1571398159775-07de36363b79?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+                                                                                        data-placeholder-image="https://images.unsplash.com/photo-1571398159775-07de36363b79?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+                                                                                        style="border: 0; line-height: 100%; vertical-align: middle; border-radius: 4px;width:166px;"
+                                                                                        alt=""
+                                                                                        data-letter-image-1xcwd220trvtkf10ksl5b="image2">
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <table align="top" valign="top"
+                                                                    class="sm-w-2-3 sm-pl-16" width="100%"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left"
+                                                                                style="padding-left: 2px; padding-right: 2px;">
+                                                                                <h4
+                                                                                    style="margin: 0; margin-bottom: 2px; color: #2d3748;">
+                                                                                    <a href="http://example.com/#2"
+                                                                                        style="color: #2d3748; text-decoration: none;"
+                                                                                        data-placeholder-title="Phone Charm"
+                                                                                        data-letter-url-1xcwd220trvtkf10ksl5b="url2"
+                                                                                        data-letter-title-1xcwd220trvtkf10ksl5b="title2"
+                                                                                        target="_blank">Phone Charm</a>
+                                                                                </h4>
+                                                                                <p
+                                                                                    style="line-height: 18px; margin: 0; margin-bottom: 10px; color: #718096; font-size: 14px;">
+                                                                                    <a href="http://example.com/#2"
+                                                                                        style="color: #718096; text-decoration: none;"
+                                                                                        data-placeholder-description="Decorate your phone with a green leaf and pink background."
+                                                                                        data-letter-url-1xcwd220trvtkf10ksl5b="url2"
+                                                                                        data-letter-description-1xcwd220trvtkf10ksl5b="description2"
+                                                                                        target="_blank">Decorate your
+                                                                                        phone with a green leaf and pink
+                                                                                        background.</a></p>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!--[if mso]></td><td align="left"><![endif]-->
+                                                <table align="left" class="sm-w-full sm-pb-16 sm-px-16"
+                                                    style="width:182px;padding-left:8px;padding-right:8px;" width="182"
+                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="left" width="100%">
+                                                                <table align="left" class="sm-w-1-3"
+                                                                    style="margin-bottom: 10px;" width="100%"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <a href="http://example.com/#3"
+                                                                                    style="color: #2d3748; text-decoration: none;"
+                                                                                    data-letter-url-2aou5tt678lnkf10ksl5c="url3"
+                                                                                    target="_blank">
+                                                                                    <img width="166"
+                                                                                        src="https://images.unsplash.com/photo-1560219071-4dc9557e1a26?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+                                                                                        data-placeholder-image="https://images.unsplash.com/photo-1560219071-4dc9557e1a26?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+                                                                                        style="width:166px;border: 0; line-height: 100%; vertical-align: middle; border-radius: 4px;"
+                                                                                        alt=""
+                                                                                        data-letter-image-2aou5tt678lnkf10ksl5c="image3">
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <table align="top" valign="top"
+                                                                    class="sm-w-2-3 sm-pl-16" width="100%"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left"
+                                                                                style="padding-left: 2px; padding-right: 2px;">
+                                                                                <h4
+                                                                                    style="margin: 0; margin-bottom: 2px; color: #2d3748;">
+                                                                                    <a href="http://example.com/#3"
+                                                                                        style="color: #2d3748; text-decoration: none;"
+                                                                                        data-placeholder-title="Phone Set"
+                                                                                        data-letter-url-2aou5tt678lnkf10ksl5c="url3"
+                                                                                        data-letter-title-2aou5tt678lnkf10ksl5c="title3"
+                                                                                        target="_blank">Phone Set</a>
+                                                                                </h4>
+                                                                                <p
+                                                                                    style="line-height: 18px; margin: 0; margin-bottom: 10px; color: #718096; font-size: 14px;">
+                                                                                    <a href="http://example.com/#3"
+                                                                                        style="color: #718096; text-decoration: none;"
+                                                                                        data-placeholder-description="Phone positioned diagnally with plug and black VIP card."
+                                                                                        data-letter-url-2aou5tt678lnkf10ksl5c="url3"
+                                                                                        data-letter-description-2aou5tt678lnkf10ksl5c="description3"
+                                                                                        target="_blank">Phone positioned
+                                                                                        diagnally with plug and black
+                                                                                        VIP card.</a></p>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!--[if (gte mso 9)|(IE)]> </td></tr></table><![endif]-->
+                                            </td>
+                                        </tr>
+                                        <!--  Row 2   -->
+                                        <tr>
+                                            <td class="sm-pt-0"
+                                                style="border-radius: 8px; padding-top: 40px; padding-bottom: 40px;padding-left: 26px;padding-right:26px;"
+                                                bgcolor="#ffffff">
+                                                <!--[if (gte mso 9)|(IE)]> <table border="0" cellspacing="0" cellpadding="0"><tr><td valign="top"><![endif]-->
+                                                <table align="left" class="sm-w-full sm-pb-16 sm-px-16"
+                                                    style="width:182px;padding-right:8px;padding-left:8px;" width="182"
+                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="left" width="100%">
+                                                                <table align="left" class="sm-w-1-3"
+                                                                    style="margin-bottom: 10px;" width="100%"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <a href="http://example.com/#4"
+                                                                                    style="color: #2d3748; text-decoration: none;"
+                                                                                    data-letter-url-3xz3p3un6xtkf10ksl5d="url4"
+                                                                                    target="_blank">
+                                                                                    <img width="166"
+                                                                                        src="https://images.unsplash.com/photo-1566355892398-3d144894ef0a?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+                                                                                        data-placeholder-image="https://images.unsplash.com/photo-1566355892398-3d144894ef0a?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+                                                                                        style="width:166px;border: 0; line-height: 100%; vertical-align: middle; border-radius: 4px;"
+                                                                                        alt=""
+                                                                                        data-letter-image-3xz3p3un6xtkf10ksl5d="image4">
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <table align="top" valign="top"
+                                                                    class="sm-w-2-3 sm-pl-16" width="100%"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left"
+                                                                                style="padding-left: 2px; padding-right: 2px;">
+                                                                                <h4
+                                                                                    style="margin: 0; margin-bottom: 2px; color: #2d3748;">
+                                                                                    <a href="http://example.com/#4"
+                                                                                        style="color: #2d3748; text-decoration: none;"
+                                                                                        data-placeholder-title="Notebook and Pen"
+                                                                                        data-letter-url-3xz3p3un6xtkf10ksl5d="url4"
+                                                                                        data-letter-title-3xz3p3un6xtkf10ksl5d="title4"
+                                                                                        target="_blank">Notebook and
+                                                                                        Pen</a></h4>
+                                                                                <p
+                                                                                    style="line-height: 18px; margin: 0; margin-bottom: 10px; color: #718096; font-size: 14px;">
+                                                                                    <a href="http://example.com/#4"
+                                                                                        style="color: #718096; text-decoration: none;"
+                                                                                        data-placeholder-description="Black notebook with a golden pen resting gently on its surface."
+                                                                                        data-letter-url-3xz3p3un6xtkf10ksl5d="url4"
+                                                                                        data-letter-description-3xz3p3un6xtkf10ksl5d="description4"
+                                                                                        target="_blank">Black notebook
+                                                                                        with a golden pen resting gently
+                                                                                        on its surface.</a></p>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!--[if mso]></td><td align="left"><![endif]-->
+                                                <table align="left" class="sm-w-full sm-pb-16 sm-px-16"
+                                                    style="padding-right: 8px;padding-left:8px;width:182px;" width="182"
+                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="left" width="100%">
+                                                                <table align="left" class="sm-w-1-3"
+                                                                    style="margin-bottom: 10px;" width="100%"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <a href="http://example.com/#5"
+                                                                                    style="color: #2d3748; text-decoration: none;"
+                                                                                    data-letter-url-4eat5a3ubvrukf10ksl5e="url5"
+                                                                                    target="_blank">
+                                                                                    <img width="166"
+                                                                                        src="https://images.unsplash.com/photo-1557180295-76eee20ae8aa?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+                                                                                        data-placeholder-image="https://images.unsplash.com/photo-1557180295-76eee20ae8aa?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+                                                                                        style="width:166px;border: 0; line-height: 100%; vertical-align: middle; border-radius: 4px;"
+                                                                                        alt=""
+                                                                                        data-letter-image-4eat5a3ubvrukf10ksl5e="image5">
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <table align="top" valign="top"
+                                                                    class="sm-w-2-3 sm-pl-16 sm-mb-16" width="100%"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left"
+                                                                                style="padding-left: 2px; padding-right: 2px;">
+                                                                                <h4
+                                                                                    style="margin: 0; margin-bottom: 2px; color: #2d3748;">
+                                                                                    <a href="http://example.com/#5"
+                                                                                        style="color: #2d3748; text-decoration: none;"
+                                                                                        data-placeholder-title="Dream Telephone"
+                                                                                        data-letter-url-4eat5a3ubvrukf10ksl5e="url5"
+                                                                                        data-letter-title-4eat5a3ubvrukf10ksl5e="title5"
+                                                                                        target="_blank">Dream
+                                                                                        Telephone</a></h4>
+                                                                                <p
+                                                                                    style="line-height: 18px; margin: 0; margin-bottom: 10px; color: #718096; font-size: 14px;">
+                                                                                    <a href="http://example.com/#5"
+                                                                                        style="color: #718096; text-decoration: none;"
+                                                                                        data-placeholder-description="Yellow telephone positioned centrally on a yellow background."
+                                                                                        data-letter-url-4eat5a3ubvrukf10ksl5e="url5"
+                                                                                        data-letter-description-4eat5a3ubvrukf10ksl5e="description5"
+                                                                                        target="_blank">Yellow telephone
+                                                                                        positioned centrally on a yellow
+                                                                                        background.</a></p>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!--[if mso]></td><td align="left"><![endif]-->
+                                                <table align="left" class="sm-w-full sm-pb-16 sm-px-16"
+                                                    style="width:182px;padding-left:8px;padding-right:8px;" width="182"
+                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="left" width="100%">
+                                                                <table align="left" class="sm-w-1-3"
+                                                                    style="margin-bottom: 10px;" width="100%"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <a href="http://example.com/#6"
+                                                                                    style="color: #2d3748; text-decoration: none;"
+                                                                                    data-letter-url-59gvuukypluekf10ksl5f="url6"
+                                                                                    target="_blank">
+                                                                                    <img width="166"
+                                                                                        src="https://images.unsplash.com/photo-1573717500275-c1f3fb461a3d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+                                                                                        data-placeholder-image="https://images.unsplash.com/photo-1573717500275-c1f3fb461a3d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+                                                                                        style="width:166px;border: 0; line-height: 100%; vertical-align: middle; border-radius: 4px;"
+                                                                                        alt=""
+                                                                                        data-letter-image-59gvuukypluekf10ksl5f="image6">
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <table align="top" valign="top"
+                                                                    class="sm-w-2-3 sm-pl-16" width="100%"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left"
+                                                                                style="padding-left: 2px; padding-right: 2px;">
+                                                                                <h4
+                                                                                    style="margin: 0; margin-bottom: 2px; color: #2d3748;">
+                                                                                    <a href="http://example.com/#6"
+                                                                                        style="color: #2d3748; text-decoration: none;"
+                                                                                        data-placeholder-title="Baby Listener"
+                                                                                        data-letter-url-59gvuukypluekf10ksl5f="url6"
+                                                                                        data-letter-title-59gvuukypluekf10ksl5f="title6"
+                                                                                        target="_blank">Baby
+                                                                                        Listener</a></h4>
+                                                                                <p
+                                                                                    style="line-height: 18px; margin: 0; margin-bottom: 10px; color: #718096; font-size: 14px;">
+                                                                                    <a href="http://example.com/#6"
+                                                                                        style="color: #718096; text-decoration: none;"
+                                                                                        data-placeholder-description="Sleep peacefully by monitoring your baby with this fantastic headset."
+                                                                                        data-letter-url-59gvuukypluekf10ksl5f="url6"
+                                                                                        data-letter-description-59gvuukypluekf10ksl5f="description6"
+                                                                                        target="_blank">Sleep peacefully
+                                                                                        by monitoring your baby with
+                                                                                        this fantastic headset.</a></p>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!--[if (gte mso 9)|(IE)]> </td></tr></table><![endif]-->
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="all-font-sans sm-w-full sm-px-24"
+                                    style="border-radius: 4px; margin-left: auto; margin-right: auto; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px; width: 600px; margin-top: 15px;"
+                                    width="600" bgcolor="#ffffff" cellpadding="0" cellspacing="0" role="presentation">
+                                    <tbody>
+                                        <tr>
+                                            <td class="sm-pb-0 sm-px-10"
+                                                style="padding-top: 40px;padding-left: 48px; padding-right: 48px;">
+                                                <!--[if (gte mso 9)|(IE)]> <table border="0" cellspacing="0" cellpadding="0"><tr><td valign="top"><![endif]-->
+                                                <table align="left" class="sm-pb-16 sm-w-full" width="100%"
+                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="padding-bottom: 16px;">
+                                                                <table align="left" class="sm-pb-8" cellpadding="0"
+                                                                    cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <table align="left" cellpadding="0"
+                                                                                    cellspacing="0" role="presentation">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td align="left"
+                                                                                                style="padding-right:6px;">
+                                                                                                <h2 class="sm-mb-0"
+                                                                                                    style="margin: 0; margin-bottom: 12px; padding-top: 6px; padding-bottom: 6px; padding-right: 16px; color: #000000; font-size: 20px;">
+                                                                                                    Featured Categories
+                                                                                                </h2>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <!--[if mso]></td><td align="left"><![endif]-->
+                                                                <table align="left" cellpadding="0" cellspacing="0"
+                                                                    role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <table align="left"
+                                                                                    style="padding-top: 2px;"
+                                                                                    cellpadding="0" cellspacing="0"
+                                                                                    role="presentation">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td
+                                                                                                style="mso-padding-alt: 8px 12px; border-color: #a0aec0; border-radius: 4px; border-style: solid; border-width: 1px;">
+                                                                                                <a href="https://example.com"
+                                                                                                    style="display: block; line-height: 100%; padding-top: 6px; padding-bottom: 6px; padding-left: 10px; padding-right: 10px; color: #718096; font-size: 14px; text-decoration: none;"
+                                                                                                    target="_blank">See
+                                                                                                    all →</a>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <!--[if (gte mso 9)|(IE)]> </td></tr></table><![endif]-->
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100%" style="padding-bottom:20px;">
+                                                <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <!--[if (gte mso 9)|(IE)]> <table border="0" cellspacing="0" cellpadding="0"><tr><td valign="top"><![endif]-->
+                                                                <table align="left" class="sm-w-full sm-pb-0"
+                                                                    style="vertical-align: top; padding-top: 0; padding-bottom: 0; padding-right: 8px; vertical-align: top;width:190px"
+                                                                    width="190" valign="top" cellpadding="0"
+                                                                    cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="sm-text-center sm-px-10"
+                                                                                style="padding-left: 48px;">
+                                                                                <table align="left" class="sm-w-full"
+                                                                                    style="vertical-align: top;"
+                                                                                    valign="top" cellpadding="0"
+                                                                                    cellspacing="0" role="presentation">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <table align="left"
+                                                                                                    cellpadding="0"
+                                                                                                    cellspacing="0"
+                                                                                                    role="presentation">
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td
+                                                                                                                align="left">
+                                                                                                                <h4
+                                                                                                                    style="margin: 0; margin-bottom: 4px; color: #2d3748;">
+                                                                                                                    <a href="http://example.com"
+                                                                                                                        style="color: #2d3748; text-decoration: underline;"
+                                                                                                                        target="_blank">UI
+                                                                                                                        Sounds</a>
+                                                                                                                    →
+                                                                                                                </h4>
+                                                                                                                <p
+                                                                                                                    style="line-height: 20px; margin: 0; margin-bottom: 4px; color: #718096; font-size: 16px;">
+                                                                                                                    Nulla
+                                                                                                                    officia
+                                                                                                                    mollit
+                                                                                                                    ipsum...
+                                                                                                                </p>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <!--[if (gte mso 9)|(IE)]> </td><td valign="top"><![endif]-->
+                                                                <table align="right" class="sm-w-full sm-pb-0"
+                                                                    width="100%"
+                                                                    style="display: inline-block; width:392px; vertical-align: top;padding-top: 0; padding-bottom: 0;"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="sm-pr-10"
+                                                                                style="padding-right:48px;">
+                                                                                <table align="left"
+                                                                                    class="sm-w-full sm-pl-0"
+                                                                                    style="padding-left: 6px;"
+                                                                                    cellpadding="0" cellspacing="0"
+                                                                                    role="presentation">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <p
+                                                                                                    style="line-height: 20px; margin: 0; margin-bottom: 6px; color: #2d3748; font-size: 16px;">
+                                                                                                    A library of user
+                                                                                                    interface sounds
+                                                                                                    from popular apps to
+                                                                                                    help you think and
+                                                                                                    learn more about
+                                                                                                    sound when designing
+                                                                                                    and building
+                                                                                                    products.
+                                                                                                </p>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <!--[if (gte mso 9)|(IE)]> </td></tr></table><![endif]-->
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100%" style="padding-bottom:20px;">
+                                                <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <!--[if (gte mso 9)|(IE)]> <table border="0" cellspacing="0" cellpadding="0"><tr><td valign="top"><![endif]-->
+                                                                <table align="left" class="sm-w-full sm-pb-0"
+                                                                    style="vertical-align: top; padding-top: 0; padding-bottom: 0; padding-right: 8px; vertical-align: top;width:190px"
+                                                                    width="190" valign="top" cellpadding="0"
+                                                                    cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="sm-text-center sm-px-10"
+                                                                                style="padding-left: 48px;">
+                                                                                <table align="left" class="sm-w-full"
+                                                                                    style="vertical-align: top;"
+                                                                                    valign="top" cellpadding="0"
+                                                                                    cellspacing="0" role="presentation">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <table align="left"
+                                                                                                    cellpadding="0"
+                                                                                                    cellspacing="0"
+                                                                                                    role="presentation">
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td
+                                                                                                                align="left">
+                                                                                                                <h4
+                                                                                                                    style="margin: 0; margin-bottom: 4px; color: #2d3748;">
+                                                                                                                    <a href="http://example.com"
+                                                                                                                        style="color: #2d3748; text-decoration: underline;"
+                                                                                                                        target="_blank">UI
+                                                                                                                        Sounds</a>
+                                                                                                                    →
+                                                                                                                </h4>
+                                                                                                                <p
+                                                                                                                    style="line-height: 20px; margin: 0; margin-bottom: 4px; color: #718096; font-size: 16px;">
+                                                                                                                    Nulla
+                                                                                                                    officia
+                                                                                                                    mollit
+                                                                                                                    ipsum...
+                                                                                                                </p>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <!--[if (gte mso 9)|(IE)]> </td><td valign="top"><![endif]-->
+                                                                <table align="right" class="sm-w-full sm-pb-0"
+                                                                    width="100%"
+                                                                    style="display: inline-block; width:392px; vertical-align: top;padding-top: 0; padding-bottom: 0;"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="sm-pr-10"
+                                                                                style="padding-right:48px;">
+                                                                                <table align="left"
+                                                                                    class="sm-w-full sm-pl-0"
+                                                                                    style="padding-left: 6px;"
+                                                                                    cellpadding="0" cellspacing="0"
+                                                                                    role="presentation">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <p
+                                                                                                    style="line-height: 20px; margin: 0; margin-bottom: 6px; color: #2d3748; font-size: 16px;">
+                                                                                                    A library of user
+                                                                                                    interface sounds
+                                                                                                    from popular apps to
+                                                                                                    help you think and
+                                                                                                    learn more about
+                                                                                                    sound when designing
+                                                                                                    and building
+                                                                                                    products.
+                                                                                                </p>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <!--[if (gte mso 9)|(IE)]> </td></tr></table><![endif]-->
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100%" style="padding-bottom:20px;">
+                                                <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <!--[if (gte mso 9)|(IE)]> <table border="0" cellspacing="0" cellpadding="0"><tr><td valign="top"><![endif]-->
+                                                                <table align="left" class="sm-w-full sm-pb-0"
+                                                                    style="vertical-align: top; padding-top: 0; padding-bottom: 0; padding-right: 8px; vertical-align: top;width:190px"
+                                                                    width="190" valign="top" cellpadding="0"
+                                                                    cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="sm-text-center sm-px-10"
+                                                                                style="padding-left: 48px;">
+                                                                                <table align="left" class="sm-w-full"
+                                                                                    style="vertical-align: top;"
+                                                                                    valign="top" cellpadding="0"
+                                                                                    cellspacing="0" role="presentation">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <table align="left"
+                                                                                                    cellpadding="0"
+                                                                                                    cellspacing="0"
+                                                                                                    role="presentation">
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td
+                                                                                                                align="left">
+                                                                                                                <h4
+                                                                                                                    style="margin: 0; margin-bottom: 4px; color: #2d3748;">
+                                                                                                                    <a href="http://example.com"
+                                                                                                                        style="color: #2d3748; text-decoration: underline;"
+                                                                                                                        target="_blank">UI
+                                                                                                                        Sounds</a>
+                                                                                                                    →
+                                                                                                                </h4>
+                                                                                                                <p
+                                                                                                                    style="line-height: 20px; margin: 0; margin-bottom: 4px; color: #718096; font-size: 16px;">
+                                                                                                                    Nulla
+                                                                                                                    officia
+                                                                                                                    mollit
+                                                                                                                    ipsum...
+                                                                                                                </p>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <!--[if (gte mso 9)|(IE)]> </td><td valign="top"><![endif]-->
+                                                                <table align="right" class="sm-w-full sm-pb-0"
+                                                                    width="100%"
+                                                                    style="display: inline-block; width:392px; vertical-align: top;padding-top: 0; padding-bottom: 0;"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="sm-pr-10"
+                                                                                style="padding-right:48px;">
+                                                                                <table align="left"
+                                                                                    class="sm-w-full sm-pl-0"
+                                                                                    style="padding-left: 6px;"
+                                                                                    cellpadding="0" cellspacing="0"
+                                                                                    role="presentation">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <p
+                                                                                                    style="line-height: 20px; margin: 0; margin-bottom: 6px; color: #2d3748; font-size: 16px;">
+                                                                                                    A library of user
+                                                                                                    interface sounds
+                                                                                                    from popular apps to
+                                                                                                    help you think and
+                                                                                                    learn more about
+                                                                                                    sound when designing
+                                                                                                    and building
+                                                                                                    products.
+                                                                                                </p>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <!--[if (gte mso 9)|(IE)]> </td></tr></table><![endif]-->
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100%" style="padding-bottom:40px;">
+                                                <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <!--[if (gte mso 9)|(IE)]> <table border="0" cellspacing="0" cellpadding="0"><tr><td valign="top"><![endif]-->
+                                                                <table align="left" class="sm-w-full sm-pb-0"
+                                                                    style="vertical-align: top; padding-top: 0; padding-bottom: 0; padding-right: 8px; vertical-align: top;width:190px"
+                                                                    width="190" valign="top" cellpadding="0"
+                                                                    cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="sm-text-center sm-px-10"
+                                                                                style="padding-left: 48px;">
+                                                                                <table align="left" class="sm-w-full"
+                                                                                    style="vertical-align: top;"
+                                                                                    valign="top" cellpadding="0"
+                                                                                    cellspacing="0" role="presentation">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <table align="left"
+                                                                                                    cellpadding="0"
+                                                                                                    cellspacing="0"
+                                                                                                    role="presentation">
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td
+                                                                                                                align="left">
+                                                                                                                <h4
+                                                                                                                    style="margin: 0; margin-bottom: 4px; color: #2d3748;">
+                                                                                                                    <a href="http://example.com"
+                                                                                                                        style="color: #2d3748; text-decoration: underline;"
+                                                                                                                        target="_blank">UI
+                                                                                                                        Sounds</a>
+                                                                                                                    →
+                                                                                                                </h4>
+                                                                                                                <p
+                                                                                                                    style="line-height: 20px; margin: 0; margin-bottom: 4px; color: #718096; font-size: 16px;">
+                                                                                                                    Nulla
+                                                                                                                    officia
+                                                                                                                    mollit
+                                                                                                                    ipsum...
+                                                                                                                </p>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <!--[if (gte mso 9)|(IE)]> </td><td valign="top"><![endif]-->
+                                                                <table align="right" class="sm-w-full sm-pb-0"
+                                                                    width="100%"
+                                                                    style="display: inline-block; width:392px; vertical-align: top;padding-top: 0; padding-bottom: 0;"
+                                                                    cellpadding="0" cellspacing="0" role="presentation">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="sm-pr-10"
+                                                                                style="padding-right:48px;">
+                                                                                <table align="left"
+                                                                                    class="sm-w-full sm-pl-0"
+                                                                                    style="padding-left: 6px;"
+                                                                                    cellpadding="0" cellspacing="0"
+                                                                                    role="presentation">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <p
+                                                                                                    style="line-height: 20px; margin: 0; margin-bottom: 6px; color: #2d3748; font-size: 16px;">
+                                                                                                    A library of user
+                                                                                                    interface sounds
+                                                                                                    from popular apps to
+                                                                                                    help you think and
+                                                                                                    learn more about
+                                                                                                    sound when designing
+                                                                                                    and building
+                                                                                                    products.
+                                                                                                </p>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <!--[if (gte mso 9)|(IE)]> </td></tr></table><![endif]-->
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <table bgcolor="#fff" cellpadding="0" cellspacing="0"
+                                    class="wrapper all-font-sans sm-w-full rounded"
+                                    style="background:#fff;margin-top: 15px; border-radius: 4px; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;width:600px;margin-left: auto; margin-right: auto;"
+                                    width="600">
+                                    <tbody>
+                                        <tr>
+                                            <td align="center" bgcolor="#fff"
+                                                style="padding-bottom: 24px;padding-left:24px; padding-right:24px; border-radius: 4px;width:600px;"
+                                                width="600">
+                                                <table cellpadding="0" cellspacing="0" style="width:550px;"
+                                                    class="sm-w-full rounded" width="550">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="padding-top: 32px; padding-bottom: 48px;">
+                                                                <table cellpadding="0" cellspacing="0" width="100%">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="sm-w-full sm-inline-block sm-px-14 sm-pb-20 rounded"
+                                                                                style="padding-right: 6px;" width="25%">
+                                                                                <table cellpadding="0" cellspacing="0"
+                                                                                    width="100%">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td align="center"
+                                                                                                bgcolor="#41454e"
+                                                                                                style="mso-padding-alt: 5px 24px 10px;border-radius: 4px;text-align: center;">
+                                                                                                <a href="https://github.com/graemefulton"
+                                                                                                    style="display: block; padding-top: 10px; padding-bottom: 10px; padding-left: 24px; padding-right: 24px; color: #ffffff; font-size: 12px; text-decoration: none;"
+                                                                                                    target="_blank">GitHub</a>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                            <td class="sm-w-full sm-inline-block sm-px-14 sm-pb-20"
+                                                                                style="padding-left: 6px; padding-right: 6px;"
+                                                                                width="25%">
+                                                                                <table cellpadding="0" cellspacing="0"
+                                                                                    width="100%">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td align="center"
+                                                                                                bgcolor="#4267b2"
+                                                                                                style="mso-padding-alt: 5px 24px 10px; border-radius: 4px; text-align: center;">
+                                                                                                <a href="https://facebook.com"
+                                                                                                    style="display: block; padding-top: 10px; padding-bottom: 10px; padding-left: 24px; padding-right: 24px; color: #ffffff; font-size: 12px; text-decoration: none;"
+                                                                                                    target="_blank">Facebook</a>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                            <td class="sm-w-full sm-inline-block sm-px-14 sm-pb-20"
+                                                                                style="padding-left: 6px; padding-right: 6px;"
+                                                                                width="25%">
+                                                                                <table cellpadding="0" cellspacing="0"
+                                                                                    width="100%">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td align="center"
+                                                                                                bgcolor="#1da1f2"
+                                                                                                style="mso-padding-alt: 5px 24px 10px; border-radius: 4px; text-align: center;">
+                                                                                                <a href="https://twitter.com/letter_hq"
+                                                                                                    style="display: block; padding-top: 10px; padding-bottom: 10px; padding-left: 24px; padding-right: 24px; color: #ffffff; font-size: 12px; text-decoration: none;"
+                                                                                                    target="_blank">Twitter</a>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                            <td class="sm-w-full sm-inline-block sm-px-14 sm-pb-20"
+                                                                                style="padding-left: 6px;" width="25%">
+                                                                                <table cellpadding="0" cellspacing="0"
+                                                                                    width="100%">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td align="center"
+                                                                                                bgcolor="#0077b5"
+                                                                                                class="bg-linkedin"
+                                                                                                style="mso-padding-alt: 5px 24px 10px; border-radius: 4px; text-align: center;">
+                                                                                                <a href="https://linkedin.com"
+                                                                                                    style="display: block; padding-top: 10px; padding-bottom: 10px; padding-left: 24px; padding-right: 24px; color: #ffffff; font-size: 12px; text-decoration: none;"
+                                                                                                    target="_blank">LinkedIn</a>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="all-font-sans sm-w-full sm-px-24"
+                                    style="border-radius: 4px; margin-left: auto; margin-right: auto; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px; width: 600px; margin-top: 15px;"
+                                    width="600" bgcolor="#ffffff" cellpadding="0" cellspacing="0" role="presentation">
+                                    <tbody>
+                                        <tr>
+                                            <td align="center" bgcolor="#ffffff" width="600"
+                                                style="width:600px;border-radius:4px;padding-left: 24px; padding-right: 24px;">
+                                                <table align="center" bgcolor="#ffffff" cellpadding="0" cellspacing="0"
+                                                    class="sm-w-full" width="550">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="center"
+                                                                style="border-radius:4px; padding-bottom: 8px; padding-top:40px; text-align: center;margin-left: auto; margin-right: auto;">
+                                                                <a href="#" style="text-decoration: none;"
+                                                                    target="_blank"><img align="center"
+                                                                        style="margin-left: auto; margin-right: auto;"
+                                                                        src="https://s3-us-west-1.amazonaws.com/tinify-bucket/%2Fprototypr%2Ftemp%2F1580577924294-Group+74.png"
+                                                                        alt="Letter" width="130"
+                                                                        class="fr-fic fr-dii"></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="center" class="sm-px-14"
+                                                                style="text-align: center;">
+                                                                <p
+                                                                    style="color: #8994c6; font-size: 12px; font-style: italic;">
+                                                                    23 Johnson Street • Blackpool, UK</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="64" style="line-height: 64px;">‌</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="center" style="text-align: center;">
+                                                                <p><a href="https://example.com"
+                                                                        style="color: #c4c8d8; font-size: 12px; text-decoration: none;"
+                                                                        target="_blank">Unsubscribe from this list.</a>
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="40" style="line-height: 40px;">‌</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

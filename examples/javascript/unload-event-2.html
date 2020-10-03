@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Window unload/beforeunload Event</title>
+
+    <script>
+        /* function myFunction() {
+            return "Write something clever here...";
+        } */
+    </script>
+
+    <script>
+        // Another way to use "beforeunload" event
+        window.addEventListener('beforeunload', (event) => {
+            console.log('Browser Unloading...');
+
+            // Dummy API call
+            fetch('https://jsonplaceholder.typicode.com/todos/1')
+                .then(response => response.json())
+                .then(json => console.log(json))
+
+            // Cancel the event as stated by the standard.
+            event.preventDefault();
+            // Chrome requires returnValue to be set.
+            event.returnValue = '';
+        });
+
+        // No effect of browser page reload/refresh
+        /* window.addEventListener("unload", function (event) {
+            console.log('Browser Unloading...');
+        }); */
+    </script>
+
+</head>
+
+<!-- <body onbeforeunload="return myFunction()"> -->
+
+<body>
+
+    <h1>Browser Window unload/beforeunload Event</h1>
+    <p>Note: <code>beforeunload</code> event will fire also on Page reload/refresh event, and will show popup. Once you
+        select reload then it will not ask even if we close the tab or browser. ( Tested in Chrome )</p>
+
+</body>
+
+</html>

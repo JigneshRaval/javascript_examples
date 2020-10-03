@@ -1,0 +1,450 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" id="ah-viewport"
+        content="user-scalable=yes, width=device-width, minimum-scale=1, maximum-scale=5.0, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Flexbox : Responsive Cards</title>
+
+    <!-- <link rel="stylesheet" href="../../css/bootstrap.css" /> -->
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="container">
+            <!-- START : Example 1 -->
+            <style>
+                *,
+                *::before,
+                *::after {
+                    box-sizing: border-box;
+                }
+
+                html {
+                    background-color: #f0f0f0;
+                }
+
+                body {
+                    color: #999999;
+                    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                    font-style: normal;
+                    font-weight: 400;
+                    letter-spacing: 0;
+                    padding: 1rem;
+                    text-rendering: optimizeLegibility;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    -moz-font-feature-settings: "liga"on;
+                }
+
+                img {
+                    height: auto;
+                    max-width: 100%;
+                    vertical-align: middle;
+                }
+
+                .btn {
+                    background-color: white;
+                    border: 1px solid #cccccc;
+                    color: #696969;
+                    padding: 0.5rem;
+                    text-transform: lowercase;
+                }
+
+                .btn--block {
+                    display: block;
+                    width: 100%;
+                }
+
+                .cards {
+                    display: -webkit-box;
+                    display: flex;
+                    flex-wrap: wrap;
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .cards__item {
+                    display: -webkit-box;
+                    display: flex;
+                    padding: 1rem;
+                }
+
+                @media (min-width: 40rem) {
+                    .cards__item {
+                        width: 50%;
+                    }
+                }
+
+                @media (min-width: 56rem) {
+                    .cards__item {
+                        width: 33.3333%;
+                    }
+                }
+
+                .card {
+                    background-color: white;
+                    border-radius: 0.25rem;
+                    box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+                    display: -webkit-box;
+                    display: flex;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    flex-direction: column;
+                    overflow: hidden;
+                }
+
+                .card:hover .card__image {
+                    -webkit-filter: contrast(100%);
+                    filter: contrast(100%);
+                }
+
+                .card__content {
+                    display: -webkit-box;
+                    display: flex;
+                    -webkit-box-flex: 1;
+                    flex: 1 1 auto;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    flex-direction: column;
+                    padding: 1rem;
+                }
+
+                .card__image {
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    border-top-left-radius: 0.25rem;
+                    border-top-right-radius: 0.25rem;
+                    -webkit-filter: contrast(70%);
+                    filter: contrast(70%);
+                    overflow: hidden;
+                    position: relative;
+                    -webkit-transition: -webkit-filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+                    transition: -webkit-filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+                    transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+                    transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91), -webkit-filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+                }
+
+                .card__image::before {
+                    content: "";
+                    display: block;
+                    padding-top: 56.25%;
+                }
+
+                @media (min-width: 40rem) {
+                    .card__image::before {
+                        padding-top: 66.6%;
+                    }
+                }
+
+                .card__image--flowers {
+                    background-image: url(https://unsplash.it/800/600?image=82);
+                }
+
+                .card__image--river {
+                    background-image: url(https://unsplash.it/800/600?image=11);
+                }
+
+                .card__image--record {
+                    background-image: url(https://unsplash.it/800/600?image=39);
+                }
+
+                .card__image--fence {
+                    background-image: url(https://unsplash.it/800/600?image=59);
+                }
+
+                .card__title {
+                    color: #696969;
+                    font-size: 1.25rem;
+                    font-weight: 300;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                }
+
+                .card__text {
+                    -webkit-box-flex: 1;
+                    flex: 1 1 auto;
+                    font-size: 0.875rem;
+                    line-height: 1.5;
+                    margin-bottom: 1.25rem;
+                }
+            </style>
+            <ul class="cards">
+                <li class="cards__item">
+                    <div class="card">
+                        <div class="card__image card__image--fence"></div>
+                        <div class="card__content">
+                            <div class="card__title">Flex</div>
+                            <p class="card__text">This is the shorthand for flex-grow, flex-shrink and flex-basis
+                                combined.
+                                The
+                                second and third parameters (flex-shrink and flex-basis) are optional. Default is 0 1
+                                auto.
+                            </p>
+                            <button class="btn btn--block card__btn">Button</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="cards__item">
+                    <div class="card">
+                        <div class="card__image card__image--river"></div>
+                        <div class="card__content">
+                            <div class="card__title">Flex Grow</div>
+                            <p class="card__text">This defines the ability for a flex item to grow if necessary. It
+                                accepts
+                                a
+                                unitless value that serves as a proportion. It dictates what amount of the available
+                                space
+                                inside the flex container the item should take up.</p>
+                            <button class="btn btn--block card__btn">Button</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="cards__item">
+                    <div class="card">
+                        <div class="card__image card__image--record"></div>
+                        <div class="card__content">
+                            <div class="card__title">Flex Shrink</div>
+                            <p class="card__text">This defines the ability for a flex item to shrink if necessary.
+                                Negative
+                                numbers are invalid.</p>
+                            <button class="btn btn--block card__btn">Button</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="cards__item">
+                    <div class="card">
+                        <div class="card__image card__image--flowers"></div>
+                        <div class="card__content">
+                            <div class="card__title">Flex Basis</div>
+                            <p class="card__text">This defines the default size of an element before the remaining space
+                                is
+                                distributed. It can be a length (e.g. 20%, 5rem, etc.) or a keyword. The auto keyword
+                                means
+                                "look at my width or height property."</p>
+                            <button class="btn btn--block card__btn">Button</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <!-- END : Example 1 -->
+
+            <!-- START : Example 2 -->
+            <style>
+                * {
+                    transition: .33s ease all;
+                    box-sizing: border-box;
+                }
+
+                div.example-2 {
+                    height: 100vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: #80EDFF;
+                }
+
+                .responsive-card-2 span {
+                    display: inline-block;
+                    width: 50px;
+                    height: 5px;
+                    background-color: #FF3434;
+                    margin-bottom: 30px;
+                }
+
+                div.example-2 {
+                    height: 100vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: #80EDFF;
+                }
+
+                div.responsive-card-2 {
+                    background-color: white;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 30px;
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45);
+                }
+
+                .responsive-card-2 imag {
+                    width: 100%;
+                }
+
+                .responsive-card-2 h1 {
+                    font-weight: 600;
+                    font-size: 36px;
+                    margin: 0 0 15px;
+                }
+
+                .responsive-card-2 p {
+                    font-weight: 300;
+                    line-height: 24px;
+                    margin: 0 0 30px 0;
+                }
+
+                .responsive-card-2 a {
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    color: #FF3434;
+                    font-weight: bold;
+                    font-size: 14px;
+                    position: relative;
+                    display: inline-block;
+                    z-index: 1;
+                    padding: 5px;
+                    left: -5px;
+                }
+
+                .responsive-card-2 a:hover {
+                    color: #FF3434;
+                }
+
+                .responsive-card-2 a::before {
+                    content: '';
+                    z-index: -1;
+                    position: absolute;
+                    top: calc(50%);
+                    left: 0;
+                    width: 100%;
+                    height: 40%;
+                    pointer-events: none;
+                    background: #80EDFF;
+                    transform: scale3d(0, 1, 1);
+                    transform-origin: 0% 50%;
+                    transition: transform 0.33s;
+                }
+
+                .responsive-card-2 a:hover::before {
+                    transform: scale3d(1, 1, 1);
+                    transform-origin: 0% 50%;
+                }
+
+                .responsive-card-2 div.imag {
+                    height: 300px;
+                    width: 100%;
+                    background: url("https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg");
+                    background-position: center;
+                    background-size: cover;
+                }
+
+                .responsive-card-2 div.text-container {
+                    margin: 60px 45px 55px;
+                }
+
+                @media screen and (min-width: 768px) {
+                    div.responsive-card-2 {
+                        flex-direction: row;
+                        width: 100%;
+                    }
+
+                    .responsive-card-2 div.imag {
+                        height: 420px;
+                        min-width: 360px;
+                    }
+
+                    .responsive-card-2 div.text-container {
+                        margin: 0 60px;
+                        max-width: 660px;
+                    }
+                }
+
+                @media screen and (min-width: 1024px) {
+                    div.responsive-card-2 {
+                        max-width: 1200px;
+                    }
+                }
+            </style>
+
+
+            <div class="example example-2">
+                <!-- https://webdevtrick.com/responsive-css-flexbox/ -->
+                <div class="responsive-card-2">
+                    <div class="imag"></div>
+                    <div class="text-container">
+                        <span></span>
+                        <h1>Web Development</h1>
+                        <p>Get the lastest and trending web development project's source code, first see preview if you
+                            need
+                            then get the code.
+                        </p>
+                        <a href="https://webdevtrick.com" target="_blank">Visit Webdevtrick</a>
+                    </div>
+                </div>
+            </div>
+            <!-- END : Example 2 -->
+
+            <!-- START : Example 3 -->
+            <!-- https://codepen.io/mcraiganthony/pen/jPKRqy -->
+            <style>
+                .example-3 .grid {
+                    display: -webkit-box;
+                    display: flex;
+                    -webkit-box-orient: horizontal;
+                    -webkit-box-direction: normal;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    -webkit-box-pack: center;
+                    justify-content: center;
+                    align-content: center;
+                    -webkit-box-align: center;
+                    align-items: center;
+                }
+
+                .example-3 .grid__item {
+                    background-color: lightgray;
+                    background-position: center center;
+                    background-size: cover;
+                    /*flex-grow: 1;
+                    flex-shrink: 0;
+                    flex-basis: 120px;*/
+                    -webkit-box-flex: 1;
+                    flex: auto;
+                    margin: 2px;
+                    height: 240px;
+                    flex-basis: 150px;
+                    /*@media screen and (min-width: 768px) {
+                    flex-basis: 230px;
+                    }*/
+                }
+
+                @media screen and (min-width: 600px) {
+                    .example-3 .grid__item {
+                        flex-basis: 230px;
+                    }
+                }
+            </style>
+            <div class="example example-3">
+                <div class="responsive-card-3">
+                    <div class="grid">
+                        <div class="grid__item" style="background-image: url(https://unsplash.it/800/600?image=82);">
+                        </div>
+                        <div class="grid__item" style="background-image: url(https://unsplash.it/800/600?image=82);">
+                        </div>
+                        <div class="grid__item" style="background-image: url(https://unsplash.it/800/600?image=82);">
+                        </div>
+                        <div class="grid__item" style="background-image: url(https://unsplash.it/800/600?image=82);">
+                        </div>
+                        <div class="grid__item" style="background-image: url(https://unsplash.it/800/600?image=82);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END : Example 3 -->
+        </div>
+    </div>
+</body>
+
+</html>
