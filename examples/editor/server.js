@@ -1,17 +1,41 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
+var cp = require('child_process');
+var cliArguments = process.argv.slice(2);
 
-const port = process.env.PORT || 3002;
+var fileName, port = '3002', browser = 'chrome',
+    browserPath = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe";
 
-console.log("PORTS --> ", port);
+if (cliArguments && cliArguments.length > 0) {
+    cliArguments.forEach(function (arg) {
+        console.log('ARG == ', arg, arg.indexOf('file'), arg.indexOf('port'));
+        if (arg.indexOf('file') > -1) {
+            fileName = arg.split('=')[1];
+        }
+        if (arg.indexOf('port') > -1) {
+            port = arg.split('=')[1];
+        }
+        if (arg.indexOf('browser') > -1) {
+            browser = arg.split('=')[1];
+            if (browser === 'firefox') {
+                browserPath = "c:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe";
+            }
+            if (browser === 'ie') {
+                browserPath = "C:\\Program Files\\Internet Explorer\\iexplore.exe";
+            }
+        }
+    });
+}
+
+console.log("PORTS --> ", fileName, port);
+var url_to_open = `http://localhost:${port}/`;
 
 http.createServer(function (request, response) {
-    // console.log('Request ...: ', __dirname + request.url);
 
     var filePath = '.' + request.url;
     if (filePath == './')
-        filePath = './code-editor.html';
+        filePath = fileName || './code-editor.html';
 
     var extname = path.extname(filePath);
 
@@ -52,9 +76,28 @@ http.createServer(function (request, response) {
         case '.wav':
             contentType = 'audio/wav';
             break;
+        case '.pdf':
+            contentType = 'application/pdf';
+            break;
+        case '.doc':
+            contentType = 'application/msword';
+            break;
+        case '.eot':
+            contentType = 'appliaction/vnd.ms-fontobject';
+            break;
+        case '.ttf':
+            contentType = 'aplication/font-sfnt';
+            break;
+        case '.woff':
+            contentType = 'font/woff';
+            break;
+        case '.woff2':
+            contentType = 'font/woff2';
+            break;
+        case '.svg':
+            contentType = 'image/svg+xml';
+            break;
     }
-
-    // console.log(" Type : ", contentType);
 
     fs.readFile(filePath, function (error, content) {
         if (error) {
@@ -78,6 +121,19 @@ http.createServer(function (request, response) {
         }
     });
 
-}).listen(port);
+}).listen(port, (err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log(`Server is running at http://localhost:${port}/`);
+        // https://stackoverflow.com/questions/8085474/can-node-js-invoke-chrome
+        cp.spawn(browserPath, ['-new-tab', url_to_open]);
+    }
+});
 
-console.log(`Server running at http://localhost:${port}/`);
+/* cp.exec(`start "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe" http://localhost:${port}/`, function (err) {
+    if (err) {
+        //process error
+    } else {
+        console.log("success open")
+}}) */

@@ -1,5 +1,5 @@
 // html.js
-export function tag(tag, text) {
+export default function tag(tag, text) {
     const el = document.createElement(tag)
     el.textContent = text
 

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+    <title>React JSX Babel-Standalone Import/Export Problem</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <h1>Example of ES6 Modules with Babel (temp2)</h1>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/@babel/standalone@7.4.4/babel.js"></script>
+    <script src="https://unpkg.com/react@16.14.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.14.0/umd/react-dom.development.js"></script>
+
+    <script>console.log('Babel == ', Babel);</script>
+
+    <script data-plugins="transform-modules-umd" type="text/babel" src="./temp2.main.js"></script>
+    <script data-plugins="transform-modules-umd" type="text/babel">
+        // https://stackoverflow.com/questions/53972473/how-to-perform-import-export-in-client-side-react-jsx-using-babel-standalone/53975781
+        import MyExport from "./temp2.main.js";
+        const App = () => {
+            return (
+                <MyExport />
+            );
+        };
+        ReactDOM.render(<App />, document.querySelector("#root"));
+    </script>
+
+    <script data-plugins="transform-modules-umd" type="text/babel" src="./cube.js"></script>
+    <script data-plugins="transform-modules-umd" type="text/babel">
+        // Example Src : https://github.com/babel/babel-standalone/issues/60
+        import cube from 'cube.js'
+        console.log('Cube :', cube(3))
+    </script>
+
+    <!-- MyExport.js:
+const MyExport = () => {
+    return (
+        <div>MyExport element is imported!</div>
+    );
+};
+export default MyExport;
+-->
+
+</body>
+
+</html>

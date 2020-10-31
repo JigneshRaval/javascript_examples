@@ -1,0 +1,53 @@
+body {
+    background-color: #eeeeee;
+}
+
+/* RXJS : Output Style
+=======================================================*/
+.example {
+    margin-bottom: 1em;
+}
+
+.observable-output {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.observable-output li {
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 1px solid #CCC;
+    background-color: #ffffff;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.observable-output .bg-success {
+    box-shadow: 0 5px 5px rgba(40, 167, 69, 0.4);
+}
+
+.observable-output .bg-danger {
+    box-shadow: 0 5px 5px rgba(220, 53, 69, 0.4);
+}
+
+#console {
+    white-space: pre-wrap;
+    background-color: #EEE;
+    border-top: 1px solid #CCC;
+}
+
+#console p {
+    border-bottom: 1px solid #CCC;
+    margin: 0;
+    line-height: 1.5;
+    padding: 0 1rem;
+}
+
+#console p.warn {
+    background-color: #fef7c1;
+}
+
+#console p.error {
+    background-color: #fed1ce;
+    color: #f00;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>example-es-modules-with-babel</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+
+
+    <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+    <script src="https://unpkg.com/react@16.14.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.14.0/umd/react-dom.development.js"></script>
+
+    <script>
+        console.log('Babel === ', Babel);
+        // https://github.com/babel/babel/issues/9976
+        // https://glitch.com/edit/#!/example-vuejs-with-babel?path=index.html:1:2
+        // https://glitch.com/edit/#!/example-es-modules-with-babel?path=index.html%3A19%3A60
+        Babel.registerPreset("my-preset", {
+            presets: [
+                [Babel.availablePresets["es2017"], { modules: false }],
+                [Babel.availablePresets["react"]]
+
+            ],
+            plugins: [
+                [Babel.availablePlugins["transform-modules-umd"]]
+            ]
+        });
+    </script>
+    <script data-plugins="transform-modules-umd" type="text/babel" src="./cube.js"></script>
+    <script data-plugins="transform-modules-umd" type="text/babel">
+        // Example Src : https://github.com/babel/babel-standalone/issues/60
+        import cube from 'cube.js'
+        console.log('Cube :', cube(3))
+    </script>
+</head>
+
+<body>
+    <p>Output should appear below.</p>
+    <hr />
+    <div id="root"></div>
+
+    <script type="text/babel" src="./app.js" data-presets="my-preset"></script>
+    <script type="text/babel" src="./temp1.main.js" data-presets="my-preset"></script>
+    <!-- <script type="text/babel" data-presets="my-preset">
+        import App from './app.js';
+
+        ReactDOM.render(<App />, document.querySelector("#root"));
+    </script> -->
+</body>
+
+</html>
