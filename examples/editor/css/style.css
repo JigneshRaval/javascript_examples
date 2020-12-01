@@ -2,6 +2,15 @@ body {
     background-color: #eeeeee;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.content {
+    min-height: 100%;
+}
+
 /* RXJS : Output Style
 =======================================================*/
 .example {
@@ -30,10 +39,29 @@ body {
     box-shadow: 0 5px 5px rgba(220, 53, 69, 0.4);
 }
 
+/* Console : Output Style
+=======================================================*/
 #console {
+    margin-top: -36px;
+    height: 36px;
     white-space: pre-wrap;
     background-color: #EEE;
-    border-top: 1px solid #CCC;
+    margin-bottom: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+#console h3 {
+    background-color: #111;
+    color: #FFF;
+    font-size: 16px;
+    margin: 0;
+    padding: 0.5rem;
+    position: sticky;
+    top: 0;
+}
+
+#console button {
+    border: 0;
 }
 
 #console p {
@@ -41,6 +69,11 @@ body {
     margin: 0;
     line-height: 1.5;
     padding: 0 1rem;
+}
+
+#console.active {
+    height: 250px;
+    margin-top: -250px;
 }
 
 #console p.warn {

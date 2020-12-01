@@ -1,7 +1,7 @@
 // console  -------------------------------------------------------------
 $(document).ready(function () {
     // Ref : https://stackoverflow.com/questions/6604192/showing-console-errors-and-alerts-in-a-div-inside-the-page
-    var log = document.querySelector('#console');
+    var consoleElem = document.querySelector('#console');
 
     function parseLog(input) {
         var type;
@@ -25,16 +25,22 @@ $(document).ready(function () {
         return $list.append(html);
     };
 
+    function scrollToBottom() {
+        consoleElem.lastElementChild.lastElementChild.scrollIntoView({ behavior: 'smooth',  block: "end" });
+    };
+
     ['log', 'debug', 'info', 'warn', 'error'].forEach(function (verb) {
-        console[verb] = (function (method, verb, log) {
+        console[verb] = (function (method, verb, consoleElem) {
             return function () {
                 method.apply(console, arguments);
                 var msg = document.createElement('p');
                 msg.classList.add(verb);
                 msg.textContent = verb + ': ' + Array.prototype.slice.call(arguments).join(" ");
-                log.appendChild(msg);
+                let logs = consoleElem.querySelector('.logs');
+                logs.appendChild(msg);
+                scrollToBottom();
             };
-        })(console[verb].bind(console), verb, log);
+        })(console[verb].bind(console), verb, consoleElem);
     });
 
 });

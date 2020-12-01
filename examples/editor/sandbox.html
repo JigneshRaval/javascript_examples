@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/jquery-consoler.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.1.4/tailwind.min.css" />
 
     <script class="static-script" src="./js/utility.js"></script>
     <script class="static-script" src="./js/jquery.min.js"></script>
@@ -32,15 +33,38 @@
             if (module === "rxjs") return rxjs; // RxJS 5.x
             if (module === "RxJs") return Rx;   // RxJS 6.x
         }
+
+
+        function clearConsole() {
+            let consoleElem = document.querySelector('#console');
+            console.clear();
+            let logsContainer = consoleElem.querySelector('.logs');
+            logsContainer.innerHTML = "";
+        }
+
+        function toggleConsole() {
+            let consoleElem = document.querySelector('#console');
+            if (!consoleElem.classList.contains('active')) {
+                consoleElem.classList.add('active');
+            } else {
+                consoleElem.classList.remove('active');
+            }
+        }
+
+
     </script>
-    <script class="static-script" src="./js/babel/babel-standalone@7.12.4.js" type="text/javascript"></script>
+    <script class="static-script babel-standalone" src="./js/babel/babel-standalone@7.12.4.js"
+        type="text/javascript"></script>
 </head>
 
 <body>
-    <main>
+
+    <main class="content">
         <div id="output"></div>
     </main>
-    <pre id="console"></pre>
+
+    <pre
+        id="console"><h3 class="d-flex">Console <div class="ml-auto"><button onclick="clearConsole()">Clear</button> <button onclick="toggleConsole()">Toggle</button></div></h3><div class="logs"></div></pre>
 
     <script>
         const REACT = `
@@ -73,6 +97,7 @@ Babel.registerPreset("react-preset", {
 
 
         const DEFAULT_CONTENT = `
+
         <!-- HTML Code -->
 <h1>Code Example</h1>
 <div id="msg"></div>
@@ -87,12 +112,16 @@ Babel.registerPreset("react-preset", {
 // your JavaScript logic
 var imagetag = document.getElementById('msg');
 imagetag.innerHTML = 'Hi';
-
 function cube(x) {
 	return x * x *x;
 }
 
-console.log(cube(4));
+function square(x) {
+	return x * x;
+}
+
+console.log('Cube :', cube(8));
+console.log('Square :', square(4));
 
 var obj = {
 	"name" : "Jignesh",
@@ -118,12 +147,33 @@ console.error("Error lg", "test");
                         // console.log('Data in Sandbox iFrame :', e.data);
                         _this.cleanupScripts();
                         var output = document.querySelector('#output');
-                        output.innerHTML = e.data;
+
+                        // Clear container to avoid appending duplicate code
+                        output.innerHTML = "";
+
+                        if (e.data.indexOf('type="module"') === -1) {
+                            // Approach 1 : script type="module" ( ES6 Module ) is not working with this approach so we need following approach
+                            output.innerHTML = e.data;
+                        } else {
+                            // Approach 2 : when script type="module" ( ES6 Module : https://v8.dev/features/dynamic-import )
+                            // Ref: Run script tags in innerHTML content - https://ghinda.net/article/script-tags/
+                            // Using createContextualFragment to insert script tags will execute them.
+                            // But, same as with document.write, the scripts will run as they are loaded and not in the specific order.
+                            var range = document.createRange()
+                            range.setStart(output, 0)
+                            output.appendChild(
+                                range.createContextualFragment(e.data)
+                            );
+                        }
+
                         _this.scriptsDone();
                     }
                 };
             }
 
+            /**
+             * Clean all compiled and generated scripts by Babel
+             */
             cleanupScripts() {
                 let scripts = document.querySelectorAll('script');
                 [].forEach.call(scripts, function (script) {
@@ -155,12 +205,21 @@ console.error("Error lg", "test");
 
             // Remove all dynamic scripts added into page header
             // ========================================================================
-            removeAllDynamicScripts() {
+            removeAllDynamicScripts(removeBabel) {
                 var headerElem = document.querySelector('head');
                 var allScripts = headerElem.querySelectorAll('.dynamic-script');
                 [].forEach.call(allScripts, function (script) {
-                    script.parentElement.removeChild(script);
+                    if (script.parentElement) {
+                        script.parentElement.removeChild(script);
+                    }
                 });
+
+                if (removeBabel) {
+                    let babelScript = headerElem.querySelector('.babel-standalone');
+                    if (babelScript.parentElement) {
+                        babelScript.parentElement.removeChild(babelScript);
+                    }
+                }
             }
 
             // Dynamically add scripts into page header according to given template
@@ -185,7 +244,7 @@ console.error("Error lg", "test");
                         break;
                     default:
                         $('#output').append(DEFAULT_CONTENT);
-                        this.removeAllDynamicScripts();
+                        this.removeAllDynamicScripts(true);
                 }
 
                 /* var headerElem = document.querySelector('head');

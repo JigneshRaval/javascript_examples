@@ -5,16 +5,22 @@ body {
 
 .template-group-wrapper {
     text-align: center;
+    margin-right: auto;
 }
 
 .template-group img {
-    height: 40px;
-    width: 40px;
+    height: 32px;
+    width: 32px;
+    margin-right: 5px;
 }
 
 .template-group .btn {
     padding: 10px;
     /* box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12); */
+}
+
+.template-group .btn:hover {
+    background-color: #EEE;
 }
 
 .template-group .btn-primary {
@@ -25,12 +31,11 @@ body {
 
 .editor-wrapper {
     display: flex;
-    height: 100vh;
+    height: calc(100vh - 120px);
 }
 .editor-wrapper article {
     flex: 1;
-    margin: 1em;
-    height: calc(100% - 100px);
+    height: calc(100%);
 }
 .editor-wrapper article h2 {
     padding: 1em;

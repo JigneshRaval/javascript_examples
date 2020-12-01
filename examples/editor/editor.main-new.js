@@ -1,4 +1,5 @@
 const CODEMIRROR_CONTENT = `
+
 <!-- HTML Code -->
 <h1>Code Example</h1>
 <div id="msg"></div>
@@ -13,12 +14,16 @@ const CODEMIRROR_CONTENT = `
 // your JavaScript logic
 var imagetag = document.getElementById('msg');
 imagetag.innerHTML = 'Hi';
-
 function cube(x) {
 	return x * x *x;
 }
 
-console.log(cube(4));
+function square(x) {
+	return x * x;
+}
+
+console.log('Cube :', cube(8));
+console.log('Square :', square(4));
 
 var obj = {
 	"name" : "Jignesh",
@@ -42,7 +47,7 @@ class Editor {
         this.sandboxFrame = document.getElementById('sandbox');
         this.textArea = document.getElementById('code');
         this.codeMirror;
-        // localStorage.setItem('editorTemplateName', this._template);
+        localStorage.setItem('editorTemplateName', this._template);
     }
 
     init() {
@@ -74,7 +79,7 @@ class Editor {
             this.editorData = this.codeMirror && this.codeMirror.getValue() || event.target && event.target.value || event.target && event.target.innerText;
             setTimeout(() => {
                 this.sandboxFrame.contentWindow.postMessage(this.editorData, '*');
-            }, 500);
+            }, 2000);
         });
     }
 
