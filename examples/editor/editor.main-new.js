@@ -12,6 +12,9 @@ const CODEMIRROR_CONTENT = `
 <!-- JavaScript Code -->
 <script type="text/babel">
 // your JavaScript logic
+
+console.log("Babel ====", Babel);
+
 var imagetag = document.getElementById('msg');
 imagetag.innerHTML = 'Hi';
 function cube(x) {
