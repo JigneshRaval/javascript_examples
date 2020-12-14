@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>A2HS demo</title>
+    <!-- <link href="style.css" rel="stylesheet"> -->
+    <!-- <script src="index.js" defer></script> -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: inherit;
+            margin: 2rem;
+            font-family: Arial,x-locale-body,sans-serif;
+            text-align: center;
+        }
+
+        .image-container {
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        @media (orientation: landscape) {
+            img {
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <h2>Add To Home Demo</h2>
+        <div class="image-container">
+            <img src="images/fox1.jpg" alt="a fox picture">
+        </div>
+    </div>
+
+
+    <script>
+        const images = ['fox1', 'fox2', 'fox3'];
+        const imgElem = document.querySelector('img');
+
+        function randomValueFromArray(array) {
+            let randomNo = Math.floor(Math.random() * array.length);
+            return array[randomNo];
+        }
+
+        setInterval(function () {
+            let randomChoice = randomValueFromArray(images);
+            imgElem.src = 'images/' + randomChoice + '.jpg';
+        }, 2000)
+
+        // Register service worker to control making site work offline
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('sw.js')
+                .then(function () { console.log('Service Worker Registered'); });
+        }
+
+        // Code to handle install prompt on desktop
+        // =====================================================
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+
+            // Stash the event so it can be triggered later.
+            deferredPrompt = e;
+        });
+    </script>
+</body>
+
+</html>
